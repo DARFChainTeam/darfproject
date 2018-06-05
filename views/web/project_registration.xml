@@ -436,7 +436,10 @@ hr.style {
 					<tr>
 					<td><img t-att-src="website.image_url(project,'image')"
 					class="img-circle image_right" alt="Roman" /></td>
-						<td class="ico_name_table"><div class="td_text1"><t t-esc="project.name" /></div></td>
+						<td class="ico_name_table">
+						<t t-set="id" t-value="project.id" />
+				        <a  t-attf-href="/my/home/project/{{id}}">
+						<div class="td_text1"><t t-esc="project.name" /></div></a></td>
 						<td class="ico_name_table">
 						<div class="td_text1">
 							<a href="/my/home/invest">INVESTMENT</a>
