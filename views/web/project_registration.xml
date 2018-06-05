@@ -251,11 +251,11 @@ hr.style {
 	<header>
 	<div class="row right_gap_header">
 		<div class="col-xs-12 head_fit">
-			<div class="col-xs-6 head_left"><a href="/"><span class="text_head">Projects</span></a></div>
-			<div class="col-xs-1 head_right" style="padding-top: 12px;"><a href="/my/home/projectsboard"><span class="text_head">Projects board</span></a></div>
-			<div class="col-xs-1 head_right" style="padding-top: 12px;"><a href="/my/home"><span class="text_head">My investment</span></a></div>
-			<div class="col-xs-2 head_right" style="padding-top: 12px;"><a href="/my/home/settings"><span class="text_head">Transaction history</span></a></div>
-			<div class="col-xs-2 head_right">
+			<div class="col-xs-12 col-md-6 head_left"><a href="/"><span class="text_head">Projects</span></a></div>
+			<div class="col-xs-12 col-md-1 head_right" style="padding-top: 12px;"><a href="/my/home/projectsboard"><span class="text_head">Projects board</span></a></div>
+			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home"><span class="text_head">My investment</span></a></div>
+			<div class="col-xs-12 col-md-2  head_right" style="padding-top: 12px;"><a href="/my/home/settings"><span class="text_head">Transaction history</span></a></div>
+			<div class="col-xs-12 col-md-2  head_right">
 			<t t-if="not user_id._is_public()">
 				<span class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
