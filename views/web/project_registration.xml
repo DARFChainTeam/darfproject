@@ -251,10 +251,11 @@ hr.style {
 	<header>
 	<div class="row right_gap_header">
 		<div class="col-xs-12 head_fit">
-			<div class="col-xs-12 col-md-6 head_left"><a href="/"><span class="text_head">Projects</span></a></div>
+			<div class="col-xs-12 col-md-5 head_left"><a href="/"><span class="text_head">Projects</span></a></div>
 			<div class="col-xs-12 col-md-1 head_right" style="padding-top: 12px;"><a href="/my/home/projectsboard"><span class="text_head">Projects board</span></a></div>
 			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home"><span class="text_head">My investment</span></a></div>
-			<div class="col-xs-12 col-md-2  head_right" style="padding-top: 12px;"><a href="/my/home/settings"><span class="text_head">Transaction history</span></a></div>
+			<div class="col-xs-12 col-md-2  head_right" style="padding-top: 12px;"><a href="/my/home/transactions"><span class="text_head">Transaction history</span></a></div>
+			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home/setting"><span class="text_head">Setting</span></a></div>
 			<div class="col-xs-12 col-md-2  head_right">
 			<t t-if="not user_id._is_public()">
 				<span class="dropdown">
@@ -465,6 +466,23 @@ hr.style {
 	<div class="col-xs-6 text-right">To buying tokens of project send ether to this address</div>
 	<div class="col-xs-6 text-left"><span t-field="project.project_address"/></div>
 	</div>
+	</div>
+	</div>
+	</t>
+</template>
+<template id="customer_setting" name="Customer Setting">
+	<t t-call="portal.portal_layout" >
+	<div class="page_style">
+	<div class="row">
+	<form action="/my/home/customer">
+	<div class="col-xs-12" style="margin-top:30px;">
+	<div class="col-xs-6 text-right">Ethereum address</div>
+	<div class="col-xs-6 text-left"><input name="Ethereum address" type="text"/></div>
+	<div class="col-xs-6 text-right">Bitcoin address</div>
+	<div class="col-xs-6 text-left"><input name="Bitcoin address" type="text"/></div>
+	<div class="col-xs-12 text-right"><input type="submit" value="Save"/></div>
+	</div>
+	</form>
 	</div>
 	</div>
 	</t>

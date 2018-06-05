@@ -66,3 +66,11 @@ class CustomerPortal(CustomerPortal):
         return request.render("darfproject.project_invest", {
             'project': project_sudo,
         })
+
+    @http.route(['/my/home/setting'], type='http', auth="user", website=True)
+    def customer_setting(self,  **kw):
+        partner = request.env.user.partner_id
+        print(partner)
+        return request.render("darfproject.customer_setting", {
+            'customer': partner,
+        })
