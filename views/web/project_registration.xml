@@ -462,10 +462,22 @@ hr.style {
 	<t t-call="portal.portal_layout" >
 	<div class="page_style">
 	<div class="row">
+	<div class="col-xs-12 text-center" style="padding-top:30px;"><img t-att-src="website.image_url(project,'image')"
+					class="img-circle image_right" alt="Roman" /></div>
+	<form action="/my/home/buy">
 	<div class="col-xs-12" style="margin-top: 30px;">
 	<div class="col-xs-6 text-right">To buying tokens of project send ether to this address</div>
 	<div class="col-xs-6 text-left"><span t-field="project.project_address"/></div>
 	</div>
+		<div class="col-xs-12 text-center" style="padding-top:30px;"><span t-field="project.name"/></div>
+		<div class="col-xs-12 text-center" style="padding-top:30px;">Token name: <span t-field="project.project_token_name"/></div>
+		<div class="col-xs-12 text-center" style="padding-top:30px;">All tokens: <span t-field="project.token_amount"/></div>
+		<div class="col-xs-12" style="padding-top:30px;">
+		<div class="col-xs-6 text-right">How many tokens do you want to buy?</div>
+		<div class="col-xs-6 text-left"><input name="Buy tokens" type="text" style="width:100px;"/></div>
+		<div class="col-xs-12 text-center" style="padding-top:20px;padding-bottom:50px;"><input type="submit" value="Buy"/></div>
+		</div>
+	</form>
 	</div>
 	</div>
 	</t>
@@ -476,7 +488,7 @@ hr.style {
 	<div class="row">
 	<form action="/my/home/customer">
 	<div class="col-xs-12" style="margin-top:30px;">
-	<div class="col-xs-6 text-right">Ethereum address</div>
+<div class="col-xs-6 text-right">Ethereum address</div>
 	<div class="col-xs-6 text-left"><input name="Ethereum address" type="text" style="width:300px;"/></div>
 	<div class="col-xs-6 text-right">Bitcoin address</div>
 	<div class="col-xs-6 text-left"><input name="Bitcoin address" type="text" style="width:300px;"/></div>
