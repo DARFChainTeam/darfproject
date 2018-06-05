@@ -477,10 +477,10 @@ hr.style {
 	<form action="/my/home/customer">
 	<div class="col-xs-12" style="margin-top:30px;">
 	<div class="col-xs-6 text-right">Ethereum address</div>
-	<div class="col-xs-6 text-left"><input name="Ethereum address" type="text"/></div>
+	<div class="col-xs-6 text-left"><input name="Ethereum address" type="text" style="width:300px;"/></div>
 	<div class="col-xs-6 text-right">Bitcoin address</div>
-	<div class="col-xs-6 text-left"><input name="Bitcoin address" type="text"/></div>
-	<div class="col-xs-12 text-right"><input type="submit" value="Save"/></div>
+	<div class="col-xs-6 text-left"><input name="Bitcoin address" type="text" style="width:300px;"/></div>
+	<div class="col-xs-6 text-right"><input type="submit" value="Save"/></div>
 	</div>
 	</form>
 	</div>
