@@ -12,3 +12,4 @@ class ProjectInvestingInformation(models.Model):
     image = fields.Binary(string="Image ICO")
     image_medium = fields.Binary()
     image_small = fields.Binary()
+    project_address = fields.Char(string="Address for token seling")

@@ -442,7 +442,7 @@ hr.style {
 						<div class="td_text1"><t t-esc="project.name" /></div></a></td>
 						<td class="ico_name_table">
 						<div class="td_text1">
-							<a href="/my/home/invest">INVESTMENT</a>
+							<a t-attf-href="/my/home/invest/{{id}}" style="color:red;">INVESTMENT</a>
 						</div>
 						</td>
 						<td class="ico_name_table"><div class="td_text1"><t t-esc="project.description" /></div></td>
@@ -454,6 +454,18 @@ hr.style {
 				</div>
 			</div>
 		</div>
+	</div>
+	</t>
+</template>
+<template id="project_invest" name="Project Invest Page">
+	<t t-call="portal.portal_layout" >
+	<div class="page_style">
+	<div class="row">
+	<div class="col-xs-12" style="margin-top: 30px;">
+	<div class="col-xs-6 text-right">To buying tokens of project send ether to this address</div>
+	<div class="col-xs-6 text-left"><span t-field="project.project_address"/></div>
+	</div>
+	</div>
 	</div>
 	</t>
 </template>

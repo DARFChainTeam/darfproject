@@ -56,3 +56,13 @@ class CustomerPortal(CustomerPortal):
         return request.render("darfproject.projects_board", {
             'projects': project_sudo,
         })
+
+    @http.route(['/my/home/invest/<int:project>'], type='http', auth="user", website=True)
+    def project_invest(self, project, **kw):
+        project = request.env['project.project'].browse([project])
+        project_sudo= project.sudo()
+        partner = request.env.user.partner_id
+        print(project_sudo)
+        return request.render("darfproject.project_invest", {
+            'project': project_sudo,
+        })
