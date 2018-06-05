@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="project_project_form_view">
+			<field name="name">project.project</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project.edit_project"/>
+			<field name="arch" type="xml">
+			  <xpath expr="//sheet/notebook/page[1]" position="after">
+			    <page string="Project's token">
+			    <group>
+					<field name="project_token" />
+					<field name="project_token_name" />
+					<field name="token_amount" />
+					<field name="description" />
+					<field name='image' widget="image" class="oe_avatar" />
+				</group>
+			    </page> 
+			  </xpath> 
+			</field>
+
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="customer_invest">
+			<field name="name">res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+			  <xpath expr="//sheet/notebook/page[1]" position="after">
+			  <page string="Investments">
+			  <field name="investment_list">
+				  <tree>
+					  <field name="project_of_invest" />
+					  <field name="project_customer_token_amount" />
+				  </tree>
+			  </field>
+			  </page>
+			  </xpath> 
+			</field>
+		</record>
+	</data>
+</odoo>
