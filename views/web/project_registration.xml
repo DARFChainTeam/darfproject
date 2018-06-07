@@ -471,13 +471,17 @@ hr.style {
 					<td></td>
 					</tr> -->
 					<t t-foreach="projects" t-as="project" >
-					<div class="container" style="background-color:#33FF99; width:20%; margin-left:20px; float:left; margin-top:20px; height: 180px;" > 
+					<div class="container" style="background-color:#33FF99; width:20%; margin-left:20px; float:left; margin-top:20px; height: 240px;" > 
 						<div style="padding-top:15px;"><img t-att-src="website.image_url(project,'image')"
 						class="image_right" alt="Roman" style="border-radius: 5%;" /></div>
 							<div>
 							<t t-set="id" t-value="project.id" />
 							<a  t-attf-href="/my/home/project/{{id}}">
 							<div class="td_text1"><t t-esc="project.name" /></div></a></div>
+							<div>
+							<a  t-attf-href="/my/home/project/{{id}}">
+							<div class="td_text1">Read more...</div></a>
+							</div>
 							<div>
 							<div class="td_text1">
 								<a t-attf-href="/my/home/invest/{{id}}" style="color:red;">INVESTMENT</a>
