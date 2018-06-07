@@ -473,7 +473,7 @@ hr.style {
 					<t t-foreach="projects" t-as="project" >
 					<div class="container" style="background-color:#33FF99; width:20%; margin-left:20px; float:left; margin-top:20px; height: 180px;" > 
 						<div style="padding-top:15px;"><img t-att-src="website.image_url(project,'image')"
-						class="img-circle image_right" alt="Roman" /></div>
+						class="image_right" alt="Roman" style="border-radius: 5%;" /></div>
 							<div>
 							<t t-set="id" t-value="project.id" />
 							<a  t-attf-href="/my/home/project/{{id}}">
