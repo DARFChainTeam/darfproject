@@ -401,11 +401,13 @@ hr.style {
 <template id="project_page" name="Project Page">
 <t t-call="portal.portal_layout" >
 	<div class="page_style" style="padding-left: 40px; padding-top: 40px; padding-left: 40px">
-		<div class="row meetuplist"> 
+	<div class="row">
 		<div class="col-xs-12"> 
-		<div  ass="text-right col-xs-3">Project name:</div> 
+		<div class="text-right col-xs-3">Project name:</div> 
 		<div class="text-left col-xs-9"><span t-field="project.name"/></div> 
 		</div>
+	</div>
+		<div class="row meetuplist"> 
 		<ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#market">Market</a></li>
 		  <li><a data-toggle="tab" href="#technology">Technology</a></li>
@@ -458,11 +460,8 @@ hr.style {
 <template id="projects_board" name="Project Board Page">
 	<t t-call="portal.portal_layout" >
 	<div class="page_style">
-		<div class="row right_gap_header">
-			<div class="col-xs-12">
-				<div class="table_field">
-				<table class="table_general">
-					<tr class="tr_head">
+				<div>
+					<!-- <tr class="tr_head">
 					<td></td>
 					<td>Project name</td>
 					<td></td>
@@ -470,31 +469,27 @@ hr.style {
 					<td>Token name</td>
 					<td>Token amount</td>
 					<td></td>
-					</tr>
+					</tr> -->
 					<t t-foreach="projects" t-as="project" >
-					<tr><td class="empty_line_table" colspan="9">&#160;</td></tr>
-					<tr>
-					<td><img t-att-src="website.image_url(project,'image')"
-					class="img-circle image_right" alt="Roman" /></td>
-						<td class="ico_name_table">
-						<t t-set="id" t-value="project.id" />
-				        <a  t-attf-href="/my/home/project/{{id}}">
-						<div class="td_text1"><t t-esc="project.name" /></div></a></td>
-						<td class="ico_name_table">
-						<div class="td_text1">
-							<a t-attf-href="/my/home/invest/{{id}}" style="color:red;">INVESTMENT</a>
-						</div>
-						</td>
-						<td class="ico_name_table"><div class="td_text1"><t t-esc="project.description" /></div></td>
-						<td class="ico_name_table"><div class="td_text1"><t t-esc="project.project_token_name" /></div></td>
-						<td class="ico_name_table"><div class="td_text1"><t t-esc="project.token_amount" /></div></td> 
-					</tr>
+					<div class="container" style="background-color:#33FF99; width:20%; margin-left:20px; float:left; margin-top:20px; height: 180px;" > 
+						<div style="padding-top:15px;"><img t-att-src="website.image_url(project,'image')"
+						class="img-circle image_right" alt="Roman" /></div>
+							<div>
+							<t t-set="id" t-value="project.id" />
+							<a  t-attf-href="/my/home/project/{{id}}">
+							<div class="td_text1"><t t-esc="project.name" /></div></a></div>
+							<div>
+							<div class="td_text1">
+								<a t-attf-href="/my/home/invest/{{id}}" style="color:red;">INVESTMENT</a>
+							</div>
+							</div>
+							<div><div class="td_text1"><t t-esc="project.description" /></div></div>
+							<div><div class="td_text1"><t t-esc="project.project_token_name" /></div></div>
+							<div><div class="td_text1"><t t-esc="project.token_amount" /></div></div> 
+					</div>
 					</t>
-				</table>
 				</div>
 			</div>
-		</div>
-	</div>
 	</t>
 </template>
 <template id="project_invest" name="Project Invest Page">
