@@ -21,7 +21,7 @@ class CustomerPortal(CustomerPortal):
         print(projects)
         projects_customer_list = []
         if projects:
-            for project_item in projects.sudo().search([]):
+            for project_item in projects:
                 project_item_dic = {}
                 project_item_dic.update({'project_name':project_item.project_of_invest.name,
                                         'project_token_name':project_item.project_of_invest.project_token_name,
