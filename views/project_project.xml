@@ -27,6 +27,32 @@
 						<field name="term_and_condition" />
 					</group>
 			    </page>
+			    <page string="Market">
+					<group>
+						<field name="market" />
+					</group>
+			    </page>
+			    <page string="Finance">
+					<group>
+						<field name="tokens_price" />
+						<field name="exchange_price" />
+						<field name="exchange_rate" />
+					</group>
+			    </page>
+			    <page string="Technology">
+					<group>
+						<field name="technology" />
+					</group>
+			    </page>
+			    <page string="Project Team">
+					<group>
+						<field name="project_team">
+						<tree editable="bottom">
+							<field name="team_mamber" />
+						</tree>
+						</field>
+					</group>
+			    </page>
 			    <page string="Round of investment">
 					<group>
 						<field name="round_of_investment">

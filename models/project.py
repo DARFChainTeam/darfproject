@@ -26,6 +26,18 @@ class ProjectInvestingInformation(models.Model):
     market = fields.Text(string="Market")
     technology = fields.Text(string="Technology")
     round_of_investment = fields.One2many('round.investment','project_id',string="Rounds of investment")
+    legal_issues = fields.Text(string="Legal Issues")
+    tokens_price = fields.Float(string="Token's Price")
+    project_team = fields.One2many('project.team','project_id',string="Project Team")
+
+
+class ProjectTeam(models.Model):
+    
+    _name='project.team'
+    
+    project_id = fields.Many2one('project.project')
+    team_mamber = fields.Many2one('res.partner',string="Team mamber")
+
 
 class RoundInvestment(models.Model):
     
