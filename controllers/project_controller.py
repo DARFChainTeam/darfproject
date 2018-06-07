@@ -18,6 +18,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         partner = request.env.user.partner_id
         projects = request.env['customer.investment.list'].search([('customer_id','=',partner.id)])
+        print(projects)
         projects_customer_list = []
         if projects:
             for project_item in projects.sudo().search([]):
@@ -27,10 +28,9 @@ class CustomerPortal(CustomerPortal):
                                         'token_amount':project_item.project_of_invest.token_amount,
                                         'project_token_amount':project_item.project_customer_token_amount,
                                         'id':project_item.project_of_invest.id,})
+                projects_customer_list.append(project_item_dic)
         else:
             project_item_dic = {}
-        if project_item_dic != {}:
-            projects_customer_list.append(project_item_dic)
         print(projects_customer_list)
         values.update({
             'projects': projects_customer_list,
