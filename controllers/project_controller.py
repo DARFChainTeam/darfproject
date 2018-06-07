@@ -74,3 +74,35 @@ class CustomerPortal(CustomerPortal):
         return request.render("darfproject.customer_setting", {
             'customer': partner,
         })
+
+    @http.route(['/web/condition'], type='json', auth="user", website=True)
+    def buy_condition(self, project_id,token_value, **kw):
+        partner = request.env.user.partner_id
+        print(project_id, token_value)
+        return True
+
+    @http.route(['/web/buytoken'], type='json', auth="user", website=True)
+    def buy_tokens(self, project_id,accept,token_value, **kw):
+        partner = request.env.user.partner_id
+        print(project_id, token_value,'test accept', accept,'partner_id:',partner.id)
+        project_id = int(project_id)
+        get_list = request.env['customer.investment.list'].search([('customer_id','=',partner.id),('project_of_invest','=',project_id)])
+        if get_list:
+            print(get_list)
+            token_value = get_list.project_customer_token_amount + int(token_value)
+            get_list.write({'project_customer_token_amount':token_value})
+        else:
+            dict_for_write = {'project_of_invest':project_id,
+                              'project_customer_token_amount':token_value}
+            print(dict_for_write)
+            partner.write({'investment_list':[(0,0,dict_for_write)]})
+        return True
+
+    @http.route(['/my/home/condition/<int:project_id>/<int:token_value>'], type='http', auth="user", website=True)
+    def buy_condition_page(self, project_id,token_value,  **kw):
+        partner = request.env.user.partner_id
+        project = request.env['project.project'].browse([project_id])
+        return request.render("darfproject.term_and_condition", {
+            'project': project,
+            'token_value':token_value,
+                        })

@@ -461,22 +461,51 @@ hr.style {
 <template id="project_invest" name="Project Invest Page">
 	<t t-call="portal.portal_layout" >
 	<div class="page_style">
+	<script>
+	    $(document).ready(function(value) {
+		odoo.define('darfproject.page_condition', function (require) {
+				"use strict";
+				var ajax = require('web.ajax');
+				
+				$("#buy_condition").click(function () {
+					 var project_id = $("#project_id").val();
+					 var token_value = $("#token_value").val();
+					 console.log(token_value);
+					 console.log(location.host);
+					 var redirect = 'http://'+location.host + '/my/home/condition/'+project_id+'/'+token_value;
+					 ajax.jsonRpc("/web/condition", 'call', { 
+					                                      'project_id':project_id,
+					                                      'token_value':token_value,
+														   });
+					 console.log(redirect);
+	                 window.location.replace(redirect);
+				 
+				 });
+		});
+				 
+		});
+    </script>
 	<div class="row">
 	<div class="col-xs-12 text-center" style="padding-top:30px;"><img t-att-src="website.image_url(project,'image')"
 					class="img-circle image_right" alt="Roman" /></div>
-	<form action="/my/home/buy">
-	<div class="col-xs-12" style="margin-top: 30px;">
-	<div class="col-xs-6 text-right">To buying tokens of project send ether to this address</div>
-	<div class="col-xs-6 text-left"><span t-field="project.project_address"/></div>
-	</div>
-		<div class="col-xs-12 text-center" style="padding-top:30px;"><span t-field="project.name"/></div>
-		<div class="col-xs-12 text-center" style="padding-top:30px;">Token name: <span t-field="project.project_token_name"/></div>
-		<div class="col-xs-12 text-center" style="padding-top:30px;">All tokens: <span t-field="project.token_amount"/></div>
-		<div class="col-xs-12" style="padding-top:30px;">
-		<div class="col-xs-6 text-right">How many tokens do you want to buy?</div>
-		<div class="col-xs-6 text-left"><input name="Buy tokens" type="text" style="width:100px;"/></div>
-		<div class="col-xs-12 text-center" style="padding-top:20px;padding-bottom:50px;"><input type="submit" value="Buy"/></div>
+	<form>
+		<div class="col-xs-12" style="margin-top: 30px;">
+		<div class="col-xs-6 text-right">To buying tokens of project send ether to this address</div>
+		<div class="col-xs-6 text-left"><span t-field="project.project_address"/></div>
 		</div>
+			<div class="col-xs-12 text-center" style="padding-top:30px;"><span t-field="project.name"/></div>
+			<div class="col-xs-12 text-center" style="padding-top:30px;">Token name: <span t-field="project.project_token_name"/></div>
+			<div class="col-xs-12 text-center" style="padding-top:30px;">All tokens: <span t-field="project.token_amount"/></div>
+			<div class="col-xs-12" style="padding-top:30px;">
+			<t t-set="id" t-value="project.id" />
+			<input id="project_id" name="project" type="hidden" t-attf-value="{{id}}" />
+			<div class="col-xs-6 text-right">How many tokens do you want to buy?</div>
+			<div class="col-xs-6 text-left"><input name="tokens" id="token_value" type="text" value="0" style="width:100px;"/></div>
+ 			<div class="col-xs-12 text-center" style="padding-top:20px;padding-bottom:50px;">
+            <!-- <input type="submit" value="buy"/> -->
+            <button type="button" class="btn btn-default" id="buy_condition" data-dismiss="modal">Next</button>
+ 			</div>
+			</div>
 	</form>
 	</div>
 	</div>
@@ -496,6 +525,57 @@ hr.style {
 	</div>
 	</form>
 	</div>
+	</div>
+	</t>
+</template>
+<template id="term_and_condition" name="Term Condition">
+	<t t-call="portal.portal_layout" >
+	<div class="page_style">
+	<script>
+	$(document).ready(function(value) {
+		odoo.define('darfproject.token_buy', function (require) {
+				"use strict";
+				var ajax = require('web.ajax');
+				
+				$("#buy_tokens").click(function () {
+					 var project_id = $("#project_id").val();
+					 var accept = $("#accept").val();
+					 var token_value = $("#token_value").val();
+					 console.log(accept);
+					 console.log(location.host);
+					 var redirect = 'http://'+location.host + '/my/home';
+					 ajax.jsonRpc("/web/buytoken", 'call', { 
+					                                      'project_id':project_id,
+					                                      'accept':accept,
+					                                      'token_value':token_value,
+														   });
+					 console.log(redirect);
+	                 window.location.replace(redirect);
+				 
+					 });
+				 
+			 });
+	   });
+	 </script>
+		<div class="row">
+			<div class="col-xs-12 text-center" style="padding-top:50px;">
+				<p>
+				<span t-field="project.term_and_condition" />
+				</p>
+			</div>
+			<div class="col-xs-12 text-center" >
+			<p><span t-esc="token_value"/></p>
+			
+			</div>
+		</div>
+		<div class="col-xs-12 text-center">
+			<form>
+			<input id="project_id" name="project" type="hidden" t-attf-value="{{project.id}}" />
+			<input id="token_value" name="tokens" type="hidden" t-attf-value="{{token_value}}" />
+			<input id="accept" type="checkbox" name="accept" value="accept"/> Accept<br/>
+            <button type="button" class="btn btn-default" id="buy_tokens" data-dismiss="modal">BUY</button>
+			</form>
+		</div>
 	</div>
 	</t>
 </template>
