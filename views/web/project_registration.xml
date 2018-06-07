@@ -470,14 +470,17 @@ hr.style {
 					<td>Token amount</td>
 					<td></td>
 					</tr> -->
+                                       
 					<t t-foreach="projects" t-as="project" >
 					<div class="container" style="background-color:#33FF99; width:20%; margin-left:20px; float:left; margin-top:20px; height: 240px;" > 
-						<div style="padding-top:15px;"><img t-att-src="website.image_url(project,'image')"
+						<div style="padding-top:15px;"><img t-att-src="website.image_url(project['project'],'image')"
 						class="image_right" alt="Roman" style="border-radius: 5%;" /></div>
 							<div>
-							<t t-set="id" t-value="project.id" />
-							<a  t-attf-href="/my/home/project/{{id}}">
-							<div class="td_text1"><t t-esc="project.name" /></div></a></div>
+								<t t-set="id" t-value="project['project'].id" />
+								<t t-set="name" t-value="project['project'].name" />
+								<a  t-attf-href="/my/home/project/{{id}}">
+								<div class="td_text1"><t t-esc="name" /></div></a>
+							</div>
 							<div>
 							<a  t-attf-href="/my/home/project/{{id}}">
 							<div class="td_text1">Read more...</div></a>
@@ -487,10 +490,13 @@ hr.style {
 								<a t-attf-href="/my/home/invest/{{id}}" style="color:red;">INVESTMENT</a>
 							</div>
 							</div>
-							<div><div class="td_text1"><t t-esc="project.description" /></div></div>
-							<div><div class="td_text1"><t t-esc="project.project_token_name" /></div></div>
-							<div><div class="td_text1"><t t-esc="project.token_amount" /></div></div> 
-					</div>
+							<div><div class="td_text1"><t t-esc="project['project'].description" /></div></div>
+							<div><div class="td_text1"><t t-esc="project['project'].project_token_name" /></div></div>
+							<div><div class="td_text1"><t t-esc="project['project'].token_amount" /></div></div> 
+							<div>
+							<p>Your tokens:<t t-esc="project['project_token_amount']" /></p>
+							</div>
+					 </div>
 					</t>
 				</div>
 			</div>
@@ -516,7 +522,8 @@ hr.style {
 					                                      'token_value':token_value,
 														   });
 					 console.log(redirect);
-	                 window.location.replace(redirect);
+	                // window.location.replace(redirect);
+	                window.location.href = redirect;
 				 
 				 });
 		});
@@ -588,7 +595,8 @@ hr.style {
 					                                      'token_value':token_value,
 														   });
 					 console.log(redirect);
-	                 window.location.replace(redirect);
+	                // window.location.replace(redirect);
+	                window.location.href = redirect;
 				 
 					 });
 				 

@@ -27,7 +27,8 @@ class CustomerPortal(CustomerPortal):
                                         'project_token_name':project_item.project_of_invest.project_token_name,
                                         'token_amount':project_item.project_of_invest.token_amount,
                                         'project_token_amount':project_item.project_customer_token_amount,
-                                        'id':project_item.project_of_invest.id,})
+                                        'id':project_item.project_of_invest.id,
+                                        })
                 projects_customer_list.append(project_item_dic)
         else:
             project_item_dic = {}
@@ -51,10 +52,28 @@ class CustomerPortal(CustomerPortal):
     def project_board(self, **kw):
         project = request.env['project.project'].search([])
         project_sudo= project.sudo()
+        print(project)
         partner = request.env.user.partner_id
-        print(project_sudo)
+        project_list = []
+        project_item_dict = {}
+        for project_item in project:
+            print(project_item)
+            
+            projects_customer = request.env['customer.investment.list'].search([('customer_id','=',partner.id),
+                                                                                ('project_of_invest','=',project_item.id)])
+            project_item_dict.update({'project_name':project_item.name,
+                                      'project_token_name':project_item.project_token_name,
+                                      'token_amount':project_item.token_amount,
+                                      'project_token_amount':projects_customer.project_customer_token_amount,
+                                      'id':project_item.id,
+                                      'project':project_item,
+                                        })
+            project_list.append(project_item_dict)
+            project_item_dict = {}
+            
+        print(project_list)
         return request.render("darfproject.projects_board", {
-            'projects': project_sudo,
+            'projects': project_list,
         })
 
     @http.route(['/my/home/invest/<int:project>'], type='http', auth="user", website=True)
