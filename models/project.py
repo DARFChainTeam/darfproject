@@ -23,12 +23,23 @@ class ProjectInvestingInformation(models.Model):
     crowd_sale_abi = fields.Char(string="ABI crowd sale contract") 
     #addition fields for project card
     term_and_condition = fields.Text(string="Term & Condition")
-    market = fields.Text(string="Market")
-    technology = fields.Text(string="Technology")
     round_of_investment = fields.One2many('round.investment','project_id',string="Rounds of investment")
-    legal_issues = fields.Text(string="Legal Issues")
     tokens_price = fields.Float(string="Token's Price")
     project_team = fields.One2many('project.team','project_id',string="Project Team")
+    #passport of project
+    #market
+    market_size = fields.Float(string="Market size")
+    cagr = fields.Float(string="Compound Annual Growth Rate (CAGR)")
+    planned_share_market = fields.Float(string="Planned share of the market")
+    market = fields.Text(string="Market")
+    #Technology
+    technology = fields.Text(string="Technology")
+    #finance
+    total_investment = fields.Float(string="Total investment")
+    finance_description = fields.Text(string="Description")
+    #Legal issues
+    legal_issues = fields.Text(string="Legal Issues")
+    
 
 
 class ProjectTeam(models.Model):

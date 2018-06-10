@@ -10,10 +10,33 @@ from odoo.tools import consteq
 from odoo.addons.portal.controllers.mail import _message_post_helper
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager, get_records_pager
 from ast import literal_eval
+from openerp.addons.auth_signup.controllers.main import AuthSignupHome
 
+class AuthSignupHome(AuthSignupHome):
 
+    def _signup_with_values(self, token, values):
+        qcontext = request.params.copy()
+        if qcontext.get('investor',False):
+            values.update(investor=True)
+            values.update(ethereum_address=qcontext.get('investor_address',False))
+        if qcontext.get('project',False):
+            values.update(project=True)
+            project_name = qcontext.get('project_name',False)
+            #insert in values parameters for project creationg
+            values.update(project_name=project_name)
+            values.update(market_size=qcontext.get('market_size'))
+            values.update(cagr=qcontext.get('cagr'))
+            values.update(planned_share_market=qcontext.get('planned_share_market'))
+            values.update(market=qcontext.get('market'))
+            values.update(technology=qcontext.get('technology'))
+            values.update(total_investment=qcontext.get('total_investment'))
+            values.update(finance_description=qcontext.get('finance_description'))
+            print(qcontext)
+        return super(AuthSignupHome, self)._signup_with_values(token, values)
+    
+    
 class CustomerPortal(CustomerPortal):
-
+    
     def _prepare_portal_layout_values(self):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         partner = request.env.user.partner_id
@@ -50,7 +73,7 @@ class CustomerPortal(CustomerPortal):
 
     @http.route(['/my/home/projectsboard'], type='http', auth="user", website=True)
     def project_board(self, **kw):
-        project = request.env['project.project'].search([])
+        project = request.env['project.project'].sudo().search([])
         project_sudo= project.sudo()
         print(project)
         partner = request.env.user.partner_id

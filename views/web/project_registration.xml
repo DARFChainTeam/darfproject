@@ -251,9 +251,12 @@ hr.style {
 	<header>
 	<div class="row right_gap_header">
 		<div class="col-xs-12 head_fit">
-			<div class="col-xs-12 col-md-5 head_left"><a href="/"><span class="text_head">Projects</span></a></div>
+			<div class="col-xs-12 col-md-4 head_left"><a href="/"><span class="text_head">Projects</span></a></div>
 			<div class="col-xs-12 col-md-1 head_right" style="padding-top: 12px;"><a href="/my/home/projectsboard"><span class="text_head">Projects board</span></a></div>
 			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home"><span class="text_head">My investment</span></a></div>
+			<t t-if="user_id.partner_id.project">
+			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home/myproject"><span class="text_head">My projects</span></a></div>
+			</t>
 			<div class="col-xs-12 col-md-2  head_right" style="padding-top: 12px;"><a href="/my/home/transactions"><span class="text_head">Transaction history</span></a></div>
 			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home/setting"><span class="text_head">Setting</span></a></div>
 			<div class="col-xs-12 col-md-2  head_right">

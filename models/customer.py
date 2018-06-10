@@ -1,6 +1,41 @@
 from openerp import models, fields, api
 
-
+class UserInvestment(models.Model):
+    
+    _inherit = 'res.users'
+    
+    @api.model
+    def create(self,values):
+        if 'project' in values.keys():
+            project_creation_dict = {
+                'name':values['project_name'],
+                'market_size':values['market_size'],
+                'cagr':values['cagr'],
+                'planned_share_market':values['planned_share_market'],
+                'market':values['market'],
+                'technology':values['technology'],
+                'total_investment':values['total_investment'],
+                'finance_description':values['finance_description'],
+                }
+            print(project_creation_dict)
+            del values['project_name']
+            del values['market_size']
+            del values['cagr']      
+            del values['planned_share_market']
+            del values['market']
+            del values['technology']
+            del values['total_investment']
+            del values['finance_description']
+            print('test of values user create')
+            print(values)
+        else:
+            pass
+        res = super(UserInvestment,self).create(values)
+        if 'project' in values.keys():
+            project_creation_dict.update({'partner_id':res.id})
+            project_res = self.env['project.project'].create(project_creation_dict)
+        return res 
+            
 class CustomerInvestment(models.Model):
     
     _inherit = 'res.partner'
@@ -8,6 +43,9 @@ class CustomerInvestment(models.Model):
     investment_list = fields.One2many('customer.investment.list','customer_id',string="Customer's investment")
     ethereum_address = fields.Char(string="Ethereum address")
     bitcoin_address = fields.Char(string="Bitcoin address")
+    investor = fields.Boolean(string="Is investor")
+    project = fields.Boolean(string="Is project")
+    
 
 class CustomerInvestmentList(models.Model):
     

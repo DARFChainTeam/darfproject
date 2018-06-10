@@ -30,6 +30,9 @@
 			    <page string="Market">
 					<group>
 						<field name="market" />
+						<field name="cagr" />
+						<field name="market_size" />
+						<field name="planned_share_market" />
 					</group>
 			    </page>
 			    <page string="Finance">
@@ -37,6 +40,8 @@
 						<field name="tokens_price" />
 						<field name="exchange_price" />
 						<field name="exchange_rate" />
+						<field name="total_investment" />
+						<field name="finance_description" />
 					</group>
 			    </page>
 			    <page string="Technology">
