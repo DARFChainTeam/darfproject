@@ -6,6 +6,7 @@
 <script type="text/javascript" src="/darfproject/static/src/js/tinymce.min.js"></script>
 <script>tinymce.init({ selector:'#technology' });</script>
 <script>tinymce.init({ selector:'#finance_description' });</script>
+<script>tinymce.init({ selector:'#market' });</script>
 	<style>
         #project_div {display:none;}
         #investor_div {display:none;}
