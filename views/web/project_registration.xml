@@ -242,6 +242,16 @@ hr.style {
     background-color: blue !important;
     color: white !important;
 }
+.image_project {
+      padding-top:5%;
+      height:250px !important;
+    }
+.small_head {
+        font-weight: bold;
+        font-size:18px;
+    }
+
+   
 
        </style>
     </xpath>
@@ -473,9 +483,39 @@ hr.style {
 					<td>Token amount</td>
 					<td></td>
 					</tr> -->
-                                       
-					<t t-foreach="projects" t-as="project" >
+                    <div class="container">
+					<div class="row">                   
+						<t t-foreach="projects" t-as="project" >
+							<div class="col-md-4">
+							    <t t-set="id" t-value="project['project'].id" />
+								<t t-set="name" t-value="project['project'].name" />
+								<h3><span><t t-esc="name"/></span></h3>
+								<div  class="thumbnail">
+								<a  t-attf-href="/my/home/invest/{{id}}">
+								<img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
+								</a>
+								</div>
+								<div class="caption">
+									<div class="row">
+									<div class="col-md-6">
+									   <a class="btn btn-danger" t-attf-href="/my/home/invest/{{id}}">INVEST</a>
+									</div>
+									<div class="col-md-6">
+									   <a t-attf-href="/my/home/project/{{id}}">READ MORE...</a>
+									</div>
+									</div>
+									<p>
+									<span class="small_head">Description: </span><span><t t-esc="project['project'].description" /></span><br/> 
+									<span class="small_head">Token: </span><span><t t-esc="project['project'].project_token_name" /></span><br/>
+									<span class="small_head">Token amount: </span><span><t t-esc="project['project'].token_amount" /></span><br/> 
+									<span class="small_head">Your tokens: </span><span><t t-esc="project['project_token_amount']" /></span>
+									</p>
+								</div>
+							</div>
+                       </t>					
+<!-- 
 					<div class="container" style="background-color:#33FF99; width:20%; margin-left:20px; float:left; margin-top:20px; height: 240px;" > 
+					
 						<div style="padding-top:15px;"><img t-att-src="website.image_url(project['project'],'image')"
 						class="image_right" alt="Roman" style="border-radius: 5%;" /></div>
 							<div>
@@ -500,7 +540,9 @@ hr.style {
 							<p>Your tokens:<t t-esc="project['project_token_amount']" /></p>
 							</div>
 					 </div>
-					</t>
+					</t> -->
+				</div>
+				</div>
 				</div>
 			</div>
 	</t>
