@@ -260,6 +260,7 @@ hr.style {
 <template id="project_main_page" inherit_id="portal.frontend_layout">
 <xpath expr="//div[@id='wrapwrap']/header" position="replace">
 	<header>
+	
 	<div class="row right_gap_header">
 		<div class="col-xs-12 head_fit">
 			<div class="col-xs-12 col-md-4 head_left"><a href="/"><span class="text_head">Projects</span></a></div>
@@ -290,6 +291,9 @@ hr.style {
 				</t>
 				<t t-if="user_id._is_public()">
 					<a t-attf-href="/web/login" role="menuitem">Login</a>
+					<style>
+					body {padding-top:0px;}
+					</style>
 				</t>
 				<img t-att-src="website.image_url(user_id,'image')"
 					class="img-circle image_right" alt="Roman" />
