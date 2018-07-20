@@ -256,6 +256,7 @@ hr.style {
        </style>
     </xpath>
 </template>
+
 <template id="project_main_page" inherit_id="portal.frontend_layout">
 <xpath expr="//div[@id='wrapwrap']/header" position="replace">
 	<header>
@@ -314,6 +315,7 @@ hr.style {
 		</div>
 	</div>
 </xpath>
+
 </template>
 <template id="project_portal" inherit_id="portal.portal_my_home"
 	name="My Projects">
@@ -474,74 +476,37 @@ hr.style {
 	<t t-call="portal.portal_layout" >
 	<div class="page_style">
 				<div>
-					<!-- <tr class="tr_head">
-					<td></td>
-					<td>Project name</td>
-					<td></td>
-					<td>Description</td>
-					<td>Token name</td>
-					<td>Token amount</td>
-					<td></td>
-					</tr> -->
-                    <div class="container">
-					<div class="row">                   
-						<t t-foreach="projects" t-as="project" >
-							<div class="col-md-4">
-							    <t t-set="id" t-value="project['project'].id" />
-								<t t-set="name" t-value="project['project'].name" />
-								<h3><span><t t-esc="name"/></span></h3>
-								<div  class="thumbnail">
-								<a  t-attf-href="/my/home/invest/{{id}}">
-								<img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
-								</a>
+<div class="container">
+						<div class="row">                   
+							<t t-foreach="projects" t-as="project" >
+								<div class="col-md-4">
+									<t t-set="id" t-value="project['project'].id" />
+									<t t-set="name" t-value="project['project'].name" />
+									<h3><span><t t-esc="name"/></span></h3>
+									<div  class="thumbnail">
+									<a  t-attf-href="/my/home/invest/{{id}}">
+									<img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
+									</a>
+									</div>
+									<div class="caption">
+										<div class="row">
+										<div class="col-md-6">
+										   <a class="btn btn-danger" t-attf-href="/my/home/invest/{{id}}">INVEST</a>
+										</div>
+										<div class="col-md-6">
+										   <a t-attf-href="/my/home/project/{{id}}">READ MORE...</a>
+										</div>
+										</div>
+										<p>
+										<span class="small_head">Description: </span><span><t t-esc="project['project'].description" /></span><br/> 
+										<span class="small_head">Token: </span><span><t t-esc="project['project'].project_token_name" /></span><br/>
+										<span class="small_head">Token amount: </span><span><t t-esc="project['project'].token_amount" /></span><br/> 
+										<span class="small_head">Your tokens: </span><span><t t-esc="project['project_token_amount']" /></span>
+										</p>
+									</div>
 								</div>
-								<div class="caption">
-									<div class="row">
-									<div class="col-md-6">
-									   <a class="btn btn-danger" t-attf-href="/my/home/invest/{{id}}">INVEST</a>
-									</div>
-									<div class="col-md-6">
-									   <a t-attf-href="/my/home/project/{{id}}">READ MORE...</a>
-									</div>
-									</div>
-									<p>
-									<span class="small_head">Description: </span><span><t t-esc="project['project'].description" /></span><br/> 
-									<span class="small_head">Token: </span><span><t t-esc="project['project'].project_token_name" /></span><br/>
-									<span class="small_head">Token amount: </span><span><t t-esc="project['project'].token_amount" /></span><br/> 
-									<span class="small_head">Your tokens: </span><span><t t-esc="project['project_token_amount']" /></span>
-									</p>
-								</div>
-							</div>
-                       </t>					
-<!-- 
-					<div class="container" style="background-color:#33FF99; width:20%; margin-left:20px; float:left; margin-top:20px; height: 240px;" > 
-					
-						<div style="padding-top:15px;"><img t-att-src="website.image_url(project['project'],'image')"
-						class="image_right" alt="Roman" style="border-radius: 5%;" /></div>
-							<div>
-								<t t-set="id" t-value="project['project'].id" />
-								<t t-set="name" t-value="project['project'].name" />
-								<a  t-attf-href="/my/home/project/{{id}}">
-								<div class="td_text1"><t t-esc="name" /></div></a>
-							</div>
-							<div>
-							<a  t-attf-href="/my/home/project/{{id}}">
-							<div class="td_text1">Read more...</div></a>
-							</div>
-							<div>
-							<div class="td_text1">
-								<a t-attf-href="/my/home/invest/{{id}}" style="color:red;">INVESTMENT</a>
-							</div>
-							</div>
-							<div><div class="td_text1"><t t-esc="project['project'].description" /></div></div>
-							<div><div class="td_text1"><t t-esc="project['project'].project_token_name" /></div></div>
-							<div><div class="td_text1"><t t-esc="project['project'].token_amount" /></div></div> 
-							<div>
-							<p>Your tokens:<t t-esc="project['project_token_amount']" /></p>
-							</div>
-					 </div>
-					</t> -->
-				</div>
+						   </t>					
+					</div>
 				</div>
 				</div>
 			</div>

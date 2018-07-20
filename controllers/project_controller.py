@@ -11,6 +11,31 @@ from odoo.addons.portal.controllers.mail import _message_post_helper
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager, get_records_pager
 from ast import literal_eval
 from openerp.addons.auth_signup.controllers.main import AuthSignupHome
+from openerp.addons.website.controllers.main import Website
+
+class Website(Website):
+    @http.route(auth='public')
+    def index(self, data={},**kw):
+        super(Website, self).index(**kw)
+        projects_list = request.env['project.project'].sudo().search([])
+        project_list = []
+        project_item_dict = {}
+        #if request.env.user.partner_id:
+        #    partner = request.env.user.partner_id
+        for project_item in projects_list:
+            #projects_customer = request.env['customer.investment.list'].search([('customer_id','=',partner.id),
+            #'project_token_amount':projects_customer.project_customer_token_amount,                                                                    ('project_of_invest','=',project_item.id)])
+            project_item_dict.update({'project_name':project_item.name,
+                                      'project_token_name':project_item.project_token_name,
+                                      'token_amount':project_item.token_amount,
+                                      'id':project_item.id,
+                                      'project':project_item,
+                                        })
+            project_list.append(project_item_dict)
+            project_item_dict = {}
+            data.update({'projects':project_list})
+            print(data)
+        return http.request.render('darfproject.homepage_projects', data)
 
 class AuthSignupHome(AuthSignupHome):
 
@@ -41,6 +66,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         partner = request.env.user.partner_id
         projects = request.env['customer.investment.list'].search([('customer_id','=',partner.id)])
+        projects_list = request.env['project.project'].sudo().search([])
         print(projects)
         projects_customer_list = []
         if projects:
@@ -59,6 +85,25 @@ class CustomerPortal(CustomerPortal):
         values.update({
             'projects': projects_customer_list,
         })
+        project_list = []
+        project_item_dict = {}
+        for project_item in projects_list:
+            print(project_item)
+            
+            projects_customer = request.env['customer.investment.list'].search([('customer_id','=',partner.id),
+                                                                                ('project_of_invest','=',project_item.id)])
+            project_item_dict.update({'project_name':project_item.name,
+                                      'project_token_name':project_item.project_token_name,
+                                      'token_amount':project_item.token_amount,
+                                      'project_token_amount':projects_customer.project_customer_token_amount,
+                                      'id':project_item.id,
+                                      'project':project_item,
+                                        })
+            project_list.append(project_item_dict)
+            project_item_dict = {}
+            
+        print(project_list)
+        values.update({'projects_list':project_list})
         return values
     
     

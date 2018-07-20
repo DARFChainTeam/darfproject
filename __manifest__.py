@@ -17,6 +17,7 @@
      'views/customer_invest.xml',
      'views/web/project_registration.xml',
      'views/web/darf_login.xml',
+     'views/web/homepage.xml',
      'security/ir.model.access.csv',
     ],
 }
