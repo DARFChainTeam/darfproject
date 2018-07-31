@@ -45,6 +45,7 @@ class AuthSignupHome(AuthSignupHome):
             values.update(investor=True)
             values.update(ethereum_address=qcontext.get('investor_address',False))
         if qcontext.get('project',False):
+            print('test of get !!!')
             values.update(project=True)
             project_name = qcontext.get('project_name',False)
             #insert in values parameters for project creationg
