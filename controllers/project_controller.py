@@ -40,6 +40,7 @@ class Website(Website):
 class AuthSignupHome(AuthSignupHome):
 
     def _signup_with_values(self, token, values):
+        print(values)
         qcontext = request.params.copy()
         if qcontext.get('investor',False):
             values.update(investor=True)
