@@ -6,6 +6,7 @@ class UserInvestment(models.Model):
     
     @api.model
     def create(self,values):
+        test_of_project = False
         if 'project' in values.keys():
             if values['project']:
                 project_creation_dict = {
@@ -29,13 +30,14 @@ class UserInvestment(models.Model):
                 del values['finance_description']
                 print('test of values user create')
                 print(values)
+                test_of_project = True
             else:
                 pass
         else:
             pass
                 
         res = super(UserInvestment,self).create(values)
-        if 'investor' in values.keys():
+        if 'investor' in values.keys() and test_of_project is False:
             if values['investor']:
                 group_project = self.env['res.groups'].search([('category_id.name','=','Project')])
                 for item_group in group_project:
