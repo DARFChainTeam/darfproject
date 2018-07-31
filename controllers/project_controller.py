@@ -42,6 +42,7 @@ class AuthSignupHome(AuthSignupHome):
     def _signup_with_values(self, token, values):
         print(values)
         qcontext = request.params.copy()
+        print(qcontext)
         if qcontext.get('investor',False):
             values.update(investor=True)
             values.update(ethereum_address=qcontext.get('investor_address',False))
