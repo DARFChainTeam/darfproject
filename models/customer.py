@@ -30,7 +30,15 @@ class UserInvestment(models.Model):
             print(values)
         else:
             pass
+        investor_bool = False
+        if 'investor' in values.keys():
+            investor_bool = True
+            
         res = super(UserInvestment,self).create(values)
+        if investor_bool:
+            customer_to_user = res.partner_id
+            print(customer_to_user)
+            customer_to_user.write({'investor':values['investor']})
         if 'project' in values.keys():
             project_creation_dict.update({'partner_id':res.id})
             project_res = self.env['project.project'].create(project_creation_dict)
