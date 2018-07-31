@@ -35,10 +35,11 @@ class UserInvestment(models.Model):
             pass
         res = super(UserInvestment,self).create(values)
         if 'project' in values.keys():
-            project_creation_dict.update({'user_id':res.id,
-                                          'partner_id':res.partner_id.id,
-                                          'privacy_visibility':'portal'})
-            project_res = self.env['project.project'].create(project_creation_dict)
+            if values['project']:
+                project_creation_dict.update({'user_id':res.id,
+                                              'partner_id':res.partner_id.id,
+                                              'privacy_visibility':'portal'})
+                project_res = self.env['project.project'].create(project_creation_dict)
         return res 
             
 class CustomerInvestment(models.Model):
