@@ -40,7 +40,9 @@ class UserInvestment(models.Model):
             print(customer_to_user)
             customer_to_user.write({'investor':values['investor']})
         if 'project' in values.keys():
-            project_creation_dict.update({'partner_id':res.id})
+            project_creation_dict.update({'user_id':res.id,
+                                          'partner_id':res.partner_id.id,
+                                          'privacy_visibility':'portal'})
             project_res = self.env['project.project'].create(project_creation_dict)
         return res 
             
