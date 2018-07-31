@@ -33,7 +33,16 @@ class UserInvestment(models.Model):
                 pass
         else:
             pass
+                
         res = super(UserInvestment,self).create(values)
+        if 'investor' in values.keys():
+            if values['investor']:
+                group_project = self.env['res.groups'].search([('category_id.name','=','Project')])
+                for item_group in group_project:
+                    try:
+                        item_group.write({'users':[(3,res.id)]}) 
+                    except:
+                        pass
         if 'project' in values.keys():
             if values['project']:
                 project_creation_dict.update({'user_id':res.id,
