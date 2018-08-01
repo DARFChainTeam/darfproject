@@ -10,6 +10,7 @@
 			    <page string="Project's token">
 					<group>
 						<field name="project_token" />
+						<field name="moderator_check" invisible="1"/>
 						<field name="project_token_name" />
 						<field name="token_amount" />
 						<field name="description" />
@@ -57,6 +58,11 @@
 						</tree>
 						</field>
 					</group>
+			    </page>
+			    <page string="Moderation" attrs="{'invisible':[('moderator_check','=',False)]}">
+			    <group>
+			        <field name="publish_on_web" />
+			    </group>
 			    </page>
 			    <page string="Round of investment">
 					<group>

@@ -267,7 +267,7 @@ hr.style {
 			<div class="col-xs-12 col-md-1 head_right" style="padding-top: 12px;"><a href="/my/home/projectsboard"><span class="text_head">Projects board</span></a></div>
 			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home"><span class="text_head">My investment</span></a></div>
 			<t t-if="user_id.partner_id.project">
-			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home/myproject"><span class="text_head">My projects</span></a></div>
+			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="http://projects.darfchain.com/web#menu_id=87&#38;action="><span class="text_head">My projects</span></a></div>
 			</t>
 			<div class="col-xs-12 col-md-2  head_right" style="padding-top: 12px;"><a href="/my/home/transactions"><span class="text_head">Transaction history</span></a></div>
 			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home/setting"><span class="text_head">Setting</span></a></div>
@@ -339,6 +339,7 @@ hr.style {
 			</div>
 			<t t-if="projects != []">
 			<t t-foreach="projects" t-as="val">
+			<t t-if="val['publish_on_web'] == True">
 			<div class="col-xs-12">
 				    <div class="col-xs-4">
 				    <t t-set="id" t-value="val['id']" />
@@ -364,6 +365,7 @@ hr.style {
 						</span>
 					</div>
 		    </div>
+			</t>
 			</t>
 			</t>
 			<t t-if="projects == []">
@@ -483,6 +485,7 @@ hr.style {
 <div class="container">
 						<div class="row">                   
 							<t t-foreach="projects" t-as="project" >
+							<t t-if="project['publish_on_web'] == True">
 								<div class="col-md-4">
 									<t t-set="id" t-value="project['project'].id" />
 									<t t-set="name" t-value="project['project'].name" />
@@ -510,6 +513,7 @@ hr.style {
 									</div>
 								</div>
 						   </t>					
+						   </t>
 					</div>
 				</div>
 				</div>

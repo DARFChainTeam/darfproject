@@ -1,4 +1,6 @@
-from openerp import models, fields, api
+from openerp import models, fields, api, SUPERUSER_ID
+from odoo.addons.test_impex.models import compute_fn
+#from odoo import SUPERUSER_ID
 
 
 class ProjectInvestingInformation(models.Model):
@@ -39,6 +41,16 @@ class ProjectInvestingInformation(models.Model):
     finance_description = fields.Text(string="Description")
     #Legal issues
     legal_issues = fields.Text(string="Legal Issues")
+    moderator_check = fields.Boolean(string="test",compute = "_moderator_check")
+    publish_on_web = fields.Boolean(string="Publish on WEB")
+    
+     
+    def _moderator_check(self):
+        if SUPERUSER_ID == self._uid:
+            self.moderator_check = True
+        else:
+            self.moderator_check = False
+         
     
 
 

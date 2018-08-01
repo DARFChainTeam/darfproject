@@ -30,6 +30,7 @@ class Website(Website):
                                       'token_amount':project_item.token_amount,
                                       'id':project_item.id,
                                       'project':project_item,
+                                      'publish_on_web':project_item.publish_on_web,
                                         })
             project_list.append(project_item_dict)
             project_item_dict = {}
@@ -80,6 +81,7 @@ class CustomerPortal(CustomerPortal):
                                         'token_amount':project_item.project_of_invest.token_amount,
                                         'project_token_amount':project_item.project_customer_token_amount,
                                         'id':project_item.project_of_invest.id,
+                                        'publish_on_web':project_item.publish_on_web,
                                         })
                 projects_customer_list.append(project_item_dic)
         else:
@@ -101,6 +103,7 @@ class CustomerPortal(CustomerPortal):
                                       'project_token_amount':projects_customer.project_customer_token_amount,
                                       'id':project_item.id,
                                       'project':project_item,
+                                      'publish_on_web':project_item.publish_on_web,
                                         })
             project_list.append(project_item_dict)
             project_item_dict = {}
@@ -138,6 +141,7 @@ class CustomerPortal(CustomerPortal):
                                       'project_token_amount':projects_customer.project_customer_token_amount,
                                       'id':project_item.id,
                                       'project':project_item,
+                                      'publish_on_web':project_item.publish_on_web,
                                         })
             project_list.append(project_item_dict)
             project_item_dict = {}
