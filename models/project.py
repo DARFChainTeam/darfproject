@@ -71,3 +71,14 @@ class RoundInvestment(models.Model):
     end_date = fields.Date(string="End round of investing")
     min_amount = fields.Float(string="Minimal amount")
     max_amount = fields.Float(string="Max amount")
+    
+    
+class AreaOfInvestment(models.Model):
+    
+    _name = 'area.of.investment'
+    
+    name = fields.Char(string="Name of area")
+    description = fields.Text(string="Description")
+    
+    
+    

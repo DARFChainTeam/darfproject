@@ -19,5 +19,7 @@
      'views/web/darf_login.xml',
      'views/web/homepage.xml',
      'security/ir.model.access.csv',
+     'views/areas_investments.xml',
+     'security/ir.model.access.csv'
     ],
 }

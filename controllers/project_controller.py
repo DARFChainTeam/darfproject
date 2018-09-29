@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+import logging
 import base64
 import datetime
 from odoo import http, _
@@ -12,6 +12,11 @@ from odoo.addons.portal.controllers.portal import CustomerPortal, pager as porta
 from ast import literal_eval
 from openerp.addons.auth_signup.controllers.main import AuthSignupHome
 from openerp.addons.website.controllers.main import Website
+import werkzeug
+from odoo.addons.auth_signup.models.res_users import SignupError
+from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 class Website(Website):
     @http.route(auth='public')
@@ -47,6 +52,12 @@ class AuthSignupHome(AuthSignupHome):
         if qcontext.get('investor',False):
             values.update(investor=True)
             values.update(ethereum_address=qcontext.get('investor_address',False))
+            list_of_areas = []
+            for item_of_qcontext in qcontext.keys():
+                if item_of_qcontext.split('_')[0] == 'area':
+                    list_of_areas.append(int(item_of_qcontext.split('_')[1]))
+            print("test of areas:",list_of_areas)
+            values.update(area_of_investment = [(6,0,list_of_areas)])
         if qcontext.get('project',False):
             print('test of get !!!')
             values.update(project=True)
@@ -60,9 +71,45 @@ class AuthSignupHome(AuthSignupHome):
             values.update(technology=qcontext.get('technology'))
             values.update(total_investment=qcontext.get('total_investment'))
             values.update(finance_description=qcontext.get('finance_description'))
-            print(qcontext)
+        print('test of values:',values)
         return super(AuthSignupHome, self)._signup_with_values(token, values)
     
+    
+    @http.route('/web/signup', type='http', auth='public', website=True, sitemap=False)
+    def web_auth_signup(self, *args, **kw):
+        qcontext = self.get_auth_signup_qcontext()
+
+        if not qcontext.get('token') and not qcontext.get('signup_enabled'):
+            raise werkzeug.exceptions.NotFound()
+
+        if 'error' not in qcontext and request.httprequest.method == 'POST':
+            try:
+                self.do_signup(qcontext)
+                # Send an account creation confirmation email
+                if qcontext.get('token'):
+                    user_sudo = request.env['res.users'].sudo().search([('login', '=', qcontext.get('login'))])
+                    template = request.env.ref('auth_signup.mail_template_user_signup_account_created', raise_if_not_found=False)
+                    if user_sudo and template:
+                        template.sudo().with_context(
+                            lang=user_sudo.lang,
+                            auth_login=werkzeug.url_encode({'auth_login': user_sudo.email}),
+                            password=request.params.get('password')
+                        ).send_mail(user_sudo.id, force_send=True)
+                return super(AuthSignupHome, self).web_login(*args, **kw)
+            except UserError as e:
+                qcontext['error'] = e.name or e.value
+            except (SignupError, AssertionError) as e:
+                if request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
+                    qcontext["error"] = _("Another user is already registered using this email address.")
+                else:
+                    _logger.error("%s", e)
+                    qcontext['error'] = _("Could not create a new account.")
+        print(qcontext)
+        get_area_of_investing = request.env['area.of.investment'].sudo().search([])
+        qcontext.update({'areas':get_area_of_investing})
+        response = request.render('auth_signup.signup', qcontext)
+        response.headers['X-Frame-Options'] = 'DENY'
+        return response
     
 class CustomerPortal(CustomerPortal):
     

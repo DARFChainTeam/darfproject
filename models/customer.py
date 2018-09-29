@@ -1,5 +1,8 @@
 from openerp import models, fields, api
 
+
+
+
 class UserInvestment(models.Model):
     
     _inherit = 'res.users'
@@ -20,6 +23,7 @@ class UserInvestment(models.Model):
                     'finance_description':values['finance_description'],
                     }
                 print(project_creation_dict)
+                #del values['areas']
                 del values['project_name']
                 del values['market_size']
                 del values['cagr']      
@@ -39,12 +43,13 @@ class UserInvestment(models.Model):
         res = super(UserInvestment,self).create(values)
         if 'investor' in values.keys() and test_of_project is False:
             if values['investor']:
-                group_project = self.env['res.groups'].search([('category_id.name','=','Project')])
-                for item_group in group_project:
-                    try:
-                        item_group.write({'users':[(3,res.id)]}) 
-                    except:
-                        pass
+                pass
+#                 group_project = self.env['res.groups'].search([('category_id.name','=','Project')])
+#                 for item_group in group_project:
+#                     try:
+#                         item_group.write({'users':[(3,res.id)]}) 
+#                     except:
+#                         pass
         if 'project' in values.keys():
             if values['project']:
                 project_creation_dict.update({'user_id':res.id,
@@ -59,9 +64,17 @@ class CustomerInvestment(models.Model):
     
     investment_list = fields.One2many('customer.investment.list','customer_id',string="Customer's investment")
     ethereum_address = fields.Char(string="Ethereum address")
+    use_ethereum_address_for_login = fields.Boolean(string="Use ethereum address for login")
     bitcoin_address = fields.Char(string="Bitcoin address")
     investor = fields.Boolean(string="Is investor")
     project = fields.Boolean(string="Is project")
+    area_of_investment = fields.Many2many('area.of.investment',string="Areas of investment")
+    
+    
+    @api.model
+    def create(self,values):
+        res = super(CustomerInvestment,self).create(values)
+        return res
     
 
 class CustomerInvestmentList(models.Model):

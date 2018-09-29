@@ -11,7 +11,9 @@
 				  <group>
  					  <field name="investor" />
 					  <field name="project" />
+					  <field name="area_of_investment" />
  				  </group>
+ 				  
 			  </page>
 			  <page string="Investments">
 			  <group>
