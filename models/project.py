@@ -44,6 +44,8 @@ class ProjectInvestingInformation(models.Model):
     moderator_check = fields.Boolean(string="test",compute = "_moderator_check")
     publish_on_web = fields.Boolean(string="Publish on WEB")
     
+    areas_of_investment = fields.Many2many('area.of.investment',string="Select area of project")
+    
      
     def _moderator_check(self):
         if SUPERUSER_ID == self._uid:

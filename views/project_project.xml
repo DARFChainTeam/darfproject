@@ -26,6 +26,7 @@
 						<field name="investment_condition" />
 						<field name="buy_back_address" />
 						<field name="term_and_condition" />
+						<field name="areas_of_investment" />
 					</group>
 			    </page>
 			    <page string="Market">
