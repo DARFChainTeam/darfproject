@@ -106,7 +106,11 @@ class AuthSignupHome(AuthSignupHome):
                     qcontext['error'] = _("Could not create a new account.")
         print(qcontext)
         get_area_of_investing = request.env['area.of.investment'].sudo().search([])
-        qcontext.update({'areas':get_area_of_investing})
+        get_area_of_investing_category = request.env['area.of.investment.category'].sudo().search([])
+        
+        qcontext.update({'areas':get_area_of_investing,
+                         'categories':get_area_of_investing_category})
+        
         response = request.render('auth_signup.signup', qcontext)
         response.headers['X-Frame-Options'] = 'DENY'
         return response

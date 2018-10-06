@@ -20,6 +20,9 @@
      'views/web/homepage.xml',
      'security/ir.model.access.csv',
      'views/areas_investments.xml',
-     'security/ir.model.access.csv'
+     'security/ir.model.access.csv',
+     'views/round_of_investment.xml',
+     'views/areas_investments_category.xml'
+     
     ],
 }

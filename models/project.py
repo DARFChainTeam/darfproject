@@ -69,18 +69,37 @@ class RoundInvestment(models.Model):
     _name = 'round.investment'
     
     project_id = fields.Many2one('project.project')
+    name_of_round = fields.Many2one('round.of.investment',string="Name of round")
     start_date = fields.Date(string="Start round of investing") 
     end_date = fields.Date(string="End round of investing")
     min_amount = fields.Float(string="Minimal amount")
     max_amount = fields.Float(string="Max amount")
     
-    
+#Area of investment class    
 class AreaOfInvestment(models.Model):
     
     _name = 'area.of.investment'
     
     name = fields.Char(string="Name of area")
     description = fields.Text(string="Description")
+    category = fields.Many2one('area.of.investment.category', require = True)
+
+
+#Category of area of investment   
+class AreaOfInvestmentCategory(models.Model):
     
+    _name = 'area.of.investment.category'
+    
+    name = fields.Char(string="Name of category")
+    
+    
+class RaundOfInvestment(models.Model):
+    
+    _name = 'round.of.investment'
+    
+    name = fields.Char(string="Name of Raund")
+    description = fields.Text(string="Description")
+      
+
     
     

@@ -4,6 +4,9 @@
 
 <xpath expr="//div[hasclass('oe_website_login_container')]" position="after">
 <script type="text/javascript" src="/darfproject/static/src/js/tinymce.min.js"></script>
+<script type="text/javascript" src="/darfproject/static/src/js/jquery.treeselect.js"></script>
+<script type="text/javascript" src="/darfproject/static/src/js/tags_var.js"></script>
+<link rel="stylesheet" href="/darfproject/static/src/css/jquery.treeselect.css" type="text/css" />
 <script>tinymce.init({ selector:'#technology' });</script>
 <script>tinymce.init({ selector:'#finance_description' });</script>
 <script>tinymce.init({ selector:'#market' });</script>
@@ -23,14 +26,53 @@
 	 #metamask_notification_login {display:none;}
 	 
       </style>
+      
+   
 	<script>
        $(document).ready(function (value) {
+       
+var loadChildren = function(node, level) {
+node = {id: "01", title: "Node", has_children: true, level: 1, children:[
+<t t-foreach="categories" t-as="category"> 	  
+	  
+		       {id:'<t t-esc="category.id" />',title:'<t t-esc="category.name" />', has_children:true,level:2,children:[
+		       
+		       <t t-foreach="areas" t-as="area"> 
+		       
+			       <t t-if="area.category.id == category.id" >
+				       {id:'0<t t-esc="category.id" /><t t-esc="area.id" />',title:'<t t-esc="area.name" />', has_children:false,level:3,children:[]},
+				   </t>
+			   
+			   </t>
+			   
+			   ]},
+</t> 
+		   ]};
+   
+ return node;
+ };
+       
+      $('div.chosentree').chosentree({
+	      width: 500,
+	      deepLoad: true,
+	      showtree: true,
+	      load: function(node, callback) {
+		        setTimeout(function() {
+		          callback(loadChildren(node, 0));
+		        }, 1000);
+		      }
+      });
+       
     $('.oe_signup_form').on('change', ':checkbox', function () {
         if ($(this).is(':checked')) {
             if ($(this).val() == 'project') {
                 $('#project_div').fadeIn('slow');
             }
             if ($(this).val() == 'investor') {
+            
+
+
+            
                 $('#investor_div').fadeIn('slow');
                 if (window.web3 &#38;&#38; web3.eth.coinbase != null) {
                     $('#investor_address').val(web3.eth.coinbase);
@@ -89,13 +131,9 @@ function updateInterface() {
 	<div class="field-name">
 	<p>Pleas select your area of investment:</p>
 	</div>
-	<t t-foreach="areas" t-as="area">
+	
 	<div>
-		<label t-attf-for="area{{area.id}}" style="width:100px;"><t t-esc="area.name" /></label>
-		<input t-attf-id="area{{area.id}}" type="checkbox" t-attf-name="area_{{area.id}}" t-attf-value="area_{{area.id}}" />
-	</div>
-	</t>
-	<div>
+	    <div class="chosentree"></div>
         <label for="investor_address">Ethereum address</label>
         <input id="investor_address" type="text" name="investor_address" class="form-control"/>
     </div>
