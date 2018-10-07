@@ -1,5 +1,5 @@
 from openerp import models, fields, api, SUPERUSER_ID
-from odoo.addons.test_impex.models import compute_fn
+#from odoo.addons.test_impex.models import compute_fn
 #from odoo import SUPERUSER_ID
 
 
