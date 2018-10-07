@@ -107,9 +107,11 @@ class AuthSignupHome(AuthSignupHome):
         print(qcontext)
         get_area_of_investing = request.env['area.of.investment'].sudo().search([])
         get_area_of_investing_category = request.env['area.of.investment.category'].sudo().search([])
+        get_stage_investing = request.env['stage.of.investing'].sudo().search([])
         
         qcontext.update({'areas':get_area_of_investing,
-                         'categories':get_area_of_investing_category})
+                         'categories':get_area_of_investing_category,
+                         'stage_invest':get_stage_investing})
         
         response = request.render('auth_signup.signup', qcontext)
         response.headers['X-Frame-Options'] = 'DENY'

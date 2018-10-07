@@ -51,6 +51,17 @@ node = {id: "01", title: "Node", has_children: true, level: 1, children:[
    
  return node;
  };
+ 
+var loadStage = function(node, level) {
+node = {id: "01", title: "Node", has_children: true, level: 1, children:[
+<t t-foreach="stage_invest" t-as="stage"> 	  
+	  
+		       {id:'<t t-esc="stage.id" />',title:'<t t-esc="stage.name" />', has_children:false,level:2,children:[]},
+</t> 
+		   ]};
+   
+ return node;
+ };
        
       $('div.chosentree').chosentree({
 	      width: 500,
@@ -59,6 +70,18 @@ node = {id: "01", title: "Node", has_children: true, level: 1, children:[
 	      load: function(node, callback) {
 		        setTimeout(function() {
 		          callback(loadChildren(node, 0));
+		        }, 1000);
+		      }
+      });
+      
+      
+      $('div.stage_invest').chosentree({
+	      width: 500,
+	      deepLoad: true,
+	      showtree: true,
+	      load: function(node, callback) {
+		        setTimeout(function() {
+		          callback(loadStage(node, 0));
 		        }, 1000);
 		      }
       });
@@ -134,6 +157,9 @@ function updateInterface() {
 	
 	<div>
 	    <div class="chosentree"></div>
+	    <div><br/></div>
+	    <div><p>Select stage of project:</p></div>
+	    <div class="stage_invest"></div>
         <label for="investor_address">Ethereum address</label>
         <input id="investor_address" type="text" name="investor_address" class="form-control"/>
     </div>
