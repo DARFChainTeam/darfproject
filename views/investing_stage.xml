@@ -22,7 +22,7 @@
 			</field>
 		</record>
 		<record model="ir.actions.act_window" id="investing_stage_action">
-			<field name="name">Area of investment</field>
+			<field name="name">Stage of investment</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">stage.of.investing</field>
 			<field name="view_type">form</field>
