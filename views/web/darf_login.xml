@@ -40,7 +40,7 @@ node = {id: "01", title: "Node", has_children: true, level: 1, children:[
 		       <t t-foreach="areas" t-as="area"> 
 		       
 			       <t t-if="area.category.id == category.id" >
-				       {id:'0<t t-esc="category.id" /><t t-esc="area.id" />',title:'<t t-esc="area.name" />', has_children:false,level:3,children:[]},
+				       {id:'area_<t t-esc="area.id" />',title:'<t t-esc="area.name" />', has_children:false,level:3,children:[]},
 				   </t>
 			   
 			   </t>
@@ -56,7 +56,7 @@ var loadStage = function(node, level) {
 node = {id: "01", title: "Node", has_children: true, level: 1, children:[
 <t t-foreach="stage_invest" t-as="stage"> 	  
 	  
-		       {id:'<t t-esc="stage.id" />',title:'<t t-esc="stage.name" />', has_children:false,level:2,children:[]},
+		       {id:'stage_<t t-esc="stage.id" />',title:'<t t-esc="stage.name" />', has_children:false,level:2,children:[]},
 </t> 
 		   ]};
    

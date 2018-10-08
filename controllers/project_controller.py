@@ -53,11 +53,16 @@ class AuthSignupHome(AuthSignupHome):
             values.update(investor=True)
             values.update(ethereum_address=qcontext.get('investor_address',False))
             list_of_areas = []
+            list_of_stage = []
             for item_of_qcontext in qcontext.keys():
-                if item_of_qcontext.split('_')[0] == 'area':
-                    list_of_areas.append(int(item_of_qcontext.split('_')[1]))
+                if item_of_qcontext.split('-')[0] == 'treeselect':
+                    if qcontext[item_of_qcontext].split('_')[0] == 'area':
+                        list_of_areas.append(int(qcontext[item_of_qcontext].split('_')[1]))
+                    if qcontext[item_of_qcontext].split('_')[0] == 'stage':
+                        list_of_stage.append(int(qcontext[item_of_qcontext].split('_')[1]))
             print("test of areas:",list_of_areas)
             values.update(area_of_investment = [(6,0,list_of_areas)])
+            values.update(stage_investing = [(6,0,list_of_stage)])
         if qcontext.get('project',False):
             print('test of get !!!')
             values.update(project=True)

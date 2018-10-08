@@ -12,6 +12,7 @@
  					  <field name="investor" />
 					  <field name="project" />
 					  <field name="area_of_investment" />
+					  <field name="stage_investing" />
  				  </group>
  				  
 			  </page>

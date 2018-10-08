@@ -69,6 +69,7 @@ class CustomerInvestment(models.Model):
     investor = fields.Boolean(string="Is investor")
     project = fields.Boolean(string="Is project")
     area_of_investment = fields.Many2many('area.of.investment',string="Areas of investment")
+    stage_investing = fields.Many2many('stage.of.investing',string="Stage of investment")
     
     
     @api.model
