@@ -20,7 +20,7 @@
 
                         </a>
 						<!-- 				<a  t-attf-href="/my/home/invest/{{id}}">
-										<img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
+										test <img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
 										</a> -->
 									</div>
 									<div class="caption">
