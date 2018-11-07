@@ -439,9 +439,7 @@ hr.style {
 			<div class="tab-content">
 				<div id="market" class="tab-pane fade in active">
 				  <h3>MARKET</h3>
-				  <div>
-					<t t-field="project.market" />
-				  </div>
+				  <div t-field="project.market" />
 				</div>
 				<div id="technology" class="tab-pane fade">
 				  <h3>TECHNOLOGY</h3>
