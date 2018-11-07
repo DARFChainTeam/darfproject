@@ -171,7 +171,7 @@ class CustomerPortal(CustomerPortal):
         return values
     
     
-    @http.route(['/my/home/project/<int:project>'], type='http', auth="user", website=True)
+    @http.route(['/my/home/project/<int:project>'], type='http', auth="public", website=True)
     def project_page(self, project, **kw):
         project = request.env['project.project'].browse([project])
         project_sudo= project.sudo()
