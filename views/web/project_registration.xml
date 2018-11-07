@@ -442,10 +442,10 @@ hr.style {
 				  <t t-set="market_html" t-value="project.market" />
 				  <div id="market_id">
 				  </div>
-				  <javascript>
+				  <script>
 					  var market_div = document.getElementById("market_id");
 	                  market_div.innerHTML = "{{market_html}}";
-				  </javascript>
+				  </script>
 				  
 				</div>
 				<div id="technology" class="tab-pane fade">
