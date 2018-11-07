@@ -25,13 +25,13 @@
 						<field name="exchange_price" />
 						<field name="investment_condition" />
 						<field name="buy_back_address" />
-						<field name="term_and_condition" />
-						<field name="areas_of_investment" />
+						<field name="term_and_condition" widget="html" />
+						<field name="areas_of_investment" widget="html"/>
 					</group>
 			    </page>
 			    <page string="Market">
 					<group>
-						<field name="market" />
+						<field name="market" widget="html"/>
 						<field name="cagr" />
 						<field name="market_size" />
 						<field name="planned_share_market" />
@@ -43,12 +43,12 @@
 						<field name="exchange_price" />
 						<field name="exchange_rate" />
 						<field name="total_investment" />
-						<field name="finance_description" />
+						<field name="finance_description" widget="html"/>
 					</group>
 			    </page>
 			    <page string="Technology">
 					<group>
-						<field name="technology" />
+						<field name="technology" widget="html"/>
 					</group>
 			    </page>
 			    <page string="Project Team">

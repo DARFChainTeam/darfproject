@@ -438,14 +438,13 @@ hr.style {
 		</ul>
 			<div class="tab-content">
 				<div id="market" class="tab-pane fade in active">
-				  <h3>MARKET</h3>
 				  <t t-set="market_html" t-value="project.market" />
 				  <div id="market_id" t-field="project.market" t-options="{'widget': 'html'}" />
 				  
 				</div>
 				<div id="technology" class="tab-pane fade">
-				  <h3>TECHNOLOGY</h3>
-				   <p><span t-field="project.technology"/></p> </div> 
+				  <div  t-field="project.technology" t-options="{'widget': 'html'}" />
+				  </div> 
 				<div id="team" class="tab-pane fade"> 
 				<h3>Team</h3> 
 				<t t-foreach="project.project_team" t-as="team_mamber">
@@ -467,9 +466,8 @@ hr.style {
 				  </div>
 				  </div>
 				<div id="legal_issues" class="tab-pane fade">
-				  <h3>Legal Issues</h3>
 				  <p>
-					<span t-field="project.term_and_condition" />
+				   <div  t-field="project.term_and_condition" t-options="{'widget': 'html'}" />
 				  </p>
 				</div>
 			  </div>
