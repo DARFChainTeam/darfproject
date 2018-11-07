@@ -440,9 +440,7 @@ hr.style {
 				<div id="market" class="tab-pane fade in active">
 				  <h3>MARKET</h3>
 				  <t t-set="market_html" t-value="project.market" />
-				  <div id="market_id">
-				  <field name="project.market" widget="html" />
-				  </div>
+				  <div id="market_id" t-field="project.market" t-options="{'widget': 'html'}" />
 				  
 				</div>
 				<div id="technology" class="tab-pane fade">
