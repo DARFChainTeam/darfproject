@@ -15,13 +15,13 @@
 									<t t-set="name" t-value="project['project'].name" />
 									<h3><span><t t-esc="name"/></span></h3>
 									<div  class="thumbnail">
-									 <a t-attf-href="/my/home/invest/{{id}}">
+								<!-- 	 <a t-attf-href="/my/home/invest/{{id}}">
  <div t-field="project['project'].image" t-options="{'widget': 'image', 'class': 'img-rounded shadow o_alternative_product' }" />
 
-                        </a>
-						<!-- 				<a  t-attf-href="/my/home/invest/{{id}}">
-										test <img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
-										</a> -->
+                        </a> -->
+						 				<a  t-attf-href="/my/home/invest/{{id}}">
+										 <img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
+										</a>
 									</div>
 									<div class="caption">
 										<div class="row">
