@@ -444,7 +444,7 @@ hr.style {
 				  </div>
 				  <script>
 					  var market_div = document.getElementById("market_id");
-	                  market_div.innerHTML = "{{market_html}}";
+	                  market_div.innerHTML = "<t t-esc="project.market" />;
 				  </script>
 				  
 				</div>
