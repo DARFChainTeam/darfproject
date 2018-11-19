@@ -17,6 +17,13 @@
      'views/customer_invest.xml',
      'views/web/project_registration.xml',
      'views/web/darf_login.xml',
+     'views/web/homepage.xml',
      'security/ir.model.access.csv',
+     'views/areas_investments.xml',
+     'security/ir.model.access.csv',
+     'views/round_of_investment.xml',
+     'views/areas_investments_category.xml',
+     'views/investing_stage.xml'
+     
     ],
 }
