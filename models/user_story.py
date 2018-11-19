@@ -13,6 +13,11 @@ class UserStory(models.Model):
     description = fields.Text(string="Description of story")
     partner_id = fields.Many2one('res.partner',string="Investor")
     stage_id = fields.Many2one('project.task.type',string="Stage")
+    image = fields.Binary(string="Image",related="project.image")
+    image_medium = fields.Binary(related="project.image_medium")
+    image_small = fields.Binary(related="project.image_small")
+    
+    
     
    
     

@@ -33,13 +33,48 @@
 				<field name="description" />
 			</tree>
             </field>
-        </record>			
+        </record>	
+        <record model="ir.ui.view" id="user_story_kanban_view">
+		    <field name="name">user.story</field>
+		    <field name="model">user.story</field>
+		    <field name="type">kanban</field>
+		    <field name="arch" type="xml">
+		        <kanban>
+		        <field name="name" />
+				<field name="partner_id" invisible="1"/>
+				<field name="project" />
+				<field name="image" />
+				<field name="id" />
+		            <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_resource_vignette">
+                        <div class="oe_resource_image">
+                            <a type="edit"><img t-att-src="kanban_image('user.story', 'image', record.id.value)" 
+                            class="oe_resource_picture" style="width: 60px;"/></a>
+                        </div>
+                        <ul>
+	                        <li>
+	                        <field name="name" />
+	                        </li>
+	                        <li>
+	                        <field name="partner_id" />
+	                        </li>
+	                        <li>
+	                        <field name="project" />
+	                        </li>
+                        </ul>
+                    </div>                      
+                </t>
+            </templates>
+		        </kanban>
+		    </field>
+		</record>		
 		<record model="ir.actions.act_window" id="user_story_action">
 		    <field name="name">User Stories</field>
 		    <field name="type">ir.actions.act_window</field>
 		    <field name="res_model">user.story</field>
 		    <field name="view_type">form</field>
-		    <field name="view_mode">tree,form</field>
+		    <field name="view_mode">tree,form,kanban</field>
 		    <field name="view_id" ref="darfproject.user_story_tree_view" />
 		</record>
 		<menuitem
