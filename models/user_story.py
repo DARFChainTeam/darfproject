@@ -23,12 +23,12 @@ class UserStory(models.Model):
     
     @api.one
     def write(self,values):
-        values.update({'partner_id':self.env['res.users'].sudo().search([('id','=',1)]).partner_id.id})
+        values.update({'partner_id':self.env['res.users'].sudo().search([('id','=',self._context['uid'])]).partner_id.id})
         res = super(UserStory,self).write(values)
         return res
         
     @api.model
     def create(self,values):
-        values.update({'partner_id':self.env['res.users'].sudo().search([('id','=',1)]).partner_id.id})
+        values.update({'partner_id':self.env['res.users'].sudo().search([('id','=',self._context['uid'])]).partner_id.id})
         res = super(UserStory,self).create(values)
         return res
