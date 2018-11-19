@@ -11,7 +11,7 @@
 				<field name="name" />
 				<field name="partner_id" invisible="1"/>
 				<field name="project" />
-				<field name="description" />
+				<field name="description"  widget="html"/>
 				</group>
 				</sheet>
 				<div class="oe_chatter">
