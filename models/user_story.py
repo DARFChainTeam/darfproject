@@ -29,6 +29,6 @@ class UserStory(models.Model):
         
     @api.model
     def create(self,values):
-        values.update({'partner_id':self.env['res.users'].sudo.search([('id','=',1)]).partner_id.id})
+        values.update({'partner_id':self.env['res.users'].sudo().search([('id','=',1)]).partner_id.id})
         res = super(UserStory,self).create(values)
         return res
