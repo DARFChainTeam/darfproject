@@ -26,7 +26,7 @@
 									<div class="caption">
 										<div class="row">
 										<div class="col-md-6">
-										   <a class="btn btn-danger" t-attf-href="/my/home/invest/{{id}}">INVEST</a>
+										    <a class="btn btn-danger" t-attf-href="/my/home/invest/{{id}}">INVEST</a>
 										</div>
 										<div class="col-md-6">
 										   <a t-attf-href="/my/home/project/{{id}}">READ MORE...</a>
