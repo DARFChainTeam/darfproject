@@ -11,6 +11,7 @@
 				<field name="name" />
 				<field name="partner_id" invisible="1"/>
 				<field name="project" />
+				<field name="stage_id" />
 				<field name="description"  widget="html"/>
 				</group>
 				</sheet>
@@ -39,12 +40,14 @@
 		    <field name="model">user.story</field>
 		    <field name="type">kanban</field>
 		    <field name="arch" type="xml">
-		        <kanban>
+		        <kanban default_group_by="stage_id" class="o_kanban_small_column o_kanban_project_tasks">
 		        <field name="name" />
 				<field name="partner_id" invisible="1"/>
 				<field name="project" />
 				<field name="image" />
+				<field name="stage_id" />
 				<field name="id" />
+				<progressbar field="kanban_state" colors="{&quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;: &quot;danger&quot;}"/>
 		            <templates>
                     <t t-name="kanban-box">
                     <div class="oe_resource_vignette">

@@ -16,6 +16,16 @@ class UserStory(models.Model):
     image = fields.Binary(string="Image",related="project.image")
     image_medium = fields.Binary(related="project.image_medium")
     image_small = fields.Binary(related="project.image_small")
+    stage_id = fields.Many2one('user.story.stage',string='Stage')
+    kanban_state = fields.Selection([
+        ('normal', 'Grey'),
+        ('done', 'Green'),
+        ('blocked', 'Red')], string='Kanban State',
+        copy=False, default='normal', required=True,
+        help="A task's kanban state indicates special situations affecting it:\n"
+             " * Grey is the default situation\n"
+             " * Red indicates something is preventing the progress of this task\n"
+             " * Green indicates the task is ready to be pulled to the next stage")
     
     
     
@@ -33,3 +43,9 @@ class UserStory(models.Model):
         res = super(UserStory,self).create(values)
         res.message_subscribe([project_object.user_id.partner_id.id],subtype_ids=[])
         return res
+    
+class UserStoryStage(models.Model):
+    
+    _name = 'user.story.stage'
+    
+    name = fields.Char(string="Name of stage")
