@@ -49,3 +49,6 @@ class UserStoryStage(models.Model):
     _name = 'user.story.stage'
     
     name = fields.Char(string="Name of stage")
+    description = fields.Char('Description')
+    
+    

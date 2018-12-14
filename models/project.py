@@ -45,6 +45,7 @@ class ProjectInvestingInformation(models.Model):
     publish_on_web = fields.Boolean(string="Publish on WEB")
     
     areas_of_investment = fields.Many2many('area.of.investment',string="Select area of project")
+    website_url = fields.Char(string="Website of project")
     
      
     def _moderator_check(self):
