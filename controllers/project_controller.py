@@ -22,7 +22,7 @@ class Website(Website):
     @http.route(auth='public')
     def index(self, data={},**kw):
         super(Website, self).index(**kw)
-        projects_list = request.env['project.project'].sudo().search([])
+        projects_list = request.env['project.project'].sudo().search([],order="create_date desc")
         project_list = []
         project_item_dict = {}
         #if request.env.user.partner_id:
