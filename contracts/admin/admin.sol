@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
-import "./interface/crowdsale-interface.sol";
-import "./implementation/basic-crowdsale.sol";
+import "./interface/admin-interface.sol";
+import "./implementation/basic-admin.sol";
 import "../tokens/token.sol";
 import "./libraries/Modifiers.sol";
 
@@ -55,7 +55,6 @@ import "./libraries/Modifiers.sol";
 
         }
 
-    event Log_no_KYC(address investor);
 
 
 

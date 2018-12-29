@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 import "../../libraries/SafeMath.sol";
-import "../interface/crowdsale-interface.sol";
+import "../interface/scruminvest-interface.sol";
 import "../../tokens/token.sol";
 
 /*@title Receiver contract Abstract Class

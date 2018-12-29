@@ -14,9 +14,6 @@ library Modifiers {
 
         }
 
-    modifier InvestorCheck(address _investor_address, uint _value) {
-      require((_investors[_investor_address].KYC_level == 0 && _value < 1*(1 ether)) || _investors[_investor_address].KYC_level > 0);
-      _;
 
     }
-}
+
