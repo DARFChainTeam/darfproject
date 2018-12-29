@@ -100,6 +100,7 @@ contract crowdsale{
       that are required to be taken after the crowdsale is over.
    * @returns a boolean value indicating success or failure of this operation
    */
+  /*
   function finalize() public returns(bool)
   {
     if(msg.sender!=_owner)
@@ -113,6 +114,7 @@ contract crowdsale{
     }
 
   }
+  */
   //Todo make sure this event does not cause any issue
   event TokenPurchase(address indexed sender, uint256 value, uint256 amount);
   /*event Finalize (bool finalized , uint256 burned);*/
