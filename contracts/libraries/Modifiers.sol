@@ -2,7 +2,7 @@ pragma solidity ^0.4.0;
 
 library Modifiers {
  //Modification and access right------------------------------------------------
-    modifier OnlyOwner(address _sender_address) {
+    modifier onlyOwner(address _sender_address) {
       require(owner == _sender_address);
       _;
 

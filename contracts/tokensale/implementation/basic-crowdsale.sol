@@ -33,9 +33,9 @@ contract simpleCrowdsale is crowdsaleInterface {
     } else if (endTime < now || endTime < startTime) {
         revert();
     } else {
-      _startTime = startTime;
-      _endTime = endTime;
-      _cap = cap;
+      _startTime = startTime; //todo remove
+      _endTime = endTime; //todo remove
+      _cap = cap; //todo remove
       _rate = rate;
       _tokenSold = 0;
       _weiRaised = 0;
@@ -88,7 +88,7 @@ contract simpleCrowdsale is crowdsaleInterface {
       else
       {
           //Finalize mechanism : if there are tokens remaining, burn them.
-          _token.finalize();
+          _token.finalize(); //todo remove from token!
           _finalized = true;
           return true;
       }
@@ -130,19 +130,19 @@ contract simpleCrowdsale is crowdsaleInterface {
         {
           revert();
         }
-        else if (_finalized == true)
+        else if (_finalized == true) //todo  do we really need finish?
         {
             revert();
         }
 
-        else
+        else //todo  here to add KYC
         {
             return true;
         }
 
 
     }
-    modifier onlyOwner
+    modifier onlyOwner //todo copy in librrary modifiers
     {
       if(msg.sender!=_owner)
       {

@@ -13,11 +13,16 @@ import "./KYC_storage.sol";
  //TODO add cap
 contract basic_KYC is KYC_interface {
 
-  modifier InvestorCheck(address _investor_address, uint _value) {
+  function InvestorCheck(address _investor_address, uint _value) {
       require((_investors[_investor_address].KYC_level == 0 && _value < 1*(1 ether))
       || _investors[_investor_address].KYC_level > 0);
       _;
+
   }
+
+  function add_KYC(address investor_KYC, int KYC_level) public OnlyAdmin(msg.sender) {
+        _investors[investor_KYC].KYC_level = KYC_level;
+    }
 
 event Log_no_KYC(address investor);
 
