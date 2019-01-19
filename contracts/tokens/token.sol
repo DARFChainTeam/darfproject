@@ -17,17 +17,11 @@ contract token{
     tokenInterface private _token;
     address private _owner;
     bool private _finalized = false;
-    function token(string symbol, string name, uint8 decimals, uint256 totalSupply)
+    function token(string symbol, string name, uint8 decimals, )
     {
       _owner = msg.sender;
-      if(totalSupply == 0)
-      {
-        _token= new mintable(symbol,name,decimals) ;
-      }
-      else if (totalSupply > 0)
-      {
-        _token= new basic(symbol,name,decimals,totalSupply) ;
-      }
+      _token= new mintable(symbol,name,decimals) ;
+
     }
     function get_address() returns (address)
     {
@@ -143,24 +137,7 @@ contract token{
       }
       return result;
     }
-    function finalize() public returns (bool)
-    {
-      if(msg.sender!=_owner)
-      {
-        revert();
-      }
-      else if(_finalized==true)
-      {
-        revert();
-      }
-      else
-      {
-        _finalized=true;
-        uint256 remaining = _token.balanceOf(address(this));
-        _token.burn(address(this),remaining);
-        return true;
-      }
-    }
+
 
     //Events
     event TotalSupply(uint256 totalSupply);

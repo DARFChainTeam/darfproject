@@ -26,24 +26,17 @@ contract simpleCrowdsale is crowdsaleInterface {
 
 
 
-  function simpleCrowdsale(uint256 startTime, uint256 endTime,string symbol, string name, uint8 decimals, uint256 totalSupply,uint256 cap , uint256 rate) public
+  function simpleCrowdsale(string symbol, string name, uint8 decimals, uint256 totalSupply, uint256 rate) public
   {
-    if (startTime < now) {
-        revert();
-    } else if (endTime < now || endTime < startTime) {
-        revert();
-    } else {
-      _startTime = startTime; //todo remove
-      _endTime = endTime; //todo remove
-      _cap = cap; //todo remove
+
       _rate = rate;
       _tokenSold = 0;
       _weiRaised = 0;
       _owner = msg.sender;
-      _token = new token(symbol, name, decimals, totalSupply);
+   //   _token = new token(symbol, name, decimals); // todo we really need bond token anf sale?
     }
 
-  }
+
   //check for valid purchase
   function buyTokens(address receiver,uint256 weiAmount) public onlyOwner isFinalized returns(uint256)
   {
@@ -88,7 +81,7 @@ contract simpleCrowdsale is crowdsaleInterface {
       else
       {
           //Finalize mechanism : if there are tokens remaining, burn them.
-          _token.finalize(); //todo remove from token!
+        //  _token.finalize(); //todo remove from token!
           _finalized = true;
           return true;
       }
@@ -120,21 +113,9 @@ contract simpleCrowdsale is crowdsaleInterface {
     function validPurchase() internal view returns(bool) {
 
         if (_startTime > now) {
-            revert();
-        }
 
-        else if (_endTime < now ) {
-            revert();
-        }
-        else if( _endTime <= _startTime)
-        {
-          revert();
-        }
-        else if (_finalized == true) //todo  do we really need finish?
-        {
-            revert();
-        }
 
+        }
         else //todo  here to add KYC
         {
             return true;
