@@ -14,14 +14,14 @@ import "./KYC_storage.sol";
 contract basic_KYC is KYC_interface {
 
   function InvestorCheck(address _investor_address, uint _value) {
-      require((_investors[_investor_address].KYC_level == 0 && _value < 1*(1 ether)) // todo don't work this
-      || _investors[_investor_address].KYC_level > 0);
-      _;
+      return ((_investors[_investor_address].KYC_level == 0 && _value < 1*(1 ether))
+      || _investors[_investor_address].KYC_level > 0); // todo don't work this
 
   }
 
   function add_KYC(address investor_KYC, int KYC_level) public OnlyAdmin(msg.sender) {
-        _investors[investor_KYC].KYC_level = KYC_level;
+        _investors.push[investor_KYC].KYC_level = KYC_level;
+
     }
 
 event Log_no_KYC(address investor);

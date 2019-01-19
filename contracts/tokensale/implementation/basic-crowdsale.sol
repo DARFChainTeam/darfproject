@@ -112,15 +112,7 @@ contract simpleCrowdsale is crowdsaleInterface {
 
     function validPurchase() internal view returns(bool) {
 
-        if (_startTime > now) {
-
-
-        }
-        else //todo  here to add KYC
-        {
-            return true;
-        }
-
+        return  (InvestorCheck(_owner, _value));
 
     }
     modifier onlyOwner //todo copy in librrary modifiers
