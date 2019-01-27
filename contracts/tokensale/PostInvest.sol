@@ -2,7 +2,7 @@
 
 pragma solidity ^0.4.24;
 
-import "../libraries/Modifiers.sol";
+
 import "../tokens/token.sol";
 
 

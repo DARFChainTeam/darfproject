@@ -3,6 +3,8 @@ import "./interface/token-interface.sol";
 import "./implementation/basic-token.sol";
 import "./implementation/mintable-token.sol";
 
+// contracts/libraries/Modifiers.sol
+
 //Todo Create a Hybrid TOken
 /*
  * @title Basic token
@@ -13,7 +15,7 @@ import "./implementation/mintable-token.sol";
  */
 
  //TODO MAke sure burn and other are called through the parent.
-contract token{
+contract token is mintable {
     tokenInterface private _token;
     address private _owner;
     bool private _finalized = false;
@@ -99,7 +101,7 @@ contract token{
     }
 
 
-    function mint(address receiver, uint256 amount) public onlyOwner returns(bool)
+    function mint(address receiver, uint256 amount) public OnlyOwner(msg.sender) returns(bool)
     {
 
         bool result = _token.mint(address(this),receiver,amount);
@@ -130,7 +132,7 @@ contract token{
 
 
     //Events
-    event TotalSupply(uint256 totalSupply);
+   // event TotalSupply(uint256 totalSupply);
     event BalanceOf(address addr, uint256 balance);
     event Burn(address indexed receiver, uint256 amount);
     event Transfer(address indexed sender, address indexed receiver, uint256 amount, bytes data);

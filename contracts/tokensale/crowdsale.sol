@@ -2,6 +2,7 @@ pragma solidity ^0.4.18;
 import "./interface/crowdsale-interface.sol";
 import "./implementation/basic-crowdsale.sol";
 import "../tokens/token.sol";
+import "../admin/admin.sol";
 /*import "../libraries/SafeMath.sol";*/
 //TODO: add set rate
 //TODO: add cap
@@ -14,7 +15,7 @@ import "../tokens/token.sol";
 contract crowdsale{
   /*using SafeMath for uint256;*/
 
-  address private _owner;
+//  address private _owner;
   address private _wallet;
 
   crowdsaleInterface private _crowdsale;
@@ -118,14 +119,24 @@ contract crowdsale{
 
 
 
-  function sell_discount (uint pass_word, uint sum, uint amount) payable public  {
+  function sell_with_discount (uint pass_word, uint sum) payable public  {
           if (pass_word == discount_word) {
 
-              uint ANG_tokens_amount = sum * ANG_tokens_rate*(100-darf_percent)*(discount_size+100)/10000;
-              uint256 amount = _crowdsale.buyTokens(msg.sender,uint256(ANG_tokens_amount));
-
+              uint ANG_tokens_amount = sum * ANG_tokens_rate*(100- ANG_percent)*(discount_size+100)/10000;
+              uint256 amount = _crowdsale.buyTokens(msg.sender,uint256(ANG_tokens_amount)); //
+               if (amount>0)
+      {
+                //Transfer recieved ethers to our wallet
+                _wallet.transfer(msg.value);
+                TokenPurchase(msg.sender, uint256(msg.value),amount); //event
+      }
+      else
+      {
+        revert();
+      }
+  }
           }
-        }
+
 
 
 

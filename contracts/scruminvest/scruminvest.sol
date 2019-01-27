@@ -3,7 +3,7 @@
 pragma solidity ^0.4.24;
 
 import "../tokens/token.sol";
-import "../libraries/Modifiers.sol";
+
 
 
 contract PostInvest {
@@ -11,6 +11,7 @@ contract PostInvest {
     address public owner;
     address public beneficiar;
     address public token_address;
+
 
 
     constructor(address _token_address) public {

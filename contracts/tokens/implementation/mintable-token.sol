@@ -10,6 +10,12 @@ contract mintable is tokenInterface {
   uint8 internal _decimals;
   uint256 internal _totalSupply;
   address internal _owner;
+
+  modifier  OnlyOwner(address _sender_address) {
+      require(_owner == _sender_address);
+      _;
+
+        }
   mapping(address => uint256) internal _balances;
     function mintable(string symbol, string name, uint8 decimals) public {
         _symbol = symbol;
@@ -18,22 +24,22 @@ contract mintable is tokenInterface {
         _owner = msg.sender;
         _totalSupply = 0;
     }
-    function get_address() public onlyOwner returns (address) {
+    function get_address() public  OnlyOwner returns (address) {
         return address(this);
     }
-    function getOwner() public onlyOwner returns(address) {
+    function getOwner() public  OnlyOwner returns(address) {
         return _owner;
     }
 
-    function balanceOf(address addr) public view onlyOwner returns(uint256) {
+    function balanceOf(address addr) public view  OnlyOwner returns(uint256) {
         return _balances[addr];
     }
 
-    function totalSupply() public view onlyOwner returns(uint256) {
+    function totalSupply() public view  OnlyOwner returns(uint256) {
         return _totalSupply;
     }
 
-    function mint(address tokenAddress, address receiver, uint256 amount) public onlyOwner returns(bool) {
+    function mint(address tokenAddress, address receiver, uint256 amount) public  OnlyOwner returns(bool) {
       if(_owner != tokenAddress)
         {
             revert();
@@ -61,7 +67,7 @@ contract mintable is tokenInterface {
         }
     }
 
-    function transfer(address sender,address receiver, uint256 amount, bytes data) public onlyOwner returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount, bytes data) public  OnlyOwner returns(bool) {
     if(balanceOf(sender) < amount)
         {
             revert();
@@ -91,7 +97,7 @@ contract mintable is tokenInterface {
         }
     }
 
-    function transfer(address sender,address receiver, uint256 amount) public onlyOwner returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount) public  OnlyOwner returns(bool) {
 
         bytes memory empty;
         //use ERC223 transfer function
@@ -104,7 +110,7 @@ contract mintable is tokenInterface {
 
     }
 
-    function burn(address sender,uint256 amount) public onlyOwner returns(bool) {
+    function burn(address sender,uint256 amount) public  OnlyOwner returns(bool) {
 
 
         //Safty check : token owner cannot burn more than the amount currently exists in their address
@@ -130,15 +136,5 @@ contract mintable is tokenInterface {
         }
         return (length > 0);
     }
-    modifier onlyOwner
-    {
-      if(msg.sender!=_owner)
-      {
-        revert();
-      }
-      else
-      {
-        _;
-      }
-    }
+
 }

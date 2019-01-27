@@ -11,6 +11,21 @@ contract admin_Storage{
         address address_contract;
     }
 
+     constructor(address _token_address) public {
+        owner = msg.sender;
+        beneficiar = msg.sender;
+        token_address = _token_address;
+      }
+//setting of valuees-----------------------------------------------------------
+
+
+      struct Admin {
+        bool active;
+      }
+
+      mapping (address => Admin) public _admins;
+    //==============================================================================
+
     mapping (uint256 => admin_storage) public contracts_adresses;
 
 }

@@ -2,37 +2,10 @@ pragma solidity ^0.4.18;
 import "./interface/admin-interface.sol";
 import "./implementation/basic-admin.sol";
 import "../tokens/token.sol";
-import "../libraries/Modifiers.sol";
-
-  contract admin {
-
-      uint ANG_tokens_rate = 1 ; //1 ETH
-      address public token_address;
-      address public owner;
-      uint ANG_percent = 5;
-      address public beneficiar;
-      address public KYC_address;
-      uint public discount_word;
-      uint discount_size;
+import "./admin_storage.sol";
 
 
-      constructor(address _token_address) public {
-        owner = msg.sender;
-        beneficiar = msg.sender;
-        token_address = _token_address;
-      }
-//setting of valuees-----------------------------------------------------------
-
-
-      struct Admin {
-        bool active;
-      }
-
-      mapping (address => Admin) public _admins;
-    //==============================================================================
-
-
-
+  contract admin is simpleAdmin{
 
     function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
       _admins[_admin_address].active = _admin_state;
@@ -50,7 +23,7 @@ import "../libraries/Modifiers.sol";
         if (new_ANG_percent > 0 ) ANG_percent = new_ANG_percent;
         if (new_KYC_address > 0) KYC_address = new_KYC_address;
         if (new_token_address > 0) token_address = new_token_address;
-        if (new_owner > 0) owner = new_owner;
+        if (new_owner > 0) _owner = new_owner;
         if (new_beneficiar > 0) beneficiar = new_beneficiar;
 
         }

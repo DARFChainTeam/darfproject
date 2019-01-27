@@ -8,7 +8,20 @@ import "../../tokens/token.sol";
  */
  //TODO add owner checks
  //TODO add cap
-contract simpleAdmin is crowdsaleInterface {
+contract simpleAdmin is adminInterface {
+    uint ANG_tokens_rate = 1 ; //1 ETH
+      address public token_address;
+      address public _owner;
+      uint ANG_percent = 5;
+      address public beneficiar;
+      address public KYC_address;
+      uint public discount_word;
+      uint discount_size;
 
+  modifier OnlyOwner(address _sender_address) {
+      require(_owner == _sender_address);
+      _;
+
+        }
 
 }

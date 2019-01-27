@@ -2,6 +2,7 @@ pragma solidity ^ 0.4.18;
 import "../interface/token-interface.sol";
 import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
+//import "../../libraries/Modifiers.sol";
 
 //TODO test to see if contract owner can change the amount of total supply
 contract basic is tokenInterface {
@@ -12,6 +13,13 @@ contract basic is tokenInterface {
   uint256 internal _totalSupply;
   address internal _owner;
   mapping(address => uint256) internal _balances;
+
+  modifier OnlyOwner(address _sender_address) {
+      require(_owner == _sender_address);
+      _;
+
+        }
+
     function basic(string symbol, string name, uint8 decimals, uint256 totalSupply) public {
         _symbol = symbol;
         _name = name;
@@ -20,26 +28,26 @@ contract basic is tokenInterface {
         _balances[_owner] = totalSupply;
         _totalSupply = totalSupply;
     }
-    function get_address() public onlyOwner returns (address) {
+    function get_address() public OnlyOwner(msg.sender) returns (address) {
         return address(this);
 
     }
-    function balanceOf(address addr) public view onlyOwner returns(uint256) {
+    function balanceOf(address addr) public view OnlyOwner(msg.sender) returns(uint256) {
 
         return _balances[addr];
 
     }
-    function getOwner() public onlyOwner returns(address) {
+    function getOwner() public OnlyOwner(msg.sender) returns(address) {
 
         return _owner;
 
     }
-    function totalSupply() public view onlyOwner returns(uint256) {
+    function totalSupply() public view OnlyOwner(msg.sender) returns(uint256) {
 
         return _totalSupply;
 
     }
-    function transfer(address sender,address receiver, uint256 amount, bytes data) public onlyOwner returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount, bytes data) public OnlyOwner(msg.sender) returns(bool) {
      if(balanceOf(sender) < amount)
         {
             revert();
@@ -74,7 +82,7 @@ contract basic is tokenInterface {
 
 
 
-    function transfer(address sender,address receiver, uint256 amount) public onlyOwner returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount) public OnlyOwner(msg.sender) returns(bool) {
 
           bytes memory empty;
           //use ERC223 transfer function
@@ -86,12 +94,12 @@ contract basic is tokenInterface {
 
     }
 
-    function mint(address tokenAddress,address receiver, uint256 amount) public onlyOwner returns(bool)
+    function mint(address tokenAddress,address receiver, uint256 amount) public OnlyOwner(msg.sender) returns(bool)
     {
         transfer(tokenAddress,receiver, amount);
     }
 
-    function burn(address owner,uint256 amount) public onlyOwner returns(bool) {
+    function burn(address owner,uint256 amount) public OnlyOwner(msg.sender) returns(bool) {
 
 
         //Safty check : token owner cannot burn more than the amount currently exists in their address
@@ -119,16 +127,6 @@ contract basic is tokenInterface {
         }
         return (length > 0);
     }
-    modifier onlyOwner
-    {
-      if(msg.sender!=_owner)
-      {
-        revert();
-      }
-      else
-      {
-        _;
-      }
-    }
+
 
 }

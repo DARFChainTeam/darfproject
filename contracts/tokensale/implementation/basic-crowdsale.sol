@@ -24,7 +24,11 @@ contract simpleCrowdsale is crowdsaleInterface {
   token private _token;
   bool private _finalized = false;
 
+  modifier OnlyOwner(address _sender_address) {
+      require(_owner == _sender_address);
+      _;
 
+        }
 
 
   function simpleCrowdsale(string symbol, string name, uint8 decimals, uint256 totalSupply, uint256 rate) public
@@ -39,7 +43,7 @@ contract simpleCrowdsale is crowdsaleInterface {
 
 
   //check for valid purchase
-  function buyTokens(address receiver,uint256 weiAmount) public onlyOwner isFinalized returns(uint256)
+  function buyTokens(address receiver,uint256 weiAmount) public onlyOwner(msg.sender) isFinalized returns(uint256)
   {
 
       validPurchase();
@@ -95,27 +99,7 @@ contract simpleCrowdsale is crowdsaleInterface {
         return  (InvestorCheck(_owner, _value)); //KYC
 
     }
-    modifier onlyOwner //todo copy in librrary modifiers
-    {
-      if(msg.sender!=_owner)
-      {
-        revert();
-      }
-      else
-      {
-        _;
-      }
-    }
-    modifier isFinalized
-    {
-      if(_finalized==true)
-      {
-        revert();
-      }
-      else
-      {
-        _;
-      }
-    }
+
+
 
 }
