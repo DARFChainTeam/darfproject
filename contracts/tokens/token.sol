@@ -99,26 +99,16 @@ contract token{
     }
 
 
-    function mint(address receiver, uint256 amount) public returns(bool)
+    function mint(address receiver, uint256 amount) public onlyOwner returns(bool)
     {
-      // only owner can mint
-      if(msg.sender!=_owner)
-      {
-        revert();
-      }
-      else if(_finalized==true)
-      {
-        revert();
-      }
-      else
-      {
+
         bool result = _token.mint(address(this),receiver,amount);
         if(result)
         {
           Mint(receiver, amount);
         }
         return result;
-      }
+
     }
 
 

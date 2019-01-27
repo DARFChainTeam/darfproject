@@ -5,7 +5,7 @@ import "../tokens/token.sol";
 import "../Modifiers.sol";
 
 
-contract KYC {
+contract KYC  {
 
     //==============================================================================
     //Modification and access right------------------------------------------------

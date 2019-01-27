@@ -2,6 +2,7 @@ pragma solidity ^0.4.18;
 import "../../libraries/SafeMath.sol";
 import "../interface/crowdsale-interface.sol";
 import "../../tokens/token.sol";
+import "../../KYC/KYC.sol"
 
 /*@title Receiver contract Abstract Class
  *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
@@ -59,32 +60,11 @@ contract simpleCrowdsale is crowdsaleInterface {
           uint256 rate = getRate();
           uint256 tokens = weiAmount.mul(rate);
           _tokenSold = _tokenSold.add(tokens);
-          if(_tokenSold>_cap)
-          {
-            revert();
-          }
-          else
-          {
-            _token.mint(receiver, tokens);
-            return tokens;
-          }
+          token.mint(receiver, tokens);
+          return tokens;
+
       }
   }
-  function finalize() public onlyOwner isFinalized returns(bool)
-  {
-
-
-      //Safety Check : make sure current time is passed set end time of crowdsale
-      if (now < _endTime) {
-          revert();
-      }
-      else
-      {
-          //Finalize mechanism : if there are tokens remaining, burn them.
-        //  _token.finalize(); //todo remove from token!
-          _finalized = true;
-          return true;
-      }
 
   }
   function getToken() public onlyOwner returns(address)
@@ -112,7 +92,7 @@ contract simpleCrowdsale is crowdsaleInterface {
 
     function validPurchase() internal view returns(bool) {
 
-        return  (InvestorCheck(_owner, _value));
+        return  (InvestorCheck(_owner, _value)); //KYC
 
     }
     modifier onlyOwner //todo copy in librrary modifiers

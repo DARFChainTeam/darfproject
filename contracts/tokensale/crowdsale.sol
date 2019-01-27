@@ -52,7 +52,7 @@ contract crowdsale{
       {
                 //Transfer recieved ethers to our wallet
                 _wallet.transfer(msg.value);
-                TokenPurchase(msg.sender, uint256(msg.value),amount);
+                TokenPurchase(msg.sender, uint256(msg.value),amount); //event
       }
       else
       {
@@ -67,11 +67,11 @@ contract crowdsale{
 
 //TODO : Is it even needed?
 
-  /*function buyTokens(address receiver) public payable returns(bool)
+  function buyTokens(address receiver) public payable returns(bool)
   {
     bool value = _crowdsale.buyTokens(receiver);
     return value;
-  }*/
+  }
   //TODO : Is returning token address a security issue?
   function getToken() public returns(address)
   {
@@ -116,17 +116,14 @@ contract crowdsale{
   }
   */
 
-  function change_discount (uint new_discount_word, uint new_discount)  OnlyOwner(msg.sender) {
-          if (new_discount_word > 0) discount_word = new_discount_word;
-          if (new_discount > 0) discount_size =  new_discount;
-      }
+
 
   function sell_discount (uint pass_word, uint sum, uint amount) payable public  {
           if (pass_word == discount_word) {
-              uint darf_tokens_amount = sum*darf_tokens_rate*(100-darf_percent)*(discount_size+100)/10000;
-              _investors[msg.sender].total_ether = sum;
-              _investors[msg.sender].darfs = darf_tokens_amount;
-              DARFtoken(token_address).transfer(msg.sender,darf_tokens_amount);
+
+              uint ANG_tokens_amount = sum*darf_tokens_rate*(100-darf_percent)*(discount_size+100)/10000;
+              uint256 amount = _crowdsale.buyTokens(msg.sender,uint256(ANG_tokens_amount));
+
           }
         }
 }
