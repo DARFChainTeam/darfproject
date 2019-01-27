@@ -2,11 +2,11 @@ pragma solidity ^0.4.18;
 import "./interface/crowdsale-interface.sol";
 import "./implementation/basic-crowdsale.sol";
 import "../tokens/token.sol";
-import "./libraries/Modifiers.sol";
+import "../libraries/Modifiers.sol";
 
   contract ANGExchange {
 
-      uint ANG_tokens_rate = 1 ETH;
+      uint ANG_tokens_rate = 1; //1 ETH;
       address public token_address;
       address public owner;
       uint ANG_percent = 5;

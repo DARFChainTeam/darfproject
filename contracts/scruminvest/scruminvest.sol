@@ -2,7 +2,9 @@
 
 pragma solidity ^0.4.24;
 
-import "./ERC20.sol"
+import "../tokens/token.sol";
+import "../libraries/Modifiers.sol";
+
 
 contract PostInvest {
 
@@ -124,18 +126,20 @@ contract PostInvest {
         }
         return 0 ; // no money no honey
     }
-}
+
 // todo return_fund () //- make checking that another side transfer fund to escrow too. If fund transfered, \
 // escrow will locking, and devepol starts, if not - fund can be returned to owner.
 
 
-function exchange_DARF2ETH (uint sum_DARF) payable public {
-//uint Sum_ETH = sum_DARF/darf_tokens_rate*(1 ether);
-uint Sum_ETH = sum_DARF/darf_tokens_rate;
-//  if (DARFtoken(token_address).balanceOf(msg.sender) > sum_DARF && address(this).balance > Sum_ETH ) {
+    function exchange_DARF2ETH (uint sum_DARF) payable public {
+    //uint Sum_ETH = sum_DARF/darf_tokens_rate*(1 ether);
+    uint Sum_ETH = sum_DARF/darf_tokens_rate;
+    //  if (DARFtoken(token_address).balanceOf(msg.sender) > sum_DARF && address(this).balance > Sum_ETH ) {
 
-DARFtoken(token_address).transferFrom(msg.sender, address(this), sum_DARF);
-msg.sender.transfer(Sum_ETH);
+    DARFtoken(token_address).transferFrom(msg.sender, address(this), sum_DARF);
+    msg.sender.transfer(Sum_ETH);
 
-//        }
+    //        }
+
+    }
 }

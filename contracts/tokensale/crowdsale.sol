@@ -121,12 +121,12 @@ contract crowdsale{
   function sell_discount (uint pass_word, uint sum, uint amount) payable public  {
           if (pass_word == discount_word) {
 
-              uint ANG_tokens_amount = sum*darf_tokens_rate*(100-darf_percent)*(discount_size+100)/10000;
+              uint ANG_tokens_amount = sum * ANG_tokens_rate*(100-darf_percent)*(discount_size+100)/10000;
               uint256 amount = _crowdsale.buyTokens(msg.sender,uint256(ANG_tokens_amount));
 
           }
         }
-}
+
 
 
   //Todo make sure this event does not cause any issue

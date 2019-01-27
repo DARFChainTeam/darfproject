@@ -2,11 +2,11 @@ pragma solidity ^0.4.18;
 import "./interface/admin-interface.sol";
 import "./implementation/basic-admin.sol";
 import "../tokens/token.sol";
-import "./libraries/Modifiers.sol";
+import "../libraries/Modifiers.sol";
 
   contract admin {
 
-      uint ANG_tokens_rate = 1 ETH;
+      uint ANG_tokens_rate = 1 ; //1 ETH
       address public token_address;
       address public owner;
       uint ANG_percent = 5;
@@ -62,3 +62,4 @@ import "./libraries/Modifiers.sol";
           if (new_discount_word > 0) discount_word = new_discount_word;
           if (new_discount > 0) discount_size =  new_discount;
       }
+  }

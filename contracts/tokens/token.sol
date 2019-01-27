@@ -17,7 +17,7 @@ contract token{
     tokenInterface private _token;
     address private _owner;
     bool private _finalized = false;
-    function token(string symbol, string name, uint8 decimals, )
+    function token(string symbol, string name, uint8 decimals )
     {
       _owner = msg.sender;
       _token= new mintable(symbol,name,decimals) ;

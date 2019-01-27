@@ -2,7 +2,9 @@
 
 pragma solidity ^0.4.24;
 
-import "./ERC20.sol"
+import "../libraries/Modifiers.sol";
+import "../tokens/token.sol";
+
 
 contract PostInvest {
 
@@ -124,7 +126,7 @@ contract PostInvest {
         }
         return 0 ; // no money no honey
     }
-}
+
 // todo return_fund () //- make checking that another side transfer fund to escrow too. If fund transfered, \
 // escrow will locking, and devepol starts, if not - fund can be returned to owner.
 
@@ -138,4 +140,5 @@ DARFtoken(token_address).transferFrom(msg.sender, address(this), sum_DARF);
 msg.sender.transfer(Sum_ETH);
 
 //        }
+}
 }
