@@ -7,14 +7,16 @@ contract admin_Storage{
   /*using SafeMath for uint256;*/
 // store all config data here
     struct admin_storage {
-        byte32 name_contract ; // filename of contract
-        address address_contract;
+        string name_contract ; // filename of contract
+        string abi; //abi for contract
+
     }
+    mapping (address => admin_storage) public contracts_adresses;
 
      constructor(address _token_address) public {
-        owner = msg.sender;
-        beneficiar = msg.sender;
-        token_address = _token_address;
+        address owner = msg.sender;
+        address beneficiar = msg.sender;
+        address token_address = _token_address;
       }
 //setting of valuees-----------------------------------------------------------
 
@@ -26,6 +28,5 @@ contract admin_Storage{
       mapping (address => Admin) public _admins;
     //==============================================================================
 
-    mapping (uint256 => admin_storage) public contracts_adresses;
 
 }

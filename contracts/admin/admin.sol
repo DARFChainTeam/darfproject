@@ -8,8 +8,25 @@ import "./admin_storage.sol";
   contract admin is simpleAdmin{
 
     function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
-      _admins[_admin_address].active = _admin_state;
+
+      admin_Storage._admins.push[_admin_address].active = _admin_state;
     }
+
+      /*
+       contract A {
+    uint public target;
+    function setTarget(uint _target) public {
+        target = _target;
+    }
+}
+
+contract B {
+    A a = Test(0x123abc...);  // address of deployed A
+    function editA() public {
+        a.setTarget(1);
+    }
+}
+*/
 
 
     function change_conditions( uint new_ANG_tokens_rate,

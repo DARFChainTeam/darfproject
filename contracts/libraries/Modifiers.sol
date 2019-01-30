@@ -6,7 +6,7 @@ library Modifiers {
 
 
     modifier OnlyAdmin(address _sender_address) {
-      require(_admins[_sender_address].active == true);
+      require(admin_Storage._admins[_sender_address].active == true);
       _;
 
         }
