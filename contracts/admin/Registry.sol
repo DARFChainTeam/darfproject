@@ -6,10 +6,10 @@ import "./upgradeable.sol";
 import "./ExternalStorage.sol";
 import "./CstLedger.sol";
 import "./administratable.sol";
-import "./configurable.sol";
+//import "./configurable.sol"; ?
 import "./storable.sol";
-import "./freezable.sol";
-import "./ERC20.sol";
+//import "./freezable.sol";
+//import "./ERC20.sol";
 
 contract Registry is Ownable, administratable, upgradeable {
   using SafeMath for uint256;
