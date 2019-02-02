@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "zeppelin-solidity/contracts/math/SafeMath.sol";
+import "../libraries/SafeMath.sol";
 
 contract administratable is Ownable {
   using SafeMath for uint256;
