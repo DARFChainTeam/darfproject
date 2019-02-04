@@ -1,17 +1,17 @@
 pragma solidity ^0.4.18;
 
-//import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./Ownable.sol";
 import "../libraries/SafeMath.sol";
-import "./upgradeable.sol";
+import "./Upgradeable.sol";
 import "./ExternalStorage.sol";
 import "./CstLedger.sol";
 import "./administratable.sol";
-//import "./configurable.sol"; ?
+import "./Configurable.sol";
 import "./storable.sol";
-//import "./freezable.sol";
+import "./Freezable.sol";
 //import "./ERC20.sol";
 
-contract Registry is Ownable, administratable, upgradeable {
+contract Registry is Ownable, Administratable, upgradeable {
   using SafeMath for uint256;
 
   bytes4 constant INTERFACE_META_ID = 0x01ffc9a7;

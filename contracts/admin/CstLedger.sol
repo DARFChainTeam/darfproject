@@ -15,7 +15,7 @@ contract ITokenLedger {
   function removeAdmin(address admin) public;
 }
 
-contract CstLedger is ITokenLedger, administratable {
+contract CstLedger is ITokenLedger, Administratable {
 
   using SafeMath for uint256;
 
