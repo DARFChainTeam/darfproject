@@ -1,5 +1,5 @@
 pragma solidity 0.4.24;
 
-contract Configurable {
+contract configurable {
   function configureFromStorage() public returns (bool);
 }

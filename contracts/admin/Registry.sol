@@ -9,7 +9,7 @@ import "./administratable.sol";
 import "./Configurable.sol";
 import "./storable.sol";
 import "./Freezable.sol";
-//import "./ERC20.sol";
+import "../tokens/token.sol";
 
 contract Registry is Ownable, Administratable, upgradeable {
   using SafeMath for uint256;
@@ -29,6 +29,12 @@ contract Registry is Ownable, Administratable, upgradeable {
   event StorageAdded(address indexed storageAddress, string name);
   event StorageRemoved(address indexed storageAddress, string name);
   event AddrChanged(bytes32 indexed node, address a);
+
+  modifier unlessUpgraded () {
+// toDO prevent the predecessor contract’s functions from executing, and instead cause them to revert. The predecessor contract also acquires a property that points to the successor contract as result of the registry upgrading the contract, so the clients of the contract can discover the new address of the upgraded contract (the successor contract).
+  _;
+
+  }
 
   function() public {
     revert();
@@ -95,9 +101,9 @@ contract Registry is Ownable, Administratable, upgradeable {
 
     uint256 remainingContractBalance;
     // we need https://github.com/ethereum/EIPs/issues/165
-    // to be able to see if a contract is ERC20 or not...
+    // to be able to see if a contract is token or not...
     if (hash == keccak256("cst")) {
-      remainingContractBalance = ERC20(predecessor).balanceOf(predecessor);
+      remainingContractBalance = token(predecessor).balanceOf(predecessor);
     }
 
     upgradeable(predecessor).upgradeTo(successor,
