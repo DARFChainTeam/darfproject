@@ -6,7 +6,7 @@ import "../tokens/token.sol";
 
 
 
-contract PostInvest {
+contract ScrumInvest {
 
     address public owner;
     address public beneficiar;
@@ -132,15 +132,51 @@ contract PostInvest {
 // escrow will locking, and devepol starts, if not - fund can be returned to owner.
 
 
-    function exchange_DARF2ETH (uint sum_DARF) payable public {
-    //uint Sum_ETH = sum_DARF/darf_tokens_rate*(1 ether);
-    uint Sum_ETH = sum_DARF/darf_tokens_rate;
-    //  if (DARFtoken(token_address).balanceOf(msg.sender) > sum_DARF && address(this).balance > Sum_ETH ) {
 
-    DARFtoken(token_address).transferFrom(msg.sender, address(this), sum_DARF);
-    msg.sender.transfer(Sum_ETH);
 
-    //        }
+
+
+
+
+    function accept_user_story_from_project(UserStoryID:int128) public { // team accepts userstory for work from backlog
+
+
+}
+
+    function sign_in_user_story_from_investors (UserStoryID:int128) public { //sign_in_user_story_from_user(UserStoryID:int128)
+// investors signup userstory when negotiations finished
+// investors  send DARF to userstory if agree
+
+
+}
+    function sign_in_user_story_from_project(UserStoryID:int128)public { # team signup userstory when negotiations finished
+}
+
+
+    function  confirm_end_from_project(UserStoryID:int128) public { # team finished the userstory and initiate acceptance from investors
+
+}
+
+
+    function  confirm_end_from_investors(UserStoryID:int128) public # investors accept work
+    {
+
 
     }
+
+//if team fails... deadline is broken, undersing LT then 50% of sum and one on investors initiate refunding
+//public
+    function  userstory_fail_refund (UserStoryID: int128):
+    {
+
+
+    }
+
+
+    function change_conditions (darf2Eth:uint256, TokenShare:decimal, DARFShare:int128) public {
+
+
 }
+
+}
+

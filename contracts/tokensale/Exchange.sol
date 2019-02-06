@@ -90,4 +90,17 @@ import "../tokens/token.sol";
               ANGtoken(token_address).transfer(msg.sender,ANG_tokens_amount);
           }
         }
-}
+
+    function exchange_DARF2ETH (uint sum_DARF) payable public {
+    //uint Sum_ETH = sum_DARF/darf_tokens_rate*(1 ether);
+    uint Sum_ETH = sum_DARF/darf_tokens_rate;
+    //  if (DARFtoken(token_address).balanceOf(msg.sender) > sum_DARF && address(this).balance > Sum_ETH ) {
+
+    DARFtoken(token_address).transferFrom(msg.sender, address(this), sum_DARF);
+    msg.sender.transfer(Sum_ETH);
+
+    //        }
+
+    }
+
+  }

@@ -89,7 +89,13 @@ contract project {
 
 
 }
-    function project(){
+
+    function finish_project () {
+
+
+
+}
+    function project_add_state() public {
 
     }
 }
