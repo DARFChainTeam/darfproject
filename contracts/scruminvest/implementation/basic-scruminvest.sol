@@ -153,16 +153,5 @@ contract simpleCrowdsale is crowdsaleInterface {
         _;
       }
     }
-    modifier isFinalized //todo remove
-    {
-      if(_finalized==true)
-      {
-        revert();
-      }
-      else
-      {
-        _;
-      }
-    }
 
 }

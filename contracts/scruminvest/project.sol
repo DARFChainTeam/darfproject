@@ -19,29 +19,37 @@ contract project {
 
     //mapping (uint => RightsList ) project_rights
 
-    struct IPFS_addresses {
+    struct project_state {
         uint projectID;
-        bytes32 IPFS_addr;
+        bytes32 DB_changes_addr;
+        bytes32 POA_addr;
+        uint timestamp;
+
     }
 
-    mapping (uint256 => IPFS_addresses )  project_statuses;// addresses of project's states  in IPFS
+    mapping (uint256 => project_state) Project_statuses;// addresses of project's states  in IPFS
+    bytes32[] Project_list; // array to access projects
+
 
     struct Project{
-       // uint256 projectID; //assign by increment and not change?
+        uint256 project_ID; //assign by increment and not change?
         address project_owner_address;
-        address project_token_addr;  // (ERC20),
-        bytes32  IPFSDescribe;// addresses of project's states  in IPFS
+  //      address project_token_addr;  // (ERC20),
+        bytes32  IPFS_Describe;// addresses of project's states  in IPFS
         mapping (uint => RightsList) rights;
         // mapping (uint => UserStory) stories;
 
 
     }
 
-    mapping (uint => Project ) projects ; // AKA projectID
+    mapping (address => Project ) public projects ; // AKA projectID
+    bytes32[] public Project_list;
 
-     struct Admin {
+
+    struct Admin {
         bool active;
         }
+    mapping (address => Admin) public _admins;
 
 
   function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
@@ -62,15 +70,15 @@ contract project {
     // 10 grades use by default to reduce gas issues
     // TODO: this grades'd be mapped with access right in ERP
 
-    function  setrights(uint ProjectID,  mapping (uint => RightsList) rights) public  OnlyOwner(msg.sender)   {
-        Projects[ProjectID].rights = rights;
+    function  setrights(address Project_token_addr,  mapping (uint => RightsList) rights) public  OnlyOwner(msg.sender)   {
+        Projects[Project_token_addr].rights = rights;
 
     }
 
-    function checkrights (uint ProjectID ) public {
-        for (uint grade = Projects[ProjectID].rights.length(); grade > 0; grade--) {
-                project_token =  ERC20 (Projects[ProjectID].project_token_addr);
-                if (project_token.balanceOf(msg.sender) > Projects[ProjectID].rights(grade).floor_sum ){
+    function checkrights (address Project_token_addr) public {
+        for (uint grade = Projects[Project_token_addr].rights.length(); grade > 0; grade--) {
+                project_token =  ERC20 (Projects[Project_token_addr].project_token_addr);
+                if (project_token.balanceOf(msg.sender) > Projects[Project_token_addr].rights(grade).floor_sum ){
                     return grade;
                 }
 
@@ -78,24 +86,33 @@ contract project {
         return 0 ; // no money no honey
     }
 
-    function create_project (owner_address: address,token:address,IPFSDescribe:bytes32){
+    event New_project (address owner_address , address token, bytes32 IPFSDescribe, ProjectID );
 
-
+    function create_project (address token, bytes32 IPFSDescribe) public {
+        Projects[token].project_owner_address = msg.sender;
+        Projects[token].IPFS_Describe = IPFSDescribe;
+        Project_list.push(token);
+        Projects[token].Project_ID = Project_list.lenght();
+        emit New_project (Projects[token].project_owner_address, token, Projects[token].IPFS_Describe, Projects[token].Project_ID  ) ;
 
 }
 
-    function change_project_info (){
-
+    function change_project_info () public {
+//todo or via Registry?
 
 
 }
+    event finish_project (address token);
 
-    function finish_project () {
-
-
+    function finish_project (address token) public {
+        emit finish_project (token);
 
 }
     function project_add_state() public {
+
+    }
+
+     function project_get_state() public {
 
     }
 }
