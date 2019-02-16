@@ -21,21 +21,23 @@ contract project {
 
     struct project_state {
         uint projectID;
-        bytes32 DB_changes_addr;
-        bytes32 POA_addr;
+        bytes32 DB_changes_addr; // addresses of paroled archive of DB increment in DFS (IPFS/SWarm)
+        bytes32 POA_addr; // addresses of current Proof-of-Accounting state in DFS (IPFS/SWarm)
         uint timestamp;
 
     }
 
-    mapping (uint256 => project_state) Project_statuses;// addresses of project's states  in IPFS
+    mapping (address => project_state) Project_statuses;// addresses of project's states  in IPFS/swarm
     bytes32[] Project_list; // array to access projects
 
 
     struct Project{
         uint256 project_ID; //assign by increment and not change?
         address project_owner_address;
-  //      address project_token_addr;  // (ERC20),
-        bytes32  IPFS_Describe;// addresses of project's states  in IPFS
+
+        address _DARF_system_address; // ETH address of node that updates project state
+        bytes32 Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
+
         mapping (uint => RightsList) rights;
         // mapping (uint => UserStory) stories;
 
@@ -86,19 +88,19 @@ contract project {
         return 0 ; // no money no honey
     }
 
-    event New_project (address owner_address , address token, bytes32 IPFSDescribe, ProjectID );
+    event New_project (address owner_address , address token, bytes32 Projectdescribe, address _DARFsystemaddress);
 
-    function create_project (address token, bytes32 IPFSDescribe) public {
+    function create_project (address token, bytes32 Project_describe) public {
         Projects[token].project_owner_address = msg.sender;
-        Projects[token].IPFS_Describe = IPFSDescribe;
+        Projects[token].Project_describe = Projectdescribe;
         Project_list.push(token);
         Projects[token].Project_ID = Project_list.lenght();
-        emit New_project (Projects[token].project_owner_address, token, Projects[token].IPFS_Describe, Projects[token].Project_ID  ) ;
+        emit New_project (Projects[token].project_owner_address, token, Projects[token].Project_describe, Projects[token].Project_ID  ) ;
 
 }
 
     function change_project_info () public {
-//todo or via Registry?
+//todo: or via Registry?
 
 
 }
@@ -108,11 +110,30 @@ contract project {
         emit finish_project (token);
 
 }
-    function project_add_state() public {
+    function project_add_state(address token,  bytes32 DBchangesaddr,  bytes32 POA_addr) public returns (uint) {
+       if(msg.sender!=Projects[token]._DARF_system_address)
+      { throw; }
+       else {
+            uint timestamp = now;
+            address storekey = keccak(token, timestamp);
+            Project_statuses[storekey].timestamp = timestamp;
+            Project_statuses[storekey].projectID =Projects[token].Project_ID ;
+            Project_statuses[storekey].DB_changes_addr = DBchangesaddr;
+            Project_statuses[storekey].POA_addr = POA_addr;
+            return timestamp;
+       }
 
     }
 
-     function project_get_state() public {
+     function project_get_state(address token, uint timestamp ) public returns(byte32) {
+
+        if (checkrights(token) > 0) { //returns state
+            return Project_statuses[keccak(token, timestamp)].DBchangesaddr ;
+        }
+        else { //returns only PoA
+            return Project_statuses[keccak(token, timestamp)].POA_addr ;
+
+            }
 
     }
 }
