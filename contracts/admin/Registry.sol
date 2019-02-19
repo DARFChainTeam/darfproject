@@ -31,7 +31,10 @@ contract Registry is Ownable, Administratable, upgradeable {
   event AddrChanged(bytes32 indexed node, address a);
 
   modifier unlessUpgraded () {
-// toDO prevent the predecessor contract’s functions from executing, and instead cause them to revert. The predecessor contract also acquires a property that points to the successor contract as result of the registry upgrading the contract, so the clients of the contract can discover the new address of the upgraded contract (the successor contract).
+// toDO prevent the predecessor contract’s functions from executing, and instead cause them to revert
+ //The predecessor contract also acquires a property that points to the successor contract as result of the registry
+    //upgrading the contract, so the clients of the contract can discover the new address of the upgraded contract
+    //     (the successor contract).
   _;
 
   }

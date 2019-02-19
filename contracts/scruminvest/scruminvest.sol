@@ -138,18 +138,16 @@ contract ScrumInvest {
 
 
 
-    function accept_user_story_from_project(UserStoryID:int128) public { // team accepts userstory for work from backlog
+    function accept_user_story_from_project(UserStoryID) public { // team accepts userstory for work from backlog
 
 
 }
 
-    function sign_in_user_story_from_investors (UserStoryID:int128) public { //sign_in_user_story_from_user(UserStoryID:int128)
+    function sign_in_user_story_from_investors (UserStoryID) public { //sign_in_user_story_from_user(UserStoryID:int128)
 // investors signup userstory when negotiations finished
 // investors  send DARF to userstory if agree
 
 
-}
-    function sign_in_user_story_from_project(UserStoryID:int128)public { # team signup userstory when negotiations finished
 }
 
 

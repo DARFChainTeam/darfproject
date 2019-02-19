@@ -25,7 +25,7 @@ contract userstory {
 
                         }
 
-    function start_user_story (projectID:int128,IPFSHash:bytes32,storyAmountDarf:uint256){
+    function start_user_story (projectID, IPFSHash, storyAmountDarf){
 
     }
 

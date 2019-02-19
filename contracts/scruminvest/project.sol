@@ -36,6 +36,7 @@ contract project {
         address project_owner_address;
 
         address _DARF_system_address; // ETH address of node that updates project state
+        bytes32 DB_changes_hash; // hash of DB state
         bytes32 Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
 
         mapping (uint => RightsList) rights;
@@ -101,6 +102,10 @@ contract project {
 
     function change_project_info () public {
 //todo: or via Registry?
+        // owner
+        // DARF node
+        // addrr_describe
+
 
 
 }
@@ -110,15 +115,16 @@ contract project {
         emit finish_project (token);
 
 }
-    function project_add_state(address token,  bytes32 DBchangesaddr,  bytes32 POA_addr) public returns (uint) {
+    function project_add_state(address token,  bytes32 DBchangesaddr, bytes32 DBchangeshash,  bytes32 POA_addr, ) public returns (uint) {
        if(msg.sender!=Projects[token]._DARF_system_address)
       { throw; }
        else {
             uint timestamp = now;
-            address storekey = keccak(token, timestamp);
+            address storekey = keccak256(token, timestamp);
             Project_statuses[storekey].timestamp = timestamp;
             Project_statuses[storekey].projectID =Projects[token].Project_ID ;
             Project_statuses[storekey].DB_changes_addr = DBchangesaddr;
+            Project_statuses[storekey].DB_changes_hash = DBchangeshash;
             Project_statuses[storekey].POA_addr = POA_addr;
             return timestamp;
        }
@@ -128,12 +134,16 @@ contract project {
      function project_get_state(address token, uint timestamp ) public returns(byte32) {
 
         if (checkrights(token) > 0) { //returns state
-            return Project_statuses[keccak(token, timestamp)].DBchangesaddr ;
+            return Project_statuses[keccak256(token, timestamp)].DBchangesaddr ;
         }
         else { //returns only PoA
-            return Project_statuses[keccak(token, timestamp)].POA_addr ;
+            return Project_statuses[keccak256(token, timestamp)].POA_addr ;
 
             }
 
     }
+
+    // todo billing for updates of project state
+    // transfer ANG to our address equal as gas+ 5%
+    // calculate transaction  fee when saving project state
 }
