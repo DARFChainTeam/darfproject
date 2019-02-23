@@ -11,7 +11,7 @@ contract userstory {
 
     struct UserStory {
                           uint projectID;
-                          //user_address: address,
+                          address project_token;
                           bytes32 IPFSHash;
                           bool project_accept;  // TODO tx transaction of acceptance
                           mapping (uint => Story_Bakers) bakers;  //# several users who baked story
@@ -24,13 +24,19 @@ contract userstory {
                           uint StoryAmountTokens;
 
                         }
+    byte32[]
 
-    function start_user_story (projectID, IPFSHash, storyAmountDarf){
+    event Newuserstory (uint ProjectID, address Projtoken, bytes32 IPFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint Deadline);
 
+    function start_user_story (uint ProjectID,  address Projtoken, bytes32 IPFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint Deadline) public OnlyOwner(msg.sender) returns (uint){
+
+
+
+    emit  Newuserstory (ProjectID, Projtoken, IPFSHash,  StoryAmountANG,  StoryAmounttoken, Deadline);
     }
 
-    function add_user_story_comment () public {
-}
+   // function add_user_story_comment () public { }
+
 
 
     function finish_userstory(){

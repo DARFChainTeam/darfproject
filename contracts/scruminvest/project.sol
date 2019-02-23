@@ -28,8 +28,6 @@ contract project {
     }
 
     mapping (address => project_state) Project_statuses;// addresses of project's states  in IPFS/swarm
-    bytes32[] Project_list; // array to access projects
-
 
     struct Project{
         uint256 project_ID; //assign by increment and not change?
@@ -46,8 +44,7 @@ contract project {
     }
 
     mapping (address => Project ) public projects ; // AKA projectID
-    bytes32[] public Project_list;
-
+    bytes32[] public Project_list; // array to access projects
 
     struct Admin {
         bool active;
@@ -92,6 +89,7 @@ contract project {
     event New_project (address owner_address , address token, bytes32 Projectdescribe, address _DARFsystemaddress);
 
     function create_project (address token, bytes32 Project_describe) public {
+        require(token_deposit (token));
         Projects[token].project_owner_address = msg.sender;
         Projects[token].Project_describe = Projectdescribe;
         Project_list.push(token);
@@ -115,7 +113,7 @@ contract project {
         emit finish_project (token);
 
 }
-    function project_add_state(address token,  bytes32 DBchangesaddr, bytes32 DBchangeshash,  bytes32 POA_addr, ) public returns (uint) {
+        function project_add_state(address token,  bytes32 DBchangesaddr, bytes32 DBchangeshash,  bytes32 POA_addr) public returns (uint) {
        if(msg.sender!=Projects[token]._DARF_system_address)
       { throw; }
        else {
@@ -142,8 +140,18 @@ contract project {
             }
 
     }
+    //todo todo - 5% tokens deposit to platform
+    function token_deposit (address token) returns(bool) {
 
-    // todo billing for updates of project state
-    // transfer ANG to our address equal as gas+ 5%
-    // calculate transaction  fee when saving project state
+
+        // todo check minted amount of tokens
+
+        //  todo check that platform_share is transferred to address
+
+    }
+
+
+    // todo billing for updates of project state: transfer ANG to our address equal as gas +5% calculate transaction  fee when saving project state
+
 }
+
