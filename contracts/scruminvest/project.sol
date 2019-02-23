@@ -89,7 +89,7 @@ contract project {
     event New_project (address owner_address , address token, bytes32 Projectdescribe, address _DARFsystemaddress);
 
     function create_project (address token, bytes32 Project_describe) public {
-        require(token_deposit (token));
+        require(token_deposit (token, ANG_system_addr, our_share));
         Projects[token].project_owner_address = msg.sender;
         Projects[token].Project_describe = Projectdescribe;
         Project_list.push(token);
@@ -141,13 +141,17 @@ contract project {
 
     }
     //todo todo - 5% tokens deposit to platform
-    function token_deposit (address token) returns(bool) {
+
+
+
+    function token_deposit (address _tokenAddress, address ANG_system, uint platform_share) returns(bool) {
 
 
         // todo check minted amount of tokens
-
+        Token_total_supply = Token(_tokenAddress).totalSupply;
         //  todo check that platform_share is transferred to address
-
+        token_balance = ERC20Interface(_tokenAddress).balanceOf(ANG_system);
+        return (Token_total_supply * platform_share <= token_balance);
     }
 
 
@@ -155,3 +159,6 @@ contract project {
 
 }
 
+contract ERC20Interface {
+    function balanceOf(address whom) view public returns (uint);
+}
