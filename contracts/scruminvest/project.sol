@@ -21,7 +21,9 @@ contract project {
 
     struct project_state {
         uint projectID;
-        bytes32 DB_changes_addr; // addresses of paroled archive of DB increment in DFS (IPFS/SWarm)
+        bytes32 DFS_changes_addr; // addresses of paroled archive of DB increment in DFS (IPFS/SWarm)
+        bytes32 DFS_changes_hash; // hash of DB state
+        byte8 DFS_type;
         bytes32 POA_addr; // addresses of current Proof-of-Accounting state in DFS (IPFS/SWarm)
         uint timestamp;
 
@@ -34,17 +36,16 @@ contract project {
         address project_owner_address;
 
         address _DARF_system_address; // ETH address of node that updates project state
-        bytes32 DB_changes_hash; // hash of DB state
-        bytes32 Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
-
+        bytes32 DFS_Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
+        byte8 DFS_type;
         mapping (uint => RightsList) rights;
         // mapping (uint => UserStory) stories;
 
 
     }
 
-    mapping (address => Project ) public projects ; // AKA projectID
-    bytes32[] public Project_list; // array to access projects
+    mapping (address => Project) public projects ; // AKA projectID
+    bytes32[] public ProjectList; // array to access projects
 
     struct Admin {
         bool active;
@@ -86,14 +87,16 @@ contract project {
         return 0 ; // no money no honey
     }
 
-    event New_project (address owner_address , address token, bytes32 Projectdescribe, address _DARFsystemaddress);
+    event New_project (address owner_address , address token, bytes32 DFSProjectdescribe, address _DARFsystemaddress);
 
-    function create_project (address token, bytes32 Project_describe) public {
+    function create_project (address token, bytes32 DFSProjectdescribe, uint DFStype) onlyOwner public {
         require(token_deposit (token, ANG_system_addr, our_share));
+
         Projects[token].project_owner_address = msg.sender;
-        Projects[token].Project_describe = Projectdescribe;
-        Project_list.push(token);
-        Projects[token].Project_ID = Project_list.lenght();
+        Projects[token].DFS_Project_describe = DFSProjectdescribe;
+        Projects[token].DFS_type = DFStype;
+        ProjectList.push(token);
+        Projects[token].Project_ID = ProjectList.lenght();
         emit New_project (Projects[token].project_owner_address, token, Projects[token].Project_describe, Projects[token].Project_ID  ) ;
 
 }
@@ -113,7 +116,7 @@ contract project {
         emit finish_project (token);
 
 }
-        function project_add_state(address token,  bytes32 DBchangesaddr, bytes32 DBchangeshash,  bytes32 POA_addr) public returns (uint) {
+        function project_add_state(address token,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,  bytes32 POA_addr) public returns (uint) {
        if(msg.sender!=Projects[token]._DARF_system_address)
       { throw; }
        else {
@@ -121,8 +124,8 @@ contract project {
             address storekey = keccak256(token, timestamp);
             Project_statuses[storekey].timestamp = timestamp;
             Project_statuses[storekey].projectID =Projects[token].Project_ID ;
-            Project_statuses[storekey].DB_changes_addr = DBchangesaddr;
-            Project_statuses[storekey].DB_changes_hash = DBchangeshash;
+            Project_statuses[storekey].DFS_changes_addr = DFSchangesaddr;
+            Project_statuses[storekey].DFS_changes_hash = DFSchangeshash;
             Project_statuses[storekey].POA_addr = POA_addr;
             return timestamp;
        }
