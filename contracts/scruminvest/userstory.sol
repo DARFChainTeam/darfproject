@@ -46,20 +46,19 @@ contract userstory {
         Projectaddr =ES.getAddressValue("scruminvest/project");
         Projectcurrent =  Project(Projectaddr);
         Projecttoken = Projectcurrent.ProjectsList(ProjectID);
-        reqiure( ERC20(Project_token).balanceOf(this)) ;
-        address storekey = keccak256(ProjectID, Userstorynumber);
-        UserStories[storekey].project_ID = project_ID;
-        UserStories[storekey].User_story_number = Userstorynumber;
-        UserStories[storekey].duration = duration;
-        UserStories[storekey].DFS_Hash = DFSHash;
-        UserStories[storekey].DFS_type= DFStype;
-        UserStories[storekey].Story_Amount_ANG = StoryAmountANG;
-        UserStories[storekey].start_date = Startdate;
-        UserStories[storekey].duration = duration;
-
-
-        emit  Newuserstory (ProjectID,  Userstorynumber, DFSHash,  StoryAmountANG,  StoryAmounttoken, Startdate, Deadline);
-        return  storekey;
+        reqiure( ERC20(Project_token).balanceOf(this) = StoryAmounttoken) ;
+            address storekey = keccak256(ProjectID, Userstorynumber);
+            UserStories[storekey].project_ID = project_ID;
+            UserStories[storekey].User_story_number = Userstorynumber;
+            UserStories[storekey].duration = duration;
+            UserStories[storekey].DFS_Hash = DFSHash;
+            UserStories[storekey].DFS_type= DFStype;
+            UserStories[storekey].Story_Amount_ANG = StoryAmountANG;
+            UserStories[storekey].start_date = Startdate;
+            UserStories[storekey].duration = duration;
+            emit  Newuserstory (ProjectID,  Userstorynumber, DFSHash,  StoryAmountANG,
+                StoryAmounttoken, Startdate, Deadline);
+            return  storekey;
     }
 
    // function add_user_story_comment () public { }

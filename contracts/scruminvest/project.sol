@@ -94,12 +94,13 @@ contract project {
     function create_project (address token, bytes32 DFSProjectdescribe, uint DFStype) onlyOwner public {
         require(token_deposit (token, ANG_system_addr, our_share));
 
-        Projects[token].project_owner_address = msg.sender;
-        Projects[token].DFS_Project_describe = DFSProjectdescribe;
-        Projects[token].DFS_type = DFStype;
-        ProjectList.push(token);
-        Projects[token].Project_ID = ProjectList.lenght();
-        emit New_project (Projects[token].project_owner_address, token, Projects[token].Project_describe, Projects[token].Project_ID  ) ;
+            Projects[token].project_owner_address = msg.sender;
+            Projects[token].DFS_Project_describe = DFSProjectdescribe;
+            Projects[token].DFS_type = DFStype;
+            ProjectList.push(token);
+            Projects[token].Project_ID = ProjectList.lenght();
+            emit New_project (Projects[token].project_owner_address, token, Projects[token]
+                .Project_describe, Projects[token].Project_ID  ) ;
 
 }
 
@@ -118,7 +119,7 @@ contract project {
         emit finish_project (token);
 
 }
-        function project_add_state(address token,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,  bytes32 POA_addr) public returns (uint) {
+        function project_add_state(address token,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint) {
        if(msg.sender!=Projects[token]._DARF_system_address)
       { throw; }
        else {
