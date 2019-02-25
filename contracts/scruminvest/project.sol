@@ -1,8 +1,10 @@
 pragma solidity ^0.4.0;
+import "../tokens/token.sol";
+import "../admin/ExternalStorage.sol";
 
 contract project {
 
-
+    address External_Storage_addr;
     constructor(address _token_address) public {
     owner = msg.sender;
     beneficiar = msg.sender;
@@ -78,7 +80,7 @@ contract project {
 
     function checkrights (address Project_token_addr) public {
         for (uint grade = Projects[Project_token_addr].rights.length(); grade > 0; grade--) {
-                project_token =  ERC20 (Projects[Project_token_addr].project_token_addr);
+                project_token =  Token (Projects[Project_token_addr].project_token_addr);
                 if (project_token.balanceOf(msg.sender) > Projects[Project_token_addr].rights(grade).floor_sum ){
                     return grade;
                 }
@@ -153,15 +155,29 @@ contract project {
         // todo check minted amount of tokens
         Token_total_supply = Token(_tokenAddress).totalSupply;
         //  todo check that platform_share is transferred to address
-        token_balance = ERC20Interface(_tokenAddress).balanceOf(ANG_system);
+        token_balance = _TokenInterface(_tokenAddress).balanceOf(ANG_system);
         return (Token_total_supply * platform_share <= token_balance);
+    }
+
+   function _setExternalstorageaddr(address Externalstorageaddr ) onlyAdmins public {
+        External_Storage_addr = Externalstorageaddr;
+
+
+    }
+
+   function _init() OnlyAdmins public {
+
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        Projectaddr = ES.setAddressValue("scruminvest/project", address(this));
+
     }
 
 
     // todo billing for updates of project state: transfer ANG to our address equal as gas +5% calculate transaction  fee when saving project state
 
+
 }
 
-contract ERC20Interface {
+contract _TokenInterface {
     function balanceOf(address whom) view public returns (uint);
 }

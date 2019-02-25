@@ -1,7 +1,9 @@
 pragma solidity ^0.4.0;
-
+import "./project.sol";
+import '../admin/ExternalStorage.sol';
 contract userstory {
 
+    address External_Storage_addr;
     struct Story_Bakers {
         address baker;
         uint baked_sum;
@@ -34,9 +36,17 @@ contract userstory {
 
     event Newuserstory (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint256 Startdate, uint duration);
 
-    function start_user_story (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, byte8 DFStype, uint StoryAmountANG,
-                                uint StoryAmounttoken, uint256 Startdate, uint duration) public
-                                OnlyOwner(msg.sender) returns (uint){
+    function start_user_story (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, byte8 DFStype,                                  uint StoryAmountANG,
+                                uint StoryAmounttoken, uint256 Startdate, uint duration)
+                                public OnlyOwner(msg.sender) returns (uint){
+        //todo check transfer sum to escrow
+        // what address of escrow?
+        //get token addr
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        Projectaddr =ES.getAddressValue("scruminvest/project");
+        Projectcurrent =  Project(Projectaddr);
+        Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        reqiure( ERC20(Project_token).balanceOf(this)) ;
         address storekey = keccak256(ProjectID, Userstorynumber);
         UserStories[storekey].project_ID = project_ID;
         UserStories[storekey].User_story_number = Userstorynumber;
@@ -55,8 +65,20 @@ contract userstory {
    // function add_user_story_comment () public { }
 
 
-    function finish_userstory(bytes32 storekey, uint ProjectID, uint Userstorynumber) public returns (bool){
-        // todo: in withdrow module check require check that userstory finished
+    function finish_userstory(address storekey, uint ProjectID, uint Userstorynumber) public returns (bool){
+        // todo: in withdraw module check require check that userstory finished
+
+    }
+    function _setExternalstorageaddr(address Externalstorageaddr ) onlyAdmins public {
+        External_Storage_addr = Externalstorageaddr;
+
+
+    }
+
+    function _init() OnlyAdmins public {
+
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        Projectaddr =ES.setAddressValue("scruminvest/userstory", address(this));
 
     }
 }
