@@ -139,4 +139,18 @@ contract token is mintable {
     event GetOwner(address indexed owner);
     event Mint(address indexed receiver, uint256 amount);
 
+
+    function _setExternalstorageaddr(address Externalstorageaddr ) onlyAdmins public {
+        External_Storage_addr = Externalstorageaddr;
+
+
+    }
+
+    function _init() OnlyAdmins public {
+
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        Projectaddr =ES.setAddressValue("ANGtoken", address(this));
+
+    }
+
 }

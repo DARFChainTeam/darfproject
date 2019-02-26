@@ -46,7 +46,7 @@ contract project {
     }
 
     mapping (address => Project) public projects ; // AKA projectID
-    bytes32[] public ProjectList; // array to access projects
+    address[] public ProjectList; // array to access projects
 
     struct Admin {
         bool active;
@@ -128,12 +128,12 @@ contract project {
       { throw; }
        else {
             uint timestamp = now;
-            address storekey = keccak256(token, timestamp);
-            Project_statuses[storekey].timestamp = timestamp;
-            Project_statuses[storekey].projectID =Projects[token].Project_ID ;
-            Project_statuses[storekey].DFS_changes_addr = DFSchangesaddr;
-            Project_statuses[storekey].DFS_changes_hash = DFSchangeshash;
-            Project_statuses[storekey].POA_addr = POA_addr;
+            address ProjectAddr = keccak256(token, timestamp);
+            Project_statuses[ProjectAddr].timestamp = timestamp;
+            Project_statuses[ProjectAddr].projectID =Projects[token].Project_ID ;
+            Project_statuses[ProjectAddr].DFS_changes_addr = DFSchangesaddr;
+            Project_statuses[ProjectAddr].DFS_changes_hash = DFSchangeshash;
+            Project_statuses[ProjectAddr].POA_addr = POA_addr;
             return timestamp;
        }
 

@@ -1,13 +1,14 @@
 pragma solidity ^0.4.0;
 import "./project.sol";
 import '../admin/ExternalStorage.sol';
+import "../tokens/token.sol";
 contract userstory {
 
     address External_Storage_addr;
     struct Story_Bakers {
-        address baker;
+        //address baker;
         uint baked_sum;
-        bool accept_work;
+        uint accept_work; // timestamp
 
     }
 
@@ -22,12 +23,13 @@ contract userstory {
                           uint256 start_date; // timestamp,
                           uint duration; // timedelta,
                           uint sum_raised;
+                          uint sum_accepted;
                           uint256 Ask_end_from_project; // datetime when team say they finish work
                           // bool  project_signin; //  several team members?
                           uint256 finished; // datetime acceptwance from bakers
                           // bool project_accept;  // TODO tx transaction of acceptance
                           mapping (address => Story_Bakers) bakers;  //# several users who baked story
-                        // mapping (uint => Story_Bakers) confirm_end_from_user; // several users
+                          address[] bakers_list; // several users
 
 
                         }
@@ -47,19 +49,20 @@ contract userstory {
         Projectaddr =ES.getAddressValue("scruminvest/project");
         Projectcurrent =  Project(Projectaddr);
         Projecttoken = Projectcurrent.ProjectsList(ProjectID);
-        reqiure( ERC20(Project_token).balanceOf(this) = StoryAmounttoken) ;
-            address storekey = keccak256(ProjectID, Userstorynumber);
-            UserStories[storekey].project_ID = project_ID;
-            UserStories[storekey].User_story_number = Userstorynumber;
-            UserStories[storekey].duration = duration;
-            UserStories[storekey].DFS_Hash = DFSHash;
-            UserStories[storekey].DFS_type= DFStype;
-            UserStories[storekey].Story_Amount_ANG = StoryAmountANG;
-            UserStories[storekey].start_date = Startdate;
-            UserStories[storekey].duration = duration;
+        reqiure((ERC20(Project_token).balanceOf(this) = StoryAmounttoken) ||
+                (Projects[Project_token] .project_owner_address = msg.sender)) ;
+            address UserStoryAddr = keccak256(ProjectID, Userstorynumber);
+            UserStories[UserStoryAddr].project_ID = project_ID;
+            UserStories[UserStoryAddr].User_story_number = Userstorynumber;
+            UserStories[UserStoryAddr].duration = duration;
+            UserStories[UserStoryAddr].DFS_Hash = DFSHash;
+            UserStories[UserStoryAddr].DFS_type= DFStype;
+            UserStories[UserStoryAddr].Story_Amount_ANG = StoryAmountANG;
+            UserStories[UserStoryAddr].start_date = Startdate;
+            UserStories[UserStoryAddr].duration = duration;
             emit  Newuserstory (ProjectID,  Userstorynumber, DFSHash,  StoryAmountANG,
                 StoryAmounttoken, Startdate, Deadline);
-            return  storekey;
+            return UserStoryAddr;
     }
 
    // function add_user_story_comment () public { }
@@ -68,7 +71,7 @@ contract userstory {
     event unsuccesful_invest(address UserStoryAddr, address baker, uint baked_sum, byte32 message);
 
 
-    function invest(address UserStoryAddr, uint bakedsumANG) public {
+    function invest(address UserStoryAddr, uint bakedsumANG) public payable {
         // sign_in_user_story_from_investors
         //sign_in_user_story_from_user(UserStoryID:int128)
         // investors signup userstory when negotiations finished
@@ -76,12 +79,15 @@ contract userstory {
 
         if ((UserStories[UserStoryAddr].sum_raised + bakedsumANG) <
             UserStories[UserStoryAddr].Story_Amount_ANG) {
-                UserStories[UserStoryAddr].bakers(msg.sender) += bakedsumANG;
+                if (UserStories[UserStoryAddr].bakers[msg.sender].baked_sum = 0) {
+                    UserStories[UserStoryAddr].bakers_list.push(msg.sender);
+                }
+                UserStories[UserStoryAddr].bakers[msg.sender].baked_sum += bakedsumANG;
                 UserStories[UserStoryAddr].sum_raised += bakedsumANG;
                 emit succesful_invest(UserStoryAddr, msg.sender, bakedsumANG, "Thank you!");
         }
         else { // if sended sum overloads story's budget, don't accept this
-            emit unsuccesful_invest(UserStoryAddr, msg.sender, bakedsumANG, "Your sum overloads                                         budget");
+            emit unsuccesful_invest(UserStoryAddr, msg.sender, bakedsumANG, "Your sum overloads budget");
             revert();
         }
 
@@ -91,19 +97,59 @@ contract userstory {
 
 
 
-    function finish_userstory_from_team(address storekey, uint ProjectID, uint Userstorynumber) public returns (bool){
+    function finish_userstory_from_team(address UserStoryAddr, uint ProjectID) public returns (uint){
+
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        Projectaddr =ES.getAddressValue("scruminvest/project");
+        Projectcurrent =  Project(Projectaddr);
+        Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        reqiure((Projects[Projecttoken].project_owner_address = msg.sender)) ;
+                timestamp = now;
+                UserStories[UserStoryAddr].finished = now;
+        return timestamp;
         //
         // todo: in withdraw module check require check that userstory finished
 
     }
 
-    function accept_work_from_bakers (){
+    function accept_work_from_bakers (address UserStoryAddr, bool acceptance) public {
+
+        reqiure (UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0); // only investor can do it
+            if (acceptance) {
+                UserStories[UserStoryAddr].sum_accepted +=
+                                UserStories[UserStoryAddr].bakers[msg.sender].baked_sum;
+                UserStories[UserStoryAddr].bakers[msg.sender].accept_work = now;
+            }
+            if (UserStories[UserStoryAddr].sum_accepted > UserStories[UserStoryAddr].sum_rased /2){
+                // all fine, sends ANG to team
+                ExternalStorage ES = ExternalStorage(External_Storage_addr);
+                Projectaddr =ES.getAddressValue("scruminvest/project");
+                Projectcurrent =  Project(Projectaddr);
+                Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+                ANGTokenAddrr = ES.getAddressValue("ANGtoken");
+                Token(ANGTokenAddrr).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].sum_raised );
+                // address sender,address receiver, uint256 amount, bytes data
+
+                //distribution of tokens
+                uint pricetoken1000 = 1000 * UserStories[UserStoryAddr].Story_Amount_Tokens /
+                                    UserStories[UserStoryAddr].Story_Amount_ANG;
+                for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.lenght();
+                        baker++) {
+                    bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
+                    summTokens =   UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum *
+                                pricetoken1000 / 1000 ;
 
 
+                    //todo  bakeraddr.send(summTokens);
+                    Token(Projecttoken).transfer(address(this), bakeraddr, summTokens);
+
+                }
+            // todo gas compensation for transactions to last investor in ANG
+            }
     }
 
 
-    function abort_by_team () public {
+    function abort_by_team (address UserStoryAddr) public {
 
 
     }
