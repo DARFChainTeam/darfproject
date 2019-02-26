@@ -21,11 +21,12 @@ contract userstory {
                           uint Story_Amount_Tokens; //number of tokens gives from team
                           uint256 start_date; // timestamp,
                           uint duration; // timedelta,
+                          uint sum_raised;
                           uint256 Ask_end_from_project; // datetime when team say they finish work
                           // bool  project_signin; //  several team members?
                           uint256 finished; // datetime acceptwance from bakers
                           // bool project_accept;  // TODO tx transaction of acceptance
-                          mapping (uint => Story_Bakers) bakers;  //# several users who baked story
+                          mapping (address => Story_Bakers) bakers;  //# several users who baked story
                         // mapping (uint => Story_Bakers) confirm_end_from_user; // several users
 
 
@@ -38,7 +39,7 @@ contract userstory {
 
     function start_user_story (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, byte8 DFStype,                                  uint StoryAmountANG,
                                 uint StoryAmounttoken, uint256 Startdate, uint duration)
-                                public OnlyOwner(msg.sender) returns (uint){
+                                public OnlyOwner(msg.sender) returns (address){
         //todo check transfer sum to escrow
         // what address of escrow?
         //get token addr
@@ -63,22 +64,55 @@ contract userstory {
 
    // function add_user_story_comment () public { }
 
-    function sign_in_user_story_from_investors (UserStoryID) public {
+    event   succesful_invest(address UserStoryAddr, address baker, uint baked_sum, byte32 message);
+    event unsuccesful_invest(address UserStoryAddr, address baker, uint baked_sum, byte32 message);
 
 
+    function invest(address UserStoryAddr, uint bakedsumANG) public {
+        // sign_in_user_story_from_investors
         //sign_in_user_story_from_user(UserStoryID:int128)
         // investors signup userstory when negotiations finished
-        // investors  send DARF to userstory if agree
+        // investors  send ANG to userstory if agree
+
+        if ((UserStories[UserStoryAddr].sum_raised + bakedsumANG) <
+            UserStories[UserStoryAddr].Story_Amount_ANG) {
+                UserStories[UserStoryAddr].bakers(msg.sender) += bakedsumANG;
+                UserStories[UserStoryAddr].sum_raised += bakedsumANG;
+                emit succesful_invest(UserStoryAddr, msg.sender, bakedsumANG, "Thank you!");
+        }
+        else { // if sended sum overloads story's budget, don't accept this
+            emit unsuccesful_invest(UserStoryAddr, msg.sender, bakedsumANG, "Your sum overloads                                         budget");
+            revert();
+        }
 
 
-}
+
+    }
 
 
 
-    function finish_userstory(address storekey, uint ProjectID, uint Userstorynumber) public returns (bool){
+    function finish_userstory_from_team(address storekey, uint ProjectID, uint Userstorynumber) public returns (bool){
+        //
         // todo: in withdraw module check require check that userstory finished
 
     }
+
+    function accept_work_from_bakers (){
+
+
+    }
+
+
+    function abort_by_team () public {
+
+
+    }
+
+    function abort_by_bakers () public{
+
+
+    }
+
     function _setExternalstorageaddr(address Externalstorageaddr ) onlyAdmins public {
         External_Storage_addr = Externalstorageaddr;
 
