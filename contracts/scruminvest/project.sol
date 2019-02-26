@@ -36,7 +36,6 @@ contract project {
     struct Project{
         uint256 project_ID; //assign by increment and not change?
         address project_owner_address;
-
         address _DARF_system_address; // ETH address of node that updates project state
         bytes32 DFS_Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
         byte8 DFS_type;
@@ -104,8 +103,13 @@ contract project {
 
 }
 
-    function change_project_info () public {
-//todo: or via Registry?
+    function change_project_info (address token, address owner, bytes32 DFSProjectdescribe, uint                                        DFStype) onlyOwner  public {
+
+            Projects[token].project_owner_address = owner;
+            Projects[token].DFS_Project_describe = DFSProjectdescribe;
+            Projects[token].DFS_type = DFStype;
+
+        //todo: or via Registry?
         // owner
         // DARF node
         // addrr_describe

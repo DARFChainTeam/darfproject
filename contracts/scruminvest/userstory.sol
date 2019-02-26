@@ -63,6 +63,17 @@ contract userstory {
 
    // function add_user_story_comment () public { }
 
+    function sign_in_user_story_from_investors (UserStoryID) public {
+
+
+        //sign_in_user_story_from_user(UserStoryID:int128)
+        // investors signup userstory when negotiations finished
+        // investors  send DARF to userstory if agree
+
+
+}
+
+
 
     function finish_userstory(address storekey, uint ProjectID, uint Userstorynumber) public returns (bool){
         // todo: in withdraw module check require check that userstory finished
