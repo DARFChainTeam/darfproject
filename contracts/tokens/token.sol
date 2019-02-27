@@ -1,7 +1,9 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 import "./interface/token-interface.sol";
 import "./implementation/basic-token.sol";
 import "./implementation/mintable-token.sol";
+import "../admin/ExternalStorage.sol";
+import "../admin/administratable.sol";
 
 // contracts/libraries/Modifiers.sol
 
@@ -19,6 +21,9 @@ contract token is mintable {
     tokenInterface private _token;
     address private _owner;
     bool private _finalized = false;
+    address  External_Storage_addr;
+
+
     function token(string symbol, string name, uint8 decimals )
     {
       _owner = msg.sender;
@@ -140,17 +145,6 @@ contract token is mintable {
     event Mint(address indexed receiver, uint256 amount);
 
 
-    function _setExternalstorageaddr(address Externalstorageaddr ) onlyAdmins public {
-        External_Storage_addr = Externalstorageaddr;
 
-
-    }
-
-    function _init() OnlyAdmins public {
-
-        ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        Projectaddr =ES.setAddressValue("ANGtoken", address(this));
-
-    }
 
 }

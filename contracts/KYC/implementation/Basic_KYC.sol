@@ -1,6 +1,6 @@
 //TODO all change!
 
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 import "../../libraries/SafeMath.sol";
 import "../interface/KYC_interface.sol";
 import "../KYC_storage.sol";

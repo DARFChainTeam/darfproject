@@ -1,6 +1,7 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.24;
 import "../tokens/token.sol";
 import "../admin/ExternalStorage.sol";
+import "../admin/administratable.sol";
 
 contract project {
 
@@ -25,7 +26,7 @@ contract project {
         uint projectID;
         bytes32 DFS_changes_addr; // addresses of paroled archive of DB increment in DFS (IPFS/SWarm)
         bytes32 DFS_changes_hash; // hash of DB state
-        byte8 DFS_type;
+        bytes4 DFS_type;
         bytes32 POA_addr; // addresses of current Proof-of-Accounting state in DFS (IPFS/SWarm)
         uint timestamp;
 
@@ -38,25 +39,31 @@ contract project {
         address project_owner_address;
         address _DARF_system_address; // ETH address of node that updates project state
         bytes32 DFS_Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
-        byte8 DFS_type;
+        bytes4 DFS_type;
         mapping (uint => RightsList) rights;
         // mapping (uint => UserStory) stories;
 
 
     }
 
-    mapping (address => Project) public projects ; // AKA projectID
+    mapping (address => Project) public Projects ; // AKA projectID
     address[] public ProjectList; // array to access projects
 
-    struct Admin {
-        bool active;
-        }
-    mapping (address => Admin) public _admins;
-
-
-  function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
-      _admins[_admin_address].active = _admin_state;
+    modifier  OnlyOwner(address _project_address) {
+        require(Projects[Project_token_addr].project_owner_address == msg.sender);
+        _;
     }
+
+
+//    struct Admin {
+//        bool active;
+//        }
+//    mapping (address => Admin) public _admins;
+
+
+  //function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
+  //    _admins[_admin_address].active = _admin_state;
+  //  }
 
 
     // set and check grade of rights for project
@@ -90,7 +97,8 @@ contract project {
 
     event New_project (address owner_address , address token, bytes32 DFSProjectdescribe, address _DARFsystemaddress);
 
-    function create_project (address token, bytes32 DFSProjectdescribe, uint DFStype) onlyOwner public {
+    function create_project (address token, bytes32 DFSProjectdescribe, uint DFStype) OnlyOwner public {
+
         require(token_deposit (token, ANG_system_addr, our_share));
 
             Projects[token].project_owner_address = msg.sender;
@@ -103,7 +111,7 @@ contract project {
 
 }
 
-    function change_project_info (address token, address owner, bytes32 DFSProjectdescribe, uint                                        DFStype) onlyOwner  public {
+    function change_project_info (address token, address owner, bytes32 DFSProjectdescribe, uint                                        DFStype) OnlyOwner  public {
 
             Projects[token].project_owner_address = owner;
             Projects[token].DFS_Project_describe = DFSProjectdescribe;
@@ -117,10 +125,10 @@ contract project {
 
 
 }
-    event finish_project (address token);
+    event finished_project (address token);
 
     function finish_project (address token) public {
-        emit finish_project (token);
+        emit finished_project (token);
 
 }
         function project_add_state(address token,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint) {
@@ -139,7 +147,7 @@ contract project {
 
     }
 
-     function project_get_state(address token, uint timestamp ) public returns(byte32) {
+     function project_get_state(address token, uint timestamp ) public returns(address) {
 
         if (checkrights(token) > 0) { //returns state
             return Project_statuses[keccak256(token, timestamp)].DBchangesaddr ;
@@ -164,13 +172,13 @@ contract project {
         return (Token_total_supply * platform_share <= token_balance);
     }
 
-   function _setExternalstorageaddr(address Externalstorageaddr ) onlyAdmins public {
+   function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins {
         External_Storage_addr = Externalstorageaddr;
 
 
     }
 
-   function _init() OnlyAdmins public {
+   function _init() public onlyAdmins {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         Projectaddr = ES.setAddressValue("scruminvest/project", address(this));

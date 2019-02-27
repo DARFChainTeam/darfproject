@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 /*import "./implementation/basic-token.sol";*/
 /*import "./implementation/mintable-token.sol";*/
 /*@title Receiver contract Abstract Class

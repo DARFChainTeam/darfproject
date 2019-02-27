@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 import "../interface/token-interface.sol";
 import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";

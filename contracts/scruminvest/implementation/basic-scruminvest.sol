@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 import "../../libraries/SafeMath.sol";
 import "../interface/scruminvest-interface.sol";
 import "../../tokens/token.sol";
@@ -45,7 +45,7 @@ contract simpleCrowdsale is crowdsaleInterface {
 
   }
   //check for valid purchase
-  function buyTokens(address receiver,uint256 weiAmount) public onlyOwner isFinalized returns(uint256)
+  function buyTokens(address receiver,uint256 weiAmount) public onlyOwner returns(uint256)
   {
 
       validPurchase();
@@ -77,23 +77,7 @@ contract simpleCrowdsale is crowdsaleInterface {
           }
       }
   }
-  function finalize() public onlyOwner isFinalized returns(bool)
-  {
 
-
-      //Safety Check : make sure current time is passed set end time of crowdsale
-      if (now < _endTime) {
-          revert();
-      }
-      else
-      {
-          //Finalize mechanism : if there are tokens remaining, burn them.
-          _token.finalize();
-          _finalized = true;
-          return true;
-      }
-
-  }
   function getToken() public onlyOwner returns(address)
   {
     return address(_token);

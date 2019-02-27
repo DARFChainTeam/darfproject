@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 import "./interface/admin-interface.sol";
 import "./implementation/basic-admin.sol";
 import "../tokens/token.sol";

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 
 import "./Ownable.sol";
 import "../libraries/SafeMath.sol";
@@ -20,7 +20,7 @@ contract Administratable is Ownable {
   event AddSuperAdmin(address indexed admin);
   event RemoveSuperAdmin(address indexed admin);
 
-  modifier onlyAdmins {
+  modifier onlyAdmins  {
     if (msg.sender != owner && !superAdmins[msg.sender] && !admins[msg.sender]) revert();
     _;
   }

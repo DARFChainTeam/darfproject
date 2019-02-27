@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 import "../../libraries/SafeMath.sol";
 import "../interface/crowdsale-interface.sol";
 import "../../tokens/token.sol";

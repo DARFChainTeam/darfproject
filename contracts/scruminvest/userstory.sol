@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.24;
 import "./project.sol";
 import '../admin/ExternalStorage.sol';
 import "../tokens/token.sol";
@@ -174,8 +174,8 @@ contract userstory {
 
 
     event User_story_aborted_by_team (address UserStoryAddr, address Projecttoken, string why  );
-    function abort_by_team (address UserStoryAddr, address Project_token, bool abortfromteam, string why ) public { //it is close to accept_work_from_bakers, but vise versa
-        reqiure (Projects[Project_token] .project_owner_address = msg.sender);
+    function abort_by_team (address UserStoryAddr, address Project_token, bool abortfromteam, string why )  public OnlyOwner { //it is close to accept_work_from_bakers, but vise versa
+
             if (abortfromteam) {
                 token_refunds ( UserStoryAddr, Project_token );
                 emit User_story_aborted_by_team (UserStoryAddr, Projecttoken, why);
@@ -200,13 +200,13 @@ contract userstory {
 
     }
 
-    function _setExternalstorageaddr(address Externalstorageaddr ) onlyAdmins public {
+    function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins {
         External_Storage_addr = Externalstorageaddr;
 
 
     }
 
-    function _init() OnlyAdmins public {
+    function _init() public onlyAdmins {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         Projectaddr =ES.setAddressValue("scruminvest/userstory", address(this));
