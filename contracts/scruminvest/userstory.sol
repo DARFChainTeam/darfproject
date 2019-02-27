@@ -121,7 +121,8 @@ contract userstory {
                 UserStories[UserStoryAddr].bakers[msg.sender].accept_work = now;
             }
             if (UserStories[UserStoryAddr].sum_accepted > UserStories[UserStoryAddr].sum_rased /2){
-                // all fine, sends ANG to team
+                // all fine, 50%+ invastors accepted works results,
+                // sends ANG to team
                 ExternalStorage ES = ExternalStorage(External_Storage_addr);
                 Projectaddr =ES.getAddressValue("scruminvest/project");
                 Projectcurrent =  Project(Projectaddr);
@@ -149,13 +150,53 @@ contract userstory {
     }
 
 
-    function abort_by_team (address UserStoryAddr) public {
+    function token_refunds (address UserStoryAddr, address Projectaddr) {
 
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        Projectaddr =ES.getAddressValue("scruminvest/project");
+        Projectcurrent =  Project(Projectaddr);
+        Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        ANGTokenAddrr = ES.getAddressValue("ANGtoken");
+
+        // Returns their token to team
+        Token(Projecttoken).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
+
+         //returns ANG to investors
+
+         for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.lenght();
+                        baker++) {
+
+                    Token(ANGTokenAddrr).transfer(address(this), UserStories[UserStoryAddr].bakers_list[baker], UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum);
+
+                }
 
     }
 
-    function abort_by_bakers () public{
 
+    event User_story_aborted_by_team (address UserStoryAddr, address Projecttoken, string why  );
+    function abort_by_team (address UserStoryAddr, address Project_token, bool abortfromteam, string why ) public { //it is close to accept_work_from_bakers, but vise versa
+        reqiure (Projects[Project_token] .project_owner_address = msg.sender);
+            if (abortfromteam) {
+                token_refunds ( UserStoryAddr, Project_token );
+                emit User_story_aborted_by_team (UserStoryAddr, Projecttoken, why);
+                // returns token to team
+            }
+
+    }
+
+    event User_story_aborted_by_bakers (address UserStoryAddr, address Projecttoken, string why  );
+
+    function abort_by_bakers (address UserStoryAddr, address Project_token, bool abortfrombakers, string why) public{
+
+        reqiure ((UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0) || ( now > UserStories[UserStoryAddr].start_date + UserStories[UserStoryAddr].duration + 60 days));
+        // 1. only investor can do it
+        // 2. after 60 days past promised finish of userstory
+
+            if (abortfrombakers) {
+                token_refunds ( UserStoryAddr, Project_token );
+                emit User_story_aborted_by_bakers (UserStoryAddr, Projecttoken, why);
+                // returns token to team
+            }
 
     }
 
