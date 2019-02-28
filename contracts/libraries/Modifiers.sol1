@@ -1,10 +1,10 @@
 pragma solidity ^0.4.24;
-import "../admin/admin.sol";
+//import "../admin/exchange_admin.sol1";
 
 library Modifiers {
  //Modification and access right------------------------------------------------
 
-
+/*
     modifier OnlyAdmin(address _sender_address) {
       require(admin_Storage._admins[_sender_address].active == true);
       _;
@@ -13,4 +13,4 @@ library Modifiers {
 
 
     }
-
+*/

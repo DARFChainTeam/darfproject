@@ -1,8 +1,10 @@
 pragma solidity ^0.4.24;
 import "./project.sol";
 import '../admin/ExternalStorage.sol';
-import "../tokens/token.sol";
-contract userstory {
+
+import '../admin/administratable.sol';
+import '../tokens/token.sol';
+contract userstory is project {
 
     address External_Storage_addr;
     struct Story_Bakers {
@@ -17,7 +19,7 @@ contract userstory {
                           uint User_story_number;
                           //address project_token;
                           bytes32 DFS_Hash;
-                          byte8 DFS_type;
+                          bytes4 DFS_type;
                           uint Story_Amount_ANG; // number of ANG payed by bakers
                           uint Story_Amount_Tokens; //number of tokens gives from team
                           uint256 start_date; // timestamp,
@@ -39,20 +41,20 @@ contract userstory {
 
     event Newuserstory (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint256 Startdate, uint duration);
 
-    function start_user_story (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, byte8 DFStype,                                  uint StoryAmountANG,
+    function start_user_story (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint StoryAmountANG,
                                 uint StoryAmounttoken, uint256 Startdate, uint duration)
-                                public OnlyOwner(msg.sender) returns (address){
+                                public  returns (address){
         //todo check transfer sum to escrow
         // what address of escrow?
         //get token addr
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        Projectaddr =ES.getAddressValue("scruminvest/project");
-        Projectcurrent =  Project(Projectaddr);
-        Projecttoken = Projectcurrent.ProjectsList(ProjectID);
-        reqiure((ERC20(Project_token).balanceOf(this) = StoryAmounttoken) ||
-                (Projects[Project_token] .project_owner_address = msg.sender)) ;
+        address Projectaddr =ES.getAddressValue("scruminvest/project");
+        project Projectcurrent =  project(Projectaddr);
+        address Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        require((token(Projecttoken).balanceOf(this) = StoryAmounttoken) ||
+                (Projects[Projecttoken].project_owner_address = msg.sender)) ; // OnlyProjectOwner(Project_token_addr)
             address UserStoryAddr = keccak256(ProjectID, Userstorynumber);
-            UserStories[UserStoryAddr].project_ID = project_ID;
+            UserStories[UserStoryAddr].project_ID = ProjectID;
             UserStories[UserStoryAddr].User_story_number = Userstorynumber;
             UserStories[UserStoryAddr].duration = duration;
             UserStories[UserStoryAddr].DFS_Hash = DFSHash;
@@ -61,14 +63,14 @@ contract userstory {
             UserStories[UserStoryAddr].start_date = Startdate;
             UserStories[UserStoryAddr].duration = duration;
             emit  Newuserstory (ProjectID,  Userstorynumber, DFSHash,  StoryAmountANG,
-                StoryAmounttoken, Startdate, Deadline);
+                StoryAmounttoken, Startdate, Startdate + duration);
             return UserStoryAddr;
     }
 
    // function add_user_story_comment () public { }
 
-    event   succesful_invest(address UserStoryAddr, address baker, uint baked_sum, byte32 message);
-    event unsuccesful_invest(address UserStoryAddr, address baker, uint baked_sum, byte32 message);
+    event   succesful_invest(address UserStoryAddr, address baker, uint baked_sum, bytes32 message);
+    event unsuccesful_invest(address UserStoryAddr, address baker, uint baked_sum, bytes32 message);
 
 
     function invest(address UserStoryAddr, uint bakedsumANG) public payable {
@@ -100,11 +102,12 @@ contract userstory {
     function finish_userstory_from_team(address UserStoryAddr, uint ProjectID) public returns (uint){
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        Projectaddr =ES.getAddressValue("scruminvest/project");
-        Projectcurrent =  Project(Projectaddr);
-        Projecttoken = Projectcurrent.ProjectsList(ProjectID);
-        reqiure((Projects[Projecttoken].project_owner_address = msg.sender)) ;
-                timestamp = now;
+        address Projectaddr =ES.getAddressValue("scruminvest/project");
+        project Projectcurrent =  Project(Projectaddr);
+        address Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        require((Projects[Projecttoken].project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
+
+                uint256 timestamp = now;
                 UserStories[UserStoryAddr].finished = now;
         return timestamp;
         //
@@ -114,7 +117,7 @@ contract userstory {
 
     function accept_work_from_bakers (address UserStoryAddr, bool acceptance) public {
 
-        reqiure (UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0); // only investor can do it
+        require (UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0); // only investor can do it
             if (acceptance) {
                 UserStories[UserStoryAddr].sum_accepted +=
                                 UserStories[UserStoryAddr].bakers[msg.sender].baked_sum;
@@ -124,11 +127,11 @@ contract userstory {
                 // all fine, 50%+ invastors accepted works results,
                 // sends ANG to team
                 ExternalStorage ES = ExternalStorage(External_Storage_addr);
-                Projectaddr =ES.getAddressValue("scruminvest/project");
-                Projectcurrent =  Project(Projectaddr);
-                Projecttoken = Projectcurrent.ProjectsList(ProjectID);
-                ANGTokenAddrr = ES.getAddressValue("ANGtoken");
-                Token(ANGTokenAddrr).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].sum_raised );
+                address Projectaddr =ES.getAddressValue("scruminvest/project");
+                project Projectcurrent =  project(Projectaddr);
+                address Projecttoken = Projectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
+                address ANGTokenAddrr = ES.getAddressValue("ANGtoken");
+                token(ANGTokenAddrr).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].sum_raised );
                 // address sender,address receiver, uint256 amount, bytes data
 
                 //distribution of tokens
@@ -136,13 +139,12 @@ contract userstory {
                                     UserStories[UserStoryAddr].Story_Amount_ANG;
                 for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.lenght();
                         baker++) {
-                    bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
-                    summTokens =   UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum *
-                                pricetoken1000 / 1000 ;
+                    address bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
+                    uint256 summTokens =   UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum *  pricetoken1000 / 1000 ;
 
 
                     //todo  bakeraddr.send(summTokens);
-                    Token(Projecttoken).transfer(address(this), bakeraddr, summTokens);
+                    token(Projecttoken).transfer(address(this), bakeraddr, summTokens);
 
                 }
             // todo gas compensation for transactions to last investor in ANG
@@ -150,34 +152,36 @@ contract userstory {
     }
 
 
-    function token_refunds (address UserStoryAddr, address Projectaddr) {
+    function token_refunds (address UserStoryAddr, address Projecttoken ) {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        Projectaddr =ES.getAddressValue("scruminvest/project");
-        Projectcurrent =  Project(Projectaddr);
-        Projecttoken = Projectcurrent.ProjectsList(ProjectID);
-        ANGTokenAddrr = ES.getAddressValue("ANGtoken");
+        address ANGTokenAddrr = ES.getAddressValue("ANGtoken");
 
         // Returns their token to team
-        Token(Projecttoken).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
+        token(Projecttoken).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
 
          //returns ANG to investors
 
          for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.lenght();
                         baker++) {
-
-                    Token(ANGTokenAddrr).transfer(address(this), UserStories[UserStoryAddr].bakers_list[baker], UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum);
+                    address bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
+                    token(ANGTokenAddrr).transfer(address(this), UserStories[UserStoryAddr].bakers_list[baker], UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum);
 
                 }
 
     }
 
 
-    event User_story_aborted_by_team (address UserStoryAddr, address Projecttoken, string why  );
-    function abort_by_team (address UserStoryAddr, address Project_token, bool abortfromteam, string why )  public OnlyOwner { //it is close to accept_work_from_bakers, but vise versa
+    event User_story_aborted_by_team (address UserStoryAddr, address Projecttoken,  string why  );
+    function abort_by_team (address UserStoryAddr, bool abortfromteam, string why )   { //it is close to accept_work_from_bakers, but vise versa
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        address Projectaddr =ES.getAddressValue("scruminvest/project");
+        project Projectcurrent =  Project(Projectaddr);
+        address Projecttoken = Projectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
+        require((Projects[Projecttoken].project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
 
             if (abortfromteam) {
-                token_refunds ( UserStoryAddr, Project_token );
+                token_refunds ( UserStoryAddr, Projecttoken );
                 emit User_story_aborted_by_team (UserStoryAddr, Projecttoken, why);
                 // returns token to team
             }
@@ -186,14 +190,18 @@ contract userstory {
 
     event User_story_aborted_by_bakers (address UserStoryAddr, address Projecttoken, string why  );
 
-    function abort_by_bakers (address UserStoryAddr, address Project_token, bool abortfrombakers, string why) public{
+    function abort_by_bakers (address UserStoryAddr, bool abortfrombakers, string why) public{
 
-        reqiure ((UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0) || ( now > UserStories[UserStoryAddr].start_date + UserStories[UserStoryAddr].duration + 60 days));
+        require ((UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0) || ( now > UserStories[UserStoryAddr].start_date + UserStories[UserStoryAddr].duration + 60 days));
         // 1. only investor can do it
         // 2. after 60 days past promised finish of userstory
 
             if (abortfrombakers) {
-                token_refunds ( UserStoryAddr, Project_token );
+                ExternalStorage ES = ExternalStorage(External_Storage_addr);
+                address Projectaddr =ES.getAddressValue("scruminvest/project");
+                project Projectcurrent =  Project(Projectaddr);
+                address Projecttoken = Projectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
+                token_refunds ( UserStoryAddr, Projecttoken );
                 emit User_story_aborted_by_bakers (UserStoryAddr, Projecttoken, why);
                 // returns token to team
             }
@@ -209,7 +217,7 @@ contract userstory {
     function _init() public onlyAdmins {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        Projectaddr =ES.setAddressValue("scruminvest/userstory", address(this));
+        ES.setAddressValue("scruminvest/userstory", address(this));
 
     }
 }

@@ -1,15 +1,17 @@
 pragma solidity ^0.4.24;
 import "../tokens/token.sol";
 import "../admin/ExternalStorage.sol";
-import "../admin/administratable.sol";
+import '../admin/administratable.sol';
 
-contract project {
+contract project is Administratable {
 
     address External_Storage_addr;
+
+
     constructor(address _token_address) public {
-    owner = msg.sender;
-    beneficiar = msg.sender;
-    token_address = _token_address;
+    address owner = msg.sender;
+    address  beneficiar = msg.sender;
+    address  token_address = _token_address;
   }
 
 
@@ -20,7 +22,7 @@ contract project {
 
     }
 
-    //mapping (uint => RightsList ) project_rights
+   // mapping (uint => RightsList ) project_rights;
 
     struct project_state {
         uint projectID;
@@ -40,7 +42,8 @@ contract project {
         address _DARF_system_address; // ETH address of node that updates project state
         bytes32 DFS_Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
         bytes4 DFS_type;
-        mapping (uint => RightsList) rights;
+        uint256[8] rights;     // 0-7 rights grades use by default to reduce gas issues
+
         // mapping (uint => UserStory) stories;
 
 
@@ -49,8 +52,8 @@ contract project {
     mapping (address => Project) public Projects ; // AKA projectID
     address[] public ProjectList; // array to access projects
 
-    modifier  OnlyOwner(address _project_address) {
-        require(Projects[Project_token_addr].project_owner_address == msg.sender);
+    modifier  OnlyProjectOwner(address _project_address) {
+        require(Projects[_project_address].project_owner_address == msg.sender);
         _;
     }
 
@@ -76,17 +79,18 @@ contract project {
     // 1000000 tokens - "6"s level- manager
     // 10000000 tokens - "7"s lev - top manager
     // or another grade list
-    // 10 grades use by default to reduce gas issues
+    // 0-7 grades use by default to reduce gas issues
     // TODO: this grades'd be mapped with access right in ERP
 
-    function  setrights(address Project_token_addr,  mapping (uint => RightsList) rights) public  OnlyOwner(msg.sender)   {
-        Projects[Project_token_addr].rights = rights;
+    function  setrights(address Projecttokenaddr,  bytes1 grade, uint256 floor_sum) public  OnlyProjectOwner(Projecttokenaddr)   {
+        //todo solidity can't transfer structures!
+        Projects[Projecttokenaddr].rights[grade] = floor_sum;
 
     }
 
     function checkrights (address Project_token_addr) public {
-        for (uint grade = Projects[Project_token_addr].rights.length(); grade > 0; grade--) {
-                project_token =  Token (Projects[Project_token_addr].project_token_addr);
+        for (uint grade = 7; grade >= 0; grade--) {
+                token project_token =  token (Projects[Project_token_addr].project_token_addr);
                 if (project_token.balanceOf(msg.sender) > Projects[Project_token_addr].rights(grade).floor_sum ){
                     return grade;
                 }
@@ -95,27 +99,29 @@ contract project {
         return 0 ; // no money no honey
     }
 
-    event New_project (address owner_address , address token, bytes32 DFSProjectdescribe, address _DARFsystemaddress);
+    event New_project (address owner_address , address Projecttokenaddr, bytes32 DFSProjectdescribe, address _DARFsystemaddress);
 
-    function create_project (address token, bytes32 DFSProjectdescribe, uint DFStype) OnlyOwner public {
+    function create_project (address Projecttokenaddr, bytes32 DFSProjectdescribe, uint DFStype) OnlyProjectOwner(Projecttokenaddr) public {
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        address  ANG_system_addr = ES.getAddressValue("ANG_system_addr");
+        uint our_share100 = ES.getAddressValue("our_share100");
+        require(token_deposit (Projecttokenaddr, ANG_system_addr, our_share100));
 
-        require(token_deposit (token, ANG_system_addr, our_share));
-
-            Projects[token].project_owner_address = msg.sender;
-            Projects[token].DFS_Project_describe = DFSProjectdescribe;
-            Projects[token].DFS_type = DFStype;
-            ProjectList.push(token);
-            Projects[token].Project_ID = ProjectList.lenght();
-            emit New_project (Projects[token].project_owner_address, token, Projects[token]
-                .Project_describe, Projects[token].Project_ID  ) ;
+            Projects[Projecttokenaddr].project_owner_address = msg.sender;
+            Projects[Projecttokenaddr].DFS_Project_describe = DFSProjectdescribe;
+            Projects[Projecttokenaddr].DFS_type = DFStype;
+            ProjectList.push(Projecttokenaddr);
+            Projects[Projecttokenaddr].Project_ID = ProjectList.lenght();
+            emit New_project (Projects[Projecttokenaddr].project_owner_address, Projecttokenaddr, Projects[Projecttokenaddr]
+                .Project_describe, Projects[Projecttokenaddr].Project_ID  ) ;
 
 }
 
-    function change_project_info (address token, address owner, bytes32 DFSProjectdescribe, uint                                        DFStype) OnlyOwner  public {
+    function change_project_info (address Projecttokenaddr, address owner, bytes32 DFSProjectdescribe, uint DFStype)  public OnlyProjectOwner(Projecttokenaddr) {
 
-            Projects[token].project_owner_address = owner;
-            Projects[token].DFS_Project_describe = DFSProjectdescribe;
-            Projects[token].DFS_type = DFStype;
+            Projects[Projecttokenaddr].project_owner_address = owner;
+            Projects[Projecttokenaddr].DFS_Project_describe = DFSProjectdescribe;
+            Projects[Projecttokenaddr].DFS_type = DFStype;
 
         //todo: or via Registry?
         // owner
@@ -125,20 +131,20 @@ contract project {
 
 
 }
-    event finished_project (address token);
+    event finished_project (address Projecttokenaddr);
 
-    function finish_project (address token) public {
-        emit finished_project (token);
+    function finish_project (address Projecttokenaddr) public {
+        emit finished_project (Projecttokenaddr);
 
 }
-        function project_add_state(address token,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint) {
-       if(msg.sender!=Projects[token]._DARF_system_address)
-      { throw; }
+        function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint) {
+       if(msg.sender!=Projects[Projecttokenaddr]._DARF_system_address) // only system can change!
+      { revert(); }
        else {
             uint timestamp = now;
-            address ProjectAddr = keccak256(token, timestamp);
+            address ProjectAddr = keccak256(Projecttokenaddr, timestamp);
             Project_statuses[ProjectAddr].timestamp = timestamp;
-            Project_statuses[ProjectAddr].projectID =Projects[token].Project_ID ;
+            Project_statuses[ProjectAddr].projectID =Projects[Projecttokenaddr].Project_ID ;
             Project_statuses[ProjectAddr].DFS_changes_addr = DFSchangesaddr;
             Project_statuses[ProjectAddr].DFS_changes_hash = DFSchangeshash;
             Project_statuses[ProjectAddr].POA_addr = POA_addr;
@@ -147,13 +153,13 @@ contract project {
 
     }
 
-     function project_get_state(address token, uint timestamp ) public returns(address) {
+     function project_get_state(address Projecttokenaddr, uint timestamp ) public returns(address) {
 
-        if (checkrights(token) > 0) { //returns state
-            return Project_statuses[keccak256(token, timestamp)].DBchangesaddr ;
+        if (checkrights(Projecttokenaddr) > 0) { //returns state
+            return Project_statuses[keccak256(Projecttokenaddr, timestamp)].DBchangesaddr ;
         }
         else { //returns only PoA
-            return Project_statuses[keccak256(token, timestamp)].POA_addr ;
+            return Project_statuses[keccak256(Projecttokenaddr, timestamp)].POA_addr ;
 
             }
 
@@ -162,18 +168,19 @@ contract project {
 
 
 
-    function token_deposit (address _tokenAddress, address ANG_system, uint platform_share) returns(bool) {
+    function token_deposit (address _tokenAddress, address ANG_system, uint platform_share100) returns(bool) {
 
 
         // todo check minted amount of tokens
-        Token_total_supply = Token(_tokenAddress).totalSupply;
+        uint256 Token_total_supply = token(_tokenAddress).totalSupply;
         //  todo check that platform_share is transferred to address
-        token_balance = _TokenInterface(_tokenAddress).balanceOf(ANG_system);
-        return (Token_total_supply * platform_share <= token_balance);
+        uint256 token_balance = _TokenInterface(_tokenAddress).balanceOf(ANG_system);
+        return (Token_total_supply * platform_share100 /100 <= token_balance);
     }
 
    function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins {
-        External_Storage_addr = Externalstorageaddr;
+
+       External_Storage_addr = Externalstorageaddr;
 
 
     }
@@ -181,7 +188,7 @@ contract project {
    function _init() public onlyAdmins {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        Projectaddr = ES.setAddressValue("scruminvest/project", address(this));
+        ES.setAddressValue("scruminvest/project", address(this));
 
     }
 

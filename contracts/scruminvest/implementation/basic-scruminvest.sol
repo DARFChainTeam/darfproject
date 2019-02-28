@@ -2,13 +2,15 @@ pragma solidity ^0.4.24;
 import "../../libraries/SafeMath.sol";
 import "../interface/scruminvest-interface.sol";
 import "../../tokens/token.sol";
+import "../../admin/Ownable.sol";
+
 
 /*@title Receiver contract Abstract Class
  *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
  */
  //TODO add owner checks
  //TODO add cap
-contract simpleCrowdsale is crowdsaleInterface {
+contract simpleCrowdsale is crowdsaleInterface, Ownable {
   using SafeMath for uint256;
 
   //State
@@ -126,16 +128,6 @@ contract simpleCrowdsale is crowdsaleInterface {
 
 
     }
-    modifier onlyOwner
-    {
-      if(msg.sender!=_owner)
-      {
-        revert();
-      }
-      else
-      {
-        _;
-      }
-    }
+
 
 }

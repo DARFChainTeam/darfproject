@@ -2,8 +2,9 @@ pragma solidity ^0.4.24;
 import "../interface/token-interface.sol";
 import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
+import "./basic-token.sol";
 
-contract mintable is tokenInterface {
+contract mintable is tokenInterface, basic {
   using SafeMath for uint256;
   string internal _symbol;
   string internal _name;

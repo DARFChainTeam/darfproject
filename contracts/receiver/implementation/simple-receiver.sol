@@ -1,11 +1,12 @@
 pragma solidity ^0.4.24;
 import "../../libraries/SafeMath.sol";
 import "../interface/receiver-interface.sol";
+import "../../admin/Ownable.sol";
 
 /*@title Receiver contract Abstract Class
  *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
  */
-contract simpleReciever is receiverInterface {
+contract simpleReciever is receiverInterface , Ownable {
     using SafeMath for uint256;
     address private _acceptedAddress;
     address private _owner;
@@ -39,7 +40,7 @@ contract simpleReciever is receiverInterface {
     }
     function tokenFallback(address sender, uint256 value, bytes data) public returns(bool)
     {
-      throw;
+      revert();
     }
 
     //Todo:add test to make sure it is ERC223 Token
@@ -55,16 +56,6 @@ contract simpleReciever is receiverInterface {
         return true;
 
     }
-    modifier onlyOwner
-    {
-      if(msg.sender!=_owner)
-      {
-        revert();
-      }
-      else
-      {
-        _;
-      }
-    }
+
 
 }

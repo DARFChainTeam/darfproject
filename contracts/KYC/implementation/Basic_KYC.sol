@@ -4,7 +4,9 @@ pragma solidity ^0.4.24;
 import "../../libraries/SafeMath.sol";
 import "../interface/KYC_interface.sol";
 import "../KYC_storage.sol";
-import "../../admin/admin.sol";
+import "../../admin/administratable.sol";
+
+//import "../../admin/exchange_admin.sol1";
 //import "../../tokens/token.sol";
 
 /*@title Receiver contract Abstract Class
@@ -12,24 +14,24 @@ import "../../admin/admin.sol";
  */
  //TODO add owner checks
  //TODO add cap
-contract basic_KYC is KYC {
-  modifier OnlyAdmin (address _sender_address) {
+contract basic_KYC is KYC , Administratable {
+/*  modifier OnlyAdmin (address _sender_address) {
       require(admin_Storage._admins[_sender_address].active);
       _;
 
         }
 
-
+*/
   function InvestorCheck(address _investor_address, uint _value) {
       return ((KYC_storage._investors[_investor_address].KYC_level == 0 && _value < 1*(1 ether))
       || KYC_storage._investors[_investor_address].KYC_level > 0); // todo don't work this?
 
   }
 
-  function add_KYC(address investor_KYC, int KYC_level) public OnlyAdmin (msg.sender) {
+  function add_KYC(address investor_KYC, int KYC_level) public onlyAdmins (msg.sender) {
         KYC_storage._investors.push[investor_KYC].KYC_level = KYC_level;
   }
-  function register_purchase(address investor, uint256 sum_ether, uint256 sum_ANG) public OnlyAdmin (msg.sender) {
+  function register_purchase(address investor, uint256 sum_ether, uint256 sum_ANG) public {
       if (InvestorCheck (investor,sum_ether)) {
         KYC_storage._investors.push[investor].total_ether++  = sum_ether;
         KYC_storage._investors.push[investor].ANGs++  = sum_ANG;

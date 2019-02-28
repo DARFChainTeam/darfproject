@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 import "./interface/crowdsale-interface.sol";
 import "./implementation/basic-crowdsale.sol";
 import "../tokens/token.sol";
-import "../admin/admin.sol";
+//import "../admin/exchange_admin.sol1";
 /*import "../libraries/SafeMath.sol";*/
 //TODO: add set rate
 //TODO: add cap

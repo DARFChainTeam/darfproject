@@ -3,11 +3,13 @@ import "./interface/admin-interface.sol";
 import "./implementation/basic-admin.sol";
 import "../tokens/token.sol";
 import "./admin_storage.sol";
+import "./Ownable.sol";
 
 
-  contract admin is simpleAdmin{
 
-    function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
+  contract admin is simpleAdmin {
+
+    function setAdmin(address _admin_address, bool _admin_state) onlyOwner(msg.sender) {
 
       admin_Storage._admins.push[_admin_address].active = _admin_state;
     }
@@ -48,7 +50,7 @@ contract B {
 
 
 
-    function change_discount (uint new_discount_word, uint new_discount)  OnlyOwner(msg.sender) {
+    function change_discount (uint new_discount_word, uint new_discount)  onlyOwner(msg.sender) {
           if (new_discount_word > 0) discount_word = new_discount_word;
           if (new_discount > 0) discount_size =  new_discount;
       }
