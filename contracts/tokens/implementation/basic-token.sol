@@ -14,7 +14,7 @@ contract basic is tokenInterface {
   address internal _owner;
   mapping(address => uint256) internal _balances;
 
-  modifier OnlyOwner(address _sender_address) {
+  modifier onlyOwner(address _sender_address) {
       require(_owner == _sender_address);
       _;
 
@@ -28,26 +28,26 @@ contract basic is tokenInterface {
         _balances[_owner] = totalSupply;
         _totalSupply = totalSupply;
     }
-    function get_address() public OnlyOwner(msg.sender) returns (address) {
+    function get_address() public onlyOwner(msg.sender) returns (address) {
         return address(this);
 
     }
-    function balanceOf(address addr) public view OnlyOwner(msg.sender) returns(uint256) {
+    function balanceOf(address addr) public view onlyOwner(msg.sender) returns(uint256) {
 
         return _balances[addr];
 
     }
-    function getOwner() public OnlyOwner(msg.sender) returns(address) {
+    function getOwner() public onlyOwner(msg.sender) returns(address) {
 
         return _owner;
 
     }
-    function totalSupply() public view OnlyOwner(msg.sender) returns(uint256) {
+    function totalSupply() public view onlyOwner(msg.sender) returns(uint256) {
 
         return _totalSupply;
 
     }
-    function transfer(address sender,address receiver, uint256 amount, bytes data) public OnlyOwner(msg.sender) returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount, bytes data) public onlyOwner(msg.sender) returns(bool) {
      if(balanceOf(sender) < amount)
         {
             revert();
@@ -82,7 +82,7 @@ contract basic is tokenInterface {
 
 
 
-    function transfer(address sender,address receiver, uint256 amount) public OnlyOwner(msg.sender) returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount) public onlyOwner(msg.sender) returns(bool) {
 
           bytes memory empty;
           //use ERC223 transfer function
@@ -94,12 +94,12 @@ contract basic is tokenInterface {
 
     }
 
-    function mint(address tokenAddress,address receiver, uint256 amount) public OnlyOwner(msg.sender) returns(bool)
+    function mint(address tokenAddress,address receiver, uint256 amount) public onlyOwner(msg.sender) returns(bool)
     {
         transfer(tokenAddress,receiver, amount);
     }
 
-    function burn(address owner,uint256 amount) public OnlyOwner(msg.sender) returns(bool) {
+    function burn(address owner,uint256 amount) public onlyOwner(msg.sender) returns(bool) {
 
 
         //Safty check : token owner cannot burn more than the amount currently exists in their address

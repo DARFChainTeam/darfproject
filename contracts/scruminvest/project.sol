@@ -17,7 +17,7 @@ contract project is Administratable {
 
     struct RightsList {
         // byte grade;
-       // uint projectID;
+       // uint256 ProjectID;
         uint floor_sum;
 
     }
@@ -25,7 +25,7 @@ contract project is Administratable {
    // mapping (uint => RightsList ) project_rights;
 
     struct project_state {
-        uint projectID;
+        uint256 ProjectID;
         bytes32 DFS_changes_addr; // addresses of paroled archive of DB increment in DFS (IPFS/SWarm)
         bytes32 DFS_changes_hash; // hash of DB state
         bytes4 DFS_type;
@@ -64,7 +64,7 @@ contract project is Administratable {
 //    mapping (address => Admin) public _admins;
 
 
-  //function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
+  //function setAdmin(address _admin_address, bool _admin_state) onlyOwner(msg.sender) {
   //    _admins[_admin_address].active = _admin_state;
   //  }
 
@@ -138,9 +138,7 @@ contract project is Administratable {
 
 }
         function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint) {
-       if(msg.sender!=Projects[Projecttokenaddr]._DARF_system_address) // only system can change!
-      { revert(); }
-       else {
+       require (msg.sender=Projects[Projecttokenaddr]._DARF_system_address);
             uint timestamp = now;
             address ProjectAddr = keccak256(Projecttokenaddr, timestamp);
             Project_statuses[ProjectAddr].timestamp = timestamp;
@@ -149,7 +147,7 @@ contract project is Administratable {
             Project_statuses[ProjectAddr].DFS_changes_hash = DFSchangeshash;
             Project_statuses[ProjectAddr].POA_addr = POA_addr;
             return timestamp;
-       }
+
 
     }
 

@@ -11,7 +11,7 @@ import "../../admin/Ownable.sol";
  */
  //TODO add owner checks
  //TODO add cap
-contract simpleCrowdsale is crowdsaleInterface, Ownable {
+contract simpleCrowdsale is crowdsaleInterface, Ownable, KYC {
   using SafeMath for uint256;
 
   //State
@@ -41,7 +41,7 @@ contract simpleCrowdsale is crowdsaleInterface, Ownable {
 
 
   //check for valid purchase
-  function buyTokens(address receiver,uint256 weiAmount) public OnlyOwner(msg.sender)  returns(uint256)
+  function buyTokens(address receiver,uint256 weiAmount) public onlyOwner(msg.sender)  returns(uint256)
   {
 
       validPurchase();
@@ -92,9 +92,9 @@ contract simpleCrowdsale is crowdsaleInterface, Ownable {
      * @returns a boolean value indicating success or failure of this operation
      */
 
-    function validPurchase() internal view returns(bool) {
+    function validPurchase(address _investor_address, bytes3 currency) internal view returns(bool) {
 
-        return  (InvestorCheck(_owner, _value)); //KYC
+        return  (InvestorCheck(_investor_address, currency)); //KYC
 
     }
 

@@ -42,7 +42,7 @@ import "../tokens/token.sol";
 
 
 
-    function setAdmin(address _admin_address, bool _admin_state) OnlyOwner(msg.sender) {
+    function setAdmin(address _admin_address, bool _admin_state) onlyOwner(msg.sender) {
       _admins[_admin_address].active = _admin_state;
     }
 
@@ -55,7 +55,7 @@ import "../tokens/token.sol";
                             address  new_KYC_address,
                             address  new_token_address,
                             address new_beneficiar,
-                            address  new_owner ) public OnlyOwner(msg.sender) {
+                            address  new_owner ) public onlyOwner(msg.sender) {
 
         if (new_ANG_tokens_rate > 0 ) ANG_tokens_rate = new_ANG_tokens_rate;
         if (new_ANG_percent > 0 ) ANG_percent = new_ANG_percent;
@@ -77,7 +77,7 @@ import "../tokens/token.sol";
         }
 
 
-    function change_discount (uint new_discount_word, uint new_discount)  OnlyOwner(msg.sender) {
+    function change_discount (uint new_discount_word, uint new_discount)  onlyOwner(msg.sender) {
           if (new_discount_word > 0) discount_word = new_discount_word;
           if (new_discount > 0) discount_size =  new_discount;
       }

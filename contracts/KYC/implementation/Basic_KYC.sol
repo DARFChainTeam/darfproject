@@ -3,18 +3,14 @@
 pragma solidity ^0.4.24;
 import "../../libraries/SafeMath.sol";
 import "../interface/KYC_interface.sol";
-import "../KYC_storage.sol";
+// import "../KYC_storage.sol";
 import "../../admin/administratable.sol";
 
-//import "../../admin/exchange_admin.sol1";
-//import "../../tokens/token.sol";
 
-/*@title Receiver contract Abstract Class
- *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
- */
  //TODO add owner checks
- //TODO add cap
-contract basic_KYC is KYC , Administratable {
+
+
+contract basic_KYC is KYC_interface, Administratable {
 /*  modifier OnlyAdmin (address _sender_address) {
       require(admin_Storage._admins[_sender_address].active);
       _;
@@ -22,28 +18,38 @@ contract basic_KYC is KYC , Administratable {
         }
 
 */
-  function InvestorCheck(address _investor_address, uint _value) {
-      return ((KYC_storage._investors[_investor_address].KYC_level == 0 && _value < 1*(1 ether))
-      || KYC_storage._investors[_investor_address].KYC_level > 0); // todo don't work this?
-
-  }
-
-  function add_KYC(address investor_KYC, int KYC_level) public onlyAdmins (msg.sender) {
-        KYC_storage._investors.push[investor_KYC].KYC_level = KYC_level;
-  }
-  function register_purchase(address investor, uint256 sum_ether, uint256 sum_ANG) public {
-      if (InvestorCheck (investor,sum_ether)) {
-        KYC_storage._investors.push[investor].total_ether++  = sum_ether;
-        KYC_storage._investors.push[investor].ANGs++  = sum_ANG;
-      }
-      else{
-          revert;
-      }
+    struct currencies {
+        uint256 approved_sum;
+        uint256 invested_sum;
     }
 
-event Log_no_KYC(address investor);
-event Change_KYC_level(address investor);
-event Purchase_ANG (address investor);
+
+     mapping (address => mapping (bytes3 => currencies)) public _investors;
+
+
+  function InvestorCheck(address _investor_address, bytes3 currency)  {
+      return (_investors[_investor_address][currency].approved_sum - _investors[_investor_address][currency].invested_sum) ;
+
+
+  }
+
+  function add_KYC(address _investor_address, bytes3 currency, uint256 add_approved_sum)    {
+        _investors[_investor_address][currency].approved_sum += add_approved_sum;
+
+      // every NY at midnight we need to add approved sums for each currency!
+  }
+
+
+  function register_invest(address _investor_address, bytes3 currency, uint256 add_invested_sum)  {
+      require (InvestorCheck (_investor_address,currency) - add_invested_sum > 0);
+          _investors[_investor_address][currency].invested_sum += add_invested_sum;
+
+
+    }
+
+//event Log_no_KYC(address investor);
+//event Change_KYC_level(address investor);
+//event Purchase_ANG (address investor);
 
 
 }

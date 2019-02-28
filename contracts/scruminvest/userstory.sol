@@ -39,9 +39,9 @@ contract userstory is project {
     mapping (address => UserStory) public UserStories ; // AKA projectID
 
 
-    event Newuserstory (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint256 Startdate, uint duration);
+    event Newuserstory (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint256 Startdate, uint duration);
 
-    function start_user_story (uint ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint StoryAmountANG,
+    function start_user_story (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint StoryAmountANG,
                                 uint StoryAmounttoken, uint256 Startdate, uint duration)
                                 public  returns (address){
         //todo check transfer sum to escrow
@@ -99,7 +99,7 @@ contract userstory is project {
 
 
 
-    function finish_userstory_from_team(address UserStoryAddr, uint ProjectID) public returns (uint){
+    function finish_userstory_from_team(address UserStoryAddr, uint256 ProjectID) public returns (uint){
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");

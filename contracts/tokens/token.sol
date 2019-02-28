@@ -106,7 +106,7 @@ contract token is mintable {
     }
 
 
-    function mint(address receiver, uint256 amount) public OnlyOwner(msg.sender) returns(bool)
+    function mint(address receiver, uint256 amount) public onlyOwner(msg.sender) returns(bool)
     {
 
         bool result = _token.mint(address(this),receiver,amount);
