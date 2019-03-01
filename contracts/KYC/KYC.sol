@@ -23,7 +23,7 @@ contract KYC is project {
 
     }
 
-    function  InvestorCheck(address _investor_address, bytes3 currency)
+    function  InvestorCheck(address _investor_address, bytes32 currency)
  public
     {
         return _KYC .InvestorCheck( _investor_address,  currency);
@@ -34,7 +34,7 @@ contract KYC is project {
     }
 
 
-    function add_KYC(uint256 ProjectID, address _investor_address, bytes3 currency, uint256 add_approved_sum)   public
+    function add_KYC(uint256 ProjectID, address _investor_address, bytes32 currency, uint256 add_approved_sum)   public
     {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
@@ -47,16 +47,17 @@ contract KYC is project {
 
     }
 
-      function register_invest(address _investor_address, bytes3 currency, uint256 add_invested_sum)
+      function register_invest(address _investor_address, bytes32 currency, uint256 add_invested_sum)
       {
         _KYC .register_invest(_investor_address,  currency,  add_invested_sum) ;
 
       }
 
-      function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins
-      {
+       function _init(address Externalstorageaddr) public onlyAdmins {
 
-       External_Storage_addr = Externalstorageaddr;
+        External_Storage_addr = Externalstorageaddr;
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        ES.setAddressValue("scruminvest/project", address(this));
 
-      }
+    }
 }

@@ -208,13 +208,11 @@ contract userstory is project {
 
     }
 
-    function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins {
+
+
+    function _init(address Externalstorageaddr ) public onlyAdmins {
+
         External_Storage_addr = Externalstorageaddr;
-
-
-    }
-
-    function _init() public onlyAdmins {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("scruminvest/userstory", address(this));

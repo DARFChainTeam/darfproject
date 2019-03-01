@@ -9,6 +9,6 @@ interface crowdsaleInterface
   function getOwner() public returns(address);
   function getAddress() public returns(address);
   function getRate() public returns(uint256);
-  function finalize() public returns(bool);
+  //function finalize() public returns(bool);
 
 }

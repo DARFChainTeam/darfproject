@@ -14,6 +14,15 @@ contract ExternalStorage is Administratable {
   mapping(bytes32 => mapping(address => mapping(address => bool))) public ledgerSecondaryEntries;
   mapping(bytes32 => mapping(address => mapping(uint256 => address))) public secondaryLedgerEntryForIndex;
 
+  // KYC & investors
+  struct currencies {
+        uint256 approved_sum;
+        uint256 invested_sum;
+    }
+
+     mapping (address => mapping (address => currencies)) public _investors;
+
+
   function getMultiLedgerValue(string record, address primaryAddress, address secondaryAddress) public view returns (uint256) {
     return MultiLedgerStorage[keccak256(record)][primaryAddress][secondaryAddress];
   }
@@ -146,4 +155,11 @@ contract ExternalStorage is Administratable {
   function setIntValue(string record, int value) public onlyAdmins {
     IntStorage[keccak256(record)] = value;
   }
+
+  //KYC & investors functions
+
+  function investorGet (address _investor_address, bytes32 currency) public   {
+    return; //todo transfer as structure?
+  }
+
 }

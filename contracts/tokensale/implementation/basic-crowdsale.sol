@@ -44,7 +44,7 @@ contract simpleCrowdsale is crowdsaleInterface, Ownable, KYC {
   function buyTokens(address receiver,uint256 weiAmount) public onlyOwner(msg.sender)  returns(uint256)
   {
 
-      validPurchase();
+      require validPurchase(receiver weiAmount);
       if(receiver == 0x0)
       {
           revert();
@@ -92,7 +92,7 @@ contract simpleCrowdsale is crowdsaleInterface, Ownable, KYC {
      * @returns a boolean value indicating success or failure of this operation
      */
 
-    function validPurchase(address _investor_address, bytes3 currency) internal view returns(bool) {
+    function validPurchase(address _investor_address, bytes32 currency) internal view returns(bool) {
 
         return  (InvestorCheck(_investor_address, currency)); //KYC
 

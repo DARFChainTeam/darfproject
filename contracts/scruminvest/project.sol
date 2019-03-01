@@ -176,15 +176,11 @@ contract project is Administratable {
         return (Token_total_supply * platform_share100 /100 <= token_balance);
     }
 
-   function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins {
-
-       External_Storage_addr = Externalstorageaddr;
 
 
-    }
+   function _init(address Externalstorageaddr) public onlyAdmins {
 
-   function _init() public onlyAdmins {
-
+        External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("scruminvest/project", address(this));
 

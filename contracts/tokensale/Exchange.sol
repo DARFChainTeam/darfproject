@@ -5,11 +5,11 @@ import "../tokens/token.sol";
 
 
   contract ANGExchange is crowdsaleInterface  {
-
+      address External_Storage_addr;
       uint ANG_tokens_rate = 1; //1 ETH;
-      address public token_address;
+      address public ANGtoken;
       address public owner;
-      uint ANG_percent = 5;
+      uint ANG_percent100 = 5;
       address public beneficiar;
       address public KYC_address;
       uint public discount_word;
@@ -19,7 +19,7 @@ import "../tokens/token.sol";
       constructor(address _token_address) public {
         owner = msg.sender;
         beneficiar = msg.sender;
-        token_address = _token_address;
+        ANGtoken = _token_address;
       }
 //setting of valuees-----------------------------------------------------------
 
@@ -39,16 +39,21 @@ import "../tokens/token.sol";
       mapping (address => Admin) public _admins;
     //==============================================================================
 
+        function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins
+      {
+
+       External_Storage_addr = Externalstorageaddr;
+
+      }
 
 
-
-    function setAdmin(address _admin_address, bool _admin_state) onlyOwner(msg.sender) {
-      _admins[_admin_address].active = _admin_state;
+    function load_conditions_ES () {
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        address Projectaddr =ES.getAddressValue("scruminvest/project");
+        project Projectcurrent =  project(Projectaddr);
+        address Projecttokenaddr = Projectcurrent.ProjectsList(ProjectID);
     }
 
-    function add_KYC(address investor_KYC, int KYC_level) public OnlyAdmin(msg.sender) {
-        _investors[investor_KYC].KYC_level = KYC_level;
-    }
 
     function change_conditions( uint new_ANG_tokens_rate,
                             uint new_ANG_percent,
@@ -58,9 +63,9 @@ import "../tokens/token.sol";
                             address  new_owner ) public onlyOwner(msg.sender) {
 
         if (new_ANG_tokens_rate > 0 ) ANG_tokens_rate = new_ANG_tokens_rate;
-        if (new_ANG_percent > 0 ) ANG_percent = new_ANG_percent;
+        if (new_ANG_percent > 0 ) ANG_percent100 = new_ANG_percent;
         if (new_KYC_address > 0) KYC_address = new_KYC_address;
-        if (new_token_address > 0) token_address = new_token_address;
+        if (new_token_address > 0) ANGtoken = new_token_address;
         if (new_owner > 0) owner = new_owner;
         if (new_beneficiar > 0) beneficiar = new_beneficiar;
 
@@ -69,10 +74,10 @@ import "../tokens/token.sol";
     event Log_no_KYC(address investor);
 
     function () payable public  InvestorCheck(msg.sender,msg.value) {
-          uint ANG_tokens_amount = msg.value*ANG_tokens_rate/100*(100-ANG_percent);
+          uint ANG_tokens_amount = msg.value*ANG_tokens_rate/100*(100- ANG_percent100);
           _investors[msg.sender].total_ether = msg.value;
           _investors[msg.sender].ANGs = ANG_tokens_amount;
-          ANGtoken(token_address).transfer(msg.sender,ANG_tokens_amount);
+          ANGtoken(ANGtoken).transfer(msg.sender,ANG_tokens_amount);
           emit Log_no_KYC(msg.sender);
         }
 
@@ -84,10 +89,10 @@ import "../tokens/token.sol";
 
     function sell_discount (uint pass_word, uint sum, uint amount) payable public InvestorCheck(msg.sender,msg.value) {
           if (pass_word == discount_word) {
-              uint ANG_tokens_amount = sum*ANG_tokens_rate*(100-ANG_percent)*(discount_size+100)/10000;
+              uint ANG_tokens_amount = sum*ANG_tokens_rate*(100- ANG_percent100)*(discount_size+100)/10000;
               _investors[msg.sender].total_ether = sum;
               _investors[msg.sender].ANGs = ANG_tokens_amount;
-              ANGtoken(token_address).transfer(msg.sender,ANG_tokens_amount);
+              ANGtoken(ANGtoken).transfer(msg.sender,ANG_tokens_amount);
           }
         }
 
@@ -96,7 +101,7 @@ import "../tokens/token.sol";
     uint Sum_ETH = sum_DARF/darf_tokens_rate;
     //  if (DARFtoken(token_address).balanceOf(msg.sender) > sum_DARF && address(this).balance > Sum_ETH ) {
 
-    DARFtoken(token_address).transferFrom(msg.sender, address(this), sum_DARF);
+    DARFtoken(ANGtoken).transferFrom(msg.sender, address(this), sum_DARF);
     msg.sender.transfer(Sum_ETH);
 
     //        }
