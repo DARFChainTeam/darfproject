@@ -178,7 +178,7 @@ contract project is Administratable {
 
 
 
-   function _init(address Externalstorageaddr) public onlyAdmins {
+   function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);

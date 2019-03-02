@@ -23,10 +23,10 @@ contract KYC is project {
 
     }
 
-    function  InvestorCheck(address _investor_address, bytes32 currency)
+    function  allowed_invest (address _investor_address, bytes32 currency)
  public
     {
-        return _KYC .InvestorCheck( _investor_address,  currency);
+        return _KYC.InvestorCheck( _investor_address,  currency);
 
 
 
@@ -41,7 +41,7 @@ contract KYC is project {
         project Projectcurrent =  project(Projectaddr);
         address Projecttokenaddr = Projectcurrent.ProjectsList(ProjectID);
         require (msg.sender=Projects[Projecttokenaddr]._DARF_system_address);
-            _KYC .add_KYC(_investor_address,  currency, add_approved_sum);
+            _KYC.add_KYC(_investor_address,  currency, add_approved_sum);
 
 
 
@@ -49,15 +49,15 @@ contract KYC is project {
 
       function register_invest(address _investor_address, bytes32 currency, uint256 add_invested_sum)
       {
-        _KYC .register_invest(_investor_address,  currency,  add_invested_sum) ;
+        _KYC.register_invest(_investor_address,  currency,  add_invested_sum) ;
 
       }
 
-       function _init(address Externalstorageaddr) public onlyAdmins {
+       function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        ES.setAddressValue("scruminvest/project", address(this));
+        ES.setAddressValue("KYC/KYC", address(this));
 
     }
 }

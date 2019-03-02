@@ -41,21 +41,19 @@ contract basic_KYC is KYC_interface, Administratable {
 
   function register_invest(address _investor_address, bytes32 currency, uint256 add_invested_sum)  {
       address currency_adr = keccak256(currency);
-      require (InvestorCheck (_investor_address,currency_adr) - add_invested_sum > 0);
+
           _investors[_investor_address][currency_adr].invested_sum += add_invested_sum;
 
 
     }
 
-//event Log_no_KYC(address investor);
-//event Change_KYC_level(address investor);
-//event Purchase_ANG (address investor);
 
-       function _init(address Externalstorageaddr) public onlyAdmins {
+
+       function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        ES.setAddressValue("scruminvest/project", address(this));
+        ES.setAddressValue("KYC/implemenation/Basic_KYC", address(this));
 
     }
 
