@@ -82,7 +82,7 @@ import "../../admin/ExternalStorage.sol";
     function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word)   {
         token ANGtoken = token( ANGtoken_addr);
         KYC = KYC(KYC_address);
-        require ((discount_amount > summa) || (KYC.allowed_invest(beneficiar, "ETH") - summa > 0) ||  (pass_word == discount_word);
+        require ((discount_amount > summa) && (KYC.allowed_invest(beneficiar, "ETH") - summa > 0) &&  (pass_word == discount_word));
 
               uint256 ANG_tokens_amount = summa * ANG_tokens_rate_ETH *(100 - ANG_percent100)*(discount_size100 +100)/10000;
               discount_amount -= summa;

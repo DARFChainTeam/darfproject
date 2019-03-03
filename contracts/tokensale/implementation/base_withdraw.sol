@@ -1,19 +1,24 @@
 pragma solidity ^0.4.24;
-import  "../interface/withdraw_interface.sol";
-import  '../../scruminvest/project.sol';
+import "../interface/withdraw_interface.sol";
+import '../../admin/administratable.sol';
+import '../../scruminvest/userstory.sol';
+import '../../scruminvest/project.sol';
 
-contract base_withdraw is withdraw_interface, project {
+
+contract base_withdraw is withdraw_interface, project, userstory {
      address External_Storage_addr;
 
-    function team_withdraw(address userstoryaddr)
+    function team_withdraw(address UserStoryAddr)
     {
-
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        address currentcontractuserstoryaddr =ES.getAddressValue("scruminvest/userstory");
+        userstory userstorycurrent =  userstory(currentcontractuserstoryaddr);
+        uint ProjectID = userstorycurrent.UserStories[UserStoryAddr].project_ID;
         address Projectaddr =ES.getAddressValue("scruminvest/project");
-        project Projectcurrent =  Project(Projectaddr);
-        address Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        project Projectcontractcurrent =  Project(Projectaddr);
+        address Projecttoken = Projectcontractcurrent.ProjectsList(ProjectID);
         require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
-            token(ES.getAddressValue("ANGtoken")).transfer(address(this), msg.sender, UserStories[UserStoryAddr].sum_raised);
+            token(ES.getAddressValue("ANGtoken")).transfer(address(this), msg.sender, userstorycurrent.UserStories[UserStoryAddr].sum_raised);
     }
 
    function sos_withdraw (address beneficiar, uint256 amount) onlyOwner

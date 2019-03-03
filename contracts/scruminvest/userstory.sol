@@ -51,7 +51,7 @@ contract userstory is project {
         address Projectaddr =ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  project(Projectaddr);
         address Projecttoken = Projectcurrent.ProjectsList(ProjectID);
-        require((token(Projecttoken).balanceOf(this) = StoryAmounttoken) ||
+        require((token(Projecttoken).balanceOf(this) = StoryAmounttoken) &&
                 (Projects[Projecttoken].project_owner_address = msg.sender)) ; // OnlyProjectOwner(Project_token_addr)
             address UserStoryAddr = keccak256(ProjectID, Userstorynumber);
             UserStories[UserStoryAddr].project_ID = ProjectID;
@@ -192,7 +192,7 @@ contract userstory is project {
 
     function abort_by_bakers (address UserStoryAddr, bool abortfrombakers, string why) public{
 
-        require ((UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0) || ( now > UserStories[UserStoryAddr].start_date + UserStories[UserStoryAddr].duration + 60 days));
+        require ((UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0) && ( now > UserStories[UserStoryAddr].start_date + UserStories[UserStoryAddr].duration + 60 days));
         // 1. only investor can do it
         // 2. after 60 days past promised finish of userstory
 
