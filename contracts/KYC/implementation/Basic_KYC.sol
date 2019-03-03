@@ -15,6 +15,7 @@ contract basic_KYC is KYC_interface, Administratable {
 
     address External_Storage_addr;
 
+    uint256 KYC_threshold = 2 ether;
 
     // todo  move _investors to External storage
     struct currencies {
@@ -26,6 +27,10 @@ contract basic_KYC is KYC_interface, Administratable {
 
   function InvestorCheck(address _investor_address, bytes32 currency)  {
       address currency_adr = keccak256(currency);
+      if (_investors[_investor_address][currency_adr].approved_sum = 0) //1st time investing
+      {
+        _investors[_investor_address][currency_adr].approved_sum = KYC_threshold; // no_KYC threshold fot beginners
+      }
       return (_investors[_investor_address][currency_adr].approved_sum - _investors[_investor_address][currency_adr].invested_sum) ;
 
 
@@ -55,6 +60,12 @@ contract basic_KYC is KYC_interface, Administratable {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("KYC/implemenation/Basic_KYC", address(this));
 
+    }
+
+     function load_conditions_ES () { //when something changes
+        ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        //Projectaddr = ES.getAddressValue("scruminvest/project");
+        KYC_threshold = ES.getAddressValue('KYC/KYC_threshold');
     }
 
 }
