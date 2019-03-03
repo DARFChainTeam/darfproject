@@ -1,9 +1,9 @@
 pragma solidity ^0.4.24;
 import "../tokens/token.sol";
 import "../admin/ExternalStorage.sol";
-import '../admin/administratable.sol';
+//import '../admin/administratable.sol';
 
-contract project is Administratable {
+contract project is ExternalStorage {
 
     address External_Storage_addr;
 

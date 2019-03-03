@@ -57,7 +57,7 @@ import "../../admin/ExternalStorage.sol";
         KYC_address = ES.getAddressValue("KYC/KYC");
         discount_word =  ES.getBytes32Value("tokensale/discount_word");
         discount_size100 = ES.getIntvalue("tokensale/discount_size");
-        discount_amount =  ES.getIntvalue("tokensale/discount_amount");
+        discount_amount =  ES.getUIntvalue("tokensale/discount_amount");
         // project Projectcurrent =  project(Projectaddr);
         //address Projecttokenaddr = Projectcurrent.ProjectsList(ProjectID);
     }
