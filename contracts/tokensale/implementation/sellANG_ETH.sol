@@ -17,6 +17,7 @@ import "../../admin/ExternalStorage.sol";
       address public KYC_address;
       bytes32  discount_word;
       uint discount_size100;
+      uint256 discount_amount;
 
 /*
 
@@ -56,8 +57,8 @@ import "../../admin/ExternalStorage.sol";
         KYC_address = ES.getAddressValue("KYC/KYC");
         discount_word =  ES.getBytes32Value("tokensale/discount_word");
         discount_size100 = ES.getIntvalue("tokensale/discount_size");
-
-        //project Projectcurrent =  project(Projectaddr);
+        discount_amount =  ES.getIntvalue("tokensale/discount_amount");
+        // project Projectcurrent =  project(Projectaddr);
         //address Projecttokenaddr = Projectcurrent.ProjectsList(ProjectID);
     }
 
@@ -81,14 +82,15 @@ import "../../admin/ExternalStorage.sol";
     function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word)   {
         token ANGtoken = token( ANGtoken_addr);
         KYC = KYC(KYC_address);
-        require  (KYC.allowed_invest(beneficiar, "ETH") - summa > 0);
-          if (pass_word == discount_word) {
+        require ((discount_amount > summa) || (KYC.allowed_invest(beneficiar, "ETH") - summa > 0) ||  (pass_word == discount_word);
+
               uint256 ANG_tokens_amount = summa * ANG_tokens_rate_ETH *(100 - ANG_percent100)*(discount_size100 +100)/10000;
+              discount_amount -= summa;
               ANGtoken.transfer(beneficiar,ANG_tokens_amount);
               KYC.register_invest (beneficiar, "ETH", summa);
               KYC.register_invest (beneficiar, "ANG", ANG_tokens_amount);
               emit Purchase_ANG (beneficiar, ANG_tokens_amount);
-          }
+
         }
 
 

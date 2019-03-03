@@ -23,7 +23,7 @@ contract basic_KYC is KYC_interface, Administratable {
         uint256 invested_sum;
     }
 
-     mapping (address => mapping (address => currencies)) public _investors;
+     mapping (address => mapping (address => currencies))  _investors;
 
   function InvestorCheck(address _investor_address, bytes32 currency)  {
       address currency_adr = keccak256(currency);
@@ -62,7 +62,7 @@ contract basic_KYC is KYC_interface, Administratable {
 
     }
 
-     function load_conditions_ES () { //when something changes
+     function load_conditions_ES () onlyAdmins { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         //Projectaddr = ES.getAddressValue("scruminvest/project");
         KYC_threshold = ES.getAddressValue('KYC/KYC_threshold');
