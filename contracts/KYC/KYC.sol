@@ -16,7 +16,7 @@ contract KYC is project {
 
     KYC_interface private _KYC;
     uint256 KYC_threshold = 2 ether;
-    address Projectaddr;
+    address Project_Addr;
 
     function KYC () public {
         _KYC = new basic_KYC ();
@@ -26,7 +26,7 @@ contract KYC is project {
     }
     function load_conditions_ES () { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        Projectaddr = ES.getAddressValue("scruminvest/project");
+        Project_Addr = ES.getAddressValue("scruminvest/project");
        //
     }
     function  allowed_invest (address _investor_address, bytes32 currency)
@@ -40,11 +40,9 @@ contract KYC is project {
     }
 
 
-    function add_KYC(uint256 ProjectID, address _investor_address, bytes32 currency, uint256 add_approved_sum)   public
+    function add_KYC( address _investor_address, bytes32 currency, uint256 add_approved_sum) onlyAdmins public
     {
-        project Projectcurrent =  project(Projectaddr);
-        address Projecttokenaddr = Projectcurrent.ProjectsList(ProjectID);
-        require (msg.sender=Projects[Projecttokenaddr]._DARF_system_address);
+
             _KYC.add_KYC(_investor_address,  currency, add_approved_sum);
 
 
@@ -62,7 +60,7 @@ contract KYC is project {
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("KYC/KYC", address(this));
-        Projectaddr =ES.getAddressValue("scruminvest/project");
+        Project_Addr =ES.getAddressValue("scruminvest/project");
 
 
     }

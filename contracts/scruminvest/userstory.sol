@@ -50,7 +50,7 @@ contract userstory is project {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  project(Projectaddr);
-        address Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        address Projecttoken = Projectcurrent.ProjectList(ProjectID);
         require((token(Projecttoken).balanceOf(this) = StoryAmounttoken) &&
                 (Projects[Projecttoken].project_owner_address = msg.sender)) ; // OnlyProjectOwner(Project_token_addr)
             address UserStoryAddr = keccak256(ProjectID, Userstorynumber);

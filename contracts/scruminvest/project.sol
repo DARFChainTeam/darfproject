@@ -3,7 +3,9 @@ import "../tokens/token.sol";
 import "../admin/ExternalStorage.sol";
 //import '../admin/administratable.sol';
 
+
 contract project is ExternalStorage {
+
 
     address External_Storage_addr;
 
@@ -40,7 +42,7 @@ contract project is ExternalStorage {
     // TODO: this grades'd be mapped with access right in ERP
 
     struct project_state {
-        uint256 ProjectID;
+        uint256 project_ID;
         bytes32 DFS_changes_addr; // addresses of paroled archive of DB increment in DFS (IPFS/SWarm)
         bytes32 DFS_changes_hash; // hash of DB state
         bytes4 DFS_type;
@@ -49,7 +51,7 @@ contract project is ExternalStorage {
 
     }
 
-    mapping (address => project_state) Project_statuses;// addresses of project's states  in IPFS/swarm
+    mapping (bytes32 => project_state) Project_statuses;// addresses of project's states  in IPFS/swarm
 
     struct Project{
         uint256 project_ID; //assign by increment and not change?
@@ -108,19 +110,19 @@ contract project is ExternalStorage {
     function create_project (address Projecttokenaddr, bytes32 DFSProjectdescribe, bytes4 DFStype) OnlyProjectOwner(Projecttokenaddr) public {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address  ANG_system_addr = ES.getAddressValue("ANG_system_addr");
-        int our_share100 = ES.getIntValue("our_share100");
-        require(token_deposit (Projecttokenaddr, ANG_system_addr, our_share100));
+        uint256 our_share100 = ES.getUIntValue("our_share100");
+        require(check_token_deposit(Projecttokenaddr, ANG_system_addr, our_share100));
 
             Projects[Projecttokenaddr].project_owner_address = msg.sender;
             Projects[Projecttokenaddr].DFS_Project_describe = DFSProjectdescribe;
             Projects[Projecttokenaddr].DFS_type = DFStype;
             ProjectList.push(Projecttokenaddr);
-            Projects[Projecttokenaddr].project_ID = ProjectList.lenght();
-            emit New_project (Projects[Projecttokenaddr].project_owner_address, Projecttokenaddr, Projects[Projecttokenaddr].Project_describe, Projects[Projecttokenaddr].Project_ID  ) ;
+            Projects[Projecttokenaddr].project_ID = ProjectList.length;
+            emit New_project (Projects[Projecttokenaddr].project_owner_address, Projecttokenaddr, Projects[Projecttokenaddr].DFS_Project_describe,  Projects[Projecttokenaddr]._DARF_system_address ) ;
 
 }
 
-    function change_project_info (address Projecttokenaddr, address owner, bytes32 DFSProjectdescribe, uint DFStype)  public OnlyProjectOwner(Projecttokenaddr) {
+    function change_project_info (address Projecttokenaddr, address owner, bytes32 DFSProjectdescribe, bytes4 DFStype)  public OnlyProjectOwner(Projecttokenaddr) {
 
             Projects[Projecttokenaddr].project_owner_address = owner;
             Projects[Projecttokenaddr].DFS_Project_describe = DFSProjectdescribe;
@@ -140,12 +142,12 @@ contract project is ExternalStorage {
         emit finished_project (Projecttokenaddr);
 
 }
-        function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint) {
-       require (msg.sender=Projects[Projecttokenaddr]._DARF_system_address);
-            uint timestamp = now;
-            address ProjectAddr = keccak256(Projecttokenaddr, timestamp);
+        function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint256) {
+       require(msg.sender == Projects[Projecttokenaddr]._DARF_system_address);
+            uint256 timestamp = now;
+            bytes32 ProjectAddr = keccak256(abi.encodePacked (Projecttokenaddr, timestamp));
             Project_statuses[ProjectAddr].timestamp = timestamp;
-            Project_statuses[ProjectAddr].projectID =Projects[Projecttokenaddr].Project_ID ;
+            Project_statuses[ProjectAddr].project_ID =Projects[Projecttokenaddr].project_ID ;
             Project_statuses[ProjectAddr].DFS_changes_addr = DFSchangesaddr;
             Project_statuses[ProjectAddr].DFS_changes_hash = DFSchangeshash;
             Project_statuses[ProjectAddr].POA_addr = POA_addr;
@@ -154,13 +156,13 @@ contract project is ExternalStorage {
 
     }
 
-     function project_get_state(address Projecttokenaddr, uint timestamp ) public returns(address) {
+     function project_get_state(address Projecttokenaddr, uint timestamp ) public returns(bytes32) {
 
         if (checkrights(Projecttokenaddr) > 0) { //returns state
-            return Project_statuses[keccak256(Projecttokenaddr, timestamp)].DBchangesaddr ;
+            return Project_statuses[keccak256(abi.encodePacked(Projecttokenaddr, timestamp))].DFS_changes_addr ;
         }
         else { //returns only PoA
-            return Project_statuses[keccak256(Projecttokenaddr, timestamp)].POA_addr ;
+            return Project_statuses[keccak256(abi.encodePacked(Projecttokenaddr, timestamp))].POA_addr ;
 
             }
 
@@ -169,11 +171,11 @@ contract project is ExternalStorage {
 
 
 
-    function token_deposit (address _tokenAddress, address ANG_system, int platform_share100) returns(bool) {
+    function check_token_deposit(address _tokenAddress, address ANG_system, uint256 platform_share100) returns(bool) {
 
 
         // todo check minted amount of tokens
-        uint256 Token_total_supply = token(_tokenAddress).totalSupply;
+        uint256 Token_total_supply = token(_tokenAddress).totalSupply();
         //  todo check that platform_share is transferred to address
         uint256 token_balance = _TokenInterface(_tokenAddress).balanceOf(ANG_system);
         return ((Token_total_supply * platform_share100 /100) <= token_balance);
@@ -192,6 +194,10 @@ contract project is ExternalStorage {
 
     // todo billing for updates of project state: transfer ANG to our address equal as gas +5% calculate transaction  fee when saving project state
 
+    function toBytes (uint256 x) constant returns (bytes b) {
+        b = new bytes(32);
+        assembly { mstore(add(b, 32), x) }
+    }
 
 }
 
