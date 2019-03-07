@@ -60,7 +60,7 @@ contract KYC is project {
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("KYC/KYC", address(this));
-        Project_Addr =ES.getAddressValue("scruminvest/project");
+        Project_Addr = ES.getAddressValue("scruminvest/project");
 
 
     }

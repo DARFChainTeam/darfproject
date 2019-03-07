@@ -4,7 +4,7 @@ import '../admin/ExternalStorage.sol';
 
 import '../admin/administratable.sol';
 import '../tokens/token.sol';
-contract userstory is project {
+contract userstory is project, token {
 
     address External_Storage_addr;
     struct Story_Bakers {
@@ -36,24 +36,24 @@ contract userstory is project {
 
                         }
 
-    mapping (address => UserStory) public UserStories ; // AKA projectID
+    mapping (bytes32 => UserStory) public UserStories ; // AKA projectID
 
 
     event Newuserstory (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint256 Startdate, uint duration);
 
-    function start_user_story (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint StoryAmountANG,
-                                uint StoryAmounttoken, uint256 Startdate, uint duration)
-                                public  returns (address){
+    function start_user_story (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration)   public  returns (bytes32){
         //todo check transfer sum to escrow
         // what address of escrow?
         //get token addr
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        address Projectaddr =ES.getAddressValue("scruminvest/project");
+        address Projectaddr = ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  project(Projectaddr);
-        address Projecttoken = Projectcurrent.ProjectList(ProjectID);
-        require((token(Projecttoken).balanceOf(this) = StoryAmounttoken) &&
-                (Projects[Projecttoken].project_owner_address = msg.sender)) ; // OnlyProjectOwner(Project_token_addr)
-            address UserStoryAddr = keccak256(ProjectID, Userstorynumber);
+        address ProjecttokenAddr = Projectcurrent.ProjectList[ProjectID];
+        token Projecttoken = token(ProjecttokenAddr);
+        uint256 Projecttokenbalance = Projecttoken.balanceOf(address(this));
+        require((Projecttokenbalance == StoryAmounttoken) &&
+                        (Projects[ProjecttokenAddr].project_owner_address == msg.sender)) ; // OnlyProjectOwner(Project_token_addr)
+            bytes32 UserStoryAddr = keccak256(abi.encodePacked( ProjectID, Userstorynumber));
             UserStories[UserStoryAddr].project_ID = ProjectID;
             UserStories[UserStoryAddr].User_story_number = Userstorynumber;
             UserStories[UserStoryAddr].duration = duration;
@@ -69,11 +69,11 @@ contract userstory is project {
 
    // function add_user_story_comment () public { }
 
-    event   succesful_invest(address UserStoryAddr, address baker, uint baked_sum, bytes32 message);
-    event unsuccesful_invest(address UserStoryAddr, address baker, uint baked_sum, bytes32 message);
+    event   succesful_invest(bytes32 UserStoryAddr, address baker, uint baked_sum, bytes32 message);
+    event unsuccesful_invest(bytes32 UserStoryAddr, address baker, uint baked_sum, bytes32 message);
 
 
-    function invest(address UserStoryAddr, uint bakedsumANG) public payable {
+    function invest(bytes32 UserStoryAddr, uint256 bakedsumANG) public payable {
         // sign_in_user_story_from_investors
         //sign_in_user_story_from_user(UserStoryID:int128)
         // investors signup userstory when negotiations finished
@@ -81,7 +81,7 @@ contract userstory is project {
 
         if ((UserStories[UserStoryAddr].sum_raised + bakedsumANG) <
             UserStories[UserStoryAddr].Story_Amount_ANG) {
-                if (UserStories[UserStoryAddr].bakers[msg.sender].baked_sum = 0) {
+                if (UserStories[UserStoryAddr].bakers[msg.sender].baked_sum == 0) {
                     UserStories[UserStoryAddr].bakers_list.push(msg.sender);
                 }
                 UserStories[UserStoryAddr].bakers[msg.sender].baked_sum += bakedsumANG;
@@ -103,8 +103,8 @@ contract userstory is project {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
-        project Projectcurrent =  Project(Projectaddr);
-        address Projecttoken = Projectcurrent.ProjectsList(ProjectID);
+        project Projectcurrent =  project(Projectaddr);
+        address Projecttoken = Projectcurrent.ProjectList[ProjectID];
         require((Projects[Projecttoken].project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
 
                 uint256 timestamp = now;
