@@ -48,11 +48,11 @@ contract userstory is project, token {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr = ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  project(Projectaddr);
-        address ProjecttokenAddr = Projectcurrent.ProjectList[ProjectID];
+        address ProjecttokenAddr = Projectcurrent.ProjectList(ProjectID);
         token Projecttoken = token(ProjecttokenAddr);
         uint256 Projecttokenbalance = Projecttoken.balanceOf(address(this));
         require((Projecttokenbalance == StoryAmounttoken) &&
-                        (Projects[ProjecttokenAddr].project_owner_address == msg.sender)) ; // OnlyProjectOwner(Project_token_addr)
+                        (Projectcurrent.Projects(ProjecttokenAddr).project_owner_address == msg.sender)) ; // OnlyProjectOwner(Project_token_addr)
             bytes32 UserStoryAddr = keccak256(abi.encodePacked( ProjectID, Userstorynumber));
             UserStories[UserStoryAddr].project_ID = ProjectID;
             UserStories[UserStoryAddr].User_story_number = Userstorynumber;
@@ -104,8 +104,8 @@ contract userstory is project, token {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  project(Projectaddr);
-        address Projecttoken = Projectcurrent.ProjectList[ProjectID];
-        require((Projects[Projecttoken].project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
+        address Projecttoken = Projectcurrent.ProjectList(ProjectID);
+        require((Projectcurrent.Projects(Projecttoken).project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
 
                 uint256 timestamp = now;
                 UserStories[UserStoryAddr].finished = now;
@@ -131,7 +131,7 @@ contract userstory is project, token {
                 project Projectcurrent =  project(Projectaddr);
                 address Projecttoken = Projectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
                 address ANGTokenAddrr = ES.getAddressValue("ANGtoken");
-                token(ANGTokenAddrr).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].sum_raised );
+                token(ANGTokenAddrr).transfer(address(this), Projectcurrent.Projects(Projecttoken).project_owner_address,UserStories[UserStoryAddr].sum_raised );
                 // address sender,address receiver, uint256 amount, bytes data
 
                 //distribution of tokens
@@ -156,9 +156,10 @@ contract userstory is project, token {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address ANGTokenAddrr = ES.getAddressValue("ANGtoken");
-
+        address Projectaddr =ES.getAddressValue("scruminvest/project");
+        project Projectcurrent =  Project(Projectaddr);
         // Returns their token to team
-        token(Projecttoken).transfer(address(this), Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
+        token(Projecttoken).transfer(address(this), Projectcurrent.Projects[Projecttoken].project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
 
          //returns ANG to investors
 
@@ -178,7 +179,7 @@ contract userstory is project, token {
         address Projectaddr =ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  Project(Projectaddr);
         address Projecttoken = Projectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
-        require((Projects[Projecttoken].project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
+        require((Projectcurrent.Projects[Projecttoken].project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
 
             if (abortfromteam) {
                 token_refunds ( UserStoryAddr, Projecttoken );
@@ -200,7 +201,7 @@ contract userstory is project, token {
                 ExternalStorage ES = ExternalStorage(External_Storage_addr);
                 address Projectaddr =ES.getAddressValue("scruminvest/project");
                 project Projectcurrent =  Project(Projectaddr);
-                address Projecttoken = Projectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
+                address Projecttoken = Projectcurrent.ProjectList( UserStories[UserStoryAddr].Project_ID);
                 token_refunds ( UserStoryAddr, Projecttoken );
                 emit User_story_aborted_by_bakers (UserStoryAddr, Projecttoken, why);
                 // returns token to team
