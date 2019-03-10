@@ -4,7 +4,7 @@ import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
 import "./basic-token.sol";
 
-contract Mintable is tokenInterface, basic {
+contract mintable is tokenInterface, basic {
   using SafeMath for uint256;
   string internal _symbol;
   string internal _name;

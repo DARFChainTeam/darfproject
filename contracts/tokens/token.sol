@@ -17,7 +17,7 @@ import "../admin/administratable.sol";
  */
 
  //TODO MAke sure burn and other are called through the parent.
-contract token is Mintable {
+contract token is mintable {
     tokenInterface private _token;
     address private _owner;
     bool private _finalized = false;
