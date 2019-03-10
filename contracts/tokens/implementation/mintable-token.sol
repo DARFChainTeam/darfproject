@@ -4,7 +4,7 @@ import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
 import "./basic-token.sol";
 
-contract mintable is tokenInterface, basic {
+contract Mintable is tokenInterface, basic {
   using SafeMath for uint256;
   string internal _symbol;
   string internal _name;
@@ -18,7 +18,7 @@ contract mintable is tokenInterface, basic {
 
         }
   mapping(address => uint256) internal _balances;
-    function mintable(string memory symbol, string memory name, uint8 decimals) public {
+    function Mintable(string memory symbol, string memory name, uint8 decimals) public {
         _symbol = symbol;
         _name = name;
         _decimals = decimals;

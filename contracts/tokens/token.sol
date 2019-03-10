@@ -17,7 +17,7 @@ import "../admin/administratable.sol";
  */
 
  //TODO MAke sure burn and other are called through the parent.
-contract token is mintable {
+contract token is Mintable {
     tokenInterface private _token;
     address private _owner;
     bool private _finalized = false;
@@ -27,7 +27,7 @@ contract token is mintable {
     function token(string memory symbol, string memory name, uint8 decimals )
     {
       _owner = msg.sender;
-      _token= new mintable(symbol,name,decimals) ;
+      _token= new Mintable(symbol,name,decimals) ;
 
     }
     function get_address() returns (address)
