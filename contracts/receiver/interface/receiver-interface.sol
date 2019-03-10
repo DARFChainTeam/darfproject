@@ -6,8 +6,8 @@ pragma solidity ^0.4.24;
  */
 interface receiverInterface {
 
-    function tokenFallback(address sender,address receiver, uint256 value, bytes data) public returns(bool);
-    function tokenFallback(address sender, uint256 value, bytes data) public returns(bool);
+    function tokenFallback(address sender,address receiver, uint256 value, bytes memory data) public returns(bool);
+    function tokenFallback(address sender, uint256 value, bytes memory data) public returns(bool);
     function whitelist(address tokenAddress) public returns(bool) ;
     function blacklist(address tokenAddress) public returns(bool);
 

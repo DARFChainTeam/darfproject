@@ -194,7 +194,7 @@ contract project is ExternalStorage {
 
     // todo billing for updates of project state: transfer ANG to our address equal as gas +5% calculate transaction  fee when saving project state
 
-    function toBytes (uint256 x) constant returns (bytes b) {
+    function toBytes (uint256 x) view returns (bytes b) {
         b = new bytes(32);
         assembly { mstore(add(b, 32), x) }
     }

@@ -20,7 +20,7 @@ contract basic is tokenInterface {
 
         }
 
-    function basic(string symbol, string name, uint8 decimals, uint256 totalSupply) public {
+    function basic(string memory symbol, string memory name, uint8 decimals, uint256 totalSupply) public {
         _symbol = symbol;
         _name = name;
         _decimals = decimals;
@@ -47,7 +47,7 @@ contract basic is tokenInterface {
         return _totalSupply;
 
     }
-    function transfer(address sender,address receiver, uint256 amount, bytes data) public onlyOwner(msg.sender) returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount, bytes memory data) public onlyOwner(msg.sender) returns(bool) {
      if(balanceOf(sender) < amount)
         {
             revert();

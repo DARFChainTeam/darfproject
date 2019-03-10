@@ -26,7 +26,7 @@ contract simpleReciever is receiverInterface , Ownable {
      *@params bytes data is the message that was sent to this contract
      *@returns a boolean value representing success or failure of the operation
      */
-    function tokenFallback(address sender,address receiver, uint256 value, bytes data) public onlyOwner returns(bool)
+    function tokenFallback(address sender,address receiver, uint256 value, bytes memory data) public onlyOwner returns(bool)
     {
 
       if (sender!=_acceptedAddress)
@@ -38,7 +38,7 @@ contract simpleReciever is receiverInterface , Ownable {
         _balances[receiver] = _balances[receiver].add(value);
       }
     }
-    function tokenFallback(address sender, uint256 value, bytes data) public returns(bool)
+    function tokenFallback(address sender, uint256 value, bytes memory data) public returns(bool)
     {
       revert();
     }

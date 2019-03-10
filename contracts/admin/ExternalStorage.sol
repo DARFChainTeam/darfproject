@@ -23,11 +23,11 @@ contract ExternalStorage is Administratable {
      mapping (address => mapping (address => currencies)) public _investors;
 
 
-  function getMultiLedgerValue(string record, address primaryAddress, address secondaryAddress) public view returns (uint256) {
+  function getMultiLedgerValue(string memory record, address primaryAddress, address secondaryAddress) public view returns (uint256) {
     return MultiLedgerStorage[keccak256(record)][primaryAddress][secondaryAddress];
   }
 
-  function setMultiLedgerValue(string record, address primaryAddress, address secondaryAddress, uint256 value) public onlyAdmins {
+  function setMultiLedgerValue(string memory record, address primaryAddress, address secondaryAddress, uint256 value) public onlyAdmins {
     bytes32 hash = keccak256(record);
     uint256 primaryLedgerIndex = primaryLedgerCount[hash];
     uint256 secondaryLedgerIndex = secondaryLedgerCount[hash][primaryAddress];
@@ -51,15 +51,15 @@ contract ExternalStorage is Administratable {
   mapping(bytes32 => mapping(address => bool)) public ledgerAccounts;
   mapping(bytes32 => mapping(uint256 => address)) public ledgerEntryForIndex;
 
-  function getLedgerValue(string record, address _address) public view returns (uint256) {
+  function getLedgerValue(string memory record, address _address) public view returns (uint256) {
     return LedgerStorage[keccak256(record)][_address];
   }
 
-  function getLedgerCount(string record) public view returns (uint256) {
+  function getLedgerCount(string memory record) public view returns (uint256) {
     return ledgerCount[keccak256(record)];
   }
 
-  function setLedgerValue(string record, address _address, uint256 value) public onlyAdmins {
+  function setLedgerValue(string memory record, address _address, uint256 value) public onlyAdmins {
     bytes32 hash = keccak256(record);
     if (!ledgerAccounts[hash][_address]) {
       uint256 ledgerIndex = ledgerCount[hash];
@@ -76,15 +76,15 @@ contract ExternalStorage is Administratable {
   mapping(bytes32 => mapping(address => bool)) public booleanMapAccounts;
   mapping(bytes32 => mapping(uint256 => address)) public booleanMapEntryForIndex;
 
-  function getBooleanMapValue(string record, address _address) public view returns (bool) {
+  function getBooleanMapValue(string memory record, address _address) public view returns (bool) {
     return BooleanMapStorage[keccak256(record)][_address];
   }
 
-  function getBooleanMapCount(string record) public view returns (uint256) {
+  function getBooleanMapCount(string memory record) public view returns (uint256) {
     return booleanMapCount[keccak256(record)];
   }
 
-  function setBooleanMapValue(string record, address _address, bool value) public onlyAdmins {
+  function setBooleanMapValue(string memory record, address _address, bool value) public onlyAdmins {
     bytes32 hash = keccak256(record);
     if (!booleanMapAccounts[hash][_address]) {
       uint256 ledgerIndex = booleanMapCount[hash];
@@ -98,61 +98,61 @@ contract ExternalStorage is Administratable {
 
   mapping(bytes32 => uint256) UIntStorage;
 
-  function getUIntValue(string record) public view returns (uint256) {
+  function getUIntValue(string memory record) public view returns (uint256) {
     return UIntStorage[keccak256(record)];
   }
 
-  function setUIntValue(string record, uint256 value) public onlyAdmins {
+  function setUIntValue(string memory record, uint256 value) public onlyAdmins {
     UIntStorage[keccak256(record)] = value;
   }
 
   mapping(bytes32 => bytes32) Bytes32Storage;
 
-  function getBytes32Value(string record) public view returns (bytes32) {
+  function getBytes32Value(string memory record) public view returns (bytes32) {
     return Bytes32Storage[keccak256(record)];
   }
 
-  function setBytes32Value(string record, bytes32 value) public onlyAdmins {
+  function setBytes32Value(string memory record, bytes32 value) public onlyAdmins {
     Bytes32Storage[keccak256(record)] = value;
   }
 
   mapping(bytes32 => address) AddressStorage;
 
-  function getAddressValue(string record) public view returns (address) {
+  function getAddressValue(string memory record) public view returns (address) {
     return AddressStorage[keccak256(record)];
   }
 
-  function setAddressValue(string record, address value) public onlyAdmins {
+  function setAddressValue(string memory record, address value) public onlyAdmins {
     AddressStorage[keccak256(record)] = value;
   }
 
   mapping(bytes32 => bytes) BytesStorage;
 
-  function getBytesValue(string record) public view returns (bytes) {
+  function getBytesValue(string memory record) public view returns (bytes memory) {
     return BytesStorage[keccak256(record)];
   }
 
-  function setBytesValue(string record, bytes value) public onlyAdmins {
+  function setBytesValue(string memory record, bytes memory value) public onlyAdmins {
     BytesStorage[keccak256(record)] = value;
   }
 
   mapping(bytes32 => bool) BooleanStorage;
 
-  function getBooleanValue(string record) public view returns (bool) {
+  function getBooleanValue(string memory record) public view returns (bool) {
     return BooleanStorage[keccak256(record)];
   }
 
-  function setBooleanValue(string record, bool value) public onlyAdmins {
+  function setBooleanValue(string memory record, bool value) public onlyAdmins {
     BooleanStorage[keccak256(record)] = value;
   }
 
   mapping(bytes32 => int) IntStorage;
 
-  function getIntValue(string record) public view returns (int) {
+  function getIntValue(string memory record) public view returns (int) {
     return IntStorage[keccak256(record)];
   }
 
-  function setIntValue(string record, int value) public onlyAdmins {
+  function setIntValue(string memory record, int value) public onlyAdmins {
     IntStorage[keccak256(record)] = value;
   }
 

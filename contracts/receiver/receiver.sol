@@ -26,7 +26,7 @@ contract Receiver {
      *@params bytes data is the message that was sent to this contract
      *@returns a boolean value representing success or failure of the operation
      */
-    function tokenFallback(address addr, uint256 value, bytes data) public returns(bool)
+    function tokenFallback(address addr, uint256 value, bytes memory data) public returns(bool)
     {
 
       bool result = _receiver.tokenFallback(msg.sender,addr,value,data);

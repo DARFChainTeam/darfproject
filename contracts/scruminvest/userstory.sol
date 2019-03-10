@@ -39,9 +39,9 @@ contract userstory is project, token {
     mapping (bytes32 => UserStory) public UserStories ; // AKA projectID
 
 
-    event Newuserstory (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, uint StoryAmountANG, uint StoryAmounttoken, uint256 Startdate, uint duration);
+    event Newuserstory (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration);
 
-    function start_user_story (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration)   public  returns (bytes32){
+    function start_user_story (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration)   public  returns (bytes32){
         //todo check transfer sum to escrow
         // what address of escrow?
         //get token addr

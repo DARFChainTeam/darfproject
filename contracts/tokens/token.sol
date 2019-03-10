@@ -24,7 +24,7 @@ contract token is mintable {
     address  External_Storage_addr;
 
 
-    function token(string symbol, string name, uint8 decimals )
+    function token(string memory symbol, string memory name, uint8 decimals )
     {
       _owner = msg.sender;
       _token= new mintable(symbol,name,decimals) ;
@@ -77,7 +77,7 @@ contract token is mintable {
      * @params data is of type bytes that represents the message being sent
      * @return A uint8 representing token's decimals
      */
-    function transfer(address receiver, uint256 amount, bytes data) public returns(bool)
+    function transfer(address receiver, uint256 amount, bytes memory data) public returns(bool)
     {
       bool result=_token.transfer(msg.sender,receiver,amount,data);
       if(result)

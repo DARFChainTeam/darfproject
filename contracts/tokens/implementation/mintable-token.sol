@@ -18,7 +18,7 @@ contract mintable is tokenInterface, basic {
 
         }
   mapping(address => uint256) internal _balances;
-    function mintable(string symbol, string name, uint8 decimals) public {
+    function mintable(string memory symbol, string memory name, uint8 decimals) public {
         _symbol = symbol;
         _name = name;
         _decimals = decimals;
@@ -68,7 +68,7 @@ contract mintable is tokenInterface, basic {
         }
     }
 
-    function transfer(address sender,address receiver, uint256 amount, bytes data) public  onlyOwner returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount, bytes memory data) public  onlyOwner returns(bool) {
     if(balanceOf(sender) < amount)
         {
             revert();
