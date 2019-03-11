@@ -174,7 +174,7 @@ contract userstory is project, token {
 
 
     event User_story_aborted_by_team (address UserStoryAddr, address Projecttoken,  string why  );
-    function abort_by_team (address UserStoryAddr, bool abortfromteam, string why )   { //it is close to accept_work_from_bakers, but vise versa
+    function abort_by_team (address UserStoryAddr, bool abortfromteam, string memory why )   { //it is close to accept_work_from_bakers, but vise versa
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  Project(Projectaddr);
@@ -189,9 +189,9 @@ contract userstory is project, token {
 
     }
 
-    event User_story_aborted_by_bakers (address UserStoryAddr, address Projecttoken, string why  );
+    event User_story_aborted_by_bakers (address UserStoryAddr, address Projecttoken, string  why  );
 
-    function abort_by_bakers (address UserStoryAddr, bool abortfrombakers, string why) public{
+    function abort_by_bakers (address UserStoryAddr, bool abortfrombakers, string memory why) public{
 
         require ((UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0) && ( now > UserStories[UserStoryAddr].start_date + UserStories[UserStoryAddr].duration + 60 days));
         // 1. only investor can do it
