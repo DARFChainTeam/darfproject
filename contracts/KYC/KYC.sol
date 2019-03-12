@@ -24,7 +24,7 @@ contract KYC is project {
         ES.setAddressValue("KYC/KYC", address(this));
 
     }
-    function load_conditions_ES () { //when something changes
+    function load_conditions_ES () public onlyAdmins { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         Project_Addr = ES.getAddressValue("scruminvest/project");
        //
