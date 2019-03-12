@@ -24,13 +24,13 @@ contract token is Mintable {
     address  External_Storage_addr;
 
 
-    function Token(string memory symbol, string memory name, uint8 decimals )
+    function Token(string memory symbol, string memory name, uint8 decimals ) public
     {
       _owner = msg.sender;
       _token= new mintable(symbol,name,decimals) ;
 
     }
-    function get_address() returns (address)
+    function get_address() public returns (address)
     {
       return _token.get_address();
     }

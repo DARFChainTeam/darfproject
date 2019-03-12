@@ -18,7 +18,7 @@ contract KYC is project {
     uint256 KYC_threshold = 2 ether;
     address Project_Addr;
 
-    function KYC () public {
+    function kyc () public onlyAdmins {
         _KYC = new basic_KYC ();
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("KYC/KYC", address(this));
@@ -49,7 +49,7 @@ contract KYC is project {
 
     }
 
-      function register_invest(address _investor_address, bytes32 currency, uint256 add_invested_sum)
+      function register_invest(address _investor_address, bytes32 currency, uint256 add_invested_sum) public
       {
         _KYC.register_invest(_investor_address,  currency,  add_invested_sum) ;
 

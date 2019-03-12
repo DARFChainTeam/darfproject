@@ -20,7 +20,7 @@ contract basic is tokenInterface {
 
         }
 
-    function basic(string memory symbol, string memory name, uint8 decimals, uint256 totalSupply) public {
+    function Basic(string memory symbol, string memory name, uint8 decimals, uint256 totalSupply) public {
         _symbol = symbol;
         _name = name;
         _decimals = decimals;

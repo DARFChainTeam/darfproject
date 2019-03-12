@@ -171,7 +171,7 @@ contract project is ExternalStorage {
 
 
 
-    function check_token_deposit(address _tokenAddress, address ANG_system, uint256 platform_share100) returns(bool) {
+    function check_token_deposit(address _tokenAddress, address ANG_system, uint256 platform_share100) internal returns(bool) {
 
 
         // todo check minted amount of tokens
@@ -194,7 +194,7 @@ contract project is ExternalStorage {
 
     // todo billing for updates of project state: transfer ANG to our address equal as gas +5% calculate transaction  fee when saving project state
 
-    function toBytes (uint256 x) view returns (bytes memory b) {
+    function toBytes (uint256 x) internal view returns (bytes memory b) {
         b = new bytes(32);
         assembly { mstore(add(b, 32), x) }
     }

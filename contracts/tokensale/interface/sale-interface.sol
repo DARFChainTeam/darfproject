@@ -3,8 +3,8 @@ pragma solidity ^0.5.0;
 
 interface saleInterface
 {
-     function sellANGETH(address beneficiar, uint256 summa);
-    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word);
+     function sellANGETH(address beneficiar, uint256 summa) external;
+    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) external ;
 
 
 }
