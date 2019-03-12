@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 import "../interface/token-interface.sol";
 import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
@@ -11,12 +11,14 @@ contract Mintable is tokenInterface, basic {
   uint8 internal _decimals;
   uint256 internal _totalSupply;
   address internal _owner;
-
+/*
   modifier  onlyOwner(address _sender_address) {
       require(_owner == _sender_address);
       _;
 
         }
+*/
+
   mapping(address => uint256) internal _balances;
     function mintable(string memory symbol, string memory name, uint8 decimals) public {
         _symbol = symbol;
@@ -25,22 +27,22 @@ contract Mintable is tokenInterface, basic {
         _owner = msg.sender;
         _totalSupply = 0;
     }
-    function get_address() public  onlyOwner returns (address) {
+    function get_address() public  onlyOwner(msg.sender)returns (address) {
         return address(this);
     }
-    function getOwner() public  onlyOwner returns(address) {
+    function getOwner() public  onlyOwner(msg.sender)returns(address) {
         return _owner;
     }
 
-    function balanceOf(address addr) public view  onlyOwner returns(uint256) {
+    function balanceOf(address addr) public view  onlyOwner(msg.sender)returns(uint256) {
         return _balances[addr];
     }
 
-    function totalSupply() public view  onlyOwner returns(uint256) {
+    function totalSupply() public view  onlyOwner(msg.sender)returns(uint256) {
         return _totalSupply;
     }
 
-    function mint(address tokenAddress, address receiver, uint256 amount) public  onlyOwner returns(bool) {
+    function mint(address tokenAddress, address receiver, uint256 amount) public  onlyOwner(msg.sender)returns(bool) {
       if(_owner != tokenAddress)
         {
             revert();
@@ -68,7 +70,7 @@ contract Mintable is tokenInterface, basic {
         }
     }
 
-    function transfer(address sender,address receiver, uint256 amount, bytes memory data) public  onlyOwner returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount, bytes memory data) public  onlyOwner(msg.sender)returns(bool) {
     if(balanceOf(sender) < amount)
         {
             revert();
@@ -98,7 +100,7 @@ contract Mintable is tokenInterface, basic {
         }
     }
 
-    function transfer(address sender,address receiver, uint256 amount) public  onlyOwner returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount) public  onlyOwner(msg.sender)returns(bool) {
 
         bytes memory empty;
         //use ERC223 transfer function
@@ -111,7 +113,7 @@ contract Mintable is tokenInterface, basic {
 
     }
 
-    function burn(address sender,uint256 amount) public  onlyOwner returns(bool) {
+    function burn(address sender,uint256 amount) public  onlyOwner(msg.sender)returns(bool) {
 
 
         //Safty check : token owner cannot burn more than the amount currently exists in their address

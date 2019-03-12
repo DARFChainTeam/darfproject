@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 import "./Ownable.sol";
 import "../libraries/SafeMath.sol";
@@ -21,12 +21,12 @@ contract Administratable is Ownable {
   event RemoveSuperAdmin(address indexed admin);
 
   modifier onlyAdmins  {
-    if (msg.sender != owner && !superAdmins[msg.sender] && !admins[msg.sender]) revert();
+    if ((msg.sender != owner ) && (msg.sender != superAdmins[msg.sender]) && (msg.sender != admins[msg.sender])) revert();
     _;
   }
 
   modifier onlySuperAdmins {
-    if (msg.sender != owner && !superAdmins[msg.sender]) revert();
+    if ((msg.sender != owner) &&  (msg.sender != superAdmins[msg.sender])) revert();
     _;
   }
 
@@ -38,13 +38,13 @@ contract Administratable is Ownable {
       totalSuperAdminsMapping = totalSuperAdminsMapping.add(1);
     }
 
-    AddSuperAdmin(admin);
+    emit AddSuperAdmin(admin);
   }
 
   function removeSuperAdmin(address admin) public onlyOwner {
     superAdmins[admin] = false;
 
-    RemoveSuperAdmin(admin);
+    emit RemoveSuperAdmin(admin);
   }
 
   function addAdmin(address admin) public onlySuperAdmins {
@@ -55,12 +55,12 @@ contract Administratable is Ownable {
       totalAdminsMapping = totalAdminsMapping.add(1);
     }
 
-    AddAdmin(admin);
+    emit  AddAdmin(admin);
   }
 
   function removeAdmin(address admin) public onlySuperAdmins {
     admins[admin] = false;
 
-    RemoveAdmin(admin);
+    emit RemoveAdmin(admin);
   }
 }

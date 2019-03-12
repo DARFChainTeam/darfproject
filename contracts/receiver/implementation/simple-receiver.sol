@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 import "../../libraries/SafeMath.sol";
 import "../interface/receiver-interface.sol";
 import "../../admin/Ownable.sol";
@@ -11,8 +11,11 @@ contract simpleReciever is receiverInterface , Ownable {
     address private _acceptedAddress;
     address private _owner;
     mapping (address => uint256) private _balances;
-    function simpleReciever() public{
-      _owner=msg.sender;
+
+
+
+    function SimpleReciever(address newowner) OnlyOwner public{
+      _owner=newowner;
     }
     /*
     // If you want to accept a list of tokens : [Toekn Contract Address] => [boolean]

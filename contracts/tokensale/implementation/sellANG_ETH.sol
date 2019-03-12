@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 import "../interface/sale-interface.sol";
 //import "./implementation/basic-crowdsale.sol";
 import "../../tokens/token.sol";
@@ -11,7 +11,7 @@ import "../../admin/ExternalStorage.sol";
       address External_Storage_addr;
       uint ANG_tokens_rate_ETH; //1 ETH;
       address public ANGtoken_addr;
-      address public owner;
+      //address public owner;
       uint ANG_percent100;
       //address public beneficiar;
       address public KYC_address;
@@ -49,7 +49,7 @@ import "../../admin/ExternalStorage.sol";
 
     }
 
-    function load_conditions_ES () { //when something changes
+    function load_conditions_ES () public  { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ANGtoken_addr =  ES.getAddressValue("ANGtoken");
         ANG_tokens_rate_ETH = ES.getIntValue("ANGtokensrateETH");
@@ -64,7 +64,7 @@ import "../../admin/ExternalStorage.sol";
 
 
 
-    function sellANGETH(address beneficiar, uint256 summa)    { //simple buy ANG for Ether
+    function sellANGETH(address beneficiar, uint256 summa)  external  { //simple buy ANG for Ether
 
         token ANGtoken = token( ANGtoken_addr);
 
@@ -79,7 +79,7 @@ import "../../admin/ExternalStorage.sol";
         }
 
 
-    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word)   {
+    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) external  {
         token ANGtoken = token( ANGtoken_addr);
         KYC = KYC(KYC_address);
         require ((discount_amount > summa) && (KYC.allowed_invest(beneficiar, "ETH") - summa > 0) &&  (pass_word == discount_word));

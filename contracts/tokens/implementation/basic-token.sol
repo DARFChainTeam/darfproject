@@ -1,4 +1,4 @@
-pragma solidity ^ 0.4.18;
+pragma solidity ^ 0.5.0;
 import "../interface/token-interface.sol";
 import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
@@ -52,7 +52,7 @@ contract basic is tokenInterface {
         {
             revert();
         }
-       else if (receiver == 0x0)
+       else if (receiver == address(0x0))
         {
             revert();
         }

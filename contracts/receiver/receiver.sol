@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 import "./interface/receiver-interface.sol";
 import "./implementation/simple-receiver.sol";
 
@@ -10,12 +10,12 @@ contract Receiver {
   /*address internal _acceptedAddress;*/
     address private _owner;
     receiverInterface private _receiver;
-    function Receiver() public {
-      _owner = msg.sender;
-      _receiver=new simpleReciever();
+    function receiver (address newowner) OnlyOwner public {
+      _owner = newowner;
+      _receiver=new SimpleReciever(newowner);
     }
     //remove
-    function getOwner() returns (address)
+    function getOwner() public returns (address)
     {
       return _owner;
     }
@@ -44,7 +44,7 @@ contract Receiver {
         result = _receiver.whitelist(tokenAddress);
         if(result)
         {
-          Whitelist(tokenAddress);
+         emit Whitelist(tokenAddress);
         }
         return result;
       }
@@ -61,7 +61,7 @@ contract Receiver {
         result = _receiver.blacklist(tokenAddress);
         if(result)
         {
-          Blacklist(tokenAddress);
+         emit Blacklist(tokenAddress);
         }
         return result;
       }

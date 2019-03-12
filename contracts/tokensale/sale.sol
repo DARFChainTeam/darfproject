@@ -1,11 +1,11 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 import "./interface/sale-interface.sol";
 import "./implementation/sellANG_ETH.sol";
 
 contract sale is saleInterface {
     saleInterface private _sale;
 
-    function sale(){
+    function Sale() public  {
         _sale = new sellANG_ETH();
 
     }

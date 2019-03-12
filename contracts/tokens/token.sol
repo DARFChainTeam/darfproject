@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 import "./interface/token-interface.sol";
 import "./implementation/basic-token.sol";
 import "./implementation/mintable-token.sol";
@@ -27,7 +27,7 @@ contract token is Mintable {
     function Token(string memory symbol, string memory name, uint8 decimals )
     {
       _owner = msg.sender;
-      _token= new Mintable(symbol,name,decimals) ;
+      _token= new mintable(symbol,name,decimals) ;
 
     }
     function get_address() returns (address)
@@ -63,7 +63,7 @@ contract token is Mintable {
     function getChildOwner() public returns(address)
     {
       address result = _token.getOwner();
-      GetOwner(result);
+      emit GetOwner(result);
       return result;
     }
     function getOwner() public returns(address)
@@ -82,7 +82,7 @@ contract token is Mintable {
       bool result=_token.transfer(msg.sender,receiver,amount,data);
       if(result)
       {
-        Transfer(msg.sender,receiver,amount ,data);
+        emit Transfer(msg.sender,receiver,amount ,data);
       }
       return result;
     }
@@ -100,7 +100,7 @@ contract token is Mintable {
       bool result = _token.transfer(msg.sender,receiver,amount);
       if(result)
       {
-        Transfer( msg.sender,receiver,amount,empty);
+        emit Transfer( msg.sender,receiver,amount,empty);
       }
       return result;
     }
@@ -112,7 +112,7 @@ contract token is Mintable {
         bool result = _token.mint(address(this),receiver,amount);
         if(result)
         {
-          Mint(receiver, amount);
+          emit Mint(receiver, amount);
         }
         return result;
 
@@ -130,7 +130,7 @@ contract token is Mintable {
       bool result = _token.burn(msg.sender,amount);
       if(result)
       {
-        Burn(msg.sender, amount);
+        emit Burn(msg.sender, amount);
       }
       return result;
     }

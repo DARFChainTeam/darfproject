@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 import "./project.sol";
 import '../admin/ExternalStorage.sol';
 
@@ -152,7 +152,7 @@ contract userstory is project, token {
     }
 
 
-    function token_refunds (address UserStoryAddr, address Projecttoken ) {
+    function token_refunds (address UserStoryAddr, address Projecttoken ) internal {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address ANGTokenAddrr = ES.getAddressValue("ANGtoken");
@@ -174,7 +174,7 @@ contract userstory is project, token {
 
 
     event User_story_aborted_by_team (address UserStoryAddr, address Projecttoken,  string why  );
-    function abort_by_team (address UserStoryAddr, bool abortfromteam, string memory why )   { //it is close to accept_work_from_bakers, but vise versa
+    function abort_by_team (address UserStoryAddr, bool abortfromteam, string memory why ) public  { //it is close to accept_work_from_bakers, but vise versa
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
         project Projectcurrent =  Project(Projectaddr);

@@ -1,6 +1,6 @@
 //todo: move non-finance data to Rinkeby/Kovan?
 
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 import "../tokens/token.sol";
 

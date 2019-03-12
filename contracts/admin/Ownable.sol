@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 import './OwnableStorage.sol';
 
@@ -17,8 +17,8 @@ contract Ownable is OwnableStorage {
   /**
   * @dev The constructor sets the original owner of the contract to the sender account.
   */
-  function Ownable() public {
-    setOwner(msg.sender);
+  function ownable(address newowner) public onlyOwner {
+          setOwner(newowner);
   }
 
   /**
@@ -35,7 +35,7 @@ contract Ownable is OwnableStorage {
    */
   function transferOwnership(address newOwner) public onlyOwner {
     require(newOwner != address(0));
-    OwnershipTransferred(owner(), newOwner);
+    emit OwnershipTransferred(owner(), newOwner);
     setOwner(newOwner);
   }
 }
