@@ -14,7 +14,7 @@ contract simpleReciever is receiverInterface , Ownable {
 
 
 
-    function SimpleReciever(address newowner) OnlyOwner public{
+    function SimpleReciever(address newowner) onlyOwner public{
       _owner=newowner;
     }
     /*

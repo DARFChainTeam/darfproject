@@ -27,7 +27,7 @@ contract token is Mintable {
     function Token(string memory symbol, string memory name, uint8 decimals ) public
     {
       _owner = msg.sender;
-      _token= new mintable(symbol,name,decimals) ;
+      _token= new Mintable(symbol,name,decimals) ;
 
     }
     function get_address() public returns (address)

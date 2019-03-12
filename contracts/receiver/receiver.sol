@@ -1,18 +1,18 @@
 pragma solidity ^0.5.0;
 import "./interface/receiver-interface.sol";
 import "./implementation/simple-receiver.sol";
-
+import "../admin/Ownable.sol";
 /*@title Receiver contract Abstract Class
  *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
  */
-contract Receiver {
+contract Receiver is  Ownable {
 
   /*address internal _acceptedAddress;*/
     address private _owner;
     receiverInterface private _receiver;
-    function receiver (address newowner) OnlyOwner public {
+    function receiver (address newowner) onlyOwner public {
       _owner = newowner;
-      _receiver=new SimpleReciever(newowner);
+      _receiver=new simpleReciever(newowner);
     }
     //remove
     function getOwner() public returns (address)
