@@ -21,12 +21,12 @@ contract Administratable is Ownable {
   event RemoveSuperAdmin(address indexed admin);
 
   modifier onlyAdmins  {
-    if ((msg.sender != owner ) && (msg.sender != superAdmins[msg.sender]) && (msg.sender != admins[msg.sender])) revert();
+    if ((msg.sender != owner() ) && (!superAdmins[msg.sender]) && (!admins[msg.sender])) revert();
     _;
   }
 
   modifier onlySuperAdmins {
-    if ((msg.sender != owner) &&  (msg.sender != superAdmins[msg.sender])) revert();
+    if ((msg.sender != owner()) &&  (!superAdmins[msg.sender])) revert();
     _;
   }
 

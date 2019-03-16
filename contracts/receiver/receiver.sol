@@ -12,7 +12,7 @@ contract Receiver is  Ownable {
     receiverInterface private _receiver;
     function receiver (address newowner) onlyOwner public {
       _owner = newowner;
-      _receiver=new simpleReciever(newowner);
+      _receiver=new simpleReciever();
     }
     //remove
     function getOwner() public returns (address)

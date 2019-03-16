@@ -32,7 +32,7 @@ interface IRegistry {
   * @param func representing the name of the function to be registered
   * @param implementation representing the address of the new function implementation to be registered
   */
-  function addVersionFromName(string memory version, string memory func, address implementation) external;
+  function addVersionFromName(string calldata  version, string calldata  func, address implementation) external;
 
   /**
   * @dev Registers a new version of a function with its implementation address
@@ -40,7 +40,7 @@ interface IRegistry {
   * @param func representing the signature of the function to be registered
   * @param implementation representing the address of the new function implementation to be registered
   */
-  function addVersion(string memory version, bytes4 func, address implementation) external;
+  function addVersion(string calldata  version, bytes4 func, address implementation) external;
 
   /**
   * @dev Tells the address of the function implementation for a given version
@@ -48,20 +48,20 @@ interface IRegistry {
   * @param func representing the signature of the function to be queried
   * @return address of the function implementation registered for the given version
   */
-  function getFunction(string memory version, bytes4 func) external view returns (address);
+  function getFunction(string calldata  version, bytes4 func) external view returns (address);
 
   /**
    * @dev Returns a function name and implementation for a given version, given its index
    */
-  function getFunctionByIndex(string memory version, uint256 index) external view returns (bytes4, address);
+  function getFunctionByIndex(string calldata  version, uint256 index) external view returns (bytes4, address);
 
   /**
    * @dev Returns the number of functions (excluding the fallback function) registered for a specific version
    */
-  function getFunctionCount(string memory version) external view returns (uint256);
+  function getFunctionCount(string calldata  version) external view returns (uint256);
 
   /**
    * @dev Returns the the fallback function for a specific version, if registered
    */
-  function getFallback(string memory version) external view returns (address);
+  function getFallback(string calldata  version) external view returns (address);
 }

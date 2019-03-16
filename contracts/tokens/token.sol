@@ -27,7 +27,8 @@ contract token is Mintable {
     function Token(string memory symbol, string memory name, uint8 decimals ) public
     {
       _owner = msg.sender;
-      _token= new Mintable(symbol,name,decimals) ;
+      _token= new Mintable();
+      _token.mintable(symbol,name,decimals) ;
 
     }
     function get_address() public returns (address)
@@ -106,7 +107,7 @@ contract token is Mintable {
     }
 
 
-    function mint(address receiver, uint256 amount) public onlyOwner(msg.sender) returns(bool)
+    function mint(address receiver, uint256 amount) public onlyOwnerEx (msg.sender) returns(bool)
     {
 
         bool result = _token.mint(address(this),receiver,amount);

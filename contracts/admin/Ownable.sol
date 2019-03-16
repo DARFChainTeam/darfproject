@@ -29,6 +29,13 @@ contract Ownable is OwnableStorage {
     _;
   }
 
+  modifier onlyOwnerEx (address _sender_address) {
+    require(owner() == _sender_address);
+    _;
+
+      }
+
+
   /**
    * @dev Allows the current owner to transfer control of the contract to a newOwner.
    * @param newOwner The address to transfer ownership to.

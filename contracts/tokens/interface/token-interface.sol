@@ -9,5 +9,6 @@ interface tokenInterface{
     function mint(address tokenAddress,address receiver, uint256 amount) external returns(bool);
     function burn(address owner,uint256 amount) external returns(bool);
     function get_address() external returns (address) ;
+    function mintable(string calldata symbol, string calldata name, uint8 decimals) external;
 
 }

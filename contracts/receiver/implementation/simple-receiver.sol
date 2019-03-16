@@ -29,7 +29,7 @@ contract simpleReciever is receiverInterface , Ownable {
      *@params bytes data is the message that was sent to this contract
      *@returns a boolean value representing success or failure of the operation
      */
-    function tokenFallback(address sender,address receiver, uint256 value, bytes memory data) public onlyOwner returns(bool)
+    function tokenFallback(address sender,address receiver, uint256 value, bytes calldata data) external onlyOwner returns(bool)
     {
 
       if (sender!=_acceptedAddress)
@@ -41,19 +41,19 @@ contract simpleReciever is receiverInterface , Ownable {
         _balances[receiver] = _balances[receiver].add(value);
       }
     }
-    function tokenFallback(address sender, uint256 value, bytes memory data) public returns(bool)
+    function tokenFallback(address sender, uint256 value, bytes calldata data) external returns(bool)
     {
       revert();
     }
 
     //Todo:add test to make sure it is ERC223 Token
-    function whitelist(address tokenAddress) public onlyOwner returns(bool) {
+    function whitelist(address tokenAddress) external onlyOwner returns(bool) {
 
         _acceptedAddress = tokenAddress;
         return true;
 
     }
-    function blacklist(address tokenAddress) public onlyOwner returns(bool) {
+    function blacklist(address tokenAddress) external onlyOwner returns(bool) {
 
         _acceptedAddress = address(0);
         return true;

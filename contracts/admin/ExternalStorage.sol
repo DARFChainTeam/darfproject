@@ -24,7 +24,7 @@ contract ExternalStorage is Administratable {
 
 
   function getMultiLedgerValue(string memory record, address primaryAddress, address secondaryAddress) public view returns (uint256) {
-    return MultiLedgerStorage[keccak256(record)][primaryAddress][secondaryAddress];
+    return MultiLedgerStorage[keccak256(abi.encode(record))][primaryAddress][secondaryAddress];
   }
 
   function setMultiLedgerValue(string memory record, address primaryAddress, address secondaryAddress, uint256 value) public onlyAdmins {

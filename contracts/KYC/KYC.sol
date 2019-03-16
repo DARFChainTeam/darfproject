@@ -29,10 +29,11 @@ contract KYC is project {
         Project_Addr = ES.getAddressValue("scruminvest/project");
        //
     }
-    function  allowed_invest (address _investor_address, bytes32 currency)
- public
+    function  allowed_invest (address _investor_address, bytes32 currency) public returns (uint256)
+
     {
-        return _KYC.InvestorCheck( _investor_address,  currency);
+        uint256 avaiableinvest = _KYC.InvestorCheck( _investor_address,  currency);
+        return avaiableinvest ;
 
 
 
