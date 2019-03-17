@@ -8,17 +8,35 @@ import '../../scruminvest/project.sol';
 contract base_withdraw is withdraw_interface, project, userstory {
      address External_Storage_addr;
 
-    function team_withdraw(address UserStoryAddr) external
+    function team_withdraw(bytes32 UserStoryAddr) external
     {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address currentcontractuserstoryaddr =ES.getAddressValue("scruminvest/userstory");
         userstory userstorycurrent =  userstory(currentcontractuserstoryaddr);
-        uint ProjectID = userstorycurrent.UserStories[UserStoryAddr].project_ID;
-        address Projectaddr =ES.getAddressValue("scruminvest/project");
-        project Projectcontractcurrent =  Project(Projectaddr);
-        address Projecttoken = Projectcontractcurrent.ProjectsList(ProjectID);
-        require((Projects[Projecttoken].project_owner_address = msg.sender)) ;  // only team lead can withdraw
-            token(ES.getAddressValue("ANGtoken")).transfer(address(this), msg.sender, userstorycurrent.UserStories[UserStoryAddr].sum_raised);
+
+        ( uint256  project_ID,
+          uint256   User_story_number,
+          bytes32   DFS_Hash,
+          bytes4   DFS_type,
+          uint256  Story_Amount_ANG,
+          uint256   Story_Amount_Tokens,
+          uint256  start_date,
+          uint256  duration,
+          uint256   sum_raised,
+          uint256  sum_accepted,
+          uint256  Ask_end_from_project,
+          uint256  finished  ) = userstorycurrent.UserStories(UserStoryAddr);
+
+        address  Projectaddr =ES.getAddressValue("scruminvest/project");
+        project Projectcontractcurrent =  project(Projectaddr);
+        address   ProjecttokenAddr = Projectcontractcurrent.ProjectList(project_ID);
+        (uint256   project_ID_pr,
+        address  project_owner_address,
+        address   _DARF_system_address,
+        bytes32  DFS_Project_describe,
+        bytes4   DFS_type_pr) = Projectcontractcurrent.Projects(ProjecttokenAddr);
+        require((project_owner_address == msg.sender)) ;  // only team lead can withdraw
+            token(ES.getAddressValue("ANGtoken")).transfer(address(this), msg.sender, sum_raised);
     }
 
    function sos_withdraw (address beneficiar, uint256 amount) onlyOwner external

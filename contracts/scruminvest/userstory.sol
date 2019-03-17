@@ -15,17 +15,17 @@ contract userstory is project, token {
     }
 
     struct UserStory {
-                          uint project_ID;
-                          uint User_story_number;
+                          uint256 project_ID;
+                          uint256 User_story_number;
                           //address project_token;
                           bytes32 DFS_Hash;
                           bytes4 DFS_type;
-                          uint Story_Amount_ANG; // number of ANG payed by bakers
-                          uint Story_Amount_Tokens; //number of tokens gives from team
+                          uint256 Story_Amount_ANG; // number of ANG payed by bakers
+                          uint256 Story_Amount_Tokens; //number of tokens gives from team
                           uint256 start_date; // timestamp,
-                          uint duration; // timedelta,
-                          uint sum_raised;
-                          uint sum_accepted;
+                          uint256 duration; // timedelta,
+                          uint256 sum_raised;
+                          uint256 sum_accepted;
                           uint256 Ask_end_from_project; // datetime when team say they finish work
                           // bool  project_signin; //  several team members?
                           uint256 finished; // datetime acceptwance from bakers
@@ -39,9 +39,9 @@ contract userstory is project, token {
     mapping (bytes32 => UserStory) public UserStories ; // AKA projectID
 
 
-    event Newuserstory (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration);
+    event Newuserstory (uint256 ProjectID, uint256 Userstorynumber, bytes32 DFSHash, uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration);
 
-    function start_user_story (uint256 ProjectID, uint Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration)   public  returns (bytes32){
+    function start_user_story (uint256 ProjectID, uint256 Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration)   public  returns (bytes32){
         //todo check transfer sum to escrow
         // what address of escrow?
         //get token addr
@@ -51,10 +51,14 @@ contract userstory is project, token {
         address ProjecttokenAddr = smartcontrProjectcurrent.ProjectList(ProjectID);
         token Projecttoken = token(ProjecttokenAddr);
         uint256 Projecttokenbalance = Projecttoken.balanceOf(address(this));
-        (uint256 project_ID, address project_owner_address,address  _DARF_system_address, bytes32 DFS_Project_describe, bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
+        (uint256 project_ID,
+        address project_owner_address,
+        address  _DARF_system_address,
+        bytes32 DFS_Project_describe,
+        bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
         require((Projecttokenbalance == StoryAmounttoken) &&
             ( project_owner_address == msg.sender)) ; // [1] is project_owner_address in tuple OnlyProjectOwner(Project_token_addr)
-            bytes32 UserStoryAddr = keccak256(abi.encodePacked( ProjectID, Userstorynumber));
+            bytes32 UserStoryAddr = keccak256(abi.encode(ProjectID, Userstorynumber));
             UserStories[UserStoryAddr].project_ID = ProjectID;
             UserStories[UserStoryAddr].User_story_number = Userstorynumber;
             UserStories[UserStoryAddr].duration = duration;
@@ -100,14 +104,18 @@ contract userstory is project, token {
 
 
 
-    function finish_userstory_from_team(address UserStoryAddr, uint256 ProjectID) public returns (uint){
+    function finish_userstory_from_team(bytes32 UserStoryAddr, uint256 ProjectID) public returns (uint){
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
         project smartcontrProjectcurrent =  project(Projectaddr);
         address ProjecttokenAddr = smartcontrProjectcurrent.ProjectList(ProjectID);
-        (uint256 project_ID, address project_owner_address,address  _DARF_system_address, bytes32 DFS_Project_describe, bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
-        require(project_owner_address = msg.sender) ; //      require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
+        (uint256 project_ID,
+        address project_owner_address,
+        address  _DARF_system_address,
+        bytes32 DFS_Project_describe,
+        bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
+        require(project_owner_address == msg.sender) ; //      require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
 
                 uint256 timestamp = now;
                 UserStories[UserStoryAddr].finished = now;
@@ -117,7 +125,7 @@ contract userstory is project, token {
 
     }
 
-    function accept_work_from_bakers (address UserStoryAddr, bool acceptance) public {
+    function accept_work_from_bakers (bytes32 UserStoryAddr, bool acceptance) public {
 
         require (UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0); // only investor can do it
             if (acceptance) {
@@ -125,25 +133,29 @@ contract userstory is project, token {
                                 UserStories[UserStoryAddr].bakers[msg.sender].baked_sum;
                 UserStories[UserStoryAddr].bakers[msg.sender].accept_work = now;
             }
-            if (UserStories[UserStoryAddr].sum_accepted > UserStories[UserStoryAddr].sum_rased /2){
+            if (UserStories[UserStoryAddr].sum_accepted > UserStories[UserStoryAddr].sum_raised /2){
                 // all fine, 50%+ invastors accepted works results,
                 // sends ANG to team
                 ExternalStorage ES = ExternalStorage(External_Storage_addr);
                 address Projectaddr =ES.getAddressValue("scruminvest/project");
                 project smartcontrProjectcurrent =  project(Projectaddr);
-                address ProjecttokenAddr = smartcontrProjectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
+                address ProjecttokenAddr = smartcontrProjectcurrent.ProjectList( UserStories[UserStoryAddr].project_ID);
                 address ANGTokenAddrr = ES.getAddressValue("ANGtoken");
-                (uint256 project_ID, address project_owner_address,address  _DARF_system_address, bytes32 DFS_Project_describe, bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
+                (uint256 project_ID,
+                address project_owner_address,
+                address  _DARF_system_address,
+                bytes32 DFS_Project_describe,
+                bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
                 token(ANGTokenAddrr).transfer(address(this), project_owner_address,UserStories[UserStoryAddr].sum_raised );
                 // address sender,address receiver, uint256 amount, bytes data
 
                 //distribution of tokens
                 uint pricetoken1000 = 1000 * UserStories[UserStoryAddr].Story_Amount_Tokens /
                                     UserStories[UserStoryAddr].Story_Amount_ANG;
-                for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.lenght();
+                for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.length;
                         baker++) {
                     address bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
-                    uint256 summTokens =   UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum *  pricetoken1000 / 1000 ;
+                    uint256 summTokens =   UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum * pricetoken1000 / 1000 ;
 
 
                     //todo  bakeraddr.send(summTokens);
@@ -155,20 +167,24 @@ contract userstory is project, token {
     }
 
 
-    function token_refunds (address UserStoryAddr, address Projecttoken ) internal {
+    function token_refunds (bytes32 UserStoryAddr, address Projecttoken ) internal {
 
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address ANGTokenAddrr = ES.getAddressValue("ANGtoken");
         address Projectaddr =ES.getAddressValue("scruminvest/project");
-        project smartcontrProjectcurrent =  Project(Projectaddr);
-        address ProjecttokenAddr = smartcontrProjectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
-        (uint256 project_ID, address project_owner_address,address  _DARF_system_address, bytes32 DFS_Project_describe, bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
+        project smartcontrProjectcurrent =  project(Projectaddr);
+        address ProjecttokenAddr = smartcontrProjectcurrent.ProjectList( UserStories[UserStoryAddr].project_ID);
+        (uint256 project_ID,
+        address project_owner_address,
+        address  _DARF_system_address,
+        bytes32 DFS_Project_describe,
+        bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
         // Returns their token to team
         token(Projecttoken).transfer(address(this), project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
 
          //returns ANG to investors
 
-         for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.lenght();
+         for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.length;
                         baker++) {
                     address bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
                     token(ANGTokenAddrr).transfer(address(this), UserStories[UserStoryAddr].bakers_list[baker], UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum);
@@ -178,15 +194,19 @@ contract userstory is project, token {
     }
 
 
-    event User_story_aborted_by_team (address UserStoryAddr, address Projecttoken,  string why  );
-    function abort_by_team (address UserStoryAddr, bool abortfromteam, string memory why ) public  { //it is close to accept_work_from_bakers, but vise versa
+    event User_story_aborted_by_team (bytes32 UserStoryAddr, address Projecttoken,  string why  );
+    function abort_by_team (bytes32 UserStoryAddr, bool abortfromteam, string memory why ) public  { //it is close to accept_work_from_bakers, but vise versa
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address Projectaddr =ES.getAddressValue("scruminvest/project");
-        project smartcontrProjectcurrent =  Project(Projectaddr);
-        address ProjecttokenAddr = smartcontrProjectcurrent.ProjectsList( UserStories[UserStoryAddr].Project_ID);
-        (uint256 project_ID, address project_owner_address,address  _DARF_system_address, bytes32 DFS_Project_describe, bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
+        project smartcontrProjectcurrent =  project(Projectaddr);
+        address ProjecttokenAddr = smartcontrProjectcurrent.ProjectList( UserStories[UserStoryAddr].project_ID);
+        (uint256 project_ID,
+        address project_owner_address,
+        address  _DARF_system_address,
+        bytes32 DFS_Project_describe,
+        bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
 
-        require((project_owner_address = msg.sender)) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
+        require(project_owner_address == msg.sender) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
 
             if (abortfromteam) {
                 token_refunds ( UserStoryAddr, ProjecttokenAddr );
@@ -196,9 +216,9 @@ contract userstory is project, token {
 
     }
 
-    event User_story_aborted_by_bakers (address UserStoryAddr, address Projecttoken, string  why  );
+    event User_story_aborted_by_bakers (bytes32 UserStoryAddr, address Projecttoken, string  why  );
 
-    function abort_by_bakers (address UserStoryAddr, bool abortfrombakers, string memory why) public{
+    function abort_by_bakers (bytes32 UserStoryAddr, bool abortfrombakers, string memory why) public{
 
         require ((UserStories[UserStoryAddr].bakers[msg.sender].baked_sum > 0) && ( now > UserStories[UserStoryAddr].start_date + UserStories[UserStoryAddr].duration + 60 days));
         // 1. only investor can do it
@@ -207,8 +227,8 @@ contract userstory is project, token {
             if (abortfrombakers) {
                 ExternalStorage ES = ExternalStorage(External_Storage_addr);
                 address Projectaddr =ES.getAddressValue("scruminvest/project");
-                project Projectcurrent =  Project(Projectaddr);
-                address Projecttoken = Projectcurrent.ProjectList( UserStories[UserStoryAddr].Project_ID);
+                project Projectcurrent =  project(Projectaddr);
+                address Projecttoken = Projectcurrent.ProjectList( UserStories[UserStoryAddr].project_ID);
                 token_refunds ( UserStoryAddr, Projecttoken );
                 emit User_story_aborted_by_bakers (UserStoryAddr, Projecttoken, why);
                 // returns token to team

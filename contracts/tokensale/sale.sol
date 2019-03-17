@@ -6,11 +6,11 @@ contract sale is saleInterface {
     saleInterface private _sale;
 
     function Sale() public  {
-        _sale = new sellANG_ETH();
+       _sale = new sellANG_ETH();
 
     }
 
-    function () public payable
+    function () external payable
     {
         _sale.sellANGETH(msg.sender, msg.value);
     }

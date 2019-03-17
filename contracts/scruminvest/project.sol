@@ -9,13 +9,13 @@ contract project is ExternalStorage {
 
     address External_Storage_addr;
 
-
+/*
     constructor(address _token_address) public {
     address owner = msg.sender;
     address  beneficiar = msg.sender;
     address  token_address = _token_address;
   }
-
+*/
 /*
 
     struct RightsList {

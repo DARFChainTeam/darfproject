@@ -52,12 +52,12 @@ import "../../admin/ExternalStorage.sol";
     function load_conditions_ES () public  { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ANGtoken_addr =  ES.getAddressValue("ANGtoken");
-        ANG_tokens_rate_ETH = ES.getIntValue("ANGtokensrateETH");
-        ANG_percent100 = ES.getIntValue("ANGpercent100");
+        ANG_tokens_rate_ETH = ES.getUIntValue("ANGtokensrateETH");
+        ANG_percent100 = ES.getUIntValue("ANGpercent100");
         KYC_address = ES.getAddressValue("KYC/KYC");
         discount_word =  ES.getBytes32Value("tokensale/discount_word");
-        discount_size100 = ES.getIntvalue("tokensale/discount_size");
-        discount_amount =  ES.getUIntvalue("tokensale/discount_amount");
+        discount_size100 = ES.getUIntValue("tokensale/discount_size");
+        discount_amount =  ES.getUIntValue("tokensale/discount_amount");
         // project Projectcurrent =  project(Projectaddr);
         //address Projecttokenaddr = Projectcurrent.ProjectsList(ProjectID);
     }
@@ -68,12 +68,12 @@ import "../../admin/ExternalStorage.sol";
 
         token ANGtoken = token( ANGtoken_addr);
 
-        KYC = KYC(KYC_address);
-        require  (KYC.allowed_invest(beneficiar, "ETH") - summa > 0);
+        KYC KYC_ = KYC(KYC_address);
+        require  (KYC_.allowed_invest(beneficiar, "ETH") - summa > 0);
           uint256 ANG_tokens_amount = summa* ANG_tokens_rate_ETH * (100 - ANG_percent100) / 100;
           ANGtoken.transfer(beneficiar,ANG_tokens_amount);
-          KYC.register_invest (beneficiar, "ETH", summa);
-          KYC.register_invest (beneficiar, "ANG", ANG_tokens_amount);
+          KYC_.register_invest (beneficiar, "ETH", summa);
+          KYC_.register_invest (beneficiar, "ANG", ANG_tokens_amount);
           emit Purchase_ANG (beneficiar, ANG_tokens_amount);
 
         }
@@ -81,14 +81,14 @@ import "../../admin/ExternalStorage.sol";
 
     function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) external  {
         token ANGtoken = token( ANGtoken_addr);
-        KYC = KYC(KYC_address);
-        require ((discount_amount > summa) && (KYC.allowed_invest(beneficiar, "ETH") - summa > 0) &&  (pass_word == discount_word));
+        KYC KYC_ = KYC(KYC_address);
+        require ((discount_amount > summa) && (KYC_.allowed_invest(beneficiar, "ETH") - summa > 0) &&  (pass_word == discount_word));
 
               uint256 ANG_tokens_amount = summa * ANG_tokens_rate_ETH *(100 - ANG_percent100)*(discount_size100 +100)/10000;
               discount_amount -= summa;
               ANGtoken.transfer(beneficiar,ANG_tokens_amount);
-              KYC.register_invest (beneficiar, "ETH", summa);
-              KYC.register_invest (beneficiar, "ANG", ANG_tokens_amount);
+              KYC_.register_invest (beneficiar, "ETH", summa);
+              KYC_.register_invest (beneficiar, "ANG", ANG_tokens_amount);
               emit Purchase_ANG (beneficiar, ANG_tokens_amount);
 
         }
