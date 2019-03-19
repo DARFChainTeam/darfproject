@@ -78,9 +78,9 @@ contract token is Mintable {
      * @params data is of type bytes that represents the message being sent
      * @return A uint8 representing token's decimals
      */
-    function transfer(address receiver, uint256 amount, bytes memory data) public returns(bool)
+    function transfer(address sender, address receiver, uint256 amount, bytes memory data) public returns(bool)
     {
-      bool result=_token.transfer(msg.sender,receiver,amount,data);
+      bool result=_token.transfer(sender,receiver,amount,data);
       if(result)
       {
         emit Transfer(msg.sender,receiver,amount ,data);
