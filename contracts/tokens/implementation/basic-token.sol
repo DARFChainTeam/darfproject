@@ -43,7 +43,14 @@ contract basic is tokenInterface, Ownable  {
         return _totalSupply;
 
     }
-    function transfer(address sender,address receiver, uint256 amount, bytes memory data)  internal onlyOwnerEx(msg.sender) returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount, bytes32  data)   onlyOwnerEx(msg.sender) external returns(bool) {
+            return  transferIntnl( sender, receiver,  amount, data) ;
+
+    }
+
+
+
+function transferIntnl(address sender,address receiver, uint256 amount, bytes memory data)   onlyOwnerEx(msg.sender) internal returns(bool) {
      if(balanceOf(sender) < amount)
         {
             revert();
@@ -76,14 +83,11 @@ contract basic is tokenInterface, Ownable  {
     }
 
 
+    function transfer(address sender,address receiver, uint256 amount)  onlyOwnerEx(msg.sender) external returns(bool) {
 
-
-
-    function transfer(address sender,address receiver, uint256 amount, bytes calldata data) external  onlyOwnerEx(msg.sender) returns(bool) {
-
-        //  bytes memory empty;
+         bytes memory empty;
           //use ERC223 transfer function
-          bool gotTransfered = transfer(sender,receiver, amount, data);
+          bool gotTransfered = transferIntnl(sender,receiver, amount, empty);
           if (gotTransfered)
           return true;
           else
@@ -94,7 +98,7 @@ contract basic is tokenInterface, Ownable  {
     function mint(address tokenAddress,address receiver, uint256 amount) public onlyOwnerEx(msg.sender) returns(bool)
     {
         bytes memory empty;
-        transfer(tokenAddress,receiver, amount,empty );
+        transferIntnl(tokenAddress,receiver, amount,empty );
     }
 
     function burn(address owner,uint256 amount) public onlyOwnerEx(msg.sender) returns(bool) {

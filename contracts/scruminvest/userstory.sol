@@ -159,7 +159,7 @@ contract userstory is project, token {
                 // sends ANG to team
                   (address ProjecttokenAddr, address project_owner_address) = get_token_and_project_owner_address(UserStories[UserStoryAddr].project_ID) ;
                 token ANGToken = token(ANGTokenAddrr);
-                ANGToken.transfer(address (this), project_owner_address, UserStories[UserStoryAddr].sum_raised,  UserStoryAddr);
+               address(ANGToken).transfer(address (this), project_owner_address, UserStories[UserStoryAddr].sum_raised,  UserStoryAddr);
                 // address sender,address receiver, uint256 amount, bytes data
 
                 //distribution of tokens

@@ -5,7 +5,7 @@ import "../admin/Ownable.sol";
 /*@title Receiver contract Abstract Class
  *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
  */
-contract Receiver is  Ownable {
+contract Receiver is receiverInterface,  Ownable {
 
   /*address internal _acceptedAddress;*/
     address private _owner;

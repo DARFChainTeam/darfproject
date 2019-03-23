@@ -70,12 +70,19 @@ contract Mintable is tokenInterface, basic {
         }
     }
 
-    function transfer(address sender,address receiver, uint256 amount, bytes calldata data) external onlyOwnerEx(msg.sender)returns(bool) {
-    if(balanceOf(sender) < amount)
+    /*
+
+    function transfer(address sender,address receiver, uint256 amount, bytes32  data) external onlyOwnerEx(msg.sender)returns(bool) {
+     return  transferIntnl( sender, receiver,  amount, data) ;
+
+    }
+
+    function transferIntnl(address sender,address receiver, uint256 amount, bytes memory data)   onlyOwnerEx(msg.sender) internal returns(bool) {
+     if(balanceOf(sender) < amount)
         {
             revert();
         }
-        else if (receiver == address(0x0))
+       else if (receiver == address(0x0))
         {
             revert();
         }
@@ -83,28 +90,30 @@ contract Mintable is tokenInterface, basic {
         {
             revert();
         }
-
         else
         {
             //subtrack the amount of tokens from sender
+
             _balances[sender] = _balances[sender].sub(amount);
+
             //Add those tokens to reciever
             _balances[receiver] = _balances[receiver].add(amount);
 
             //If reciever is a contract ...
             if (isContract(receiver)) {
                 Receiver Receiverontract = Receiver(receiver);
+                //Invoke the call back function on the reciever contract
                 Receiverontract.tokenFallback(sender, amount, data);
             }
             return true;
         }
     }
 
-    function transfer(address sender,address receiver, uint256 amount) public  onlyOwnerEx(msg.sender)returns(bool) {
+    function transfer(address sender,address receiver, uint256 amount) external  onlyOwnerEx(msg.sender)returns(bool) {
 
         bytes memory empty;
         //use ERC223 transfer function
-        bool gotTransfered = transfer(sender,receiver, amount, empty);
+        bool gotTransfered = transferIntnl(sender,receiver, amount, empty);
 
         if (gotTransfered)
           return true;
@@ -112,6 +121,7 @@ contract Mintable is tokenInterface, basic {
           return false;
 
     }
+*/
 
     function burn(address sender,uint256 amount) public  onlyOwnerEx(msg.sender)returns(bool) {
 
