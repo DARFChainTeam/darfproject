@@ -159,7 +159,7 @@ contract userstory is project, token {
                 // sends ANG to team
                   (address ProjecttokenAddr, address project_owner_address) = get_token_and_project_owner_address(UserStories[UserStoryAddr].project_ID) ;
                 token ANGToken = token(ANGTokenAddrr);
-               address(ANGToken).transfer(address (this), project_owner_address, UserStories[UserStoryAddr].sum_raised,  UserStoryAddr);
+               ANGToken.transfer(address (this), project_owner_address, UserStories[UserStoryAddr].sum_raised,  UserStoryAddr);
                 // address sender,address receiver, uint256 amount, bytes data
 
                 //distribution of tokens
@@ -194,7 +194,7 @@ contract userstory is project, token {
                         baker++) {
                     address bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
                     token ANGToken = token(ANGTokenAddrr);
-                    address(ANGToken).transfer(address(this), UserStories[UserStoryAddr].bakers_list[baker], UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum);
+                    ANGToken.transfer(address(this), UserStories[UserStoryAddr].bakers_list[baker], UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum);
 
                 }
 
@@ -207,8 +207,8 @@ contract userstory is project, token {
         require(project_owner_address == msg.sender) ; //     require((Projects[Projecttoken].project_owner_address = msg.sender)) ;
 
             if (abortfromteam) {
-                token_refunds ( UserStoryAddr, ProjecttokenAddr );
-                emit User_story_aborted_by_team (UserStoryAddr, ProjecttokenAddr, why);
+                token_refunds ( UserStoryAddr );
+                emit User_story_aborted_by_team (UserStoryAddr, why);
                 // returns token to team
             }
 
@@ -224,8 +224,8 @@ contract userstory is project, token {
 
             if (abortfrombakers) {
                 (address ProjecttokenAddr, address project_owner_address) =                 get_token_and_project_owner_address(UserStories[UserStoryAddr].project_ID) ;
-                token_refunds ( UserStoryAddr, ProjecttokenAddr );
-                emit User_story_aborted_by_bakers (ProjecttokenAddr, ProjecttokenAddr, why);
+                token_refunds ( UserStoryAddr );
+                emit User_story_aborted_by_bakers (UserStoryAddr,  why);
                 // returns token to team
             }
 

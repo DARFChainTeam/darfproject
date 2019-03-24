@@ -78,7 +78,7 @@ contract token is Mintable {
      * @params data is of type bytes that represents the message being sent
      * @return A uint8 representing token's decimals
      */
-    function transfer(address sender, address receiver, uint256 amount, bytes memory data) public returns(bool)
+    function transfer(address sender, address receiver, uint256 amount, bytes32 data) external returns(bool)
     {
       bool result=_token.transfer(sender,receiver,amount,data);
       if(result)
@@ -97,7 +97,7 @@ contract token is Mintable {
      */
     function transfer(address receiver, uint256 amount) public returns(bool)
     {
-      bytes memory empty;
+      bytes32 empty;
       bool result = _token.transfer(msg.sender,receiver,amount);
       if(result)
       {
@@ -141,7 +141,7 @@ contract token is Mintable {
    // event TotalSupply(uint256 totalSupply);
     event BalanceOf(address addr, uint256 balance);
     event Burn(address indexed receiver, uint256 amount);
-    event Transfer(address indexed sender, address indexed receiver, uint256 amount, bytes data);
+    event Transfer(address indexed sender, address indexed receiver, uint256 amount, bytes32 data);
     event GetOwner(address indexed owner);
     event Mint(address indexed receiver, uint256 amount);
 

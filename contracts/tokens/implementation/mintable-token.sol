@@ -59,12 +59,12 @@ contract Mintable is tokenInterface, basic {
         }
         else
         {
-            bytes memory empty;
+            bytes32 empty;
             _totalSupply = _totalSupply.add(amount);
             _balances[receiver] = _balances[receiver].add(amount);
             if (isContract(receiver)) {
-                Receiver Receiverontract = Receiver(receiver);
-                Receiverontract.tokenFallback(tokenAddress, amount, empty);
+                Receiver ReceiverContract = Receiver(receiver);
+                ReceiverContract.tokenFallback(tokenAddress, amount, empty);
             }
             return true;
         }

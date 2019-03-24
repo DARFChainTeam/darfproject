@@ -50,7 +50,7 @@ contract basic is tokenInterface, Ownable  {
 
 
 
-function transferIntnl(address sender,address receiver, uint256 amount, bytes memory data)   onlyOwnerEx(msg.sender) internal returns(bool) {
+function transferIntnl(address sender,address receiver, uint256 amount, bytes32  data)   onlyOwnerEx(msg.sender) internal returns(bool) {
      if(balanceOf(sender) < amount)
         {
             revert();
@@ -85,7 +85,7 @@ function transferIntnl(address sender,address receiver, uint256 amount, bytes me
 
     function transfer(address sender,address receiver, uint256 amount)  onlyOwnerEx(msg.sender) external returns(bool) {
 
-         bytes memory empty;
+         bytes32 empty;
           //use ERC223 transfer function
           bool gotTransfered = transferIntnl(sender,receiver, amount, empty);
           if (gotTransfered)
@@ -97,7 +97,7 @@ function transferIntnl(address sender,address receiver, uint256 amount, bytes me
 
     function mint(address tokenAddress,address receiver, uint256 amount) public onlyOwnerEx(msg.sender) returns(bool)
     {
-        bytes memory empty;
+        bytes32 empty;
         transferIntnl(tokenAddress,receiver, amount,empty );
     }
 
