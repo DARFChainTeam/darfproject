@@ -61,10 +61,10 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50610361806100206000396000f3fe608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806364a04b591461005c5780638da5cb5b146100ad578063f2fde38b14610104575b600080fd5b34801561006857600080fd5b506100ab6004803603602081101561007f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610155565b005b3480156100b957600080fd5b506100c26101a2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011057600080fd5b506101536004803603602081101561012757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101cb565b005b61015d6101a2565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561019657600080fd5b61019f816102f2565b50565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b6101d36101a2565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561020c57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561024857600080fd5b7f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e06102716101a2565b82604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a16102ef816102f2565b50565b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a7230582030d355e3932cf9c9a7de7a5db8cf09ad4b3a672606e9c7d4492adb9b48f8cf810029",
-  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806364a04b591461005c5780638da5cb5b146100ad578063f2fde38b14610104575b600080fd5b34801561006857600080fd5b506100ab6004803603602081101561007f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610155565b005b3480156100b957600080fd5b506100c26101a2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011057600080fd5b506101536004803603602081101561012757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101cb565b005b61015d6101a2565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561019657600080fd5b61019f816102f2565b50565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b6101d36101a2565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561020c57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561024857600080fd5b7f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e06102716101a2565b82604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a16102ef816102f2565b50565b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505056fea165627a7a7230582030d355e3932cf9c9a7de7a5db8cf09ad4b3a672606e9c7d4492adb9b48f8cf810029",
+  "bytecode": "0x608060405234801561001057600080fd5b50610207806100206000396000f3fe6080604052600436106100565763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166364a04b59811461005b5780638da5cb5b14610090578063f2fde38b146100c1575b600080fd5b34801561006757600080fd5b5061008e6004803603602081101561007e57600080fd5b5035600160a060020a03166100f4565b005b34801561009c57600080fd5b506100a561011c565b60408051600160a060020a039092168252519081900360200190f35b3480156100cd57600080fd5b5061008e600480360360208110156100e457600080fd5b5035600160a060020a031661012b565b6100fc61011c565b600160a060020a0316331461011057600080fd5b610119816101ac565b50565b600054600160a060020a031690565b61013361011c565b600160a060020a0316331461014757600080fd5b600160a060020a038116151561015c57600080fd5b7f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e061018561011c565b60408051600160a060020a03928316815291841660208301528051918290030190a1610119815b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a039290921691909117905556fea165627a7a7230582037a836a1820814f6f2fd2443ab7b2d862d365d8e32d6d6a1e42f37c1687b29810029",
+  "deployedBytecode": "0x6080604052600436106100565763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166364a04b59811461005b5780638da5cb5b14610090578063f2fde38b146100c1575b600080fd5b34801561006757600080fd5b5061008e6004803603602081101561007e57600080fd5b5035600160a060020a03166100f4565b005b34801561009c57600080fd5b506100a561011c565b60408051600160a060020a039092168252519081900360200190f35b3480156100cd57600080fd5b5061008e600480360360208110156100e457600080fd5b5035600160a060020a031661012b565b6100fc61011c565b600160a060020a0316331461011057600080fd5b610119816101ac565b50565b600054600160a060020a031690565b61013361011c565b600160a060020a0316331461014757600080fd5b600160a060020a038116151561015c57600080fd5b7f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e061018561011c565b60408051600160a060020a03928316815291841660208301528051918290030190a1610119815b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a039290921691909117905556fea165627a7a7230582037a836a1820814f6f2fd2443ab7b2d862d365d8e32d6d6a1e42f37c1687b29810029",
   "sourceMap": "165:1094:11:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;165:1094:11;;;;;;;",
-  "deployedSourceMap": "165:1094:11:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;574:87;;8:9:-1;5:2;;;30:1;27;20:12;5:2;574:87:11;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;574:87:11;;;;;;;;;;;;;;;;;;;;;;288:71:12;;8:9:-1;5:2;;;30:1;27;20:12;5:2;288:71:12;;;;;;;;;;;;;;;;;;;;;;;;;;;1079:178:11;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1079:178:11;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1079:178:11;;;;;;;;;;;;;;;;;;;;;;574:87;788:7;:5;:7::i;:::-;774:21;;:10;:21;;;766:30;;;;;;;;638:18;647:8;638;:18::i;:::-;574:87;:::o;288:71:12:-;326:7;348:6;;;;;;;;;;;341:13;;288:71;:::o;1079:178:11:-;788:7;:5;:7::i;:::-;774:21;;:10;:21;;;766:30;;;;;;;;1175:1;1155:22;;:8;:22;;;;1147:31;;;;;;;;1189:39;1210:7;:5;:7::i;:::-;1219:8;1189:39;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1234:18;1243:8;1234;:18::i;:::-;1079:178;:::o;410:73:12:-;470:8;461:6;;:17;;;;;;;;;;;;;;;;;;410:73;:::o",
+  "deployedSourceMap": "165:1094:11:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;574:87;;8:9:-1;5:2;;;30:1;27;20:12;5:2;574:87:11;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;574:87:11;-1:-1:-1;;;;;574:87:11;;;;;288:71:12;;8:9:-1;5:2;;;30:1;27;20:12;5:2;288:71:12;;;;;;;;-1:-1:-1;;;;;288:71:12;;;;;;;;;;;;;;1079:178:11;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1079:178:11;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1079:178:11;-1:-1:-1;;;;;1079:178:11;;;574:87;788:7;:5;:7::i;:::-;-1:-1:-1;;;;;774:21:11;:10;:21;766:30;;;;;;638:18;647:8;638;:18::i;:::-;574:87;:::o;288:71:12:-;326:7;348:6;-1:-1:-1;;;;;348:6:12;288:71;:::o;1079:178:11:-;788:7;:5;:7::i;:::-;-1:-1:-1;;;;;774:21:11;:10;:21;766:30;;;;;;-1:-1:-1;;;;;1155:22:11;;;;1147:31;;;;;;1189:39;1210:7;:5;:7::i;:::-;1189:39;;;-1:-1:-1;;;;;1189:39:11;;;;;;;;;;;;;;;;;;;;;1234:18;1243:8;410:73:12;461:6;:17;;-1:-1:-1;;461:17:12;-1:-1:-1;;;;;461:17:12;;;;;;;;;;410:73::o",
   "source": "pragma solidity ^0.5.0;\n\nimport './OwnableStorage.sol';\n\n/**\n * @title Ownable\n * @dev This contract has the owner address providing basic authorization control\n */\ncontract Ownable is OwnableStorage {\n  /**\n  * @dev Event to show ownership has been transferred\n  * @param previousOwner representing the address of the previous owner\n  * @param newOwner representing the address of the new owner\n  */\n  event OwnershipTransferred(address previousOwner, address newOwner);\n\n  /**\n  * @dev The constructor sets the original owner of the contract to the sender account.\n  */\n  function ownable(address newowner) public onlyOwner {\n          setOwner(newowner);\n  }\n\n  /**\n  * @dev Throws if called by any account other than the owner.\n  */\n  modifier onlyOwner() {\n    require(msg.sender == owner());\n    _;\n  }\n\n  modifier onlyOwnerEx (address _sender_address) {\n    require(owner() == _sender_address);\n    _;\n\n      }\n\n\n  /**\n   * @dev Allows the current owner to transfer control of the contract to a newOwner.\n   * @param newOwner The address to transfer ownership to.\n   */\n  function transferOwnership(address newOwner) public onlyOwner {\n    require(newOwner != address(0));\n    emit OwnershipTransferred(owner(), newOwner);\n    setOwner(newOwner);\n  }\n}\n",
   "sourcePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/Ownable.sol",
   "ast": {
@@ -369,7 +369,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5687,
+                            "referencedDeclaration": 5685,
                             "src": "774:3:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -440,10 +440,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "766:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -572,10 +572,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "865:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -758,10 +758,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "1147:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1312,7 +1312,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5687,
+                            "referencedDeclaration": 5685,
                             "src": "774:3:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -1383,10 +1383,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "766:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1515,10 +1515,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "865:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1701,10 +1701,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "1147:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1959,7 +1959,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-25T06:59:12.644Z",
+  "updatedAt": "2019-03-26T11:37:43.485Z",
   "devdoc": {
     "details": "This contract has the owner address providing basic authorization control",
     "methods": {

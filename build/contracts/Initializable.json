@@ -1,8 +1,8 @@
 {
   "contractName": "Initializable",
   "abi": [],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058205c08267b4e144b62827761a26f5947dcf52ec109277c7c489e2be43b946cd0f60029",
-  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058205c08267b4e144b62827761a26f5947dcf52ec109277c7c489e2be43b946cd0f60029",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a7230582014a8cbcc1fbd36337dc1b2c63f0a144443a6049933b0a7fe0132b094099207ce0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a7230582014a8cbcc1fbd36337dc1b2c63f0a144443a6049933b0a7fe0132b094099207ce0029",
   "sourceMap": "25:149:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:149:10;;;;;;;",
   "deployedSourceMap": "25:149:10:-;;;;;",
   "source": "pragma solidity ^0.5.0;\n\ncontract Initializable {\n  bool private _initialized;\n\n  modifier isInitializer() {\n    require(!_initialized);\n    _;\n    _initialized = true;\n  }\n}\n",
@@ -118,10 +118,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "113:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -335,10 +335,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "113:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -447,7 +447,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-25T06:59:12.644Z",
+  "updatedAt": "2019-03-26T11:37:43.484Z",
   "devdoc": {
     "methods": {}
   },

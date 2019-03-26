@@ -1937,7 +1937,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-25T06:59:12.644Z",
+  "updatedAt": "2019-03-26T11:37:43.483Z",
   "devdoc": {
     "details": "This contract represents the interface of a registry contract",
     "methods": {

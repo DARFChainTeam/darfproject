@@ -3459,7 +3459,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 5687,
+                                "referencedDeclaration": 5685,
                                 "src": "1557:3:31",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -3512,10 +3512,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "1523:7:31",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -3553,7 +3553,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5768,
+                            "referencedDeclaration": 5766,
                             "src": "1671:4:31",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_base_withdraw_$5286",
@@ -3603,7 +3603,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5687,
+                          "referencedDeclaration": 5685,
                           "src": "1678:3:31",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -3951,7 +3951,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5768,
+                            "referencedDeclaration": 5766,
                             "src": "1926:4:31",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_base_withdraw_$5286",
@@ -4444,7 +4444,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5768,
+                            "referencedDeclaration": 5766,
                             "src": "2247:4:31",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_base_withdraw_$5286",
@@ -6181,7 +6181,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 5687,
+                                "referencedDeclaration": 5685,
                                 "src": "1557:3:31",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -6234,10 +6234,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        5690,
-                        5691
+                        5688,
+                        5689
                       ],
-                      "referencedDeclaration": 5690,
+                      "referencedDeclaration": 5688,
                       "src": "1523:7:31",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -6275,7 +6275,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5768,
+                            "referencedDeclaration": 5766,
                             "src": "1671:4:31",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_base_withdraw_$5286",
@@ -6325,7 +6325,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5687,
+                          "referencedDeclaration": 5685,
                           "src": "1678:3:31",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -6673,7 +6673,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5768,
+                            "referencedDeclaration": 5766,
                             "src": "1926:4:31",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_base_withdraw_$5286",
@@ -7166,7 +7166,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5768,
+                            "referencedDeclaration": 5766,
                             "src": "2247:4:31",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_base_withdraw_$5286",
@@ -7493,7 +7493,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-26T08:08:45.061Z",
+  "updatedAt": "2019-03-26T11:37:43.538Z",
   "devdoc": {
     "methods": {
       "ownable(address)": {

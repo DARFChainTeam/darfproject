@@ -1,8 +1,8 @@
 {
   "contractName": "adminInterface",
   "abi": [],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058207938a8896ef643be7be0deccd50f33d5160392ef88389986b11d6dfe285fc5dd0029",
-  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058207938a8896ef643be7be0deccd50f33d5160392ef88389986b11d6dfe285fc5dd0029",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820709a250654576e4c5f7d1ffc6f895e596194be77e03d1125bc315430bc851e150029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820709a250654576e4c5f7d1ffc6f895e596194be77e03d1125bc315430bc851e150029",
   "sourceMap": "84:29:18:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;84:29:18;;;;;;;",
   "deployedSourceMap": "84:29:18:-;;;;;",
   "source": "pragma solidity ^0.5.0;\nimport \"../../tokens/token.sol\";\n\n//TODO : Add dynamic rate\ninterface adminInterface\n{\n\n}\n",
@@ -115,7 +115,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-26T08:08:45.027Z",
+  "updatedAt": "2019-03-26T11:37:43.490Z",
   "devdoc": {
     "methods": {}
   },

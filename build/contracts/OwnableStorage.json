@@ -16,10 +16,10 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060ed8061001f6000396000f3fe608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680638da5cb5b146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690509056fea165627a7a72305820d6757854fe69b466ea192ca6a15add8f9eb897c43fc687238c723b4b8cf0cdf80029",
-  "deployedBytecode": "0x608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680638da5cb5b146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690509056fea165627a7a72305820d6757854fe69b466ea192ca6a15add8f9eb897c43fc687238c723b4b8cf0cdf80029",
+  "bytecode": "0x608060405234801561001057600080fd5b5060c68061001f6000396000f3fe608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b81146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff169056fea165627a7a723058207be4aec6249534eeca8089e7dfe3415b4976cb46e88ba64c2080b6305595c9280029",
+  "deployedBytecode": "0x608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b81146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff169056fea165627a7a723058207be4aec6249534eeca8089e7dfe3415b4976cb46e88ba64c2080b6305595c9280029",
   "sourceMap": "115:370:12:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;115:370:12;;;;;;;",
-  "deployedSourceMap": "115:370:12:-;;;;;;;;;;;;;;;;;;;;;;;;288:71;;8:9:-1;5:2;;;30:1;27;20:12;5:2;288:71:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;326:7;348:6;;;;;;;;;;;341:13;;288:71;:::o",
+  "deployedSourceMap": "115:370:12:-;;;;;;;;;;;;;;;;;;;;;;;288:71;;8:9:-1;5:2;;;30:1;27;20:12;5:2;288:71:12;;;;;;;;;;;;;;;;;;;;;;;;326:7;348:6;;;288:71;:::o",
   "source": "pragma solidity ^0.5.0;\n\n/**\n * @title OwnableStorage\n * @dev This contract keeps track of the owner's address\n */\ncontract OwnableStorage {\n  // Owner of the contract\n  address private _owner;\n\n  /**\n   * @dev Tells the address of the owner\n   * @return the address of the owner\n   */\n  function owner() public view returns (address) {\n    return _owner;\n  }\n\n  /**\n   * @dev Sets a new owner address\n   */\n  function setOwner(address newOwner) internal {\n    _owner = newOwner;\n  }\n}\n",
   "sourcePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/OwnableStorage.sol",
   "ast": {
@@ -538,7 +538,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-25T06:59:12.645Z",
+  "updatedAt": "2019-03-26T11:37:43.485Z",
   "devdoc": {
     "details": "This contract keeps track of the owner's address",
     "methods": {

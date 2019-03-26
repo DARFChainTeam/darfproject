@@ -46,7 +46,7 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\n//import \"../../tokens/token.sol\";\n\ninterface saleInterface\n{\n     function sellANGETH(address beneficiar, uint256 summa) external;\n    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) external ;\n\n\n}\n",
+  "source": "pragma solidity ^0.5.0;\n//import \"../../tokens/token.sol\";\n\ninterface saleInterface\n{\n    function sellANGETH(address beneficiar, uint256 summa) external;\n    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) external ;\n\n\n}\n",
   "sourcePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
   "ast": {
     "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
@@ -101,7 +101,7 @@
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
                   "scope": 5599,
-                  "src": "111:18:33",
+                  "src": "110:18:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -112,7 +112,7 @@
                     "id": 5593,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "111:7:33",
+                    "src": "110:7:33",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -128,7 +128,7 @@
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
                   "scope": 5599,
-                  "src": "131:13:33",
+                  "src": "130:13:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -139,7 +139,7 @@
                     "id": 5595,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "131:7:33",
+                    "src": "130:7:33",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -149,16 +149,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "110:35:33"
+              "src": "109:35:33"
             },
             "returnParameters": {
               "id": 5598,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "154:0:33"
+              "src": "153:0:33"
             },
             "scope": 5609,
-            "src": "91:64:33",
+            "src": "90:64:33",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -182,7 +182,7 @@
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
                   "scope": 5608,
-                  "src": "184:18:33",
+                  "src": "183:18:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -193,7 +193,7 @@
                     "id": 5600,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "184:7:33",
+                    "src": "183:7:33",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -209,7 +209,7 @@
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
                   "scope": 5608,
-                  "src": "204:13:33",
+                  "src": "203:13:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -220,7 +220,7 @@
                     "id": 5602,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "204:7:33",
+                    "src": "203:7:33",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -235,7 +235,7 @@
                   "name": "pass_word",
                   "nodeType": "VariableDeclaration",
                   "scope": 5608,
-                  "src": "219:17:33",
+                  "src": "218:17:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -246,7 +246,7 @@
                     "id": 5604,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "219:7:33",
+                    "src": "218:7:33",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -256,26 +256,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "183:54:33"
+              "src": "182:54:33"
             },
             "returnParameters": {
               "id": 5607,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "247:0:33"
+              "src": "246:0:33"
             },
             "scope": 5609,
-            "src": "160:88:33",
+            "src": "159:88:33",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 5610,
-        "src": "60:192:33"
+        "src": "60:191:33"
       }
     ],
-    "src": "0:253:33"
+    "src": "0:252:33"
   },
   "legacyAST": {
     "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
@@ -330,7 +330,7 @@
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
                   "scope": 5599,
-                  "src": "111:18:33",
+                  "src": "110:18:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -341,7 +341,7 @@
                     "id": 5593,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "111:7:33",
+                    "src": "110:7:33",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -357,7 +357,7 @@
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
                   "scope": 5599,
-                  "src": "131:13:33",
+                  "src": "130:13:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -368,7 +368,7 @@
                     "id": 5595,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "131:7:33",
+                    "src": "130:7:33",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -378,16 +378,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "110:35:33"
+              "src": "109:35:33"
             },
             "returnParameters": {
               "id": 5598,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "154:0:33"
+              "src": "153:0:33"
             },
             "scope": 5609,
-            "src": "91:64:33",
+            "src": "90:64:33",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -411,7 +411,7 @@
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
                   "scope": 5608,
-                  "src": "184:18:33",
+                  "src": "183:18:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -422,7 +422,7 @@
                     "id": 5600,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "184:7:33",
+                    "src": "183:7:33",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -438,7 +438,7 @@
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
                   "scope": 5608,
-                  "src": "204:13:33",
+                  "src": "203:13:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -449,7 +449,7 @@
                     "id": 5602,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "204:7:33",
+                    "src": "203:7:33",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -464,7 +464,7 @@
                   "name": "pass_word",
                   "nodeType": "VariableDeclaration",
                   "scope": 5608,
-                  "src": "219:17:33",
+                  "src": "218:17:33",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -475,7 +475,7 @@
                     "id": 5604,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "219:7:33",
+                    "src": "218:7:33",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -485,26 +485,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "183:54:33"
+              "src": "182:54:33"
             },
             "returnParameters": {
               "id": 5607,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "247:0:33"
+              "src": "246:0:33"
             },
             "scope": 5609,
-            "src": "160:88:33",
+            "src": "159:88:33",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 5610,
-        "src": "60:192:33"
+        "src": "60:191:33"
       }
     ],
-    "src": "0:253:33"
+    "src": "0:252:33"
   },
   "compiler": {
     "name": "solc",
@@ -512,7 +512,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-25T06:59:12.708Z",
+  "updatedAt": "2019-03-26T11:37:43.539Z",
   "devdoc": {
     "methods": {}
   },
