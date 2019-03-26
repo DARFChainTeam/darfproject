@@ -1,0 +1,125 @@
+{
+  "contractName": "adminInterface",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058207938a8896ef643be7be0deccd50f33d5160392ef88389986b11d6dfe285fc5dd0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058207938a8896ef643be7be0deccd50f33d5160392ef88389986b11d6dfe285fc5dd0029",
+  "sourceMap": "84:29:18:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;84:29:18;;;;;;;",
+  "deployedSourceMap": "84:29:18:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\nimport \"../../tokens/token.sol\";\n\n//TODO : Add dynamic rate\ninterface adminInterface\n{\n\n}\n",
+  "sourcePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+  "ast": {
+    "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+    "exportedSymbols": {
+      "adminInterface": [
+        2354
+      ]
+    },
+    "id": 2355,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2352,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:18"
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokens/token.sol",
+        "file": "../../tokens/token.sol",
+        "id": 2353,
+        "nodeType": "ImportDirective",
+        "scope": 2355,
+        "sourceUnit": 5091,
+        "src": "24:32:18",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2354,
+        "linearizedBaseContracts": [
+          2354
+        ],
+        "name": "adminInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 2355,
+        "src": "84:29:18"
+      }
+    ],
+    "src": "0:114:18"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+    "exportedSymbols": {
+      "adminInterface": [
+        2354
+      ]
+    },
+    "id": 2355,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2352,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:18"
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokens/token.sol",
+        "file": "../../tokens/token.sol",
+        "id": 2353,
+        "nodeType": "ImportDirective",
+        "scope": 2355,
+        "sourceUnit": 5091,
+        "src": "24:32:18",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2354,
+        "linearizedBaseContracts": [
+          2354
+        ],
+        "name": "adminInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 2355,
+        "src": "84:29:18"
+      }
+    ],
+    "src": "0:114:18"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-26T08:08:45.027Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

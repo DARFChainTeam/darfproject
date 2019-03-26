@@ -1,0 +1,1234 @@
+{
+  "contractName": "sale",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "beneficiar",
+          "type": "address"
+        },
+        {
+          "name": "summa",
+          "type": "uint256"
+        }
+      ],
+      "name": "sellANGETH",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "Sale",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "pass_word",
+          "type": "bytes32"
+        }
+      ],
+      "name": "sell_discount",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "beneficiar",
+          "type": "address"
+        },
+        {
+          "name": "summa",
+          "type": "uint256"
+        },
+        {
+          "name": "pass_word",
+          "type": "bytes32"
+        }
+      ],
+      "name": "sell_discount",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\nimport \"./interface/sale-interface.sol\";\nimport \"./implementation/sellANG_ETH.sol\";\n\ncontract sale is saleInterface {\n    saleInterface private _sale;\n\n    function Sale() public  {\n       _sale = new sellANG_ETH();\n\n    }\n\n    function () external payable\n    {\n        _sale.sellANGETH(msg.sender, msg.value);\n    }\n\n    function sell_discount(bytes32 pass_word) public payable\n    {\n        _sale.sell_discount(msg.sender, msg.value, pass_word);\n    }\n}\n",
+  "sourcePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/sale.sol",
+  "ast": {
+    "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/sale.sol",
+    "exportedSymbols": {
+      "sale": [
+        5672
+      ]
+    },
+    "id": 5673,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5626,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:35"
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
+        "file": "./interface/sale-interface.sol",
+        "id": 5627,
+        "nodeType": "ImportDirective",
+        "scope": 5673,
+        "sourceUnit": 5610,
+        "src": "24:40:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/implementation/sellANG_ETH.sol",
+        "file": "./implementation/sellANG_ETH.sol",
+        "id": 5628,
+        "nodeType": "ImportDirective",
+        "scope": 5673,
+        "sourceUnit": 5591,
+        "src": "65:42:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5629,
+              "name": "saleInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5609,
+              "src": "126:13:35",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_saleInterface_$5609",
+                "typeString": "contract saleInterface"
+              }
+            },
+            "id": 5630,
+            "nodeType": "InheritanceSpecifier",
+            "src": "126:13:35"
+          }
+        ],
+        "contractDependencies": [
+          5590,
+          5609
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5672,
+        "linearizedBaseContracts": [
+          5672,
+          5609
+        ],
+        "name": "sale",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 5632,
+            "name": "_sale",
+            "nodeType": "VariableDeclaration",
+            "scope": 5672,
+            "src": "146:27:35",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_saleInterface_$5609",
+              "typeString": "contract saleInterface"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 5631,
+              "name": "saleInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5609,
+              "src": "146:13:35",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_saleInterface_$5609",
+                "typeString": "contract saleInterface"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 5641,
+              "nodeType": "Block",
+              "src": "204:42:35",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5639,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5635,
+                      "name": "_sale",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5632,
+                      "src": "213:5:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_saleInterface_$5609",
+                        "typeString": "contract saleInterface"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 5637,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "221:15:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_sellANG_ETH_$5590_$",
+                          "typeString": "function () returns (contract sellANG_ETH)"
+                        },
+                        "typeName": {
+                          "contractScope": null,
+                          "id": 5636,
+                          "name": "sellANG_ETH",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 5590,
+                          "src": "225:11:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_sellANG_ETH_$5590",
+                            "typeString": "contract sellANG_ETH"
+                          }
+                        }
+                      },
+                      "id": 5638,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "221:17:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_sellANG_ETH_$5590",
+                        "typeString": "contract sellANG_ETH"
+                      }
+                    },
+                    "src": "213:25:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_saleInterface_$5609",
+                      "typeString": "contract saleInterface"
+                    }
+                  },
+                  "id": 5640,
+                  "nodeType": "ExpressionStatement",
+                  "src": "213:25:35"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5642,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "Sale",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5633,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "193:2:35"
+            },
+            "returnParameters": {
+              "id": 5634,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "204:0:35"
+            },
+            "scope": 5672,
+            "src": "180:66:35",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5654,
+              "nodeType": "Block",
+              "src": "285:56:35",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5648,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "312:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5649,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "312:10:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5650,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "324:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5651,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "324:9:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 5645,
+                        "name": "_sale",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5632,
+                        "src": "295:5:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_saleInterface_$5609",
+                          "typeString": "contract saleInterface"
+                        }
+                      },
+                      "id": 5647,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sellANGETH",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5599,
+                      "src": "295:16:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256) external"
+                      }
+                    },
+                    "id": 5652,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "295:39:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5653,
+                  "nodeType": "ExpressionStatement",
+                  "src": "295:39:35"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5655,
+            "implemented": true,
+            "kind": "fallback",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5643,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "261:2:35"
+            },
+            "returnParameters": {
+              "id": 5644,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "285:0:35"
+            },
+            "scope": 5672,
+            "src": "252:89:35",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5670,
+              "nodeType": "Block",
+              "src": "408:70:35",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5663,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "438:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5664,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "438:10:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5665,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "450:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5666,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "450:9:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 5667,
+                        "name": "pass_word",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5657,
+                        "src": "461:9:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 5660,
+                        "name": "_sale",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5632,
+                        "src": "418:5:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_saleInterface_$5609",
+                          "typeString": "contract saleInterface"
+                        }
+                      },
+                      "id": 5662,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sell_discount",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5608,
+                      "src": "418:19:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$_t_bytes32_$returns$__$",
+                        "typeString": "function (address,uint256,bytes32) external"
+                      }
+                    },
+                    "id": 5668,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "418:53:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5669,
+                  "nodeType": "ExpressionStatement",
+                  "src": "418:53:35"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5671,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "sell_discount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5658,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5657,
+                  "name": "pass_word",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5671,
+                  "src": "370:17:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 5656,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "370:7:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "369:19:35"
+            },
+            "returnParameters": {
+              "id": 5659,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "408:0:35"
+            },
+            "scope": 5672,
+            "src": "347:131:35",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5673,
+        "src": "109:371:35"
+      }
+    ],
+    "src": "0:481:35"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/sale.sol",
+    "exportedSymbols": {
+      "sale": [
+        5672
+      ]
+    },
+    "id": 5673,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5626,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:35"
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
+        "file": "./interface/sale-interface.sol",
+        "id": 5627,
+        "nodeType": "ImportDirective",
+        "scope": 5673,
+        "sourceUnit": 5610,
+        "src": "24:40:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokensale/implementation/sellANG_ETH.sol",
+        "file": "./implementation/sellANG_ETH.sol",
+        "id": 5628,
+        "nodeType": "ImportDirective",
+        "scope": 5673,
+        "sourceUnit": 5591,
+        "src": "65:42:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5629,
+              "name": "saleInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5609,
+              "src": "126:13:35",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_saleInterface_$5609",
+                "typeString": "contract saleInterface"
+              }
+            },
+            "id": 5630,
+            "nodeType": "InheritanceSpecifier",
+            "src": "126:13:35"
+          }
+        ],
+        "contractDependencies": [
+          5590,
+          5609
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5672,
+        "linearizedBaseContracts": [
+          5672,
+          5609
+        ],
+        "name": "sale",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 5632,
+            "name": "_sale",
+            "nodeType": "VariableDeclaration",
+            "scope": 5672,
+            "src": "146:27:35",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_saleInterface_$5609",
+              "typeString": "contract saleInterface"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 5631,
+              "name": "saleInterface",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5609,
+              "src": "146:13:35",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_saleInterface_$5609",
+                "typeString": "contract saleInterface"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 5641,
+              "nodeType": "Block",
+              "src": "204:42:35",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5639,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5635,
+                      "name": "_sale",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5632,
+                      "src": "213:5:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_saleInterface_$5609",
+                        "typeString": "contract saleInterface"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 5637,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "221:15:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_sellANG_ETH_$5590_$",
+                          "typeString": "function () returns (contract sellANG_ETH)"
+                        },
+                        "typeName": {
+                          "contractScope": null,
+                          "id": 5636,
+                          "name": "sellANG_ETH",
+                          "nodeType": "UserDefinedTypeName",
+                          "referencedDeclaration": 5590,
+                          "src": "225:11:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_sellANG_ETH_$5590",
+                            "typeString": "contract sellANG_ETH"
+                          }
+                        }
+                      },
+                      "id": 5638,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "221:17:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_sellANG_ETH_$5590",
+                        "typeString": "contract sellANG_ETH"
+                      }
+                    },
+                    "src": "213:25:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_saleInterface_$5609",
+                      "typeString": "contract saleInterface"
+                    }
+                  },
+                  "id": 5640,
+                  "nodeType": "ExpressionStatement",
+                  "src": "213:25:35"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5642,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "Sale",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5633,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "193:2:35"
+            },
+            "returnParameters": {
+              "id": 5634,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "204:0:35"
+            },
+            "scope": 5672,
+            "src": "180:66:35",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5654,
+              "nodeType": "Block",
+              "src": "285:56:35",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5648,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "312:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5649,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "312:10:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5650,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "324:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5651,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "324:9:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 5645,
+                        "name": "_sale",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5632,
+                        "src": "295:5:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_saleInterface_$5609",
+                          "typeString": "contract saleInterface"
+                        }
+                      },
+                      "id": 5647,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sellANGETH",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5599,
+                      "src": "295:16:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256) external"
+                      }
+                    },
+                    "id": 5652,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "295:39:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5653,
+                  "nodeType": "ExpressionStatement",
+                  "src": "295:39:35"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5655,
+            "implemented": true,
+            "kind": "fallback",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5643,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "261:2:35"
+            },
+            "returnParameters": {
+              "id": 5644,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "285:0:35"
+            },
+            "scope": 5672,
+            "src": "252:89:35",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5670,
+              "nodeType": "Block",
+              "src": "408:70:35",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5663,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "438:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5664,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "438:10:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5665,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5687,
+                          "src": "450:3:35",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 5666,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "450:9:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 5667,
+                        "name": "pass_word",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5657,
+                        "src": "461:9:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 5660,
+                        "name": "_sale",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5632,
+                        "src": "418:5:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_saleInterface_$5609",
+                          "typeString": "contract saleInterface"
+                        }
+                      },
+                      "id": 5662,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sell_discount",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5608,
+                      "src": "418:19:35",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$_t_bytes32_$returns$__$",
+                        "typeString": "function (address,uint256,bytes32) external"
+                      }
+                    },
+                    "id": 5668,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "418:53:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5669,
+                  "nodeType": "ExpressionStatement",
+                  "src": "418:53:35"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5671,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "sell_discount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5658,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5657,
+                  "name": "pass_word",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5671,
+                  "src": "370:17:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 5656,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "370:7:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "369:19:35"
+            },
+            "returnParameters": {
+              "id": 5659,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "408:0:35"
+            },
+            "scope": 5672,
+            "src": "347:131:35",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5673,
+        "src": "109:371:35"
+      }
+    ],
+    "src": "0:481:35"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-26T08:08:45.063Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

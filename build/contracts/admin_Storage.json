@@ -1,0 +1,1099 @@
+{
+  "contractName": "admin_Storage",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_admins",
+      "outputs": [
+        {
+          "name": "active",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "contracts_adresses",
+      "outputs": [
+        {
+          "name": "name_contract",
+          "type": "string"
+        },
+        {
+          "name": "abi",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_token_address",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506040516020806103fe8339810180604052602081101561003057600080fd5b81019080805190602001909291905050506000339050600033905060008390505050505061039b806100636000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630d5e205314610051578063bc33e8ef146100ba575b600080fd5b34801561005d57600080fd5b506100a06004803603602081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101f0565b604051808215151515815260200191505060405180910390f35b3480156100c657600080fd5b50610109600480360360208110156100dd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061021b565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b8381101561014d578082015181840152602081019050610132565b50505050905090810190601f16801561017a5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101b3578082015181840152602081019050610198565b50505050905090810190601f1680156101e05780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b60016020528060005260406000206000915090508060000160009054906101000a900460ff16905081565b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102c75780601f1061029c576101008083540402835291602001916102c7565b820191906000526020600020905b8154815290600101906020018083116102aa57829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103655780601f1061033a57610100808354040283529160200191610365565b820191906000526020600020905b81548152906001019060200180831161034857829003601f168201915b505050505090508256fea165627a7a7230582030287f0658b7d99f4eac213fae86ee37db8479f9b4e53cd93f319d3b70346ba50029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630d5e205314610051578063bc33e8ef146100ba575b600080fd5b34801561005d57600080fd5b506100a06004803603602081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101f0565b604051808215151515815260200191505060405180910390f35b3480156100c657600080fd5b50610109600480360360208110156100dd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061021b565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b8381101561014d578082015181840152602081019050610132565b50505050905090810190601f16801561017a5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101b3578082015181840152602081019050610198565b50505050905090810190601f1680156101e05780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b60016020528060005260406000206000915090508060000160009054906101000a900460ff16905081565b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102c75780601f1061029c576101008083540402835291602001916102c7565b820191906000526020600020905b8154815290600101906020018083116102aa57829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103655780601f1061033a57610100808354040283529160200191610365565b820191906000526020600020905b81548152906001019060200180831161034857829003601f168201915b505050505090508256fea165627a7a7230582030287f0658b7d99f4eac213fae86ee37db8479f9b4e53cd93f319d3b70346ba50029",
+  "sourceMap": "140:736:15:-;;;428:177;8:9:-1;5:2;;;30:1;27;20:12;5:2;428:177:15;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;428:177:15;;;;;;;;;;;;;;;;481:13;497:10;481:26;;517:18;538:10;517:31;;558:21;582:14;558:38;;428:177;;;;140:736;;;;;;",
+  "deployedSourceMap": "140:736:15:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;745:41;;8:9:-1;5:2;;;30:1;27;20:12;5:2;745:41:15;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;745:41:15;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;360:60;;8:9:-1;5:2;;;30:1;27;20:12;5:2;360:60:15;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;360:60:15;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;360:60:15;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;360:60:15;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;745:41;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;360:60::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.0;\nimport \"./interface/admin-interface.sol\";\nimport \"./implementation/basic-admin.sol\";\nimport \"../tokens/token.sol\";\n\ncontract admin_Storage{\n  /*using SafeMath for uint256;*/\n// store all config data here\n    struct admin_storage {\n        string name_contract ; // filename of contract\n        string abi; //abi for contract\n\n    }\n    mapping (address => admin_storage) public contracts_adresses;\n\n     constructor(address _token_address) public {\n        address owner = msg.sender;\n        address beneficiar = msg.sender;\n        address token_address = _token_address;\n      }\n//setting of valuees-----------------------------------------------------------\n\n\n      struct Admin {\n        bool active;\n      }\n\n      mapping (address => Admin) public _admins;\n    //==============================================================================\n\n\n}\n",
+  "sourcePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/admin_storage.sol",
+  "ast": {
+    "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/admin_storage.sol",
+    "exportedSymbols": {
+      "admin_Storage": [
+        2096
+      ]
+    },
+    "id": 2097,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2056,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:15"
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+        "file": "./interface/admin-interface.sol",
+        "id": 2057,
+        "nodeType": "ImportDirective",
+        "scope": 2097,
+        "sourceUnit": 2355,
+        "src": "24:41:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/implementation/basic-admin.sol",
+        "file": "./implementation/basic-admin.sol",
+        "id": 2058,
+        "nodeType": "ImportDirective",
+        "scope": 2097,
+        "sourceUnit": 2351,
+        "src": "66:42:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokens/token.sol",
+        "file": "../tokens/token.sol",
+        "id": 2059,
+        "nodeType": "ImportDirective",
+        "scope": 2097,
+        "sourceUnit": 5091,
+        "src": "109:29:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2096,
+        "linearizedBaseContracts": [
+          2096
+        ],
+        "name": "admin_Storage",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "admin_Storage.admin_storage",
+            "id": 2064,
+            "members": [
+              {
+                "constant": false,
+                "id": 2061,
+                "name": "name_contract",
+                "nodeType": "VariableDeclaration",
+                "scope": 2064,
+                "src": "263:20:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2060,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "263:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2063,
+                "name": "abi",
+                "nodeType": "VariableDeclaration",
+                "scope": 2064,
+                "src": "318:10:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2062,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "318:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "admin_storage",
+            "nodeType": "StructDefinition",
+            "scope": 2096,
+            "src": "232:123:15",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2068,
+            "name": "contracts_adresses",
+            "nodeType": "VariableDeclaration",
+            "scope": 2096,
+            "src": "360:60:15",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_admin_storage_$2064_storage_$",
+              "typeString": "mapping(address => struct admin_Storage.admin_storage)"
+            },
+            "typeName": {
+              "id": 2067,
+              "keyType": {
+                "id": 2065,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "369:7:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "360:34:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_admin_storage_$2064_storage_$",
+                "typeString": "mapping(address => struct admin_Storage.admin_storage)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2066,
+                "name": "admin_storage",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2064,
+                "src": "380:13:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_admin_storage_$2064_storage_ptr",
+                  "typeString": "struct admin_Storage.admin_storage"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2087,
+              "nodeType": "Block",
+              "src": "471:134:15",
+              "statements": [
+                {
+                  "assignments": [
+                    2074
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2074,
+                      "name": "owner",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2087,
+                      "src": "481:13:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2073,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "481:7:15",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2077,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 2075,
+                      "name": "msg",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5687,
+                      "src": "497:3:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_message",
+                        "typeString": "msg"
+                      }
+                    },
+                    "id": 2076,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "sender",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "497:10:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "481:26:15"
+                },
+                {
+                  "assignments": [
+                    2079
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2079,
+                      "name": "beneficiar",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2087,
+                      "src": "517:18:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2078,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "517:7:15",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2082,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 2080,
+                      "name": "msg",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5687,
+                      "src": "538:3:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_message",
+                        "typeString": "msg"
+                      }
+                    },
+                    "id": 2081,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "sender",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "538:10:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "517:31:15"
+                },
+                {
+                  "assignments": [
+                    2084
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2084,
+                      "name": "token_address",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2087,
+                      "src": "558:21:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2083,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "558:7:15",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2086,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "id": 2085,
+                    "name": "_token_address",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2070,
+                    "src": "582:14:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "558:38:15"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2088,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2071,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2070,
+                  "name": "_token_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2088,
+                  "src": "440:22:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2069,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "440:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "439:24:15"
+            },
+            "returnParameters": {
+              "id": 2072,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "471:0:15"
+            },
+            "scope": 2096,
+            "src": "428:177:15",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "admin_Storage.Admin",
+            "id": 2091,
+            "members": [
+              {
+                "constant": false,
+                "id": 2090,
+                "name": "active",
+                "nodeType": "VariableDeclaration",
+                "scope": 2091,
+                "src": "717:11:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 2089,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "717:4:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Admin",
+            "nodeType": "StructDefinition",
+            "scope": 2096,
+            "src": "694:43:15",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2095,
+            "name": "_admins",
+            "nodeType": "VariableDeclaration",
+            "scope": 2096,
+            "src": "745:41:15",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Admin_$2091_storage_$",
+              "typeString": "mapping(address => struct admin_Storage.Admin)"
+            },
+            "typeName": {
+              "id": 2094,
+              "keyType": {
+                "id": 2092,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "754:7:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "745:26:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Admin_$2091_storage_$",
+                "typeString": "mapping(address => struct admin_Storage.Admin)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2093,
+                "name": "Admin",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2091,
+                "src": "765:5:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Admin_$2091_storage_ptr",
+                  "typeString": "struct admin_Storage.Admin"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2097,
+        "src": "140:736:15"
+      }
+    ],
+    "src": "0:877:15"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/admin_storage.sol",
+    "exportedSymbols": {
+      "admin_Storage": [
+        2096
+      ]
+    },
+    "id": 2097,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2056,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:15"
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+        "file": "./interface/admin-interface.sol",
+        "id": 2057,
+        "nodeType": "ImportDirective",
+        "scope": 2097,
+        "sourceUnit": 2355,
+        "src": "24:41:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/admin/implementation/basic-admin.sol",
+        "file": "./implementation/basic-admin.sol",
+        "id": 2058,
+        "nodeType": "ImportDirective",
+        "scope": 2097,
+        "sourceUnit": 2351,
+        "src": "66:42:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/sergey/Documents/angels/Angeles.VC-token-scrum-investing/contracts/tokens/token.sol",
+        "file": "../tokens/token.sol",
+        "id": 2059,
+        "nodeType": "ImportDirective",
+        "scope": 2097,
+        "sourceUnit": 5091,
+        "src": "109:29:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2096,
+        "linearizedBaseContracts": [
+          2096
+        ],
+        "name": "admin_Storage",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "admin_Storage.admin_storage",
+            "id": 2064,
+            "members": [
+              {
+                "constant": false,
+                "id": 2061,
+                "name": "name_contract",
+                "nodeType": "VariableDeclaration",
+                "scope": 2064,
+                "src": "263:20:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2060,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "263:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2063,
+                "name": "abi",
+                "nodeType": "VariableDeclaration",
+                "scope": 2064,
+                "src": "318:10:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2062,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "318:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "admin_storage",
+            "nodeType": "StructDefinition",
+            "scope": 2096,
+            "src": "232:123:15",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2068,
+            "name": "contracts_adresses",
+            "nodeType": "VariableDeclaration",
+            "scope": 2096,
+            "src": "360:60:15",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_admin_storage_$2064_storage_$",
+              "typeString": "mapping(address => struct admin_Storage.admin_storage)"
+            },
+            "typeName": {
+              "id": 2067,
+              "keyType": {
+                "id": 2065,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "369:7:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "360:34:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_admin_storage_$2064_storage_$",
+                "typeString": "mapping(address => struct admin_Storage.admin_storage)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2066,
+                "name": "admin_storage",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2064,
+                "src": "380:13:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_admin_storage_$2064_storage_ptr",
+                  "typeString": "struct admin_Storage.admin_storage"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2087,
+              "nodeType": "Block",
+              "src": "471:134:15",
+              "statements": [
+                {
+                  "assignments": [
+                    2074
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2074,
+                      "name": "owner",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2087,
+                      "src": "481:13:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2073,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "481:7:15",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2077,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 2075,
+                      "name": "msg",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5687,
+                      "src": "497:3:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_message",
+                        "typeString": "msg"
+                      }
+                    },
+                    "id": 2076,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "sender",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "497:10:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "481:26:15"
+                },
+                {
+                  "assignments": [
+                    2079
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2079,
+                      "name": "beneficiar",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2087,
+                      "src": "517:18:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2078,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "517:7:15",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2082,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 2080,
+                      "name": "msg",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5687,
+                      "src": "538:3:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_message",
+                        "typeString": "msg"
+                      }
+                    },
+                    "id": 2081,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "sender",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "538:10:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "517:31:15"
+                },
+                {
+                  "assignments": [
+                    2084
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2084,
+                      "name": "token_address",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2087,
+                      "src": "558:21:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 2083,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "558:7:15",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2086,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "id": 2085,
+                    "name": "_token_address",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2070,
+                    "src": "582:14:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "558:38:15"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2088,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2071,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2070,
+                  "name": "_token_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2088,
+                  "src": "440:22:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2069,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "440:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "439:24:15"
+            },
+            "returnParameters": {
+              "id": 2072,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "471:0:15"
+            },
+            "scope": 2096,
+            "src": "428:177:15",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "admin_Storage.Admin",
+            "id": 2091,
+            "members": [
+              {
+                "constant": false,
+                "id": 2090,
+                "name": "active",
+                "nodeType": "VariableDeclaration",
+                "scope": 2091,
+                "src": "717:11:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 2089,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "717:4:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Admin",
+            "nodeType": "StructDefinition",
+            "scope": 2096,
+            "src": "694:43:15",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2095,
+            "name": "_admins",
+            "nodeType": "VariableDeclaration",
+            "scope": 2096,
+            "src": "745:41:15",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Admin_$2091_storage_$",
+              "typeString": "mapping(address => struct admin_Storage.Admin)"
+            },
+            "typeName": {
+              "id": 2094,
+              "keyType": {
+                "id": 2092,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "754:7:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "745:26:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Admin_$2091_storage_$",
+                "typeString": "mapping(address => struct admin_Storage.Admin)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2093,
+                "name": "Admin",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2091,
+                "src": "765:5:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Admin_$2091_storage_ptr",
+                  "typeString": "struct admin_Storage.Admin"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2097,
+        "src": "140:736:15"
+      }
+    ],
+    "src": "0:877:15"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-26T08:08:45.062Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
