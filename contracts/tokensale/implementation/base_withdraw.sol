@@ -7,14 +7,17 @@ import '../../scruminvest/project.sol';
 
 contract base_withdraw is withdraw_interface, project, userstory {
      address External_Storage_addr;
+     address Userstory_smart_contr_addr;
+     address  Project_smart_contr_addr;
+     address  ANGtokenaddr;
 
-    function team_withdraw(bytes32 UserStoryAddr) external
+
+    function team_withdraw(bytes32 UserStoryAddr) payable external
     {
-        ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        address currentcontractuserstoryaddr =ES.getAddressValue("scruminvest/userstory");
-        userstory userstorycurrent =  userstory(currentcontractuserstoryaddr);
 
-        ( uint256  project_ID,
+        userstory userstorycurrent =  userstory(Userstory_smart_contr_addr);
+
+        ( uint256  project_ID, //+
           uint256   User_story_number,
           bytes32   DFS_Hash,
           bytes4   DFS_type,
@@ -22,27 +25,26 @@ contract base_withdraw is withdraw_interface, project, userstory {
           uint256   Story_Amount_Tokens,
           uint256  start_date,
           uint256  duration,
-          uint256   sum_raised,
+          uint256   sum_raised, //+
           uint256  sum_accepted,
           uint256  Ask_end_from_project,
           uint256  finished  ) = userstorycurrent.UserStories(UserStoryAddr);
 
-        address  Projectaddr =ES.getAddressValue("scruminvest/project");
-        project Projectcontractcurrent =  project(Projectaddr);
+        project Projectcontractcurrent =  project(Project_smart_contr_addr);
         address   ProjecttokenAddr = Projectcontractcurrent.ProjectList(project_ID);
         (uint256   project_ID_pr,
-        address  project_owner_address,
+        address  project_owner_address, //+
         address   _DARF_system_address,
         bytes32  DFS_Project_describe,
         bytes4   DFS_type_pr) = Projectcontractcurrent.Projects(ProjecttokenAddr);
         require((project_owner_address == msg.sender)) ;  // only team lead can withdraw
-            token(ES.getAddressValue("ANGtoken")).transfer(address(this), msg.sender, sum_raised);
+            token(ANGtokenaddr).transfer(address(this), msg.sender, sum_raised);
     }
 
-   function sos_withdraw (address beneficiar, uint256 amount) onlyOwner external
+   function sos_withdraw (address beneficiar, uint256 amount) payable external  onlyOwner
    {
        ExternalStorage ES = ExternalStorage(External_Storage_addr);
-       token(ES.getAddressValue("ANGtoken")).transfer(address(this), beneficiar, amount);
+       token(ANGtokenaddr).transfer(address(this), beneficiar, amount);
    }
 
 
@@ -56,6 +58,10 @@ contract base_withdraw is withdraw_interface, project, userstory {
 
      function load_conditions_ES () public  onlyAdmins { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
+        Userstory_smart_contr_addr =ES.getAddressValue("scruminvest/userstory");
+        Project_smart_contr_addr =ES.getAddressValue("scruminvest/project");
+        ANGtokenaddr = ES.getAddressValue("ANGtoken");
+
         //Projectaddr = ES.getAddressValue("scruminvest/project");
         //KYC_threshold = ES.getAddressValue('KYC/KYC_threshold');
     }
