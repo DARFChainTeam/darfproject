@@ -118,7 +118,7 @@ contract project is ExternalStorage {
             Projects[Projecttokenaddr].DFS_type = DFStype;
             ProjectList.push(Projecttokenaddr);
             Projects[Projecttokenaddr].project_ID = ProjectList.length;
-            emit New_project (Projects[Projecttokenaddr].project_owner_address, Projecttokenaddr, Projects[Projecttokenaddr].DFS_Project_describe,  Projects[Projecttokenaddr]._DARF_system_address ) ;
+        emit New_project (Projects[Projecttokenaddr].project_owner_address, Projecttokenaddr, Projects[Projecttokenaddr].DFS_Project_describe,  Projects[Projecttokenaddr]._DARF_system_address ) ;
 
 }
 
@@ -142,7 +142,7 @@ contract project is ExternalStorage {
         emit finished_project (Projecttokenaddr);
 
 }
-        function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,                  bytes32 POA_addr) public returns (uint256) {
+        function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,bytes32 POA_addr) public returns (uint256) {
        require(msg.sender == Projects[Projecttokenaddr]._DARF_system_address);
             uint256 timestamp = now;
             bytes32 ProjectAddr = keccak256(abi.encodePacked (Projecttokenaddr, timestamp));
@@ -159,10 +159,10 @@ contract project is ExternalStorage {
      function project_get_state(address Projecttokenaddr, uint timestamp ) public returns(bytes32) {
 
         if (checkrights(Projecttokenaddr) > 0) { //returns state
-            return Project_statuses[keccak256(abi.encodePacked(Projecttokenaddr, timestamp))].DFS_changes_addr ;
+            return Project_statuses[keccak256(abi.encodePacked(Projecttokenaddr, timestamp))].DFS_changes_addr;
         }
         else { //returns only PoA
-            return Project_statuses[keccak256(abi.encodePacked(Projecttokenaddr, timestamp))].POA_addr ;
+            return Project_statuses[keccak256(abi.encodePacked(Projecttokenaddr, timestamp))].POA_addr;
 
             }
 

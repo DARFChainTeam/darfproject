@@ -24,7 +24,7 @@ contract token is Mintable {
     address  External_Storage_addr;
 
 
-    function Token(string memory symbol, string memory name, uint8 decimals ) public
+    constructor(string memory symbol, string memory name, uint8 decimals ) public
     {
       _owner = msg.sender;
       _token= new Mintable();

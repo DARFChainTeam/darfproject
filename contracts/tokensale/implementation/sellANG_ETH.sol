@@ -93,7 +93,7 @@ import "../../admin/ExternalStorage.sol";
 
         }
 
-
+      
 
       event Log_no_KYC(address investor);
       //event Change_KYC_level(address investor);
