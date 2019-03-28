@@ -46,7 +46,7 @@ import "../../admin/ExternalStorage.sol";
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("tokensale/ExchangeANG_ETH", address(this));
-
+        load_conditions_ES ();
     }
 
     function load_conditions_ES () public  { //when something changes

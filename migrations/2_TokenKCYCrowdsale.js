@@ -7,7 +7,7 @@ module.exports = async deployer => {
   var owner = accounts[0];
   console.log("Token owner: ",owner);
   await deployer.deploy(token,"Angel","ANG",18,{from: owner});
-  await deployer.deploy(sale,{from: owner});
+  await deployer.deploy(sale,{from: owner, gas: 672197500});
   console.log("Sale tokens address:"+sale.address);
 //  console.log("ANG token address:" + token.address);
 }
