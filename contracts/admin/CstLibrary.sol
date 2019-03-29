@@ -1,5 +1,5 @@
 pragma solidity ^0.5.0;
-import "./ExternalStorage.sol";
+import "./interface/ExternalStorage.sol";
 
 library CstLibrary {
 

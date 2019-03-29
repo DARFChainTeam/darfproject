@@ -15,13 +15,13 @@ contract withdraw is  Administratable { //withdraw_interface
        _withdraw = new base_withdraw();
     }
 
-    function team_withdraw(bytes32 UserStoryAddr) payable external
+    function team_withdraw(bytes32 UserStoryAddr) payable public
     {
        _withdraw = new base_withdraw();
        _withdraw.team_withdraw(UserStoryAddr);
     }
 
-    function sos_withdraw (address beneficiar, uint256 amount) payable external onlySuperAdmins
+    function sos_withdraw (address beneficiar, uint256 amount) payable public onlySuperAdmins
     {
        _withdraw = new base_withdraw();
 
@@ -36,7 +36,7 @@ contract withdraw is  Administratable { //withdraw_interface
      address  ANGtokenaddr;
 
 
-    function team_withdraw(bytes32 UserStoryAddr) payable external
+    function team_withdraw(bytes32 UserStoryAddr) payable public
     {
 
         userstory userstorycurrent =  userstory(Userstory_smart_contr_addr);
@@ -65,7 +65,7 @@ contract withdraw is  Administratable { //withdraw_interface
             token(ANGtokenaddr).transfer(address(this), msg.sender, sum_raised);
     }
 
-   function sos_withdraw (address beneficiar, uint256 amount) payable external  onlyOwner
+   function sos_withdraw (address beneficiar, uint256 amount) payable public  onlyOwner
    {
        ExternalStorage ES = ExternalStorage(External_Storage_addr);
        token(ANGtokenaddr).transfer(address(this), beneficiar, amount);

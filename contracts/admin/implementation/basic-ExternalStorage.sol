@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
-import "../libraries/SafeMath.sol";
-import "./administratable.sol";
+import "../../libraries/SafeMath.sol";
+import "../administratable.sol";
 
 contract ExternalStorage is Administratable {
   using SafeMath for uint256;
@@ -154,12 +154,6 @@ contract ExternalStorage is Administratable {
 
   function setIntValue(string memory record, int value) public onlyAdmins {
     IntStorage[keccak256(abi.encode(record))] = value;
-  }
-
-  //KYC & investors functions
-
-  function investorGet (address _investor_address, bytes32 currency) public   {
-    return; //todo transfer as structure?
   }
 
 }

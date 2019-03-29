@@ -5,7 +5,7 @@ import "../../libraries/SafeMath.sol";
 import "../interface/KYC_interface.sol";
 // import "../KYC_storage.sol";
 import "../../admin/administratable.sol";
-import "../../admin/ExternalStorage.sol";
+import "../../admin/interface/ExternalStorage.sol";
 
 
  //TODO add owner checks
@@ -53,13 +53,20 @@ contract basic_KYC is KYC_interface, Administratable {
 
     }
 
+   function allowed_invest(address _investor_address, bytes32 currency) external  returns(uint256)
+   {
+      bytes32 currency_adr = keccak256(abi.encode(currency));
+      return _investors[_investor_address][currency_adr].approved_sum ;
+   }
 
 
        function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        ES.setAddressValue("KYC/implemenation/Basic_KYC", address(this));
+        ES.setAddressValue("KYC/implementation/Basic_KYC", address(this));
+
+
 
     }
 

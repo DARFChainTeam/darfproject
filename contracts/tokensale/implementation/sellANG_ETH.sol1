@@ -4,7 +4,7 @@ import "../interface/sale-interface.sol";
 import "../../tokens/token.sol";
 import "../../KYC/KYC.sol";
 import "../../tokens/token.sol";
-import "../../admin/ExternalStorage.sol";
+import "../../admin/interface/ExternalStorage.sol";
 
 
   contract sellANG_ETH is saleInterface, KYC  {

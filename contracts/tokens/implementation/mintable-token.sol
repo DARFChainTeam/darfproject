@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 import "../interface/token-interface.sol";
-import "../../receiver/receiver.sol";
+//import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
 import "./basic-token.sol";
 

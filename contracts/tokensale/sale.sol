@@ -1,13 +1,13 @@
 pragma solidity ^0.5.0;
 //import "../interface/sale-interface.sol";
 //import "./implementation/basic-crowdsale.sol";
-import "../tokens/token.sol";
-import "../KYC/KYC.sol";
+import "../tokens/interface/token-interface.sol";
+import "../KYC/interface/KYC_interface.sol";
+import "../admin/administratable.sol";
+import "../admin/interface/ExternalStorage.sol";
 
-import "../admin/ExternalStorage.sol";
 
-
-  contract sellANG_ETH is  token, KYC  { // saleInterface
+  contract sellANG_ETH is Administratable { //} is token, KYC_interface  { // saleInterface
       address External_Storage_addr;
       uint ANG_tokens_rate_ETH; //1 ETH;
       address public ANGtoken_addr;
@@ -54,7 +54,7 @@ import "../admin/ExternalStorage.sol";
         ANGtoken_addr =  ES.getAddressValue("ANGtoken");
         ANG_tokens_rate_ETH = ES.getUIntValue("ANGtokensrateETH");
         ANG_percent100 = ES.getUIntValue("ANGpercent100");
-        KYC_address = ES.getAddressValue("KYC/KYC");
+        KYC_address = ES.getAddressValue("KYC/implementation/Basic_KYC");
         discount_word =  ES.getBytes32Value("tokensale/discount_word");
         discount_size100 = ES.getUIntValue("tokensale/discount_size");
         discount_amount =  ES.getUIntValue("tokensale/discount_amount");
@@ -64,14 +64,14 @@ import "../admin/ExternalStorage.sol";
 
 
 
-    function sellANGETH(address beneficiar, uint256 summa)  external  { //simple buy ANG for Ether
+    function sellANGETH(address beneficiar, uint256 summa)  public payable { //simple buy ANG for Ether
 
-        token ANGtoken = token( ANGtoken_addr);
+        tokenInterface ANGtoken = tokenInterface ( ANGtoken_addr);
 
-        KYC KYC_ = KYC(KYC_address);
+        KYC_interface KYC_ = KYC_interface (KYC_address);
         require  (KYC_.allowed_invest(beneficiar, "ETH") - summa > 0);
           uint256 ANG_tokens_amount = summa* ANG_tokens_rate_ETH * (100 - ANG_percent100) / 100;
-          ANGtoken.transfer(beneficiar,ANG_tokens_amount);
+          ANGtoken.transfer(address(this), beneficiar,ANG_tokens_amount);
           KYC_.register_invest (beneficiar, "ETH", summa);
           KYC_.register_invest (beneficiar, "ANG", ANG_tokens_amount);
           emit Purchase_ANG (beneficiar, ANG_tokens_amount);
@@ -79,14 +79,14 @@ import "../admin/ExternalStorage.sol";
         }
 
 
-    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) external  {
-        token ANGtoken = token( ANGtoken_addr);
-        KYC KYC_ = KYC(KYC_address);
+    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) public payable  {
+        tokenInterface ANGtoken = tokenInterface ( ANGtoken_addr);
+        KYC_interface KYC_ = KYC_interface (KYC_address);
         require ((discount_amount > summa) && (KYC_.allowed_invest(beneficiar, "ETH") - summa > 0) &&  (pass_word == discount_word));
 
               uint256 ANG_tokens_amount = summa * ANG_tokens_rate_ETH *(100 - ANG_percent100)*(discount_size100 +100)/10000;
               discount_amount -= summa;
-              ANGtoken.transfer(beneficiar,ANG_tokens_amount);
+              ANGtoken.transfer(address(this),beneficiar,ANG_tokens_amount);
               KYC_.register_invest (beneficiar, "ETH", summa);
               KYC_.register_invest (beneficiar, "ANG", ANG_tokens_amount);
               emit Purchase_ANG (beneficiar, ANG_tokens_amount);

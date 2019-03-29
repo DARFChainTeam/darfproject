@@ -1,8 +1,8 @@
 pragma solidity ^0.5.0;
 import "./project.sol";
-import '../admin/ExternalStorage.sol';
+//import '../admin/interface/ExternalStorage.sol';
 
-import '../admin/administratable.sol';
+//import '../admin/administratable.sol';
 import '../tokens/token.sol';
 contract userstory is project, token {
 
