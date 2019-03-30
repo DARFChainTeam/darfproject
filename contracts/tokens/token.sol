@@ -3,7 +3,7 @@ import "./interface/token-interface.sol";
 //import "./implementation/basic-token.sol";
 import "./implementation/mintable-token.sol";
 //import "../admin/interface/ExternalStorage.sol";
-//import "../admin/administratable.sol";
+//import "../admin/interface/administratable.sol";
 
 // contracts/libraries/Modifiers.sol
 

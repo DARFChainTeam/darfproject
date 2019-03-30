@@ -4,7 +4,7 @@ pragma solidity ^0.5.0;
 import "../../libraries/SafeMath.sol";
 import "../interface/KYC_interface.sol";
 // import "../KYC_storage.sol";
-import "../../admin/administratable.sol";
+import "../../admin/interface/administratable.sol";
 import "../../admin/interface/ExternalStorage.sol";
 
 
@@ -60,7 +60,7 @@ contract basic_KYC is KYC_interface, Administratable {
    }
 
 
-       function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
+       function _initExternalStorage(address Externalstorageaddr) public onlyAdmins (msg.sender) {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
@@ -70,7 +70,7 @@ contract basic_KYC is KYC_interface, Administratable {
 
     }
 
-     function load_conditions_ES () public onlyAdmins { //when something changes
+     function load_conditions_ES () public onlyAdmins (msg.sender) { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         //Projectaddr = ES.getAddressValue("scruminvest/project");
         KYC_threshold = ES.getUIntValue('KYC/KYC_threshold');

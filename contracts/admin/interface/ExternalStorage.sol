@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "../administratable.sol";
+import "../interface/administratable.sol";
 
 contract  ExternalStorage is Administratable {
    function getMultiLedgerValue(string memory record, address primaryAddress, address secondaryAddress) public view returns (uint256) ;

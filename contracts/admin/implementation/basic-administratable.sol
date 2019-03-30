@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
-import "./Ownable.sol";
-import "../libraries/SafeMath.sol";
+import "../Ownable.sol";
+import "../../libraries/SafeMath.sol";
 
 contract Administratable is Ownable {
   using SafeMath for uint256;
@@ -20,15 +20,30 @@ contract Administratable is Ownable {
   event AddSuperAdmin(address indexed admin);
   event RemoveSuperAdmin(address indexed admin);
 
-  modifier onlyAdmins  {
-    if ((msg.sender != owner() ) && (!superAdmins[msg.sender]) && (!admins[msg.sender])) revert();
+
+  modifier onlyAdmins  (address msgSender)  {
+    if (checkAdmin(msgSender)) revert();
     _;
   }
 
-  modifier onlySuperAdmins {
-    if ((msg.sender != owner()) &&  (!superAdmins[msg.sender])) revert();
+  modifier onlySuperAdmins (address msgSender) {
+    if (checkSuperAdmin(msgSender)) revert();
     _;
   }
+
+
+  function checkAdmin (address msgSender) public returns (bool) {
+
+    return ((msgSender != owner() ) && (!superAdmins[msgSender]) && (!admins[msgSender]));
+
+  }
+
+  function checkSuperAdmin (address msgSender) public returns (bool) {
+
+    return ((msgSender != owner() ) && (!admins[msgSender]));
+
+  }
+
 
   function addSuperAdmin(address admin) public onlyOwner {
     superAdmins[admin] = true;
@@ -47,7 +62,7 @@ contract Administratable is Ownable {
     emit RemoveSuperAdmin(admin);
   }
 
-  function addAdmin(address admin) public onlySuperAdmins {
+  function addAdmin(address admin) public onlySuperAdmins (msg.sender) {
     admins[admin] = true;
     if (!processedAdmin[admin]) {
       processedAdmin[admin] = true;
@@ -58,7 +73,7 @@ contract Administratable is Ownable {
     emit  AddAdmin(admin);
   }
 
-  function removeAdmin(address admin) public onlySuperAdmins {
+  function removeAdmin(address admin) public onlySuperAdmins (msg.sender) {
     admins[admin] = false;
 
     emit RemoveAdmin(admin);

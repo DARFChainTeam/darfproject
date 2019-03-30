@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 //import "./interface/withdraw_interface.sol";
 // import "./implementation/base_withdraw.sol";
-import '../admin/administratable.sol';
+import '../admin/interface/administratable.sol';
 import '../scruminvest/userstory.sol';
 import '../scruminvest/project.sol';
 
@@ -21,7 +21,7 @@ contract withdraw is  Administratable { //withdraw_interface
        _withdraw.team_withdraw(UserStoryAddr);
     }
 
-    function sos_withdraw (address beneficiar, uint256 amount) payable public onlySuperAdmins
+    function sos_withdraw (address beneficiar, uint256 amount) payable public onlySuperAdmins (msg.sender)
     {
        _withdraw = new base_withdraw();
 
@@ -72,7 +72,7 @@ contract withdraw is  Administratable { //withdraw_interface
    }
 
 
-       function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
+       function _initExternalStorage(address Externalstorageaddr) public onlyAdmins (msg.sender) {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
@@ -80,7 +80,7 @@ contract withdraw is  Administratable { //withdraw_interface
         load_conditions_ES;
     }
 
-     function load_conditions_ES () public  onlyAdmins { //when something changes
+     function load_conditions_ES () public  onlyAdmins (msg.sender) { //when something changes
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         Userstory_smart_contr_addr =ES.getAddressValue("scruminvest/userstory");
         Project_smart_contr_addr =ES.getAddressValue("scruminvest/project");

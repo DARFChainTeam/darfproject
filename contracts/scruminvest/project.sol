@@ -182,7 +182,7 @@ contract project is ExternalStorage {
 
 
 
-   function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
+   function _initExternalStorage(address Externalstorageaddr) public onlyAdmins (msg.sender) {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);

@@ -1,6 +1,6 @@
 pragma solidity 0.5.0;
 
-import "./administratable.sol";
+import "./interface/administratable.sol";
 import "../libraries/SafeMath.sol";
 
 contract Freezable is Administratable {
@@ -23,7 +23,7 @@ contract Freezable is Administratable {
     _;
   }
 
-  function freezeAccount(address target, bool freeze) public onlySuperAdmins {
+  function freezeAccount(address target, bool freeze) public onlySuperAdmins (msg.sender) {
     frozenAccount[target] = freeze;
     if (!processedAccount[target]) {
       frozenAccountForIndex.push(target);
@@ -32,7 +32,7 @@ contract Freezable is Administratable {
     emit FrozenFunds(target, freeze);
   }
 
-  function freezeToken(bool freeze) public onlySuperAdmins {
+  function freezeToken(bool freeze) public onlySuperAdmins (msg.sender) {
     frozenToken = freeze;
     emit FrozenToken(frozenToken);
   }

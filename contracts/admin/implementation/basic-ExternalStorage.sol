@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 import "../../libraries/SafeMath.sol";
-import "../administratable.sol";
+import "../interface/administratable.sol";
 
 contract ExternalStorage is Administratable {
   using SafeMath for uint256;
@@ -27,7 +27,7 @@ contract ExternalStorage is Administratable {
     return MultiLedgerStorage[keccak256(abi.encode(record))][primaryAddress][secondaryAddress];
   }
 
-  function setMultiLedgerValue(string memory record, address primaryAddress, address secondaryAddress, uint256 value) public onlyAdmins {
+  function setMultiLedgerValue(string memory record, address primaryAddress, address secondaryAddress, uint256 value) public onlyAdmins (msg.sender) {
     bytes32 hash = keccak256(abi.encode(record));
     uint256 primaryLedgerIndex = primaryLedgerCount[hash];
     uint256 secondaryLedgerIndex = secondaryLedgerCount[hash][primaryAddress];
@@ -59,7 +59,7 @@ contract ExternalStorage is Administratable {
     return ledgerCount[keccak256(abi.encode(record))];
   }
 
-  function setLedgerValue(string memory record, address _address, uint256 value) public onlyAdmins {
+  function setLedgerValue(string memory record, address _address, uint256 value) public onlyAdmins (msg.sender) {
     bytes32 hash = keccak256(abi.encode(record));
     if (!ledgerAccounts[hash][_address]) {
       uint256 ledgerIndex = ledgerCount[hash];
@@ -84,7 +84,7 @@ contract ExternalStorage is Administratable {
     return booleanMapCount[keccak256(abi.encode(record))];
   }
 
-  function setBooleanMapValue(string memory record, address _address, bool value) public onlyAdmins {
+  function setBooleanMapValue(string memory record, address _address, bool value) public onlyAdmins (msg.sender) {
     bytes32 hash = keccak256(abi.encode(record));
     if (!booleanMapAccounts[hash][_address]) {
       uint256 ledgerIndex = booleanMapCount[hash];
@@ -102,7 +102,7 @@ contract ExternalStorage is Administratable {
     return UIntStorage[keccak256(abi.encode(record))];
   }
 
-  function setUIntValue(string memory record, uint256 value) public onlyAdmins {
+  function setUIntValue(string memory record, uint256 value) public onlyAdmins (msg.sender) {
     UIntStorage[keccak256(abi.encode(record))] = value;
   }
 
@@ -112,7 +112,7 @@ contract ExternalStorage is Administratable {
     return Bytes32Storage[keccak256(abi.encode(record))];
   }
 
-  function setBytes32Value(string memory record, bytes32 value) public onlyAdmins {
+  function setBytes32Value(string memory record, bytes32 value) public onlyAdmins (msg.sender) {
     Bytes32Storage[keccak256(abi.encode(record))] = value;
   }
 
@@ -122,7 +122,7 @@ contract ExternalStorage is Administratable {
     return AddressStorage[keccak256(abi.encode(record))];
   }
 
-  function setAddressValue(string memory record, address value) public onlyAdmins {
+  function setAddressValue(string memory record, address value) public onlyAdmins (msg.sender) {
     AddressStorage[keccak256(abi.encode(record))] = value;
   }
 
@@ -132,7 +132,7 @@ contract ExternalStorage is Administratable {
     return BytesStorage[keccak256(abi.encode(record))];
   }
 
-  function setBytesValue(string memory record, bytes memory value) public onlyAdmins {
+  function setBytesValue(string memory record, bytes memory value) public onlyAdmins (msg.sender) {
     BytesStorage[keccak256(abi.encode(record))] = value;
   }
 
@@ -142,7 +142,7 @@ contract ExternalStorage is Administratable {
     return BooleanStorage[keccak256(abi.encode(record))];
   }
 
-  function setBooleanValue(string memory record, bool value) public onlyAdmins {
+  function setBooleanValue(string memory record, bool value) public onlyAdmins (msg.sender) {
     BooleanStorage[keccak256(abi.encode(record))] = value;
   }
 
@@ -152,7 +152,7 @@ contract ExternalStorage is Administratable {
     return IntStorage[keccak256(abi.encode(record))];
   }
 
-  function setIntValue(string memory record, int value) public onlyAdmins {
+  function setIntValue(string memory record, int value) public onlyAdmins (msg.sender) {
     IntStorage[keccak256(abi.encode(record))] = value;
   }
 

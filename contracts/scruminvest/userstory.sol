@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 import "./project.sol";
 //import '../admin/interface/ExternalStorage.sol';
 
-//import '../admin/administratable.sol';
+//import '../admin/interface/administratable.sol';
 import '../tokens/token.sol';
 contract userstory is project, token {
 
@@ -233,7 +233,7 @@ contract userstory is project, token {
 
 
 
-    function _initExternalStorage(address Externalstorageaddr ) public onlyAdmins {
+    function _initExternalStorage(address Externalstorageaddr ) public onlyAdmins (msg.sender) {
 
         External_Storage_addr = Externalstorageaddr;
 

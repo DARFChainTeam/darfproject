@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./administratable.sol";
+import "./interface/administratable.sol";
 import "../libraries/SafeMath.sol";
 
 contract ITokenLedger {
@@ -38,7 +38,7 @@ contract CstLedger is ITokenLedger, Administratable {
     return _balanceOf[account];
   }
 
-  function mintTokens(uint256 amount) public onlyAdmins {
+  function mintTokens(uint256 amount) public onlyAdmins (msg.sender) {
     _totalTokens = _totalTokens.add(amount);
   }
 
@@ -50,7 +50,7 @@ contract CstLedger is ITokenLedger, Administratable {
     }
   }
 
-  function transfer(address sender, address recipient, uint256 amount) public onlyAdmins {
+  function transfer(address sender, address recipient, uint256 amount) public onlyAdmins (msg.sender) {
     require(_balanceOf[sender] >= amount);
 
     _balanceOf[sender] = _balanceOf[sender].sub(amount);
@@ -58,14 +58,14 @@ contract CstLedger is ITokenLedger, Administratable {
     makeAccountIterable(recipient);
   }
 
-  function creditAccount(address account, uint256 amount) public onlyAdmins { // decrease asset/increase liability: remove tokens
+  function creditAccount(address account, uint256 amount) public onlyAdmins (msg.sender) { // decrease asset/increase liability: remove tokens
     require(_balanceOf[account] >= amount);
 
     _totalInCirculation = _totalInCirculation.sub(amount);
     _balanceOf[account] = _balanceOf[account].sub(amount);
   }
 
-  function debitAccount(address account, uint256 amount) public onlyAdmins { // increase asset/decrease liability: add tokens
+  function debitAccount(address account, uint256 amount) public onlyAdmins (msg.sender) { // increase asset/decrease liability: add tokens
     _totalInCirculation = _totalInCirculation.add(amount);
     _balanceOf[account] = _balanceOf[account].add(amount);
     makeAccountIterable(account);
