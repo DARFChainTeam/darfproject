@@ -1,10 +1,12 @@
 pragma solidity ^0.5.0;
 
-import "../Ownable.sol";
-import "../../libraries/SafeMath.sol";
+import "./admin-interface.sol";
+
+//import "../interface/administratable.sol";
+//import "../../libraries/SafeMath.sol";
 // import "./ExternalStorage.sol";
 
-contract Administratable is Ownable {
+contract Administratable is admin {
 
   address Basic_Administratable_addr;
   address  External_Storage_addr;
@@ -20,16 +22,33 @@ contract Administratable is Ownable {
     _;
   }
 
-  function checkAdmin (address msgSender) internal returns (bool)
+  function checkAdmin (address msgSender) public returns (bool)
   {
       return BA_.checkAdmin(msgSender);
   }
 
-  function checkSuperAdmin (address msgSender) internal returns (bool)
+  function checkSuperAdmin (address msgSender) public returns (bool)
   {
     return BA_.checkSuperAdmin(msgSender);
 
   }
+
+  modifier onlyOwner() {
+    require (check_owner (msg.sender));
+    _;
+  }
+
+  modifier onlyOwnerEx (address _sender_address) {
+    require(check_owner(_sender_address));
+    _;
+
+      }
+
+    function check_owner (address _sender_address) public returns(bool)
+  {
+        return BA_.check_owner(_sender_address);
+  }
+
 
 /*
 

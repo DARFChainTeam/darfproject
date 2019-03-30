@@ -1,8 +1,19 @@
 pragma solidity ^0.5.0;
-import "../../tokens/token.sol";
 
-//TODO : Add dynamic rate
-interface adminInterface
-{
+//import "../Ownable.sol";
+
+//import "../interface/administratable.sol";
+//import "../../libraries/SafeMath.sol";
+// import "./ExternalStorage.sol";
+
+contract  admin  {
+
+
+  function checkAdmin (address msgSender) public returns (bool);
+
+  function checkSuperAdmin (address msgSender) public returns (bool);
+
+  function check_owner (address _sender_address) public returns(bool);
+
 
 }

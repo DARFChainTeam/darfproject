@@ -25,16 +25,20 @@ contract Ownable is OwnableStorage {
   * @dev Throws if called by any account other than the owner.
   */
   modifier onlyOwner() {
-    require(msg.sender == owner());
+    require (check_owner (msg.sender));
     _;
   }
 
   modifier onlyOwnerEx (address _sender_address) {
-    require(owner() == _sender_address);
+    require(check_owner(_sender_address));
     _;
 
       }
 
+  function check_owner (address _sender_address) public returns(bool)
+  {
+        return (owner() == _sender_address);
+  }
 
   /**
    * @dev Allows the current owner to transfer control of the contract to a newOwner.

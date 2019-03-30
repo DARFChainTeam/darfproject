@@ -34,11 +34,11 @@ contract Mintable is tokenInterface, basic {
         return _owner;
     }
 
-    function balanceOf(address addr) public view  onlyOwnerEx(msg.sender)returns(uint256) {
+    function balanceOf(address addr) public view  returns(uint256) { //onlyOwnerEx(msg.sender)
         return _balances[addr];
     }
 
-    function totalSupply() public view  onlyOwnerEx(msg.sender)returns(uint256) {
+    function totalSupply() public view  returns(uint256) { //onlyOwnerEx(msg.sender)
         return _totalSupply;
     }
 

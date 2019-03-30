@@ -34,14 +34,14 @@ import "../admin/interface/ExternalStorage.sol";
     //==============================================================================
 //setting of valuees-----------------------------------------------------------
 
-        function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins
+        function _setExternalstorageaddr(address Externalstorageaddr ) public onlyAdmins (msg.sender)
       {
 
        External_Storage_addr = Externalstorageaddr;
 
       }
 
-      function _initExternalStorage(address Externalstorageaddr) public onlyAdmins {
+      function _initExternalStorage(address Externalstorageaddr) public onlyAdmins (msg.sender) {
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);

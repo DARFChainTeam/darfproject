@@ -1,11 +1,11 @@
 pragma solidity ^0.5.0;
 import "./interface/receiver-interface.sol";
 import "./implementation/simple-receiver.sol";
-import "../admin/Ownable.sol";
+import "../admin/interface/administratable.sol";
 /*@title Receiver contract Abstract Class
  *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
  */
-contract Receiver is receiverInterface,  Ownable {
+contract Receiver is receiverInterface, Administratable {
 
   /*address internal _acceptedAddress;*/
     address private _owner;

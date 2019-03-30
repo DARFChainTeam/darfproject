@@ -2,11 +2,11 @@ pragma solidity ^ 0.5.0;
 import "../interface/token-interface.sol";
 import "../../receiver/receiver.sol";
 import "../../libraries/SafeMath.sol";
-import  "../../admin/Ownable.sol";
+import  "../../admin/interface/administratable.sol";
 //import "../../libraries/Modifiers.sol";
 
 //TODO test to see if contract owner can change the amount of total supply
-contract basic is tokenInterface, Ownable  {
+contract basic is tokenInterface, Administratable  {
   using SafeMath for uint256;
   string internal _symbol;
   string internal _name;
@@ -28,7 +28,7 @@ contract basic is tokenInterface, Ownable  {
         return address(this);
 
     }
-    function balanceOf(address addr) public view onlyOwnerEx(msg.sender) returns(uint256) {
+    function balanceOf(address addr) public view  returns(uint256) { //onlyOwnerEx(msg.sender)
 
         return _balances[addr];
 
@@ -38,7 +38,7 @@ contract basic is tokenInterface, Ownable  {
         return _owner;
 
     }
-    function totalSupply() public view onlyOwnerEx(msg.sender) returns(uint256) {
+    function totalSupply() public view returns(uint256) { //onlyOwnerEx(msg.sender)
 
         return _totalSupply;
 

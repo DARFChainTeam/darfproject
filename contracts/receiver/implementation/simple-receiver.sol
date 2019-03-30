@@ -1,12 +1,12 @@
 pragma solidity ^0.5.0;
 import "../../libraries/SafeMath.sol";
 import "../interface/receiver-interface.sol";
-import "../../admin/Ownable.sol";
+import "../../admin/interface/administratable.sol";
 
 /*@title Receiver contract Abstract Class
  *@dev this is an abstract class that is the building block of any contract that is supposed to recieve ERC223 token
  */
-contract simpleReciever is receiverInterface , Ownable {
+contract simpleReciever is receiverInterface , Administratable {
     using SafeMath for uint256;
     address private _acceptedAddress;
     address private _owner;
