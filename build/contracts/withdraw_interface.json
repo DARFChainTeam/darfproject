@@ -1,0 +1,408 @@
+{
+  "contractName": "withdraw_interface",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "userstoryaddr",
+          "type": "bytes32"
+        }
+      ],
+      "name": "team_withdraw",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "beneficiar",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "sos_withdraw",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\ninterface withdraw_interface {\n\n   function team_withdraw(bytes32 userstoryaddr) external payable;\n   function sos_withdraw (address beneficiar, uint256 amount) external payable;\n\n\n}\n",
+  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/withdraw_interface.sol",
+  "ast": {
+    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/withdraw_interface.sol",
+    "exportedSymbols": {
+      "withdraw_interface": [
+        5405
+      ]
+    },
+    "id": 5406,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5392,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:31"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5405,
+        "linearizedBaseContracts": [
+          5405
+        ],
+        "name": "withdraw_interface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5397,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "team_withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5395,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5394,
+                  "name": "userstoryaddr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5397,
+                  "src": "83:21:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 5393,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "83:7:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "82:23:31"
+            },
+            "returnParameters": {
+              "id": 5396,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "122:0:31"
+            },
+            "scope": 5405,
+            "src": "60:63:31",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5404,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "sos_withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5402,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5399,
+                  "name": "beneficiar",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5404,
+                  "src": "150:18:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5398,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5401,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5404,
+                  "src": "170:14:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5400,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "170:7:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:36:31"
+            },
+            "returnParameters": {
+              "id": 5403,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "202:0:31"
+            },
+            "scope": 5405,
+            "src": "127:76:31",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5406,
+        "src": "25:182:31"
+      }
+    ],
+    "src": "0:208:31"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/withdraw_interface.sol",
+    "exportedSymbols": {
+      "withdraw_interface": [
+        5405
+      ]
+    },
+    "id": 5406,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5392,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:31"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 5405,
+        "linearizedBaseContracts": [
+          5405
+        ],
+        "name": "withdraw_interface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5397,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "team_withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5395,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5394,
+                  "name": "userstoryaddr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5397,
+                  "src": "83:21:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 5393,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "83:7:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "82:23:31"
+            },
+            "returnParameters": {
+              "id": 5396,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "122:0:31"
+            },
+            "scope": 5405,
+            "src": "60:63:31",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 5404,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "sos_withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5402,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5399,
+                  "name": "beneficiar",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5404,
+                  "src": "150:18:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5398,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:7:31",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5401,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5404,
+                  "src": "170:14:31",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5400,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "170:7:31",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:36:31"
+            },
+            "returnParameters": {
+              "id": 5403,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "202:0:31"
+            },
+            "scope": 5405,
+            "src": "127:76:31",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5406,
+        "src": "25:182:31"
+      }
+    ],
+    "src": "0:208:31"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-30T13:01:20.383Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

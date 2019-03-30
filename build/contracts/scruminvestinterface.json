@@ -1,0 +1,103 @@
+{
+  "contractName": "scruminvestinterface",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820908cbb12f215fdbf46a9bfb576839e7d38d83e6eaeae27631bf9cc44ebc638b50029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820908cbb12f215fdbf46a9bfb576839e7d38d83e6eaeae27631bf9cc44ebc638b50029",
+  "sourceMap": "91:358:23:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;91:358:23;;;;;;;",
+  "deployedSourceMap": "91:358:23:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\n\n//TODO : rewrite project and userstory to interface architecture\ninterface scruminvestinterface\n{\n  /*\n  function buyTokens(address receiver,uint256 weiAmount) public returns(uint256);\n  function getToken() public returns(address);\n  function getOwner() public returns(address);\n  function getAddress() public returns(address);\n  function getRate() public returns(uint256);\n  function finalize() public returns(bool);\n*/\n\n}\n",
+  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/scruminvest-interface.sol",
+  "ast": {
+    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/scruminvest-interface.sol",
+    "exportedSymbols": {
+      "scruminvestinterface": [
+        3070
+      ]
+    },
+    "id": 3071,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3069,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:23"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3070,
+        "linearizedBaseContracts": [
+          3070
+        ],
+        "name": "scruminvestinterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3071,
+        "src": "91:358:23"
+      }
+    ],
+    "src": "0:450:23"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/scruminvest-interface.sol",
+    "exportedSymbols": {
+      "scruminvestinterface": [
+        3070
+      ]
+    },
+    "id": 3071,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3069,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:23"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3070,
+        "linearizedBaseContracts": [
+          3070
+        ],
+        "name": "scruminvestinterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3071,
+        "src": "91:358:23"
+      }
+    ],
+    "src": "0:450:23"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-30T13:01:20.358Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
