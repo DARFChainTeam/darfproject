@@ -65,7 +65,7 @@ contract basic_KYC is KYC_interface, Administratable {
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ES.setAddressValue("KYC/implementation/Basic_KYC", address(this));
-
+        load_conditions_ES ();
 
 
     }
