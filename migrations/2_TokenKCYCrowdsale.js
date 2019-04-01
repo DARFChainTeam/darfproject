@@ -23,7 +23,7 @@
 
 */
 //basic = artifacts.require("./tokens/implementation/basic-token.sol");
-//tokenInterface = artifacts.require("./tokens/interface/token-interface.sol");
+//tokenInterface = artifacts.require("./tokens/interface/tokenInterface.sol");
 
 //mintable = artifacts.require("./tokens/implementation/mintable-token.sol");
 token = artifacts.require("./tokens/token.sol");

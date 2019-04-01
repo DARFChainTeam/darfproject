@@ -1,34 +1,12 @@
 pragma solidity ^0.5.0;
-//import "./interface/withdraw_interface.sol";
-// import "./implementation/base_withdraw.sol";
 import '../admin/interface/administratable.sol';
-import '../scruminvest/userstory.sol';
-import '../scruminvest/project.sol';
+import '../scruminvest/interface/userstory_inteface.sol';
+import '../scruminvest/interface/project_interface.sol';
+import '../admin/interface/ExternalStorage.sol';
+import '../tokens/interface/tokenInterface.sol';
 
 contract withdraw is  Administratable { //withdraw_interface
 
-
-    /*
-        withdraw_interface private _withdraw;
-
-    constructor () public  {
-       _withdraw = new base_withdraw();
-    }
-
-    function team_withdraw(bytes32 UserStoryAddr) payable public
-    {
-       _withdraw = new base_withdraw();
-       _withdraw.team_withdraw(UserStoryAddr);
-    }
-
-    function sos_withdraw (address beneficiar, uint256 amount) payable public onlySuperAdmins (msg.sender)
-    {
-       _withdraw = new base_withdraw();
-
-        _withdraw.sos_withdraw (beneficiar, amount) ;
-    }
-
-*/
 
     address External_Storage_addr;
      address Userstory_smart_contr_addr;
@@ -36,39 +14,56 @@ contract withdraw is  Administratable { //withdraw_interface
      address  ANGtokenaddr;
 
 
+    function getUserStoryData(bytes32 UserStoryAddr) internal returns (uint256, uint256)
+    {
+          userstory_inteface userstorycurrent =  userstory_inteface(Userstory_smart_contr_addr);
+
+        ( uint256  project_ID, //+
+          ,//uint256   User_story_number,
+          ,//bytes32   DFS_Hash,
+          ,//bytes4   DFS_type,
+          ,//uint256  Story_Amount_ANG,
+          ,//uint256   Story_Amount_Tokens,
+          ,//uint256  start_date,
+          ,//uint256  duration,
+          uint256   sum_raised, //+
+          ,//uint256  sum_accepted,
+          ,//uint256  Ask_end_from_project,
+          uint256  finished  ) = userstorycurrent.give_userstory_data(UserStoryAddr);
+        return (project_ID,sum_raised );
+    }
+    function getProjectOwnerAddress(uint256 project_ID) internal returns (address)
+    {
+        project_interface Projectcontractcurrent =  project_interface(Project_smart_contr_addr);
+        //address   ProjecttokenAddr = Projectcontractcurrent.ProjectList(project_ID);
+        (address ProjecttokenAddr,
+        ,//uint256   project_ID_pr,
+        address  project_owner_address, //+
+        ,//address   _DARF_system_address,
+        ,//bytes32  DFS_Project_describe,
+        bytes4   DFS_type_pr) = Projectcontractcurrent.give_project_data(project_ID);
+
+        return project_owner_address;
+    }
+
+
     function team_withdraw(bytes32 UserStoryAddr) payable public
     {
 
-        userstory userstorycurrent =  userstory(Userstory_smart_contr_addr);
 
-        ( uint256  project_ID, //+
-          uint256   User_story_number,
-          bytes32   DFS_Hash,
-          bytes4   DFS_type,
-          uint256  Story_Amount_ANG,
-          uint256   Story_Amount_Tokens,
-          uint256  start_date,
-          uint256  duration,
-          uint256   sum_raised, //+
-          uint256  sum_accepted,
-          uint256  Ask_end_from_project,
-          uint256  finished  ) = userstorycurrent.UserStories(UserStoryAddr);
+        (uint256 project_ID,
+        uint256 sum_raised) =  getUserStoryData( UserStoryAddr);
 
-        project Projectcontractcurrent =  project(Project_smart_contr_addr);
-        address   ProjecttokenAddr = Projectcontractcurrent.ProjectList(project_ID);
-        (uint256   project_ID_pr,
-        address  project_owner_address, //+
-        address   _DARF_system_address,
-        bytes32  DFS_Project_describe,
-        bytes4   DFS_type_pr) = Projectcontractcurrent.Projects(ProjecttokenAddr);
-        require((project_owner_address == msg.sender)) ;  // only team lead can withdraw
-            token(ANGtokenaddr).transfer(address(this), msg.sender, sum_raised);
+        require((getProjectOwnerAddress(project_ID) == msg.sender)) ;  // only team lead can withdraw
+        tokenInterface tokencurrent = tokenInterface(ANGtokenaddr);
+        tokencurrent.transfer(address(this), msg.sender, sum_raised);
     }
 
    function sos_withdraw (address beneficiar, uint256 amount) payable public  onlyOwner
    {
-       ExternalStorage ES = ExternalStorage(External_Storage_addr);
-       token(ANGtokenaddr).transfer(address(this), beneficiar, amount);
+
+       tokenInterface tokencurrent = tokenInterface(ANGtokenaddr);
+       tokencurrent.transfer(address(this), beneficiar, amount);
    }
 
 
@@ -76,7 +71,7 @@ contract withdraw is  Administratable { //withdraw_interface
 
         External_Storage_addr = Externalstorageaddr;
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
-        ES.setAddressValue("tokensale/implementation/base_withdraw", address(this));
+        ES.setAddressValue("tokensale/implementation/withdraw", address(this));
         load_conditions_ES;
     }
 

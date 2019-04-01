@@ -1,10 +1,11 @@
 pragma solidity ^0.5.0;
-import "./project.sol";
-//import '../admin/interface/ExternalStorage.sol';
+import "./interface/project_interface.sol";
+import '../tokens/interface/tokenInterface.sol';
+import '../admin/interface/ExternalStorage.sol';
+import "../admin/interface/administratable.sol";
 
-//import '../admin/interface/administratable.sol';
-import '../tokens/token.sol';
-contract userstory is project, token {
+contract userstory is project_interface, Administratable, tokenInterface
+   {
 
     address External_Storage_addr;
     address smartcontProjectaddr ;
@@ -41,47 +42,77 @@ contract userstory is project, token {
     mapping (bytes32 => UserStory) public UserStories ; // AKA projectID
 
 
-    event Newuserstory (uint256 ProjectID, uint256 Userstorynumber, bytes32 DFSHash, uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration);
 
-    function get_project_data(uint256 ProjectID) internal returns(address, uint256,address,address, bytes32,bytes4)
+    function get_project_data(uint256 ProjectID) public returns(address, uint256,address,address, bytes32,bytes4)
     {
-        project smartcontrProjectcurrent =  project(smartcontProjectaddr);
-        address ProjecttokenAddr = smartcontrProjectcurrent.ProjectList(ProjectID);
-        token Projecttoken = token(ProjecttokenAddr);
+        project_interface smartcontrProjectcurrent =  project_interface(smartcontProjectaddr);
+//        address ProjecttokenAddr = smartcontrProjectcurrent.ProjectList(ProjectID);
+ //       token Projecttoken = token(ProjecttokenAddr);
 
-        (uint256 project_ID,
+        return smartcontrProjectcurrent.give_project_data(ProjectID);
+    /*
+        (address ProjecttokenAddr,
+        uint256 project_ID,
         address project_owner_address,
         address  _DARF_system_address,
         bytes32 DFS_Project_describe,
-        bytes4 DFS_type) = smartcontrProjectcurrent.Projects(ProjecttokenAddr);
+        bytes4 DFS_type) =
 
-        return (ProjecttokenAddr,
-                project_ID,
-                project_owner_address,
-                _DARF_system_address,
-                DFS_Project_describe,
-                DFS_type );
+        */
+
 
     }
 
     function get_token_and_project_owner_address(uint256 ProjectID) internal returns (address, address )
     {
         (address ProjecttokenAddr,
-        uint256 project_ID,
+        ,//uint256 project_ID,
         address project_owner_address,
-        address  _DARF_system_address,
-        bytes32 DFS_Project_describe,
+        ,//address  _DARF_system_address,
+        ,//bytes32 DFS_Project_describe,
         bytes4 DFS_type)  = get_project_data(ProjectID);
 
         return (ProjecttokenAddr, project_owner_address);
     }
+        function give_userstory_data(bytes32 UserStoryAddr) external returns ( uint256 ,
+                                                                      uint256 ,
+                                                                      bytes32 ,
+                                                                      bytes4 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 )
+        {
+            return   ( UserStories[UserStoryAddr].project_ID, //+
+          UserStories[UserStoryAddr].User_story_number,
+          UserStories[UserStoryAddr].DFS_Hash,
+          UserStories[UserStoryAddr].DFS_type,
+          UserStories[UserStoryAddr].Story_Amount_ANG,
+          UserStories[UserStoryAddr].Story_Amount_Tokens,
+          UserStories[UserStoryAddr].start_date,
+          UserStories[UserStoryAddr].duration,
+          UserStories[UserStoryAddr].sum_raised, //+
+          UserStories[UserStoryAddr].sum_accepted,
+          UserStories[UserStoryAddr].Ask_end_from_project,
+          UserStories[UserStoryAddr].finished  );
+
+        }
+
+
+
+        event Newuserstory (uint256 ProjectID, uint256 Userstorynumber, bytes32 DFSHash, uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration);
+
 
     function start_user_story (uint256 ProjectID, uint256 Userstorynumber, bytes32 DFSHash, bytes4 DFStype,  uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration)   public  returns (bytes32){
         //todo check transfer sum to escrow
         // what address of escrow?
         //get token addr
         (address ProjecttokenAddr, address project_owner_address) = get_token_and_project_owner_address(ProjectID) ;
-        token Projecttoken = token(ProjecttokenAddr);
+        tokenInterface Projecttoken = tokenInterface(ProjecttokenAddr);
         uint256 Projecttokenbalance = Projecttoken.balanceOf(address(this));
         require((Projecttokenbalance == StoryAmounttoken) &&
             ( project_owner_address == msg.sender)) ; // [1] is project_owner_address in tuple OnlyProjectOwner(Project_token_addr)
@@ -158,7 +189,7 @@ contract userstory is project, token {
                 // all fine, 50%+ invastors accepted works results,
                 // sends ANG to team
                   (address ProjecttokenAddr, address project_owner_address) = get_token_and_project_owner_address(UserStories[UserStoryAddr].project_ID) ;
-                token ANGToken = token(ANGTokenAddrr);
+                tokenInterface  ANGToken = tokenInterface(ANGTokenAddrr);
                 ANGToken.transfer(address (this), project_owner_address, UserStories[UserStoryAddr].sum_raised,  UserStoryAddr);
                 // address sender,address receiver, uint256 amount, bytes data
 
@@ -172,7 +203,7 @@ contract userstory is project, token {
 
 
                     //todo  bakeraddr.send(summTokens);
-                    token(ProjecttokenAddr).transfer(address(this), bakeraddr, summTokens, UserStoryAddr);
+                    tokenInterface (ProjecttokenAddr).transfer(address(this), bakeraddr, summTokens, UserStoryAddr);
 
                 }
             // todo gas compensation for transactions to last investor in ANG
@@ -186,14 +217,14 @@ contract userstory is project, token {
           (address ProjecttokenAddr, address project_owner_address) = get_token_and_project_owner_address(UserStories[UserStoryAddr].project_ID) ;
 
         // Returns their token to team
-        token(ProjecttokenAddr).transfer(address(this), project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
+        tokenInterface(ProjecttokenAddr).transfer(address(this), project_owner_address,UserStories[UserStoryAddr].Story_Amount_Tokens);
 
          //returns ANG to investors
 
          for (uint baker = 0;  baker < UserStories[UserStoryAddr].bakers_list.length;
                         baker++) {
                     address bakeraddr = UserStories[UserStoryAddr].bakers_list[baker];
-                    token ANGToken = token(ANGTokenAddrr);
+                    tokenInterface  ANGToken = tokenInterface (ANGTokenAddrr);
                     ANGToken.transfer(address(this), UserStories[UserStoryAddr].bakers_list[baker], UserStories[UserStoryAddr].bakers[bakeraddr].baked_sum);
 
                 }

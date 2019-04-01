@@ -26,7 +26,7 @@ contract Receiver is receiverInterface, Administratable {
      *@params bytes data is the message that was sent to this contract
      *@returns a boolean value representing success or failure of the operation
      */
-    function tokenFallback(address addr, address receiver, uint256 value, bytes32 data) external returns(bool)
+    function tokenFallback(address addr, address receiver_addr, uint256 value, bytes32 data) external returns(bool)
     {
 
       bool result = _receiver.tokenFallback(msg.sender,addr,value,data);
