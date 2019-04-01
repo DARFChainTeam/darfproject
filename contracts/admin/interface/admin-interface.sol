@@ -13,7 +13,7 @@ contract  admin  {
 
   function checkSuperAdmin (address msgSender) public returns (bool);
 
-  function check_owner (address _sender_address) public returns(bool);
+  function check_owner (address msgSender) public returns(bool);
 
 
 }

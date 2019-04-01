@@ -9,8 +9,9 @@ import "./admin-interface.sol";
 contract Administratable is admin {
 
   address Basic_Administratable_addr;
-  address  External_Storage_addr;
-  Administratable BA_;
+  // address  External_Storage_addr;
+  admin BA_;
+  address  _owner;
 
   modifier onlyAdmins  (address msgSender)  {
     if (checkAdmin(msgSender)) revert();
@@ -70,8 +71,16 @@ contract Administratable is admin {
      }
 */
 
-   function _initAdministratable (address BasicAdministratableaddr) public onlyOwner { // deployed address of admin/implementation/basic-administratable.sol
+    function setOwner(address newOwner) onlyOwner_in public  {
+    _owner = newOwner;
+  }
+   modifier onlyOwner_in() {
+    require (_owner = msg.sender);
+    _;
+  }
 
-          BA_ = Administratable(BasicAdministratableaddr);
+   function _initAdministratable (address BasicAdministratableaddr) public onlyOwner_in { // deployed address of admin/implementation/basic-administratable.sol
+
+          BA_ = admin (BasicAdministratableaddr);
      }
 }

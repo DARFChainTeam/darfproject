@@ -1,9 +1,10 @@
 pragma solidity ^0.5.0;
 import "../tokens/token.sol";
+import "./interface/project_interface.sol";
 import "../admin/interface/ExternalStorage.sol";
+import "../admin/interface/administratable.sol";
 
-
-contract project is ExternalStorage {
+contract project is project_interface, Administratable  {
 
 
     address External_Storage_addr;
@@ -58,6 +59,7 @@ contract project is ExternalStorage {
         address _DARF_system_address; // ETH address of node that updates project state
         bytes32 DFS_Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
         bytes4 DFS_type;
+        uint256 finish_date;
              // rights  0-7 rights grades use by default to reduce gas issues - moved to Project_rights
 
         // mapping (uint => UserStory) stories;
@@ -65,7 +67,7 @@ contract project is ExternalStorage {
 
     }
 
-    mapping (address => Project) public Projects ; //
+    mapping (address => Project)  Projects ; //
     address[] public ProjectList; // array to access projects AKA projectID
 
     modifier  OnlyProjectOwner(address _project_address) {
@@ -135,10 +137,41 @@ contract project is ExternalStorage {
 
 
 }
-    event finished_project (address Projecttokenaddr);
 
-    function finish_project (address Projecttokenaddr) public {
-        emit finished_project (Projecttokenaddr);
+    function give_project_data(uint256 ProjectID) public returns(address, uint256,address,address, bytes32,bytes4)
+    {
+       // project smartcontrProjectcurrent =  project(smartcontProjectaddr);
+        address ProjecttokenAddr = ProjectList[ProjectID];
+      //  token Projecttoken = token(ProjecttokenAddr);
+
+        (uint256 project_ID,
+        address project_owner_address,
+        address  _DARF_system_address,
+        bytes32 DFS_Project_describe,
+        bytes4 DFS_type)
+        =
+        (Projects[ProjecttokenAddr].project_ID,
+        Projects[ProjecttokenAddr].project_owner_address,
+        Projects[ProjecttokenAddr]._DARF_system_address,
+        Projects[ProjecttokenAddr].DFS_Project_describe,
+        Projects[ProjecttokenAddr].DFS_type
+             );
+
+        return (ProjecttokenAddr,
+                project_ID,
+                project_owner_address,
+                _DARF_system_address,
+                DFS_Project_describe,
+                DFS_type );
+
+    }
+
+    event finished_project (address Projecttokenaddr, uint256 finish_date);
+
+    function finish_project (address Projecttokenaddr) public  OnlyProjectOwner (Projecttokenaddr) returns (uint256 )  {
+        Projects[Projecttokenaddr].finish_date = now;
+        emit finished_project (Projecttokenaddr, Projects[Projecttokenaddr].finish_date);
+        return Projects[Projecttokenaddr].finish_date;
 
 }
         function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,bytes32 POA_addr) public returns (uint256) {

@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 //import "../interface/sale-interface.sol";
 //import "./implementation/basic-crowdsale.sol";
-import "../tokens/interface/token-interface.sol";
+import "../tokens/interface/tokenInterface.sol";
 import "../KYC/interface/KYC_interface.sol";
 import "../admin/interface/administratable.sol";
 import "../admin/interface/ExternalStorage.sol";
