@@ -22,16 +22,14 @@
 8.5        call address (ExternalStorageaddr).setUIntValue("tokensale/discount_amount", 1000);
 
 */
-//basic = artifacts.require("./tokens/implementation/basic-token.sol");
-//tokenInterface = artifacts.require("./tokens/interface/tokenInterface.sol");
 
-//mintable = artifacts.require("./tokens/implementation/mintable-token.sol");
 var administratable = artifacts.require("./admin/implementation/Administratable.sol");
-var external_storage = artifacts.require("./admin/interface/ExternalStorage.sol");
+var external_storage = artifacts.require("./admin/implementation/ExternalStorage.sol");
+var Basic_KYC = artifacts.require("./KYC/implementation/Basic_KYC.sol");
+var sale = artifacts.require("./tokensale/sellANG_ETH.sol");
+var project = artifacts.require("./scruminvest/project.sol");
+var userstory = artifacts.require("./scruminvest/userstory.sol")
 var token = artifacts.require("./tokens/token.sol");
-
-//KYC = artifacts.require("./KYC/KYC.sol");
-// var sale = artifacts.require("./tokensale/sale.sol");
 
 
 module.exports = async deployer => {
@@ -41,12 +39,16 @@ module.exports = async deployer => {
 
   await deployer.deploy(administratable,{from: owner});
   await deployer.deploy(external_storage,{from: owner});
-  //external_storage set address Administratable
-  await external_storage._initAdministratable.call(administratable.address,{from:owner});
+  await deployer.deploy(Basic_KYC,{from: owner});
+  await deployer.deploy(sale,{from: owner});
+  await deployer.deploy(project,{from: owner});
+  await deployer.deploy(userstory,{from: owner});
   await deployer.deploy(token,"Angel","ANG",18,{from: owner});
-  //await deployer.deploy(sale,{from: owner, gas: 672197500});
-  //console.log("Sale tokens address:"+sale.address);
+
+  //console.log(external_storage);
+  //let result = await external_storage.methods.setAddressValue("admin/implementation/basic-ExternalStorage",external_storage.address).call.request({from:owner});
   console.log("Administratable:" + administratable.address);
   console.log("External Storage:" + external_storage.address);
+  console.log("KYC Basic:" + Basic_KYC.address);
   console.log("ANG token address:" + token.address);
 }

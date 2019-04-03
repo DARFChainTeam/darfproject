@@ -4,7 +4,7 @@ import '../tokens/interface/tokenInterface.sol';
 import '../admin/interface/ExternalStorage.sol';
 import "../admin/interface/administratable.sol";
 
-contract userstory is project_interface, Administratable, tokenInterface
+contract userstory is  Administratable
    {
 
     address External_Storage_addr;

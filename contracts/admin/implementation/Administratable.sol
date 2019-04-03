@@ -20,6 +20,14 @@ contract Administratable is admin {
   event AddSuperAdmin(address indexed admin);
   event RemoveSuperAdmin(address indexed admin);
 
+  constructor () public {
+    admins[msg.sender] = true;
+    superAdmins[msg.sender] = true;
+    processedAdmin[msg.sender] = true;
+    processedSuperAdmin[msg.sender] = true;
+    _owner = msg.sender;
+  }
+
 
   modifier onlyAdmins  (address msgSender)  {
     if (checkAdmin(msgSender)) revert();

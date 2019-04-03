@@ -75,7 +75,7 @@ contract Administratable is admin {
     _owner = newOwner;
   }
    modifier onlyOwner_in() {
-    require (_owner = msg.sender);
+    require (_owner == msg.sender);
     _;
   }
 

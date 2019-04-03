@@ -43,7 +43,7 @@
       "constant": false,
       "inputs": [
         {
-          "name": "_sender_address",
+          "name": "msgSender",
           "type": "address"
         }
       ],
@@ -63,20 +63,20 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\n\n//import \"../Ownable.sol\";\n\n//import \"../interface/administratable.sol\";\n//import \"../../libraries/SafeMath.sol\";\n// import \"./ExternalStorage.sol\";\n\ncontract  admin  {\n\n\n  function checkAdmin (address msgSender) public returns (bool);\n\n  function checkSuperAdmin (address msgSender) public returns (bool);\n\n  function check_owner (address _sender_address) public returns(bool);\n\n\n}",
+  "source": "pragma solidity ^0.5.0;\n\n//import \"../Ownable.sol\";\n\n//import \"../interface/administratable.sol\";\n//import \"../../libraries/SafeMath.sol\";\n// import \"./ExternalStorage.sol\";\n\ncontract  admin  {\n\n\n  function checkAdmin (address msgSender) public returns (bool);\n\n  function checkSuperAdmin (address msgSender) public returns (bool);\n\n  function check_owner (address msgSender) public returns(bool);\n\n\n}",
   "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
   "ast": {
     "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
     "exportedSymbols": {
       "admin": [
-        2514
+        3290
       ]
     },
-    "id": 2515,
+    "id": 3291,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2492,
+        "id": 3268,
         "literals": [
           "solidity",
           "^",
@@ -84,7 +84,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:16"
+        "src": "0:23:17"
       },
       {
         "baseContracts": [],
@@ -92,9 +92,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2514,
+        "id": 3290,
         "linearizedBaseContracts": [
-          2514
+          3290
         ],
         "name": "admin",
         "nodeType": "ContractDefinition",
@@ -102,23 +102,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2499,
+            "id": 3275,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "checkAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2495,
+              "id": 3271,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2494,
+                  "id": 3270,
                   "name": "msgSender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2499,
-                  "src": "219:17:16",
+                  "scope": 3275,
+                  "src": "219:17:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -126,10 +126,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2493,
+                    "id": 3269,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "219:7:16",
+                    "src": "219:7:17",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -140,19 +140,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "218:19:16"
+              "src": "218:19:17"
             },
             "returnParameters": {
-              "id": 2498,
+              "id": 3274,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2497,
+                  "id": 3273,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2499,
-                  "src": "254:4:16",
+                  "scope": 3275,
+                  "src": "254:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -160,10 +160,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2496,
+                    "id": 3272,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "254:4:16",
+                    "src": "254:4:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -173,10 +173,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "253:6:16"
+              "src": "253:6:17"
             },
-            "scope": 2514,
-            "src": "198:62:16",
+            "scope": 3290,
+            "src": "198:62:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -184,23 +184,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2506,
+            "id": 3282,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "checkSuperAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2502,
+              "id": 3278,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2501,
+                  "id": 3277,
                   "name": "msgSender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2506,
-                  "src": "290:17:16",
+                  "scope": 3282,
+                  "src": "290:17:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -208,10 +208,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2500,
+                    "id": 3276,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "290:7:16",
+                    "src": "290:7:17",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -222,19 +222,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "289:19:16"
+              "src": "289:19:17"
             },
             "returnParameters": {
-              "id": 2505,
+              "id": 3281,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2504,
+                  "id": 3280,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2506,
-                  "src": "325:4:16",
+                  "scope": 3282,
+                  "src": "325:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -242,10 +242,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2503,
+                    "id": 3279,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "325:4:16",
+                    "src": "325:4:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -255,10 +255,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "324:6:16"
+              "src": "324:6:17"
             },
-            "scope": 2514,
-            "src": "264:67:16",
+            "scope": 3290,
+            "src": "264:67:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -266,23 +266,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2513,
+            "id": 3289,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "check_owner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2509,
+              "id": 3285,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2508,
-                  "name": "_sender_address",
+                  "id": 3284,
+                  "name": "msgSender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2513,
-                  "src": "357:23:16",
+                  "scope": 3289,
+                  "src": "357:17:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -290,10 +290,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2507,
+                    "id": 3283,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "357:7:16",
+                    "src": "357:7:17",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -304,19 +304,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "356:25:16"
+              "src": "356:19:17"
             },
             "returnParameters": {
-              "id": 2512,
+              "id": 3288,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2511,
+                  "id": 3287,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2513,
-                  "src": "397:4:16",
+                  "scope": 3289,
+                  "src": "391:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -324,10 +324,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2510,
+                    "id": 3286,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:16",
+                    "src": "391:4:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -337,33 +337,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "396:6:16"
+              "src": "390:6:17"
             },
-            "scope": 2514,
-            "src": "335:68:16",
+            "scope": 3290,
+            "src": "335:62:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2515,
-        "src": "175:232:16"
+        "scope": 3291,
+        "src": "175:226:17"
       }
     ],
-    "src": "0:407:16"
+    "src": "0:401:17"
   },
   "legacyAST": {
     "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
     "exportedSymbols": {
       "admin": [
-        2514
+        3290
       ]
     },
-    "id": 2515,
+    "id": 3291,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2492,
+        "id": 3268,
         "literals": [
           "solidity",
           "^",
@@ -371,7 +371,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:16"
+        "src": "0:23:17"
       },
       {
         "baseContracts": [],
@@ -379,9 +379,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2514,
+        "id": 3290,
         "linearizedBaseContracts": [
-          2514
+          3290
         ],
         "name": "admin",
         "nodeType": "ContractDefinition",
@@ -389,23 +389,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2499,
+            "id": 3275,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "checkAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2495,
+              "id": 3271,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2494,
+                  "id": 3270,
                   "name": "msgSender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2499,
-                  "src": "219:17:16",
+                  "scope": 3275,
+                  "src": "219:17:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -413,10 +413,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2493,
+                    "id": 3269,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "219:7:16",
+                    "src": "219:7:17",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -427,19 +427,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "218:19:16"
+              "src": "218:19:17"
             },
             "returnParameters": {
-              "id": 2498,
+              "id": 3274,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2497,
+                  "id": 3273,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2499,
-                  "src": "254:4:16",
+                  "scope": 3275,
+                  "src": "254:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -447,10 +447,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2496,
+                    "id": 3272,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "254:4:16",
+                    "src": "254:4:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -460,10 +460,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "253:6:16"
+              "src": "253:6:17"
             },
-            "scope": 2514,
-            "src": "198:62:16",
+            "scope": 3290,
+            "src": "198:62:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -471,23 +471,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2506,
+            "id": 3282,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "checkSuperAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2502,
+              "id": 3278,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2501,
+                  "id": 3277,
                   "name": "msgSender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2506,
-                  "src": "290:17:16",
+                  "scope": 3282,
+                  "src": "290:17:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -495,10 +495,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2500,
+                    "id": 3276,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "290:7:16",
+                    "src": "290:7:17",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -509,19 +509,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "289:19:16"
+              "src": "289:19:17"
             },
             "returnParameters": {
-              "id": 2505,
+              "id": 3281,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2504,
+                  "id": 3280,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2506,
-                  "src": "325:4:16",
+                  "scope": 3282,
+                  "src": "325:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -529,10 +529,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2503,
+                    "id": 3279,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "325:4:16",
+                    "src": "325:4:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -542,10 +542,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "324:6:16"
+              "src": "324:6:17"
             },
-            "scope": 2514,
-            "src": "264:67:16",
+            "scope": 3290,
+            "src": "264:67:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -553,23 +553,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2513,
+            "id": 3289,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "check_owner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2509,
+              "id": 3285,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2508,
-                  "name": "_sender_address",
+                  "id": 3284,
+                  "name": "msgSender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2513,
-                  "src": "357:23:16",
+                  "scope": 3289,
+                  "src": "357:17:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -577,10 +577,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2507,
+                    "id": 3283,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "357:7:16",
+                    "src": "357:7:17",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -591,19 +591,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "356:25:16"
+              "src": "356:19:17"
             },
             "returnParameters": {
-              "id": 2512,
+              "id": 3288,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2511,
+                  "id": 3287,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2513,
-                  "src": "397:4:16",
+                  "scope": 3289,
+                  "src": "391:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -611,10 +611,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2510,
+                    "id": 3286,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:16",
+                    "src": "391:4:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -624,20 +624,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "396:6:16"
+              "src": "390:6:17"
             },
-            "scope": 2514,
-            "src": "335:68:16",
+            "scope": 3290,
+            "src": "335:62:17",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2515,
-        "src": "175:232:16"
+        "scope": 3291,
+        "src": "175:226:17"
       }
     ],
-    "src": "0:407:16"
+    "src": "0:401:17"
   },
   "compiler": {
     "name": "solc",
@@ -645,7 +645,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-30T13:01:20.355Z",
+  "updatedAt": "2019-04-02T11:05:10.812Z",
   "devdoc": {
     "methods": {}
   },

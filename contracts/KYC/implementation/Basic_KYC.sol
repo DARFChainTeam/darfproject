@@ -11,7 +11,7 @@ import "../../admin/interface/ExternalStorage.sol";
  //TODO add owner checks
 
 
-contract basic_KYC is KYC_interface, Administratable {
+contract Basic_KYC is KYC_interface, Administratable {
 
     address External_Storage_addr;
 
