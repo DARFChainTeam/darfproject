@@ -190,9 +190,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\n/**\n * @title IRegistry\n * @dev This contract represents the interface of a registry contract\n */\ninterface IRegistry {\n  /**\n  * @dev This event will be emitted every time a new proxy is created\n  * @param proxy representing the address of the proxy created\n  */\n  event ProxyCreated(address proxy);\n\n  /**\n  * @dev This event will be emitted every time a new implementation of a function is registered\n  * @param version representing the version name of the registered implementation\n  * @param func representing the signature of the function implementation registered\n  * @param implementation representing the address of the registered implementation\n  */\n  event VersionAdded(string version, bytes4 func, address implementation);\n\n  /**\n  * @dev This event will be emitted every time a new implementation of a fallback function is registered\n  * @param version representing the version name of the registered implementation\n  * @param implementation representing the address of the registered implementation\n  */\n  event FallbackAdded(string version, address implementation);\n\n  /**\n  * @dev Registers a new version of a function with its implementation address\n  * @param version representing the version name of the new function implementation to be registered\n  * @param func representing the name of the function to be registered\n  * @param implementation representing the address of the new function implementation to be registered\n  */\n  function addVersionFromName(string calldata  version, string calldata  func, address implementation) external;\n\n  /**\n  * @dev Registers a new version of a function with its implementation address\n  * @param version representing the version name of the new function implementation to be registered\n  * @param func representing the signature of the function to be registered\n  * @param implementation representing the address of the new function implementation to be registered\n  */\n  function addVersion(string calldata  version, bytes4 func, address implementation) external;\n\n  /**\n  * @dev Tells the address of the function implementation for a given version\n  * @param version representing the version of the function implementation to be queried\n  * @param func representing the signature of the function to be queried\n  * @return address of the function implementation registered for the given version\n  */\n  function getFunction(string calldata  version, bytes4 func) external view returns (address);\n\n  /**\n   * @dev Returns a function name and implementation for a given version, given its index\n   */\n  function getFunctionByIndex(string calldata  version, uint256 index) external view returns (bytes4, address);\n\n  /**\n   * @dev Returns the number of functions (excluding the fallback function) registered for a specific version\n   */\n  function getFunctionCount(string calldata  version) external view returns (uint256);\n\n  /**\n   * @dev Returns the the fallback function for a specific version, if registered\n   */\n  function getFallback(string calldata  version) external view returns (address);\n}\n",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
     "exportedSymbols": {
       "IRegistry": [
         1048
@@ -1062,7 +1062,7 @@
     "src": "0:3086:7"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
     "exportedSymbols": {
       "IRegistry": [
         1048
@@ -1936,8 +1936,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-30T13:01:20.347Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.897Z",
   "devdoc": {
     "details": "This contract represents the interface of a registry contract",
     "methods": {

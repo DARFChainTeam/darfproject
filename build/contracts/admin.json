@@ -64,9 +64,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\n//import \"../Ownable.sol\";\n\n//import \"../interface/administratable.sol\";\n//import \"../../libraries/SafeMath.sol\";\n// import \"./ExternalStorage.sol\";\n\ncontract  admin  {\n\n\n  function checkAdmin (address msgSender) public returns (bool);\n\n  function checkSuperAdmin (address msgSender) public returns (bool);\n\n  function check_owner (address msgSender) public returns(bool);\n\n\n}",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
     "exportedSymbols": {
       "admin": [
         3290
@@ -353,7 +353,7 @@
     "src": "0:401:17"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/interface/admin-interface.sol",
     "exportedSymbols": {
       "admin": [
         3290
@@ -644,8 +644,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-02T11:05:10.812Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.902Z",
   "devdoc": {
     "methods": {}
   },

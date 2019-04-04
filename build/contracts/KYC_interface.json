@@ -97,9 +97,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\ninterface KYC_interface\n{\n    // function KYC_interface (address sender,address receiver, uint256 value, bytes data) public returns(bool);\n    function InvestorCheck(address _investor_address, bytes32 currency) external returns (uint256);\n    function add_KYC(address _investor_address, bytes32 currency, uint256 add_approved_sum) external;\n    function register_invest(address _investor_address, bytes32 currency, uint256 add_invested_sum) external;\n    function allowed_invest(address _investor_address, bytes32 currency) external  returns(uint256);\n\n}\n",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/KYC/interface/KYC_interface.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/KYC/interface/KYC_interface.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/KYC/interface/KYC_interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/KYC/interface/KYC_interface.sol",
     "exportedSymbols": {
       "KYC_interface": [
         253
@@ -570,7 +570,7 @@
     "src": "0:580:1"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/KYC/interface/KYC_interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/KYC/interface/KYC_interface.sol",
     "exportedSymbols": {
       "KYC_interface": [
         253
@@ -1045,8 +1045,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-30T13:01:20.330Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:10:00.003Z",
   "devdoc": {
     "methods": {}
   },

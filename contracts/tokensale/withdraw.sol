@@ -23,13 +23,14 @@ contract withdraw is  Administratable { //withdraw_interface
           ,//bytes32   DFS_Hash,
           ,//bytes4   DFS_type,
           ,//uint256  Story_Amount_ANG,
-          ,//uint256   Story_Amount_Tokens,
-          ,//uint256  start_date,
+          //uint256   Story_Amount_Tokens,
+        ) = userstorycurrent.give_userstory_data1(UserStoryAddr);
+        (,//uint256  start_date,
           ,//uint256  duration,
           uint256   sum_raised, //+
           ,//uint256  sum_accepted,
           ,//uint256  Ask_end_from_project,
-          uint256  finished  ) = userstorycurrent.give_userstory_data(UserStoryAddr);
+            ) = userstorycurrent.give_userstory_data2(UserStoryAddr);
         return (project_ID,sum_raised );
     }
     function getProjectOwnerAddress(uint256 project_ID) internal returns (address)

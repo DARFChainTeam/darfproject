@@ -35,19 +35,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\ncontract storable {\n  function getLedgerNameHash() public view returns (bytes32);\n  function getStorageNameHash() public view returns (bytes32);\n}",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/storable.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/storable.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/storable.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/storable.sol",
     "exportedSymbols": {
       "storable": [
-        2641
+        3440
       ]
     },
-    "id": 2642,
+    "id": 3441,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2630,
+        "id": 3429,
         "literals": [
           "solidity",
           "^",
@@ -55,7 +55,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:18"
+        "src": "0:23:19"
       },
       {
         "baseContracts": [],
@@ -63,9 +63,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2641,
+        "id": 3440,
         "linearizedBaseContracts": [
-          2641
+          3440
         ],
         "name": "storable",
         "nodeType": "ContractDefinition",
@@ -73,29 +73,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2635,
+            "id": 3434,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLedgerNameHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2631,
+              "id": 3430,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "73:2:18"
+              "src": "73:2:19"
             },
             "returnParameters": {
-              "id": 2634,
+              "id": 3433,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2633,
+                  "id": 3432,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2635,
-                  "src": "97:7:18",
+                  "scope": 3434,
+                  "src": "97:7:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -103,10 +103,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 2632,
+                    "id": 3431,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "97:7:18",
+                    "src": "97:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -116,10 +116,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "96:9:18"
+              "src": "96:9:19"
             },
-            "scope": 2641,
-            "src": "47:59:18",
+            "scope": 3440,
+            "src": "47:59:19",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -127,29 +127,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2640,
+            "id": 3439,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getStorageNameHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2636,
+              "id": 3435,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "136:2:18"
+              "src": "136:2:19"
             },
             "returnParameters": {
-              "id": 2639,
+              "id": 3438,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2638,
+                  "id": 3437,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2640,
-                  "src": "160:7:18",
+                  "scope": 3439,
+                  "src": "160:7:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -157,10 +157,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 2637,
+                    "id": 3436,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "160:7:18",
+                    "src": "160:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -170,33 +170,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "159:9:18"
+              "src": "159:9:19"
             },
-            "scope": 2641,
-            "src": "109:60:18",
+            "scope": 3440,
+            "src": "109:60:19",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2642,
-        "src": "25:146:18"
+        "scope": 3441,
+        "src": "25:146:19"
       }
     ],
-    "src": "0:171:18"
+    "src": "0:171:19"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/storable.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/storable.sol",
     "exportedSymbols": {
       "storable": [
-        2641
+        3440
       ]
     },
-    "id": 2642,
+    "id": 3441,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2630,
+        "id": 3429,
         "literals": [
           "solidity",
           "^",
@@ -204,7 +204,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:18"
+        "src": "0:23:19"
       },
       {
         "baseContracts": [],
@@ -212,9 +212,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2641,
+        "id": 3440,
         "linearizedBaseContracts": [
-          2641
+          3440
         ],
         "name": "storable",
         "nodeType": "ContractDefinition",
@@ -222,29 +222,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2635,
+            "id": 3434,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getLedgerNameHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2631,
+              "id": 3430,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "73:2:18"
+              "src": "73:2:19"
             },
             "returnParameters": {
-              "id": 2634,
+              "id": 3433,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2633,
+                  "id": 3432,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2635,
-                  "src": "97:7:18",
+                  "scope": 3434,
+                  "src": "97:7:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -252,10 +252,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 2632,
+                    "id": 3431,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "97:7:18",
+                    "src": "97:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -265,10 +265,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "96:9:18"
+              "src": "96:9:19"
             },
-            "scope": 2641,
-            "src": "47:59:18",
+            "scope": 3440,
+            "src": "47:59:19",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -276,29 +276,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2640,
+            "id": 3439,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getStorageNameHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2636,
+              "id": 3435,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "136:2:18"
+              "src": "136:2:19"
             },
             "returnParameters": {
-              "id": 2639,
+              "id": 3438,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2638,
+                  "id": 3437,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2640,
-                  "src": "160:7:18",
+                  "scope": 3439,
+                  "src": "160:7:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -306,10 +306,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 2637,
+                    "id": 3436,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "160:7:18",
+                    "src": "160:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -319,28 +319,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "159:9:18"
+              "src": "159:9:19"
             },
-            "scope": 2641,
-            "src": "109:60:18",
+            "scope": 3440,
+            "src": "109:60:19",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2642,
-        "src": "25:146:18"
+        "scope": 3441,
+        "src": "25:146:19"
       }
     ],
-    "src": "0:171:18"
+    "src": "0:171:19"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-30T13:01:20.355Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.903Z",
   "devdoc": {
     "methods": {}
   },

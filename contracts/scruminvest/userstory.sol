@@ -74,26 +74,26 @@ contract userstory is  Administratable
 
         return (ProjecttokenAddr, project_owner_address);
     }
-        function give_userstory_data(bytes32 UserStoryAddr) external returns ( uint256 ,
-                                                                      uint256 ,
-                                                                      bytes32 ,
-                                                                      bytes4 ,
-                                                                      uint256 ,
-                                                                      uint256 ,
-                                                                      uint256 ,
-                                                                      uint256 ,
-                                                                      uint256 ,
-                                                                      uint256 ,
-                                                                      uint256 ,
-                                                                      uint256 )
+        function give_userstory_data1(bytes32 UserStoryAddr) external returns ( uint256 ,                                                                       uint256 ,                                                                      bytes32 ,                                                                      bytes4 ,                                                                      uint256 ,                                                                      uint256)
         {
             return   ( UserStories[UserStoryAddr].project_ID, //+
           UserStories[UserStoryAddr].User_story_number,
           UserStories[UserStoryAddr].DFS_Hash,
           UserStories[UserStoryAddr].DFS_type,
           UserStories[UserStoryAddr].Story_Amount_ANG,
-          UserStories[UserStoryAddr].Story_Amount_Tokens,
-          UserStories[UserStoryAddr].start_date,
+          UserStories[UserStoryAddr].Story_Amount_Tokens
+           );
+
+        }
+
+ function give_userstory_data2(bytes32 UserStoryAddr) external returns (                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 ,
+                                                                      uint256 )
+        {
+            return   ( UserStories[UserStoryAddr].start_date,
           UserStories[UserStoryAddr].duration,
           UserStories[UserStoryAddr].sum_raised, //+
           UserStories[UserStoryAddr].sum_accepted,
@@ -101,8 +101,6 @@ contract userstory is  Administratable
           UserStories[UserStoryAddr].finished  );
 
         }
-
-
 
         event Newuserstory (uint256 ProjectID, uint256 Userstorynumber, bytes32 DFSHash, uint256 StoryAmountANG, uint256 StoryAmounttoken, uint256 Startdate, uint duration);
 

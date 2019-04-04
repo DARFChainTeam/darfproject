@@ -16,14 +16,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060c68061001f6000396000f3fe608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b81146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff169056fea165627a7a72305820802bb028f127e7038073016c1d44638b646984e2583091700fc15696d51e193c0029",
-  "deployedBytecode": "0x608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b81146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff169056fea165627a7a72305820802bb028f127e7038073016c1d44638b646984e2583091700fc15696d51e193c0029",
+  "bytecode": "0x608060405234801561001057600080fd5b5060c68061001f6000396000f3fe608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b81146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff169056fea165627a7a72305820106a35cb9b6a9158c658989a14c87b30a3c4aaa3154aec30a55215eae9af5b050029",
+  "deployedBytecode": "0x608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b81146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff169056fea165627a7a72305820106a35cb9b6a9158c658989a14c87b30a3c4aaa3154aec30a55215eae9af5b050029",
   "sourceMap": "115:370:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;115:370:10;;;;;;;",
   "deployedSourceMap": "115:370:10:-;;;;;;;;;;;;;;;;;;;;;;;288:71;;8:9:-1;5:2;;;30:1;27;20:12;5:2;288:71:10;;;;;;;;;;;;;;;;;;;;;;;;326:7;348:6;;;288:71;:::o",
   "source": "pragma solidity ^0.5.0;\n\n/**\n * @title OwnableStorage\n * @dev This contract keeps track of the owner's address\n */\ncontract OwnableStorage {\n  // Owner of the contract\n  address private _owner;\n\n  /**\n   * @dev Tells the address of the owner\n   * @return the address of the owner\n   */\n  function owner() public view returns (address) {\n    return _owner;\n  }\n\n  /**\n   * @dev Sets a new owner address\n   */\n  function setOwner(address newOwner) internal {\n    _owner = newOwner;\n  }\n}\n",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/OwnableStorage.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/OwnableStorage.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/OwnableStorage.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/OwnableStorage.sol",
     "exportedSymbols": {
       "OwnableStorage": [
         1176
@@ -278,7 +278,7 @@
     "src": "0:486:10"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/OwnableStorage.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/OwnableStorage.sol",
     "exportedSymbols": {
       "OwnableStorage": [
         1176
@@ -537,8 +537,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-30T13:01:20.349Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.898Z",
   "devdoc": {
     "details": "This contract keeps track of the owner's address",
     "methods": {

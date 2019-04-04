@@ -208,9 +208,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\ncontract  project_interface  {\n\n    function  setrights(address Projecttokenaddr,  uint256 grade, uint256 floorsum) public  ;\n\n    function checkrights (address Project_token_addr) public returns (uint256) ;\n\n    function create_project (address Projecttokenaddr, bytes32 DFSProjectdescribe, bytes4 DFStype)  public ;\n\n    function change_project_info (address Projecttokenaddr, address owner, bytes32 DFSProjectdescribe, bytes4 DFStype)   public;\n\n     function give_project_data(uint256 ProjectID) public returns(address, uint256,address,address, bytes32,bytes4) ;\n\n    function finish_project (address Projecttokenaddr) public returns (uint256 ) ;\n\n    function project_add_state(address Projecttokenaddr,  bytes32 DFSchangesaddr, bytes32 DFSchangeshash,bytes32 POA_addr) public returns (uint256) ;\n\n     function project_get_state(address Projecttokenaddr, uint timestamp ) public returns(bytes32) ;\n}",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/project_interface.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/project_interface.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/project_interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/project_interface.sol",
     "exportedSymbols": {
       "project_interface": [
         3951
@@ -1245,7 +1245,7 @@
     "src": "0:930:24"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/project_interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/scruminvest/interface/project_interface.sol",
     "exportedSymbols": {
       "project_interface": [
         3951
@@ -2284,8 +2284,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-02T11:05:10.768Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.924Z",
   "devdoc": {
     "methods": {}
   },

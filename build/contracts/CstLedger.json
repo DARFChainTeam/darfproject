@@ -338,9 +338,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\nimport \"./interface/administratable.sol\";\nimport \"../libraries/SafeMath.sol\";\n\ncontract ITokenLedger {\n  function totalTokens() public view returns (uint256);\n  function totalInCirculation() public view returns (uint256);\n  function balanceOf(address account) public view returns (uint256);\n  function mintTokens(uint256 amount) public;\n  function transfer(address sender, address reciever, uint256 amount) public;\n  function creditAccount(address account, uint256 amount) public;\n  function debitAccount(address account, uint256 amount) public;\n  function addAdmin(address admin) public;\n  function removeAdmin(address admin) public;\n}\n\ncontract CstLedger is ITokenLedger, Administratable {\n\n  using SafeMath for uint256;\n\n  uint256 public _totalInCirculation; // warning this does not take into account unvested nor vested-unreleased tokens into consideration\n  uint256 public _totalTokens;\n  mapping (address => uint256) public _balanceOf;\n  uint256 public ledgerCount;\n  mapping (uint256 => address) public accountForIndex;\n  mapping (address => bool) public accounts;\n\n  function totalTokens() public view returns (uint256) {\n    return _totalTokens;\n  }\n\n  function totalInCirculation() public view returns (uint256) {\n    return _totalInCirculation;\n  }\n\n  function balanceOf(address account) public view returns (uint256) {\n    return _balanceOf[account];\n  }\n\n  function mintTokens(uint256 amount) public onlyAdmins (msg.sender) {\n    _totalTokens = _totalTokens.add(amount);\n  }\n\n  function makeAccountIterable(address account) internal {\n    if (!accounts[account]) {\n      accountForIndex[ledgerCount] = account;\n      ledgerCount = ledgerCount.add(1);\n      accounts[account] = true;\n    }\n  }\n\n  function transfer(address sender, address recipient, uint256 amount) public onlyAdmins (msg.sender) {\n    require(_balanceOf[sender] >= amount);\n\n    _balanceOf[sender] = _balanceOf[sender].sub(amount);\n    _balanceOf[recipient] = _balanceOf[recipient].add(amount);\n    makeAccountIterable(recipient);\n  }\n\n  function creditAccount(address account, uint256 amount) public onlyAdmins (msg.sender) { // decrease asset/increase liability: remove tokens\n    require(_balanceOf[account] >= amount);\n\n    _totalInCirculation = _totalInCirculation.sub(amount);\n    _balanceOf[account] = _balanceOf[account].sub(amount);\n  }\n\n  function debitAccount(address account, uint256 amount) public onlyAdmins (msg.sender) { // increase asset/decrease liability: add tokens\n    _totalInCirculation = _totalInCirculation.add(amount);\n    _balanceOf[account] = _balanceOf[account].add(amount);\n    makeAccountIterable(account);\n  }\n}",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/CstLedger.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/CstLedger.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/CstLedger.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/CstLedger.sol",
     "exportedSymbols": {
       "CstLedger": [
         600
@@ -364,7 +364,7 @@
         "src": "0:23:4"
       },
       {
-        "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/administratable.sol",
+        "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/interface/administratable.sol",
         "file": "./interface/administratable.sol",
         "id": 321,
         "nodeType": "ImportDirective",
@@ -375,7 +375,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/libraries/SafeMath.sol",
+        "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/libraries/SafeMath.sol",
         "file": "../libraries/SafeMath.sol",
         "id": 322,
         "nodeType": "ImportDirective",
@@ -1737,7 +1737,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "1451:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -2302,10 +2302,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        7061,
-                        7062
+                        7073,
+                        7074
                       ],
-                      "referencedDeclaration": 7061,
+                      "referencedDeclaration": 7073,
                       "src": "1841:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2705,7 +2705,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "1823:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -2940,10 +2940,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        7061,
-                        7062
+                        7073,
+                        7074
                       ],
-                      "referencedDeclaration": 7061,
+                      "referencedDeclaration": 7073,
                       "src": "2189:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -3235,7 +3235,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "2119:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -3676,7 +3676,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "2429:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -3798,7 +3798,7 @@
     "src": "0:2649:4"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/CstLedger.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/CstLedger.sol",
     "exportedSymbols": {
       "CstLedger": [
         600
@@ -3822,7 +3822,7 @@
         "src": "0:23:4"
       },
       {
-        "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/interface/administratable.sol",
+        "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/interface/administratable.sol",
         "file": "./interface/administratable.sol",
         "id": 321,
         "nodeType": "ImportDirective",
@@ -3833,7 +3833,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/libraries/SafeMath.sol",
+        "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/libraries/SafeMath.sol",
         "file": "../libraries/SafeMath.sol",
         "id": 322,
         "nodeType": "ImportDirective",
@@ -5195,7 +5195,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "1451:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -5760,10 +5760,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        7061,
-                        7062
+                        7073,
+                        7074
                       ],
-                      "referencedDeclaration": 7061,
+                      "referencedDeclaration": 7073,
                       "src": "1841:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -6163,7 +6163,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "1823:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -6398,10 +6398,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        7061,
-                        7062
+                        7073,
+                        7074
                       ],
-                      "referencedDeclaration": 7061,
+                      "referencedDeclaration": 7073,
                       "src": "2189:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -6693,7 +6693,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "2119:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -7134,7 +7134,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7058,
+                      "referencedDeclaration": 7070,
                       "src": "2429:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -7260,8 +7260,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-03T12:24:01.767Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.881Z",
   "devdoc": {
     "methods": {}
   },

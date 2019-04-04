@@ -21,14 +21,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50610155806100206000396000f3fe6080604052600436106100405763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630d7415778114610045575b600080fd5b34801561005157600080fd5b5061008e6004803603602081101561006857600080fd5b50357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19166100b7565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b7bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19811660009081526003602052604081205473ffffffffffffffffffffffffffffffffffffffff1680156101085780610122565b60025473ffffffffffffffffffffffffffffffffffffffff165b939250505056fea165627a7a723058209b5a04b588c8aeabf3d36412185d5a10cca672f5b634db70faf6983c262f46b30029",
-  "deployedBytecode": "0x6080604052600436106100405763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630d7415778114610045575b600080fd5b34801561005157600080fd5b5061008e6004803603602081101561006857600080fd5b50357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19166100b7565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b7bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19811660009081526003602052604081205473ffffffffffffffffffffffffffffffffffffffff1680156101085780610122565b60025473ffffffffffffffffffffffffffffffffffffffff165b939250505056fea165627a7a723058209b5a04b588c8aeabf3d36412185d5a10cca672f5b634db70faf6983c262f46b30029",
+  "bytecode": "0x608060405234801561001057600080fd5b50610155806100206000396000f3fe6080604052600436106100405763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630d7415778114610045575b600080fd5b34801561005157600080fd5b5061008e6004803603602081101561006857600080fd5b50357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19166100b7565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b7bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19811660009081526003602052604081205473ffffffffffffffffffffffffffffffffffffffff1680156101085780610122565b60025473ffffffffffffffffffffffffffffffffffffffff165b939250505056fea165627a7a72305820b0624cfba88d4b2ceee9300f76cb3e21b87f0cbc30635601346aafa2052fd3350029",
+  "deployedBytecode": "0x6080604052600436106100405763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630d7415778114610045575b600080fd5b34801561005157600080fd5b5061008e6004803603602081101561006857600080fd5b50357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19166100b7565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b7bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19811660009081526003602052604081205473ffffffffffffffffffffffffffffffffffffffff1680156101085780610122565b60025473ffffffffffffffffffffffffffffffffffffffff165b939250505056fea165627a7a72305820b0624cfba88d4b2ceee9300f76cb3e21b87f0cbc30635601346aafa2052fd3350029",
   "sourceMap": "191:745:11:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;191:745:11;;;;;;;",
   "deployedSourceMap": "191:745:11:-;;;;;;;;;;;;;;;;;;;;;;;769:165;;8:9:-1;5:2;;;30:1;27;20:12;5:2;769:165:11;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;769:165:11;-1:-1:-1;;769:165:11;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;857:22:11;;827:7;857:22;;;:16;:22;;;;;;;;892:18;;:37;;925:4;892:37;;;913:9;;;;892:37;885:44;769:165;-1:-1:-1;;;769:165:11:o",
   "source": "pragma solidity ^0.5.0;\n\nimport './IRegistry.sol';\n\n/**\n * @title UpgradeabilityStorage\n * @dev This contract holds all the necessary state variables to support the upgrade functionality\n */\ncontract UpgradeabilityStorage {\n  // Registry of versions\n  IRegistry internal registry;\n\n  // Current version\n  string internal version_;\n\n  // Optional fallback function\n  address internal fallback_;\n\n  // Cache of functions to current implementations\n  mapping (bytes4 => address) internal implementations_;\n\n  /**\n  * @dev Returns the address of the current implementation for a given function signature\n  * @param func representing the signature of the function to query the implementation of\n  * @return address of the current implementation of the given function\n  */\n  function implementation(bytes4 func) public view returns (address) {\n    address impl = implementations_[func];\n    return impl == address(0) ? fallback_ : impl;\n  }\n}\n",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/UpgradeabilityStorage.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/UpgradeabilityStorage.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/UpgradeabilityStorage.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/UpgradeabilityStorage.sol",
     "exportedSymbols": {
       "UpgradeabilityStorage": [
         1213
@@ -49,7 +49,7 @@
         "src": "0:23:11"
       },
       {
-        "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
+        "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
         "file": "./IRegistry.sol",
         "id": 1179,
         "nodeType": "ImportDirective",
@@ -506,7 +506,7 @@
     "src": "0:937:11"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/UpgradeabilityStorage.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/UpgradeabilityStorage.sol",
     "exportedSymbols": {
       "UpgradeabilityStorage": [
         1213
@@ -527,7 +527,7 @@
         "src": "0:23:11"
       },
       {
-        "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
+        "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/admin/IRegistry.sol",
         "file": "./IRegistry.sol",
         "id": 1179,
         "nodeType": "ImportDirective",
@@ -988,8 +988,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-30T13:01:20.350Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.899Z",
   "devdoc": {
     "details": "This contract holds all the necessary state variables to support the upgrade functionality",
     "methods": {

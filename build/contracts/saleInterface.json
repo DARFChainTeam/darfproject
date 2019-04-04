@@ -47,19 +47,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n//import \"../../tokens/token.sol\";\n\ninterface saleInterface\n{\n    function sellANGETH(address beneficiar, uint256 summa) external;\n    function sell_discount (address beneficiar, uint256 summa, bytes32 pass_word) external ;\n\n\n}\n",
-  "sourcePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
+  "sourcePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
   "ast": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
     "exportedSymbols": {
       "saleInterface": [
-        5390
+        6514
       ]
     },
-    "id": 5391,
+    "id": 6515,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5373,
+        "id": 6497,
         "literals": [
           "solidity",
           "^",
@@ -67,7 +67,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:30"
+        "src": "0:23:32"
       },
       {
         "baseContracts": [],
@@ -75,9 +75,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5390,
+        "id": 6514,
         "linearizedBaseContracts": [
-          5390
+          6514
         ],
         "name": "saleInterface",
         "nodeType": "ContractDefinition",
@@ -85,23 +85,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5380,
+            "id": 6504,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "sellANGETH",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5378,
+              "id": 6502,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5375,
+                  "id": 6499,
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5380,
-                  "src": "110:18:30",
+                  "scope": 6504,
+                  "src": "110:18:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -109,10 +109,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5374,
+                    "id": 6498,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "110:7:30",
+                    "src": "110:7:32",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -124,11 +124,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5377,
+                  "id": 6501,
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5380,
-                  "src": "130:13:30",
+                  "scope": 6504,
+                  "src": "130:13:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -136,10 +136,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5376,
+                    "id": 6500,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "130:7:30",
+                    "src": "130:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -149,16 +149,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "109:35:30"
+              "src": "109:35:32"
             },
             "returnParameters": {
-              "id": 5379,
+              "id": 6503,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "153:0:30"
+              "src": "153:0:32"
             },
-            "scope": 5390,
-            "src": "90:64:30",
+            "scope": 6514,
+            "src": "90:64:32",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -166,23 +166,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5389,
+            "id": 6513,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "sell_discount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5387,
+              "id": 6511,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5382,
+                  "id": 6506,
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5389,
-                  "src": "183:18:30",
+                  "scope": 6513,
+                  "src": "183:18:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -190,10 +190,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5381,
+                    "id": 6505,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "183:7:30",
+                    "src": "183:7:32",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -205,11 +205,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5384,
+                  "id": 6508,
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5389,
-                  "src": "203:13:30",
+                  "scope": 6513,
+                  "src": "203:13:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -217,10 +217,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5383,
+                    "id": 6507,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "203:7:30",
+                    "src": "203:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -231,11 +231,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5386,
+                  "id": 6510,
                   "name": "pass_word",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5389,
-                  "src": "218:17:30",
+                  "scope": 6513,
+                  "src": "218:17:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -243,10 +243,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 5385,
+                    "id": 6509,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "218:7:30",
+                    "src": "218:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -256,39 +256,39 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "182:54:30"
+              "src": "182:54:32"
             },
             "returnParameters": {
-              "id": 5388,
+              "id": 6512,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "246:0:30"
+              "src": "246:0:32"
             },
-            "scope": 5390,
-            "src": "159:88:30",
+            "scope": 6514,
+            "src": "159:88:32",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5391,
-        "src": "60:191:30"
+        "scope": 6515,
+        "src": "60:191:32"
       }
     ],
-    "src": "0:252:30"
+    "src": "0:252:32"
   },
   "legacyAST": {
-    "absolutePath": "/home/sergey/Documents/angels/2083nointerfaces/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
+    "absolutePath": "/home/st/Desktop/DARF-ANGeles/Angeles.VC-token-scrum-investing/contracts/tokensale/interface/sale-interface.sol",
     "exportedSymbols": {
       "saleInterface": [
-        5390
+        6514
       ]
     },
-    "id": 5391,
+    "id": 6515,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5373,
+        "id": 6497,
         "literals": [
           "solidity",
           "^",
@@ -296,7 +296,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:30"
+        "src": "0:23:32"
       },
       {
         "baseContracts": [],
@@ -304,9 +304,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5390,
+        "id": 6514,
         "linearizedBaseContracts": [
-          5390
+          6514
         ],
         "name": "saleInterface",
         "nodeType": "ContractDefinition",
@@ -314,23 +314,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5380,
+            "id": 6504,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "sellANGETH",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5378,
+              "id": 6502,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5375,
+                  "id": 6499,
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5380,
-                  "src": "110:18:30",
+                  "scope": 6504,
+                  "src": "110:18:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -338,10 +338,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5374,
+                    "id": 6498,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "110:7:30",
+                    "src": "110:7:32",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -353,11 +353,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5377,
+                  "id": 6501,
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5380,
-                  "src": "130:13:30",
+                  "scope": 6504,
+                  "src": "130:13:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -365,10 +365,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5376,
+                    "id": 6500,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "130:7:30",
+                    "src": "130:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -378,16 +378,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "109:35:30"
+              "src": "109:35:32"
             },
             "returnParameters": {
-              "id": 5379,
+              "id": 6503,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "153:0:30"
+              "src": "153:0:32"
             },
-            "scope": 5390,
-            "src": "90:64:30",
+            "scope": 6514,
+            "src": "90:64:32",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -395,23 +395,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5389,
+            "id": 6513,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "sell_discount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5387,
+              "id": 6511,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5382,
+                  "id": 6506,
                   "name": "beneficiar",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5389,
-                  "src": "183:18:30",
+                  "scope": 6513,
+                  "src": "183:18:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -419,10 +419,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5381,
+                    "id": 6505,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "183:7:30",
+                    "src": "183:7:32",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -434,11 +434,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5384,
+                  "id": 6508,
                   "name": "summa",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5389,
-                  "src": "203:13:30",
+                  "scope": 6513,
+                  "src": "203:13:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -446,10 +446,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5383,
+                    "id": 6507,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "203:7:30",
+                    "src": "203:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -460,11 +460,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 5386,
+                  "id": 6510,
                   "name": "pass_word",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5389,
-                  "src": "218:17:30",
+                  "scope": 6513,
+                  "src": "218:17:32",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -472,10 +472,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 5385,
+                    "id": 6509,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "218:7:30",
+                    "src": "218:7:32",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -485,34 +485,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "182:54:30"
+              "src": "182:54:32"
             },
             "returnParameters": {
-              "id": 5388,
+              "id": 6512,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "246:0:30"
+              "src": "246:0:32"
             },
-            "scope": 5390,
-            "src": "159:88:30",
+            "scope": 6514,
+            "src": "159:88:32",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5391,
-        "src": "60:191:30"
+        "scope": 6515,
+        "src": "60:191:32"
       }
     ],
-    "src": "0:252:30"
+    "src": "0:252:32"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-30T13:01:20.383Z",
+  "schemaVersion": "3.0.5",
+  "updatedAt": "2019-04-04T17:09:59.972Z",
   "devdoc": {
     "methods": {}
   },
