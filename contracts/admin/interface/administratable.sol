@@ -13,6 +13,10 @@ contract Administratable is admin {
   admin BA_;
   address  _owner;
 
+    constructor () public {
+        _owner = msg.sender;
+  }
+
   modifier onlyAdmins  (address msgSender)  {
     if (checkAdmin(msgSender)) revert();
     _;

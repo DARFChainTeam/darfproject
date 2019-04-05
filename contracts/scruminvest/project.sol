@@ -111,7 +111,7 @@ contract project is project_interface, Administratable  {
     function create_project (address Projecttokenaddr, bytes32 DFSProjectdescribe, bytes4 DFStype) OnlyProjectOwner(Projecttokenaddr) public {
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         address  ANG_system_addr = ES.getAddressValue("ANG_system_addr");
-        uint256 our_share100 = ES.getUIntValue("our_share100");
+        uint256 our_share100 = ES.getUIntValue("Projectspayshare100");
         require(check_token_deposit(Projecttokenaddr, ANG_system_addr, our_share100));
 
             Projects[Projecttokenaddr].project_owner_address = msg.sender;

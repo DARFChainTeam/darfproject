@@ -53,7 +53,7 @@ import "../admin/interface/ExternalStorage.sol";
         ExternalStorage ES = ExternalStorage(External_Storage_addr);
         ANGtoken_addr =  ES.getAddressValue("ANGtoken");
         ANG_tokens_rate_ETH = ES.getUIntValue("ANGtokensrateETH");
-        ANG_percent100 = ES.getUIntValue("ANGpercent100");
+        ANG_percent100 = ES.getUIntValue("Intestorspayshare100");
         KYC_address = ES.getAddressValue("KYC/implementation/Basic_KYC");
         discount_word =  ES.getBytes32Value("tokensale/discount_word");
         discount_size100 = ES.getUIntValue("tokensale/discount_size");
