@@ -40,7 +40,6 @@ class Website(Website):
             project_list.append(project_item_dict)
             project_item_dict = {}
             data.update({'projects':project_list})
-            print(data)
         return http.request.render('darfproject.homepage_projects', data)
 
 class AuthSignupHome(AuthSignupHome):
@@ -60,11 +59,9 @@ class AuthSignupHome(AuthSignupHome):
                         list_of_areas.append(int(qcontext[item_of_qcontext].split('_')[1]))
                     if qcontext[item_of_qcontext].split('_')[0] == 'stage':
                         list_of_stage.append(int(qcontext[item_of_qcontext].split('_')[1]))
-            print("test of areas:",list_of_areas)
             values.update(area_of_investment = [(6,0,list_of_areas)])
             values.update(stage_investing = [(6,0,list_of_stage)])
         if qcontext.get('project',False):
-            print('test of get !!!')
             values.update(project=True)
             project_name = qcontext.get('project_name',False)
             #insert in values parameters for project creationg
@@ -76,7 +73,6 @@ class AuthSignupHome(AuthSignupHome):
             values.update(technology=qcontext.get('technology'))
             values.update(total_investment=qcontext.get('total_investment'))
             values.update(finance_description=qcontext.get('finance_description'))
-        print('test of values:',values)
         return super(AuthSignupHome, self)._signup_with_values(token, values)
     
     
@@ -109,7 +105,6 @@ class AuthSignupHome(AuthSignupHome):
                 else:
                     _logger.error("%s", e)
                     qcontext['error'] = _("Could not create a new account.")
-        print(qcontext)
         get_area_of_investing = request.env['area.of.investment'].sudo().search([])
         get_area_of_investing_category = request.env['area.of.investment.category'].sudo().search([])
         get_stage_investing = request.env['stage.of.investing'].sudo().search([])
@@ -129,7 +124,6 @@ class CustomerPortal(CustomerPortal):
         partner = request.env.user.partner_id
         projects = request.env['customer.investment.list'].search([('customer_id','=',partner.id)])
         projects_list = request.env['project.project'].sudo().search([])
-        print(projects)
         projects_customer_list = []
         if projects:
             for project_item in projects:
@@ -144,14 +138,12 @@ class CustomerPortal(CustomerPortal):
                 projects_customer_list.append(project_item_dic)
         else:
             project_item_dic = {}
-        print(projects_customer_list)
         values.update({
             'projects': projects_customer_list,
         })
         project_list = []
         project_item_dict = {}
         for project_item in projects_list:
-            print(project_item)
             
             projects_customer = request.env['customer.investment.list'].search([('customer_id','=',partner.id),
                                                                                 ('project_of_invest','=',project_item.id)])
@@ -166,7 +158,6 @@ class CustomerPortal(CustomerPortal):
             project_list.append(project_item_dict)
             project_item_dict = {}
             
-        print(project_list)
         values.update({'projects_list':project_list})
         return values
     
@@ -184,12 +175,10 @@ class CustomerPortal(CustomerPortal):
     def project_board(self, **kw):
         project = request.env['project.project'].sudo().search([])
         project_sudo= project.sudo()
-        print(project)
         partner = request.env.user.partner_id
         project_list = []
         project_item_dict = {}
         for project_item in project:
-            print(project_item)
             
             projects_customer = request.env['customer.investment.list'].search([('customer_id','=',partner.id),
                                                                                 ('project_of_invest','=',project_item.id)])
@@ -204,7 +193,6 @@ class CustomerPortal(CustomerPortal):
             project_list.append(project_item_dict)
             project_item_dict = {}
             
-        print(project_list)
         return request.render("darfproject.projects_board", {
             'projects': project_list,
         })
@@ -214,7 +202,6 @@ class CustomerPortal(CustomerPortal):
         project = request.env['project.project'].browse([project])
         project_sudo= project.sudo()
         partner = request.env.user.partner_id
-        print(project_sudo)
         return request.render("darfproject.project_invest", {
             'project': project_sudo,
         })
@@ -222,7 +209,6 @@ class CustomerPortal(CustomerPortal):
     @http.route(['/my/home/setting'], type='http', auth="user", website=True)
     def customer_setting(self,  **kw):
         partner = request.env.user.partner_id
-        print(partner)
         return request.render("darfproject.customer_setting", {
             'customer': partner,
         })
@@ -230,23 +216,19 @@ class CustomerPortal(CustomerPortal):
     @http.route(['/web/condition'], type='json', auth="user", website=True)
     def buy_condition(self, project_id,token_value, **kw):
         partner = request.env.user.partner_id
-        print(project_id, token_value)
         return True
 
     @http.route(['/web/buytoken'], type='json', auth="user", website=True)
     def buy_tokens(self, project_id,accept,token_value, **kw):
         partner = request.env.user.partner_id
-        print(project_id, token_value,'test accept', accept,'partner_id:',partner.id)
         project_id = int(project_id)
         get_list = request.env['customer.investment.list'].search([('customer_id','=',partner.id),('project_of_invest','=',project_id)])
         if get_list:
-            print(get_list)
             token_value = get_list.project_customer_token_amount + int(token_value)
             get_list.write({'project_customer_token_amount':token_value})
         else:
             dict_for_write = {'project_of_invest':project_id,
                               'project_customer_token_amount':token_value}
-            print(dict_for_write)
             partner.write({'investment_list':[(0,0,dict_for_write)]})
         return True
 

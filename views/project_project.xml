@@ -7,29 +7,16 @@
 			<field name="inherit_id" ref="project.edit_project"/>
 			<field name="arch" type="xml">
 			  <xpath expr="//sheet/notebook/page[1]" position="after">
-			    <page string="Project's token">
+			    <page string="Project description">
 					<group>
-						<field name="project_token" />
-						<field name="moderator_check" invisible="1"/>
 						<field name="project_token_name" />
-						<field name="token_amount" />
-						<field name="description" />
+                        <field name="description" />
 						<field name='image' widget="image" class="oe_avatar" />
-						<field name='project_address' />
+                        <field name="website_url" />
+
 					</group>
 			    </page> 
-			    <page string="Project Setting">
-					<group>
-						<field name="open_close_for_investment" />
-						<field name="forms_of_investment" />
-						<field name="exchange_price" />
-						<field name="investment_condition" />
-						<field name="buy_back_address" />
-						<field name="term_and_condition" widget="html" />
-						<field name="areas_of_investment" />
-						<field name="website_url" />
-					</group>
-			    </page>
+
 			    <page string="Market">
 					<group>
 						<field name="market" widget="html"/>
@@ -40,10 +27,15 @@
 			    </page>
 			    <page string="Finance">
 					<group>
-						<field name="tokens_price" />
+                        <field name="open_close_for_investment" />
+						<field name="forms_of_investment" />
+                        <field name="investment_condition" />
+						<field name="total_investment" />
+                        <field name="tokens_price" />
 						<field name="exchange_price" />
 						<field name="exchange_rate" />
-						<field name="total_investment" />
+						<field name="areas_of_investment" />
+                        <field name="term_and_condition" widget="html" />
 						<field name="finance_description" widget="html"/>
 					</group>
 			    </page>
@@ -79,6 +71,21 @@
 						</field>
 					</group>
 			    </page>
+                <page string="Project Setting">
+					<group>
+                        <field name="project_token" />
+						<field name="moderator_check" invisible="1"/>
+						<field name="token_amount" />
+						<field name='project_address' />
+                        <field name='project_owner_address' />
+                        <field name='DARF_system_address' />
+                        <field name='DFS_Project_describe' />
+                        <field name='buy_back_address' />
+                        <field name='abi_buy_back' />
+                        <field name='crowd_sale_abi' />
+					</group>
+			    </page>
+
 			  </xpath> 
 			</field>
 
