@@ -1,4 +1,4 @@
-from odoo import models, fields, api, SUPERUSER_ID
+from openerp import models, fields, api, SUPERUSER_ID
 #from odoo.addons.test_impex.models import compute_fn
 #from odoo import SUPERUSER_ID
 
@@ -65,7 +65,7 @@ class ProjectInvestingInformation(models.Model):
     #
     #states
 
-    project_states = fields.One2many('project.states', 'project_id', string="Project states ")
+   # project_states = fields.One2many('project.states', 'project_id', string="Project states ")
 
     def _moderator_check(self):
         if SUPERUSER_ID == self._uid:
