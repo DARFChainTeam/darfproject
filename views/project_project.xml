@@ -35,9 +35,16 @@
 						<field name="exchange_price" />
 						<field name="exchange_rate" />
 						<field name="areas_of_investment" />
-                        <field name="term_and_condition" widget="html" />
+
 						<field name="finance_description" widget="html"/>
+                        <field name="term_and_condition" widget="html" />
 					</group>
+			    </page>
+                  <page string="Law">
+					<group>
+                        <field name="legal_issues" widget="html"/>
+
+                	</group>
 			    </page>
 			    <page string="Technology">
 					<group>

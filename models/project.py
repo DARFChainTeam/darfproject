@@ -49,7 +49,7 @@ class ProjectInvestingInformation(models.Model):
     forms_of_investment = fields.Selection([('ICO', 'ico'), ('DAICO', 'daico')],
     string="Forms of investment")  # todo add VC, angels forms
     investment_condition = fields.Text(string="Investment conditions")
-    term_and_condition = fields.Text(string="Terms & Conditions")
+    term_and_condition = fields.Text(string="Finanve terms & Conditions")
     round_of_investment = fields.One2many('round.investment', 'project_id', string="Rounds of investment")
     areas_of_investment = fields.Many2many('area.of.investment', string="Select area of project")
 
@@ -65,7 +65,7 @@ class ProjectInvestingInformation(models.Model):
     #
     #states
 
-   # project_states = fields.One2many('project.states', 'project_id', string="Project states ")
+    project_states = fields.One2many('project.states', 'project_id', string="Project states ")
 
     def _moderator_check(self):
         if SUPERUSER_ID == self._uid:
@@ -120,7 +120,7 @@ class RaundOfInvestment(models.Model):
     name = fields.Char(string="Name of Round")
     description = fields.Text(string="Description")
       
-class ProjectStates(models.model):
+class ProjectStates(models.Model):
 
     _name = 'project.states'
     project_id = fields.Many2one('project.project')
@@ -130,3 +130,5 @@ class ProjectStates(models.model):
     # DFS_type = fields.Char(string="Type of DFS used") #todo, now just IPFS
     PoA_addr =  fields.Char(string="Address of Proof of Accounting in DFS")
     timestamp = fields.Datetime(string = "Timestamp od state")
+
+#  /usr/bin/python3 /usr/bin/odoo --db_host 172.17.0.2 --db_port 5432 --db_user odoo --db_password odoo -d darfchain -u darfproject --xmlrpc-port=9999
