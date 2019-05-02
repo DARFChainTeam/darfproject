@@ -70,7 +70,8 @@ class CustomerInvestment(models.Model):
     project = fields.Boolean(string="Is project")
     area_of_investment = fields.Many2many('area.of.investment',string="Areas of investment")
     stage_investing = fields.Many2many('stage.of.investing',string="Stage of investment")
-    
+    #todo add KYC fields here and in views
+
     
     @api.model
     def create(self,values):

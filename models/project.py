@@ -13,12 +13,15 @@ class ProjectInvestingInformation(models.Model):
     project_address = fields.Char(string="Address for token seling")
 
     DARF_system_address =  fields.Char(string="DARF system address") # +
-    # DLT_type = fields.Char(string="Type of DLT used") #todo, now just ETH
+    DLT_type = fields.Char(string="Type of DLT used") #todo, now just ETH
+    DLT_node_address_port = fields.Char(string="Distributed ledgeg (DLT) node address:port")
     DFS_Project_describe =  fields.Char(string="Project description address in DFS")
-    # DFS_type = fields.Char(string="Type of DFS used") #todo, now just IPFS
+    DFS_type = fields.Char(string="Type of DFS used") #todo, now just IPFS
     buy_back_address = fields.Char(string="Buy back address")
     abi_buy_back = fields.Char(string="ABI smart contract")
     crowd_sale_abi = fields.Char(string="ABI crowd sale contract")
+    external_storage_addr = fields.Char(string="External storage address")
+    external_storage_ABI = fields.Char(string="ABI of external storage ")
     # addition fields for project card
 
     token_amount = fields.Float(string="Token Amount")
