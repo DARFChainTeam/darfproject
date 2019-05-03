@@ -14,38 +14,40 @@ import web3
 #from solc import compile_source
 #from web3.contract import ConciseContract
 
-class web3_controller:
+class Web3Controller:
 
-    def InvokeSmartcontract(self, smart_contract_function_addr, smart_contract_ABI, smart_contract_function_name ):
+    def _invoke_smart_contract(self, smart_contract_function_addr, smart_contract_ABI, smart_contract_function_name):
         smart_contract =  web3.eth.contract(address=smart_contract_function_addr, abi= smart_contract_ABI)  # globals()['web3.eth.contract']()
         return  getattr(smart_contract, smart_contract_function_name ) #returns function in smartcontract
 
 
-    def GetInfoExternalStorage(self, variablename, variablefunction): #needs name of get* function in https://github.com/DARFChainTeam/Angeles.VC-token-scrum-investing/contracts/admin/implementation/externalstorage.sol
+    def get_info_external_storage(self, variablename, variablefunction): #needs name of get* function in https://github.com/DARFChainTeam/Angeles.VC-token-scrum-investing/contracts/admin/implementation/externalstorage.sol
 
-        return self.InvokeSmartcontract(self, project.external_storage_addr, project.external_storage_ABI, variablefunction).call({'record': variablename})
+        return self._invoke_smart_contract(self, project.external_storage_addr, project.external_storage_ABI, variablefunction).call({'record': variablename})
 
-    def SetInfoExternalStorage(self, variablevalue, variablename, variablefunction): #needs name of set* function in https://github.com/DARFChainTeam/Angeles.VC-token-scrum-investing/contracts/admin/implementation/externalstorage.sol
+    def set_info_external_storage(self, variablevalue, variablename, variablefunction): #needs name of set* function in https://github.com/DARFChainTeam/Angeles.VC-token-scrum-investing/contracts/admin/implementation/externalstorage.sol
 
-        return self.InvokeSmartcontract(self, project.external_storage_addr, project.external_storage_ABI, variablefunction).call({'record': variablename, 'value': variablevalue}) #todo need to control types!
+        return self._invoke_smart_contract(self, project.external_storage_addr, project.external_storage_ABI, variablefunction).call({'record': variablename, 'value': variablevalue}) #todo need to control types!
 
 
-    def ProjectStart(self):
+    def create_project(self): #address Projecttokenaddr, bytes32 DFSProjectdescribe, bytes4 DFStype) OnlyProjectOwner(Projecttokenaddr)
 
         return
-    def ChangeProjectInfo(self):
+    def change_project_info(self):
         return
-    def  FinishProject  (self):
+    def  finish_project  (self):
         return
-    def ProjectAddState(self):
-        return
-
-    def ProjectGet_state(self):
+    def project_add_state(self):
         return
 
-    def SetRights(self):
+    def project_get_state(self):
         return
-    def CheckRights(self):
+
+    def setrights(self):
+        return
+    def checkrights(self, project_token_address):
+
+
         return
 
 # token management

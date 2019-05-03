@@ -1,4 +1,4 @@
-from openerp import models, fields, api, SUPERUSER_ID
+from odoo import models, fields, api, SUPERUSER_ID
 #from odoo.addons.test_impex.models import compute_fn
 #from odoo import SUPERUSER_ID
 
@@ -17,11 +17,13 @@ class ProjectInvestingInformation(models.Model):
     DLT_node_address_port = fields.Char(string="Distributed ledgeg (DLT) node address:port")
     DFS_Project_describe =  fields.Char(string="Project description address in DFS")
     DFS_type = fields.Char(string="Type of DFS used") #todo, now just IPFS
-    buy_back_address = fields.Char(string="Buy back address")
-    abi_buy_back = fields.Char(string="ABI smart contract")
-    crowd_sale_abi = fields.Char(string="ABI crowd sale contract")
-    external_storage_addr = fields.Char(string="External storage address")
-    external_storage_ABI = fields.Char(string="ABI of external storage ")
+    #buy_back_address = fields.Char(string="Buy back address")
+    #abi_buy_back = fields.Char(string="ABI smart contract")
+    #crowd_sale_abi = fields.Char(string="ABI crowd sale contract")
+    #external_storage_addr = fields.Char(string="External storage address")
+    #external_storage_ABI = fields.Char(string="ABI of external storage ")
+    smart_contracts = fields.One2many('project.smartcontracts', 'project_id', string="Project smart contracts addresses")
+
     # addition fields for project card
 
     token_amount = fields.Float(string="Token Amount")
@@ -133,5 +135,14 @@ class ProjectStates(models.Model):
     # DFS_type = fields.Char(string="Type of DFS used") #todo, now just IPFS
     PoA_addr =  fields.Char(string="Address of Proof of Accounting in DFS")
     timestamp = fields.Datetime(string = "Timestamp od state")
+
+class SmartContractsAdresses (models.Model): #adresses in
+    _name = 'project.smartcontracts'
+    project_id = fields.Many2one('project.project')
+    smart_contract_name =  fields.Char(string="Name of smart contract")
+    smart_contract_address = fields.Char(string="Address of smart contract")
+    smart_contract_ABI = fields.Char(string="ABI of smart contract")
+
+
 
 #  /usr/bin/python3 /usr/bin/odoo --db_host 172.17.0.2 --db_port 5432 --db_user odoo --db_password odoo -d darfchain -u darfproject --xmlrpc-port=9999

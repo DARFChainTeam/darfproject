@@ -10,8 +10,8 @@ from odoo.tools import consteq
 from odoo.addons.portal.controllers.mail import _message_post_helper
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager, get_records_pager
 from ast import literal_eval
-from openerp.addons.auth_signup.controllers.main import AuthSignupHome
-from openerp.addons.website.controllers.main import Website
+from odoo.addons.auth_signup.controllers.main import AuthSignupHome
+from odoo.addons.website.controllers.main import Website
 import werkzeug
 from odoo.addons.auth_signup.models.res_users import SignupError
 from odoo.exceptions import UserError
