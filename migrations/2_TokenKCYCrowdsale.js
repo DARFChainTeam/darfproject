@@ -25,7 +25,7 @@
 */
 
 var administratable = artifacts.require("./admin/implementation/Administratable.sol");
-var external_storage = artifacts.require("./admin/implementation/ExternalStorage.sol");
+var external_storage = artifacts.require("./admin/implementation/externalestorage.sol");
 var Basic_KYC = artifacts.require("./KYC/implementation/Basic_KYC.sol");
 var sale = artifacts.require("./tokensale/sellANG_ETH.sol");
 var withdraw = artifacts.require("./tokensale/withdraw.sol");
@@ -143,6 +143,12 @@ module.exports = async deployer => {
     await withdraw.deployed().then(function(instance){return instance._initAdministratable(administratable.address),{from: owner}});
 
        console.log("call withdraw._initExternalStorage(  ExternalStorageaddr)");
-    await withdraw.deployed().then(function(instance){return instance._initExternalStorage(external_storage.address),{from: owner}});
+    await withdraw.deployed().then(function(instance){return instance._initExternalStorage(external_storage.address),{from: owner}}).then(function (tx) {
+       return web3.eth.getTransactionReceipt(tx);
+     }).then((_rcpt) => {
+       console.log(_rcpt.cumulativeGasUsed.toString());
+       return;
+     });
+
 
 }

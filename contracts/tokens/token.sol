@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 import "./interface/tokenInterface.sol";
 //import "./implementation/basic-token.sol";
 import "./implementation/mintable-token.sol";
-//import "../admin/interface/ExternalStorage.sol";
+//import "../admin/interface/externalstorage.sol";
 //import "../admin/interface/administratable.sol";
 
 // contracts/libraries/Modifiers.sol

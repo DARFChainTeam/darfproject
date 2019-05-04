@@ -4,7 +4,7 @@ pragma solidity ^0.5.0;
 
 //import "../interface/administratable.sol";
 //import "../../libraries/SafeMath.sol";
-// import "./ExternalStorage.sol";
+// import "./externalstorage.sol";
 
 contract  admin  {
 

@@ -3,7 +3,7 @@ pragma solidity ^0.5.0;
 import "../../libraries/SafeMath.sol";
 import "../interface/administratable.sol";
 
-contract ExternalStorage is Administratable {
+contract externalestorage is Administratable {
   using SafeMath for uint256;
 
   mapping(bytes32 => mapping(address => mapping(address => uint256))) MultiLedgerStorage;

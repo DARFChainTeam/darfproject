@@ -4,7 +4,7 @@ import "./admin-interface.sol";
 
 //import "../interface/administratable.sol";
 //import "../../libraries/SafeMath.sol";
-// import "./ExternalStorage.sol";
+// import "./externalstorage.sol";
 
 contract Administratable is admin {
 

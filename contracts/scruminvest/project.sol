@@ -27,19 +27,20 @@ contract project is project_interface, Administratable  {
 */
     //uint256[8]  public rights;
 
-    mapping (address => uint256[8]) Project_rights;  // 0-7 grades - access rights to project's information grades
-// set and check grade of rights for project
-    // level of access based on amount  of project's token on user's address.
-    // f.e. 10 tokens - means "1"st level -  trafficlight spectator,
-    // 100 tokens - "2"nd level  - reports analyser,
-    // 1000 tokens - "3"td level - transaction auditor
-    // 10000 tokens - "4"th level - scrum participator
-    // 100000 tokens - "5"th - team member
-    // 1000000 tokens - "6"s level- manager
-    // 10000000 tokens - "7"s lev - top manager
-    // or another grade list
-    // 0-7 grades use by default to reduce gas issues
-    // TODO: this grades'd be mapped with access right in ERP
+
+
+    struct Project{
+        uint256 project_ID; //assign by increment and not change? ??
+        address project_owner_address; //+
+        address _DARF_system_address; // ETH address of node that updates project state +
+        bytes32 DFS_Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
+        bytes4 DFS_type;
+        uint256 finish_date;
+
+        // mapping (uint => UserStory) stories;
+
+
+    }
 
     struct project_state {
         uint256 project_ID;
@@ -53,22 +54,25 @@ contract project is project_interface, Administratable  {
 
     mapping (bytes32 => project_state) Project_statuses;// addresses of project's states  in IPFS/swarm
 
-    struct Project{
-        uint256 project_ID; //assign by increment and not change?
-        address project_owner_address;
-        address _DARF_system_address; // ETH address of node that updates project state
-        bytes32 DFS_Project_describe;// addresses of intial project's describe in DFS (IPFS/SWarm)
-        bytes4 DFS_type;
-        uint256 finish_date;
-             // rights  0-7 rights grades use by default to reduce gas issues - moved to Project_rights
-
-        // mapping (uint => UserStory) stories;
-
-
-    }
 
     mapping (address => Project)  Projects ; //
     address[] public ProjectList; // array to access projects AKA projectID
+
+
+      mapping (address => uint256[8]) Project_rights;  // 0-7 grades - access rights to project's information grades
+// set and check grade of rights for project
+    // level of access based on amount  of project's token on user's address.
+    // f.e. 10 tokens - means "1"st level -  trafficlight spectator,
+    // 100 tokens - "2"nd level  - reports analyser,
+    // 1000 tokens - "3"td level - transaction auditor
+    // 10000 tokens - "4"th level - scrum participator
+    // 100000 tokens - "5"th - team member
+    // 1000000 tokens - "6"s level- manager
+    // 10000000 tokens - "7"s lev - top manager
+    // or another grade list
+    // 0-7 grades use by default to reduce gas issues
+    // TODO: this grades'd be mapped with access right in ERP
+
 
     modifier  OnlyProjectOwner(address _project_address) {
         require(Projects[_project_address].project_owner_address == msg.sender);
