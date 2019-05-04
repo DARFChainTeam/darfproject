@@ -22,7 +22,7 @@ class ProjectInvestingInformation(models.Model):
     #crowd_sale_abi = fields.Char(string="ABI crowd sale contract")
     #external_storage_addr = fields.Char(string="External storage address")
     #external_storage_ABI = fields.Char(string="ABI of external storage ")
-    smart_contracts = fields.One2many('project.smartcontracts', 'project_id', string="Project smart contracts addresses")
+    smart_contracts = fields.One2many('project.smartcontracts', 'project_id', string="Project smart contracts addresses", index = True)
 
     # addition fields for project card
 
