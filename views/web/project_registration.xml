@@ -267,7 +267,7 @@ hr.style {
 			<div class="col-xs-12 col-md-1 head_right" style="padding-top: 12px;"><a href="/my/home/projectsboard"><span class="text_head">Projects board</span></a></div>
 			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home"><span class="text_head">My investment</span></a></div>
 			<t t-if="user_id.partner_id.project">
-			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="http://projects.darfchain.com/web#menu_id=87&#38;action="><span class="text_head">My projects</span></a></div>
+			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/web#menu_id=87&#38;action="><span class="text_head">My projects</span></a></div>
 			</t>
 			<div class="col-xs-12 col-md-2  head_right" style="padding-top: 12px;"><a href="/my/home/transactions"><span class="text_head">Transaction history</span></a></div>
 			<div class="col-xs-12 col-md-1  head_right" style="padding-top: 12px;"><a href="/my/home/setting"><span class="text_head">Setting</span></a></div>
@@ -307,14 +307,14 @@ hr.style {
 		<div class="col-xs-12 text-center foot_fit">
 			<div class="col-xs-12 col-md-4">
 				<p>Projects</p>
-				<p>Blockchain system for investment</p>
+				<p>Blockchain system for  investment</p>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				Our site:
 				<a src="http://darfchain.com">Darfchain</a>
 			</div>
 			<div class="col-xs-12 col-md-4">
-				<a src="http://darfchain.com">By Darfchain ICO</a>
+				<a src="http://darfchain.com">By Darfchain techs</a>
 			</div>
 		</div>
 	</div>
@@ -576,6 +576,33 @@ hr.style {
 	<t t-call="portal.portal_layout" >
 	<div class="page_style">
 	<div class="row">
+
+		<div class="col-xs-12">
+		<div class="text-right col-xs-3">User:</div>
+		<div class="text-left col-xs-9"><span t-field="customer.name"/></div>
+		</div>
+
+        <ul class="nav nav-tabs">
+		  <li class="active"><a data-toggle="tab" href="#buy">Buy ANG tokens</a></li>
+		  <li><a data-toggle="tab" href="#projects">Projects </a></li>
+		  <li><a data-toggle="tab" href="#withdraw">Withdraw</a></li>
+		  <li><a data-toggle="tab" href="#KYC">KYC</a></li>
+		  <li><a data-toggle="tab" href="#settings">Settings</a></li>
+		</ul>
+			<div class="tab-content">
+				<div id="buy" class="tab-pane fade in active">
+                </div>
+                <div id="projects" class="tab-pane fade">
+                </div>
+                <div id="withdraw" class="tab-pane fade">
+                </div>
+                <div id="KYC" class="tab-pane fade">
+                </div>
+                <div id="settings" class="tab-pane fade">
+                </div>
+            </div>
+        </div>
+
 	<form action="/my/home/customer">
 	<div class="col-xs-12" style="margin-top:30px;">
 <div class="col-xs-6 text-right">Ethereum address</div>

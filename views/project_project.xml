@@ -87,9 +87,9 @@
                         <field name='project_owner_address' />
                         <field name='DARF_system_address' />
                         <field name='DFS_Project_describe' />
-                        <field name='buy_back_address' />
-                        <field name='abi_buy_back' />
-                        <field name='crowd_sale_abi' />
+                        <!--field name='buy_back_address' / -->
+                        <!-- field name='abi_buy_back' / -->
+                        <!-- field name='crowd_sale_abi' / -->
 					</group>
 			    </page>
 

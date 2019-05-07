@@ -145,4 +145,4 @@ class SmartContractsAdresses (models.Model): #adresses in
 
 
 
-#  /usr/bin/python3 /usr/bin/odoo --db_host 172.17.0.2 --db_port 5432 --db_user odoo --db_password odoo -d darfchain -u darfproject --xmlrpc-port=9999
+# docker exec odooweb /usr/bin/python3 /usr/bin/odoo --db_host 172.17.0.2 --db_port 5432 --db_user odoo --db_password odoo -d darfchain -u darfproject --xmlrpc-port=9999
