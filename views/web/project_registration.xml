@@ -584,36 +584,64 @@ hr.style {
 
         <ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#buy">Buy ANG tokens</a></li>
-		  <li><a data-toggle="tab" href="#projects">Projects </a></li>
+		  <li><a data-toggle="tab" href="#projects_token">Projects token </a></li>
 		  <li><a data-toggle="tab" href="#withdraw">Withdraw</a></li>
 		  <li><a data-toggle="tab" href="#KYC">KYC</a></li>
 		  <li><a data-toggle="tab" href="#settings">Settings</a></li>
 		</ul>
 			<div class="tab-content">
 				<div id="buy" class="tab-pane fade in active">
+                    <form action="/my/home/buy_ANG">
+
+                    <div class="col-xs-12" style="margin-top:30px;">
+                        <div class="col-xs-6 text-right">Amount of ANG tokens to buy</div>
+                        <div class="col-xs-6 text-left"><input name="ANG amount" type="text" style="width:30px;"/></div><div class="col-xs-6 text-right">
+                        <input type="submit" value="BUY (press to put transaction into ETH and sign it in your wallet)"/></div>
+                        </div>
+                    </form>
                 </div>
-                <div id="projects" class="tab-pane fade">
-                </div>
+                <div id="projects_token" class="tab-pane fade">
+                    <!-- todo  1.if no token of project - emit it ,
+                     todo  2.if exist - show data  and
+                      todo  3. interface to transfer
+                       todo  4. with integration with customers data (get adresses from customer profile)
+                        https://angeles.vc/web#id=59&view_type=form&model=project.task&action=134&active_id=2
+                        -->
+                </div >
                 <div id="withdraw" class="tab-pane fade">
                 </div>
                 <div id="KYC" class="tab-pane fade">
+                    <!--
+                     #todo add KYC fields here and in views
+                    # document_type
+                    # document_number
+                    # document_date_issue
+                    # document_authority_issue
+                    # postal_address
+                    # DFS_type
+                    # DFS_address_document
+                    # DFS_address_selfy_with_doc
+                    # DFS_address_bank_receipt
+                    # DFS_address_selfy_with_bank_rec
+                    -->
                 </div>
                 <div id="settings" class="tab-pane fade">
+                    <form action="/my/home/customer">
+	                    <div class="col-xs-12" style="margin-top:30px;">
+                        <div class="col-xs-6 text-right">Ethereum address</div>
+                        <div class="col-xs-6 text-left"><input name="Ethereum address" type="text" style="width:300px;"/></div>
+                        <!-- div class="col-xs-6 text-right">Bitcoin address</div>
+                        <div class="col-xs-6 text-left"><input name="Bitcoin address" type="text" style="width:300px;"/></div -->
+                        <div class="col-xs-6 text-right"><input type="submit" value="Save"/></div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
-	<form action="/my/home/customer">
-	<div class="col-xs-12" style="margin-top:30px;">
-<div class="col-xs-6 text-right">Ethereum address</div>
-	<div class="col-xs-6 text-left"><input name="Ethereum address" type="text" style="width:300px;"/></div>
-	<div class="col-xs-6 text-right">Bitcoin address</div>
-	<div class="col-xs-6 text-left"><input name="Bitcoin address" type="text" style="width:300px;"/></div>
-	<div class="col-xs-6 text-right"><input type="submit" value="Save"/></div>
+
 	</div>
-	</form>
-	</div>
-	</div>
+
 	</t>
 </template>
 <template id="term_and_condition" name="Term Condition">

@@ -71,6 +71,16 @@ class CustomerInvestment(models.Model):
     area_of_investment = fields.Many2many('area.of.investment',string="Areas of investment")
     stage_investing = fields.Many2many('stage.of.investing',string="Stage of investment")
     #todo add KYC fields here and in views
+    # document_type
+    # document_number
+    # document_date_issue
+    # document_authority_issue
+    # postal_address
+    # DFS_type
+    # DFS_address_document
+    # DFS_address_selfy_with_doc
+    # DFS_address_bank_receipt
+    # DFS_address_selfy_with_bank_rec
 
     
     @api.model
