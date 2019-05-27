@@ -3,6 +3,8 @@
 import logging
 import base64
 import datetime
+from pprint import pprint
+
 from odoo import http, _
 from odoo.exceptions import AccessError
 from odoo.http import request
@@ -15,6 +17,8 @@ from odoo.addons.website.controllers.main import Website
 import werkzeug
 from odoo.addons.auth_signup.models.res_users import SignupError
 from odoo.exceptions import UserError
+
+import web3_controller
 
 _logger = logging.getLogger(__name__)
 
@@ -240,3 +244,32 @@ class CustomerPortal(CustomerPortal):
             'project': project,
             'token_value':token_value,
                         })
+
+
+
+
+
+
+
+    @http.route(['/my/home/buy_ANG'], type='http', auth="user", website=True)
+    def buy_ang (self, **kw):
+        #project = request.env.project #['project.project'].sudo().search([])
+        _ir = request.env['ir.default']
+
+        sellANGETH_addr = _ir['ANG_sale_addr']
+
+        sellANGETH_ABI = _ir['ANG_sale_ABI']
+        #from project
+        beneficiar_addr = 0#$ request.env['ir.default.DARF_system_address'] #from profile
+        _req = request.params.copy()
+        summ_buy = _req.get('amount',False) #from request
+        discount_password = _req.get('discount_password',False) # from request
+
+#        _buy_ang_smart_contract = web3.contract(address=sellANGETH_addr,  abi=sellANGETH_ABI)
+        if (discount_password) :
+            return self._Invoke_smart_contract(sellANGETH_addr, sellANGETH_ABI, 'sell_discount').call( {'beneficiar': beneficiar_addr, 'summa': summ_buy, 'pass_word': discount_password})
+        else:
+            return self._Invoke_smart_contract(sellANGETH_addr, sellANGETH_ABI, 'sellANGETH').call({'beneficiar': beneficiar_addr, 'summa':summ_buy})
+
+
+#
