@@ -85,7 +85,7 @@
 						<field name="token_amount" />
 						<field name='project_address' />
                         <field name='project_owner_address' />
-                        <field name='DARF_system_address' />
+                        <!-- field name='DARF_system_address' /-->
                         <field name='DFS_Project_describe' />
                         <!--field name='buy_back_address' / -->
                         <!-- field name='abi_buy_back' / -->

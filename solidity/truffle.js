@@ -9,6 +9,12 @@ module.exports = {
        port: 8545,
        network_id: '*' ,// Match any network id
      },
+      docker: {
+       host: '172.17.0.1',
+       port: 8545,
+       network_id: '*' ,// Match any network id
+     },
+
   },
   solc: {
    optimizer: {

@@ -653,7 +653,7 @@ hr.style {
 		odoo.define('darfproject.token_buy', function (require) {
 				"use strict";
 				var ajax = require('web.ajax');
-				
+
 				$("#buy_tokens").click(function () {
 					 var project_id = $("#project_id").val();
 					 var accept = $("#accept").val();
@@ -661,7 +661,7 @@ hr.style {
 					 console.log(accept);
 					 console.log(location.host);
 					 var redirect = 'http://'+location.host + '/my/home';
-					 ajax.jsonRpc("/web/buytoken", 'call', { 
+					 ajax.jsonRpc("/web/buytoken", 'call', {
 					                                      'project_id':project_id,
 					                                      'accept':accept,
 					                                      'token_value':token_value,
@@ -669,9 +669,9 @@ hr.style {
 					 console.log(redirect);
 	                // window.location.replace(redirect);
 	                window.location.href = redirect;
-				 
+
 					 });
-				 
+
 			 });
 	   });
 	 </script>
@@ -683,7 +683,7 @@ hr.style {
 			</div>
 			<div class="col-xs-12 text-center" >
 			<p><span t-esc="token_value"/></p>
-			
+
 			</div>
 		</div>
 		<div class="col-xs-12 text-center">
@@ -692,6 +692,36 @@ hr.style {
 			<input id="token_value" name="tokens" type="hidden" t-attf-value="{{token_value}}" />
 			<input id="accept" type="checkbox" name="accept" value="accept"/> Accept<br/>
             <button type="button" class="btn btn-default" id="buy_tokens" data-dismiss="modal">BUY</button>
+			</form>
+		</div>
+	</div>
+	</t>
+</template>
+
+    <template id="admin_ETH_chain_system" name="System configuration">
+	<t t-call="portal.portal_layout" >
+	<div class="page_style">
+
+		<div class="row">
+			<div class="col-xs-12 text-center" style="padding-top:50px;">
+				<h3>
+                    Ethereum configs				</h3>
+			</div>
+			<div class="col-xs-12 text-center" >
+                <hr />
+			</div>
+		</div>
+		<div class="col-xs-12 ">
+			<form>
+                 <div class="col-xs-6 text-right">DARF system ethereum address:</div>
+                <input id="DARF_system_address" name="DARF_system_address" type="text" style="width:300px;" t-attf-value="{{DARF_system_address}}" /> <br />
+			    <div class="col-xs-6 text-right">ETH node address:port</div> <input id="DLT_node_address_port" name="DLT_node_address_port" type="text" style="width:300px;"  t-attf-value="{{DLT_node_address_port}}" /><br />
+                <div class="col-xs-6 text-right">External storage contract ETH addr</div> <input id="external_storage_addr" name="external_storage_addr" type="text" style="width:300px;"  t-attf-value="{{external_storage_addr}}" /><br />
+                <div class="col-xs-6 text-right">External storage contract ABI</div> <input id="external_storage_ABI" name="external_storage_ABI" type="text" style="width:300px;"  t-attf-value="{{external_storage_ABI}}" /><br />
+                <div class="col-xs-6 text-right">ANG sale contract ETH addr</div> <input id="ANG_sale_addr" name="ANG_sale_addr" type="text" style="width:300px;"  t-attf-value="{{ANG_sale_addr}}" /><br />
+                <div class="col-xs-6 text-right">ANG sale contract ABI </div> <input id="ANG_sale_ABI" name="ANG_sale_ABI" type="text" style="width:300px;"  t-attf-value="{{ANG_sale_ABI}}" /><br />
+                <div class="col-xs-6 text-right">
+                    <button type="button" class="btn btn-default" id="save_eth_conf" data-dismiss="modal">Save</button> </div>
 			</form>
 		</div>
 	</div>

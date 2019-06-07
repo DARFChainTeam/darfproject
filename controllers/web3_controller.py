@@ -26,14 +26,29 @@ from web3.contract import ConciseContract
 
 # PROJECTSMARTCONTRACTNAME = 'scruminvest/project'
 
-def _Invoke_smart_contract(self, smart_contract_function_addr, smart_contract_ABI, smart_contract_function_name):
+def _Invoke_smart_contract_func(smart_contract_function_addr, smart_contract_ABI, smart_contract_function_name):
     # todo: adopt to  SmartContractsAdresses ledger
-    w3 = Web3()
+    w3 = Web3(Web3.HTTPProvider("http://172.17.0.1:8545/"))
+    w3.eth.defaultAccount = w3.eth.accounts[0]
+
     # https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.ContractFunction
     smart_contract = w3.eth.contract(address=smart_contract_function_addr, \
                                      abi=smart_contract_ABI)  # globals()['web3.eth.contract']()
 
     return smart_contract.functions[smart_contract_function_name]
+    # getattr(smart_contract, smart_contract_function_name ) #returns function in smartcontract
+
+def Invoke_smart_contract(smart_contract_function_addr, smart_contract_ABI):
+
+    # todo: adopt to  SmartContractsAdresses ledger
+    w3 = Web3(Web3.HTTPProvider(request.env['ir.default']['DLT_node_address_port'], request_kwargs={'timeout': 60}))
+    w3.eth.defaultAccount = w3.eth.accounts[0]
+
+    # https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.ContractFunction
+    smart_contract = w3.eth.contract(address=smart_contract_function_addr, \
+                                     abi=smart_contract_ABI)  # globals()['web3.eth.contract']()
+
+    return smart_contract
     # getattr(smart_contract, smart_contract_function_name ) #returns function in smartcontract
 
 
@@ -107,3 +122,19 @@ def DFS_save(self, token_address):
 # token management
 #todo add token management to menu, views
 
+
+def Set_external_storage(smart_contract_addr, smart_contract_abi,external_storage_addr):
+    Invoke_smart_contract(Web3.toChecksumAddress(smart_contract_addr),                      smart_contract_abi).functions._setExternalstorageaddr(
+        Web3.toChecksumAddress(external_storage_addr)).transact()
+#_setExternalstorageaddr(address Externalstorageaddr )
+    return
+
+def Init_smart_contract (smart_contract_addr, smart_contract_abi, external_storage_addr):
+    # init procedure for smart contract
+
+    #_initExternalStorage(address    Externalstorageaddr) public     onlyAdmins(msg.sender)
+    Invoke_smart_contract(Web3.toChecksumAddress(smart_contract_addr), smart_contract_abi).functions._initExternalStorage(Web3.toChecksumAddress(external_storage_addr)).transact()
+
+    # load_conditions_ES () ,- from function
+
+    return

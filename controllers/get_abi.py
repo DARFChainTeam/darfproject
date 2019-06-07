@@ -1,10 +1,11 @@
-from web3 import Web3
+#from web3 import Web3
 import sys
 from solc import compile_source
-from web3.contract import ConciseContract
+#from web3.contract import ConciseContract
 
 contract_name = sys.argv[1]
 contract_path = sys.argv[2]
+print(contract_name, contract_path )
 
 with open(contract_path)  as contr:
     contract_source_code = contr.read()
