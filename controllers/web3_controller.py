@@ -5,6 +5,7 @@
 #pip3 install web3
 #workflow   https://www.draw.io/#G1yXU5Wpk7tX8-46XPNUB-CUb27HRQmbiy
 
+#import openERP as odoo
 
 
 import json
@@ -21,7 +22,7 @@ from odoo.http import request
 from web3 import Web3
 
 from solc import compile_source
-from web3.contract import ConciseContract
+#from web3.contract import ConciseContract
 
 
 # PROJECTSMARTCONTRACTNAME = 'scruminvest/project'
@@ -32,7 +33,7 @@ def _Invoke_smart_contract_func(smart_contract_function_addr, smart_contract_ABI
     w3.eth.defaultAccount = w3.eth.accounts[0]
 
     # https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.ContractFunction
-    smart_contract = w3.eth.contract(address=smart_contract_function_addr, \
+    smart_contract = w3.eth.contract(address=smart_contract_function_addr,
                                      abi=smart_contract_ABI)  # globals()['web3.eth.contract']()
 
     return smart_contract.functions[smart_contract_function_name]
@@ -52,7 +53,7 @@ def Invoke_smart_contract(smart_contract_function_addr, smart_contract_ABI):
     # getattr(smart_contract, smart_contract_function_name ) #returns function in smartcontract
 
 
-def Get_smart_contract_data (self, smartcontractname):
+def Get_smart_contract_data (self, smartcontractname, project_id):
     project = request.env['project.project'].browse([project_id])
 
     return (project.smart_contracts[('smart_contract_name','=',\
@@ -79,7 +80,7 @@ def Set_info_external_storage(self, variablevalue, variablename, variablefunctio
                                                                'value': variablevalue}) #todo need to control types!
 
 
-def Create_project(self): #address Projecttokenaddr, bytes32 DFSProjectdescribe, bytes4 DFStype)
+def Create_project(self, project_id): #address Projecttokenaddr, bytes32 DFSProjectdescribe, bytes4 DFStype)
     project = request.env['project.project'].browse([project_id])
      # 0. why need checkrights? self.checkrights (project.project_token)
 

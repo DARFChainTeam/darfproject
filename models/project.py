@@ -8,11 +8,13 @@ class ProjectInvestingInformation(models.Model):
     _inherit = 'project.project'
    # _name = 'project.DARFproject'
     
-    project_token = fields.Char(string="Project token address") # +
+    project_token = fields.Char(string="Project token address")  # +
     project_token_name = fields.Char(string="Token name")
-    project_owner_address = fields.Char(string="Project owner address") # +
-    project_address = fields.Char(string="Address for token seling")
-    DARF_system_address =  fields.Char(string="DARF system address") # +
+    project_token_ticket = fields.Char(string="Token symbol")  # todo - real term instead code?
+    project_owner_address = fields.Char(string="Project owner address")  # +
+    project_address = fields.Char(string="Address for token selling")
+    addr_CN_argeement = fields.Char(string="Project convertible note agreement address")
+    DARF_system_address =  fields.Char(string="DARF system address")  # +
     DFS_Project_describe = fields.Char(string="Project description address in DFS")
     DFS_type = fields.Char(string="Type of DFS used")  # todo, now just IPFS
     buy_back_address = fields.Char(string="Buy back address")
@@ -144,7 +146,8 @@ class SmartContractsAdresses (models.Model): #adresses in
 
 class DarfConfig (models.Model):
 
-    _inherit = 'ir.default'
+    _inherit = "res.config.settings"
+    _name = "darfsystem.config"
 
     DARF_system_address =  fields.Char(string="DARF system address") # +
     DLT_type = fields.Char(string="Type of DLT used") #todo, now just ETH

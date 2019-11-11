@@ -62,7 +62,7 @@ class CustomerInvestment(models.Model):
     
     _inherit = 'res.partner'
     
-    investment_list = fields.One2many('customer.investment.list','customer_id',string="Customer's investment")
+    investment_list = fields.One2many('customer.investment.list', 'customer_id', string="Customer's investment")
     ethereum_address = fields.Char(string="Ethereum address")
     use_ethereum_address_for_login = fields.Boolean(string="Use ethereum address for login")
     bitcoin_address = fields.Char(string="Bitcoin address")

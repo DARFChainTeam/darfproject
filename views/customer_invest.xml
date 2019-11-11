@@ -14,7 +14,7 @@
 					  <field name="area_of_investment" />
 					  <field name="stage_investing" />
  				  </group>
- 				  
+
 			  </page>
 			  <page string="Investments">
 			  <group>
@@ -28,8 +28,15 @@
 				  </tree>
 			  </field>
 			  </page>
-			  </xpath> 
+			  </xpath>
 			</field>
 		</record>
+        <menuitem
+            id="Customer_invest"
+            name="Customer invest"
+            parent = "darfproject.project_estimate_menu"
+            web_icon="darfproject,static/description/document.png"
+            action="user_story_action"
+            sequence="6"/>
 	</data>
 </odoo>
