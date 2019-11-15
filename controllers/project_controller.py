@@ -35,7 +35,8 @@ class Website(Website):
         #    partner = request.env.user.partner_id
         for project_item in projects_list:
             # projects_customer = request.env['customer.investment.list'].search([('customer_id','=',partner.id),
-            # 'project_token_amount':projects_customer.project_customer_token_amount,                                                                    ('project_of_invest','=',project_item.id)])
+            # 'project_token_amount':projects_customer.project_customer_token_amount,
+            # ('project_of_invest','=',project_item.id)])
             project_item_dict.update({'project_name': project_item.name,
                                       'project_token_name': project_item.project_token_name,
                                       'token_amount': project_item.token_amount,
@@ -274,53 +275,19 @@ class CustomerPortal(CustomerPortal):
 
     #
     @http.route(['/admin/ETH_chain_system'], type='http', auth="user", website=True)  # todo: auth="admin"
-    #    @api.model
     def configs_ETH_chain(self, **kw):
-        # _ir = request.env['ir.default']['ANG_sale_ABI']
-        ir_values = request.env['darfsystem.config']
 
-       # ANG_sale_addr = _ir['ANG_sale_ABI']
-       # ANG_sale_ABI = _ir['ANG_sale_ABI']
-        return request.render("darfproject.admin_ETH_chain_system", {
-            'DARF_system_address': ir_values['DARF_system_address'],
-            'DLT_node_address_port': ir_values['DLT_node_address_port'],
-            'external_storage_addr': ir_values['external_storage_addr'],
-            'external_storage_ABI': ir_values['external_storage_ABI'],
-            'ANG_sale_addr': ir_values['ANG_sale_addr'],
-            'ANG_sale_ABI': ir_values['ANG_sale_ABI'],
-            #      'withdraw_address': _ir.read(['withdraw_address'],
-            #      'withdraw_ABI': _ir.read(['withdraw_ABI'],
-        })
+        return request.render("darfproject.admin_ETH_chain_system",  request.registry.models["darfsystem.config"])
 
     @http.route(['/admin/save_eth_conf'], type='http', auth="user", website=True)  # todo: auth="admin"
-    #  @api.model
     def save_configs_ETH_chain(self, **kw):
         _req = request.params.copy()
-        # return self.env['ir.values'].sudo().set_default(
-        #'base.config.settings', 'abcde', self.field_name)
-
-
-        request.env['darfsystem.config']['DARF_system_address'] = _req.get('DARF_system_address', False)
-
-        #    'DLT_node_address_port': _req.get('DLT_node_address_port ', False),
-        #    'external_storage_addr': _req.get('external_storage_addr ', False),
-        #})
-        #request.env['darfsystem.config']['external_storage_ABI'] = (_req.get('external_storage_ABI ', False))
-        #request.env['darfsystem.config']['ANG_sale_addr'] = (_req.get('ANG_sale_addr ', False))
-        #request.env['darfsystem.config']['ANG_sale_ABI'] = (_req.get('ANG_sale_ABI ', False))
+        request.registry.models["darfsystem.config"] = _req
         print("data saved")
-        ir_values = request.env['darfsystem.config']
-
-        return request.render("darfproject.admin_ETH_chain_system", {
-            'DARF_system_address': ir_values['DARF_system_address'],
-            'DLT_node_address_port': ir_values['DLT_node_address_port'],
-            'external_storage_addr': ir_values['external_storage_addr'],
-            'external_storage_ABI': ir_values['external_storage_ABI'],
-            'ANG_sale_addr': ir_values['ANG_sale_addr'],
-            'ANG_sale_ABI': ir_values['ANG_sale_ABI'],
-            #      'withdraw_address': _ir.read(['withdraw_address'],
-            #      'withdraw_ABI': _ir.read(['withdraw_ABI'],
-        })
+        return request.render("darfproject.admin_ETH_chain_system",
+                              request.registry.models["darfsystem.config"]
+                              #request.env['darfsystem.config']
+                              )
 
     @http.route(['/my/home/project/<int:project>/emit_token'], type='http', auth="public", website=True)
     def project_emit_token(self, project, **kw):

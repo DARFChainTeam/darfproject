@@ -5,7 +5,7 @@
                 'portal',
                 'account',
 ],
-    'author': "Sergey Stepanets",
+    'author': "Sergey Stepanets Stan Taktaev",
     'category': 'Application',
     'description': """
     Module that realize projects estimation and project registration 
