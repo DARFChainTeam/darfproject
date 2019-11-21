@@ -10,7 +10,7 @@ class ProjectInvestingInformation(models.Model):
     
     project_token = fields.Char(string="Project token address")  # +
     project_token_name = fields.Char(string="Token name")
-    project_token_ticket = fields.Char(string="Token symbol")  # todo - real term instead code?
+    project_token_symbol = fields.Char(string="Token symbol")  # todo - real term instead code?
     project_owner_address = fields.Char(string="Project owner address")  # +
     project_address = fields.Char(string="Address for token selling")
     addr_CN_argeement = fields.Char(string="Project convertible note agreement address")

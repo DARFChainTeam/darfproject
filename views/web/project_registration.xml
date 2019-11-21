@@ -321,6 +321,7 @@ hr.style {
     </xpath>
 
     </template>
+
     <template id="project_portal" inherit_id="portal.portal_my_home"
         name="My Projects">
         <xpath expr="//div[hasclass('o_portal_my_home')]" position="replace">
@@ -374,6 +375,7 @@ hr.style {
             </div>
         </xpath>
     </template>
+
     <template id="voting_portal_main" inherit_id="portal.portal_layout" name="Voting Portal" >
     <xpath expr="//div[hasclass('container')]"  position="replace">
     <div class="container mt16 o_portal" style="display:none;">
@@ -419,6 +421,7 @@ hr.style {
 
     </xpath>
     </template>
+
     <template id="project_page" name="Project Page">
     <t t-call="portal.portal_layout" >
         <div class="page_style" style="padding-left: 40px; padding-top: 40px; padding-left: 40px">
@@ -476,6 +479,7 @@ hr.style {
 
     </t>
     </template>
+
     <template id="projects_board" name="Project Board Page">
         <t t-call="portal.portal_layout" >
         <div class="page_style">
@@ -489,14 +493,26 @@ hr.style {
                                         <t t-set="name" t-value="project['project'].name" />
                                         <h3><span><t t-esc="name"/></span></h3>
                                         <div  class="thumbnail">
+                                            <!-- todo: если роль "инвестор", показывать "INVEST"
+                                            -->
                                         <a  t-attf-href="/my/home/invest/{{id}}">
+                                        <img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
+                                        </a>
+                                            <!-- todo: если роль "проект", показывать "MINT TOKEN"
+                                            -->
+                                        <a  t-attf-href="/my/home/mint/{{id}}">
                                         <img class="img-fluid rounded mb-3 mb-md-0 image_project" t-att-src="website.image_url(project['project'],'image')" />
                                         </a>
                                         </div>
                                         <div class="caption">
                                             <div class="row">
                                             <div class="col-md-6">
-                                               <a class="btn btn-danger" t-attf-href="/my/home/invest/{{id}}">INVEST</a>
+                                                <!-- todo: если роль "инвестор", показывать "INVEST"
+                                            -->
+                                               <a class="btn btn-warning" t-attf-href="/my/home/invest/{{id}}">INVEST</a>
+                                                <!-- todo: если роль "проект", показывать "MINT TOKENS"
+                                            -->
+                                                <a class="btn btn-danger" t-attf-href="/my/home/mint/{{id}}">MINT TOKEN</a>
                                             </div>
                                             <div class="col-md-6">
                                                <a t-attf-href="/my/home/project/{{id}}">READ MORE...</a>
@@ -518,6 +534,7 @@ hr.style {
                 </div>
         </t>
     </template>
+
     <template id="project_invest" name="Project Invest Page">
         <t t-call="portal.portal_layout" >
         <div class="page_style">
@@ -572,6 +589,7 @@ hr.style {
         </div>
         </t>
     </template>
+
     <template id="customer_setting" name="Customer Setting">
         <t t-call="portal.portal_layout" >
         <div class="page_style">
@@ -645,6 +663,7 @@ hr.style {
 
         </t>
     </template>
+
     <template id="term_and_condition" name="Term Condition">
         <t t-call="portal.portal_layout" >
         <div class="page_style">
@@ -732,7 +751,6 @@ hr.style {
         </t >
     </template>
 
-
     <template id="admin_ETH_chain_system_saved" name="System configuration">
 	<t t-call="portal.portal_layout" >
 	<div class="page_style">
@@ -765,4 +783,40 @@ hr.style {
 	</div >
 	</t>
     </template>
+
+    <template id="mint_token" name="Minting (emission) of project's token">
+        <t t-call="portal.portal_layout" >
+            <div class="page_style">
+
+                <div class="row">
+                    <div class="col-xs-12 text-center" style="padding-top:50px;">
+                        <h3>
+                            Token parameters</h3>
+                    </div>
+                    <div class="col-xs-12 text-center" >
+                        <hr />
+                    </div>
+                </div>
+                <div class="col-xs-12 ">
+                    <form action= '/my/home/start_minting/{{id}}' >
+                         <div class="col-xs-6 text-right">project_token_name:</div>
+                        <input id="project_token_name" name="project_token_name" type="text" style="width:300px;" t-attf-value="{{project_token_name}}" /> <br />
+                        <div class="col-xs-6 text-right">project_token_symbol</div>
+                        <input id="project_token_symbol" name="project_token_symbol" type="text" style="width:300px;"  t-attf-value="{{project_token_symbol}}" /><br />
+                        <div class="col-xs-6 text-right">DFS addr_CN_argeement</div>
+                        <input id="addr_CN_argeement" name="addr_CN_argeement" type="text" style="width:300px;"  t-attf-value="{{addr_CN_argeement}}" /><br />
+                        <div class="col-xs-6 text-right">Project token_amount</div>
+                        <input id="token_amount" name="token_amount" type="text" style="width:300px;"  t-attf-value="{{token_amount}}" /><br />
+
+                            <!-- button type="button" class="btn btn-default" id="save_eth_conf" data-dismiss="modal">Save</button-->
+                        <input type="submit"   style="width:300px;" value="START MINT&#13;&#10;(press to put transaction into ETH &#13;&#10;and sign it in your wallet)"/>
+
+                        <!--/div -->
+
+                    </form>
+                </div>
+            </div>
+        </t >
+    </template>
+
 </odoo>

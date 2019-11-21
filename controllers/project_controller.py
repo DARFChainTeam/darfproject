@@ -250,6 +250,23 @@ class CustomerPortal(CustomerPortal):
             'token_value': token_value,
         })
 
+    #    @http.route(['/my/home/mint_token/<int:project>'], type='http', auth="public", website=True) #todo auth = user
+    @http.route(['/my/home/mint/<int:project>'], type='http', auth="user", website=True)
+    def project_mint_token(self, project, **kw):
+        project = request.env['project.project'].browse(project)
+        project_sudo = project.sudo()
+        return request.render("darfproject.mint_token", project_sudo
+                              # { 'project': project_sudo}
+                              )
+
+    @http.route(['/my/home/start_minting/<int:project>'], type='http', auth="user", website=True)
+    def project_start_mint_token(self, project, **kw):
+        project = request.env['project.project'].browse([project])
+        project_sudo = project.sudo()
+        return request.render("darfproject.mint_token", project_sudo
+                              # { 'project': project_sudo}
+                              )
+
     @http.route(['/my/home/buy_ANG'], type='http', auth="user", website=True)
     def buy_ang(self, **kw):
         project = request.env.project #['project.project'].sudo().search([])
@@ -276,8 +293,10 @@ class CustomerPortal(CustomerPortal):
     #
     @http.route(['/admin/ETH_chain_system'], type='http', auth="user", website=True)  # todo: auth="admin"
     def configs_ETH_chain(self, **kw):
-
-        return request.render("darfproject.admin_ETH_chain_system",  request.registry.models["darfsystem.config"])
+        return request.render("darfproject.admin_ETH_chain_system",
+                      {"DARF_system_address": request.registry.models["darfsystem.config"]["DARF_system_address"],
+                       "DLT_node_address_port": request.registry.models["darfsystem.config"]["DLT_node_address_port"]
+                       } )
 
     @http.route(['/admin/save_eth_conf'], type='http', auth="user", website=True)  # todo: auth="admin"
     def save_configs_ETH_chain(self, **kw):
@@ -286,13 +305,4 @@ class CustomerPortal(CustomerPortal):
         print("data saved")
         return request.render("darfproject.admin_ETH_chain_system",
                               request.registry.models["darfsystem.config"]
-                              #request.env['darfsystem.config']
-                              )
-
-    @http.route(['/my/home/project/<int:project>/emit_token'], type='http', auth="public", website=True)
-    def project_emit_token(self, project, **kw):
-        project = request.env['project.project'].browse([project])
-        project_sudo = project.sudo()
-        return request.render("darfproject.emit_token",
-                              #{ 'project': project_sudo}
                               )

@@ -25,6 +25,6 @@
      'views/areas_investments_category.xml',
      'views/investing_stage.xml',
      'views/user_story.xml',
-     
+     'views/mint_token.xml',
     ],
 }
